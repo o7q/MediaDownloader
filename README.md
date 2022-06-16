@@ -5,3 +5,5 @@ Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of 
 
 yt-dlp: https://github.com/yt-dlp/yt-dlp
 ffmpeg: https://ffmpeg.org
+
+To compile the code yourself you must have .NET Framework 4.8 and Visual Studio.
