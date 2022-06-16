@@ -272,7 +272,7 @@
             this.githubbutton.Name = "githubbutton";
             this.githubbutton.Size = new System.Drawing.Size(51, 28);
             this.githubbutton.TabIndex = 17;
-            this.githubbutton.Text = "yt-dlp GitHub";
+            this.githubbutton.Text = "MediaD GitHub";
             this.githubbutton.UseVisualStyleBackColor = false;
             this.githubbutton.Click += new System.EventHandler(this.githubbutton_Click);
             // 

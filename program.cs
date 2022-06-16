@@ -28,7 +28,7 @@ namespace MediaDownloader
             // create mediadownloader.bat
             try
             {
-                string mediadownloader = "hello! you found the secret message. c:";
+                string mediadownloader = "hey! you found the secret message. c:";
                 File.WriteAllText("mediadownloader.bat", mediadownloader);
             }
             catch
@@ -146,10 +146,6 @@ namespace MediaDownloader
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
                     }
-                    else
-                    {
-                        // do nothing
-                    }
 
                     // mp4
                     if (formatbox.SelectedIndex == 2)
@@ -157,10 +153,6 @@ namespace MediaDownloader
                         string url = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
-                    }
-                    else
-                    {
-                        // do nothing
                     }
 
                     // webm
@@ -170,10 +162,6 @@ namespace MediaDownloader
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
                     }
-                    else
-                    {
-                        // do nothing
-                    }
 
                     // (raw)
                     if (formatbox.SelectedIndex == 6)
@@ -182,10 +170,6 @@ namespace MediaDownloader
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
                     }
-                    else
-                    {
-                        // do nothing
-                    }
 
                     // mp3
                     if (formatbox.SelectedIndex == 7)
@@ -193,10 +177,6 @@ namespace MediaDownloader
                         string url = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
-                    }
-                    else
-                    {
-                        // do nothing
                     }
 
                     // wav
@@ -207,9 +187,6 @@ namespace MediaDownloader
                         Process.Start("mediadownloader.bat");
                     }
                     else
-                    {
-                        // do nothing
-                    }
 
                     // m4a
                     if (formatbox.SelectedIndex == 9)
@@ -218,10 +195,6 @@ namespace MediaDownloader
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
                     }
-                    else
-                    {
-                        // do nothing
-                    }
 
                     // (Use Custom Arguments)
                     if (formatbox.SelectedIndex == 12)
@@ -229,10 +202,6 @@ namespace MediaDownloader
                         string url = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + customargsbox.Text + " " + inputbox.Text + "\nPAUSE";
                         File.WriteAllText("mediadownloader.bat", url);
                         Process.Start("mediadownloader.bat");
-                    }
-                    else
-                    {
-                        // do nothing
                     }
                 }
             }
@@ -255,14 +224,14 @@ namespace MediaDownloader
 
         private void githubbutton_Click(object sender, EventArgs e)
         {
-            // opens yt-dlp github page in the default web browser
-            System.Diagnostics.Process.Start("https://github.com/yt-dlp/yt-dlp");
+            // opens mediadownloader github page in the default web browser
+            System.Diagnostics.Process.Start("https://github.com/o7q/MediaDownloader");
         }
 
         private void infobutton_Click(object sender, EventArgs e)
         {
             // opens info panel
-            MessageBox.Show("MediaDownloader v2.3 by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. While in the MediaDownloader UI, click on 'yt-dlp GitHub'\n2. Click on the releases tab and download 'yt-dlp.exe'\n3. Replace 'yt-dlp.exe' that is next to 'MediaDownloader.exe' with the new 'yt-dlp.exe'");
+            MessageBox.Show("MediaDownloader v2.3 by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. Go to: https://github.com/yt-dlp/yt-dlp\n2. Click on the releases tab and download 'yt-dlp.exe'\n3. Replace 'yt-dlp.exe' that is next to 'MediaDownloader.exe' with the new 'yt-dlp.exe'");
         }
 
         private void program_FormClosing(object sender, FormClosingEventArgs e)
