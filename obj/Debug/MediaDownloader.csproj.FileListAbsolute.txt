@@ -1,0 +1,28 @@
+C:\Users\james\Desktop\MediaDownloader v2.0\PackagedBuild\MediaDownloader v2.0\MediaDownloader.exe.config
+C:\Users\james\Desktop\MediaDownloader v2.0\PackagedBuild\MediaDownloader v2.0\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader v2.0\PackagedBuild\MediaDownloader v2.0\MediaDownloader.pdb
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.csproj.AssemblyReference.cache
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.csproj.SuggestedBindingRedirects.cache
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.program.resources
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.Properties.Resources.resources
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.csproj.GenerateResource.cache
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader v2.0\MediaDownloader\obj\Debug\MediaDownloader.pdb
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.2\MediaDownloader.exe.config
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.2\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.2\MediaDownloader.pdb
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.3\MediaDownloader.exe.config
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.3\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader\PackagedBuild\MediaDownloader v2.3\MediaDownloader.pdb
+C:\Users\james\Desktop\MediaDownloader\PackagedRelease\MediaDownloader v2.3\MediaDownloader.exe.config
+C:\Users\james\Desktop\MediaDownloader\PackagedRelease\MediaDownloader v2.3\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader\PackagedRelease\MediaDownloader v2.3\MediaDownloader.pdb
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.csproj.AssemblyReference.cache
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.csproj.SuggestedBindingRedirects.cache
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.program.resources
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.Properties.Resources.resources
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.csproj.GenerateResource.cache
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.exe
+C:\Users\james\Desktop\MediaDownloader\MediaDownloader\obj\Debug\MediaDownloader.pdb
