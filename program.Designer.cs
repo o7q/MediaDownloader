@@ -52,6 +52,7 @@
             this.clearLocationButton = new System.Windows.Forms.Button();
             this.applycodecs = new System.Windows.Forms.CheckBox();
             this.ytdlpgithubbutton = new System.Windows.Forms.Button();
+            this.slowwarning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarpanel.SuspendLayout();
             this.SuspendLayout();
@@ -138,7 +139,7 @@
             this.versionlabel.Name = "versionlabel";
             this.versionlabel.Size = new System.Drawing.Size(28, 13);
             this.versionlabel.TabIndex = 10;
-            this.versionlabel.Text = "v2.4";
+            this.versionlabel.Text = "v2.5";
             this.versionlabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
             // 
             // minimizebutton
@@ -282,7 +283,7 @@
             // 
             this.infobutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.infobutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infobutton.ForeColor = System.Drawing.Color.Coral;
             this.infobutton.Location = new System.Drawing.Point(130, 124);
             this.infobutton.Name = "infobutton";
@@ -340,9 +341,9 @@
             this.applycodecs.ForeColor = System.Drawing.Color.IndianRed;
             this.applycodecs.Location = new System.Drawing.Point(130, 152);
             this.applycodecs.Name = "applycodecs";
-            this.applycodecs.Size = new System.Drawing.Size(105, 28);
+            this.applycodecs.Size = new System.Drawing.Size(105, 16);
             this.applycodecs.TabIndex = 22;
-            this.applycodecs.Text = "Apply Video Codecs\r\n(slow)";
+            this.applycodecs.Text = "Apply Video Codecs";
             this.applycodecs.UseVisualStyleBackColor = false;
             // 
             // ytdlpgithubbutton
@@ -359,6 +360,18 @@
             this.ytdlpgithubbutton.UseVisualStyleBackColor = false;
             this.ytdlpgithubbutton.Click += new System.EventHandler(this.ytdlpgithubbutton_Click);
             // 
+            // slowwarning
+            // 
+            this.slowwarning.AutoSize = true;
+            this.slowwarning.BackColor = System.Drawing.Color.Transparent;
+            this.slowwarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.slowwarning.ForeColor = System.Drawing.Color.IndianRed;
+            this.slowwarning.Location = new System.Drawing.Point(143, 167);
+            this.slowwarning.Name = "slowwarning";
+            this.slowwarning.Size = new System.Drawing.Size(27, 9);
+            this.slowwarning.TabIndex = 24;
+            this.slowwarning.Text = "(slow)";
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,7 +379,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(349, 190);
+            this.ClientSize = new System.Drawing.Size(350, 190);
+            this.Controls.Add(this.slowwarning);
             this.Controls.Add(this.ytdlpgithubbutton);
             this.Controls.Add(this.applycodecs);
             this.Controls.Add(this.clearLocationButton);
@@ -424,5 +438,6 @@
         private System.Windows.Forms.Button clearLocationButton;
         private System.Windows.Forms.CheckBox applycodecs;
         private System.Windows.Forms.Button ytdlpgithubbutton;
+        private System.Windows.Forms.Label slowwarning;
     }
 }

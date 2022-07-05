@@ -1,0 +1,41 @@
+~ v2.5 [IN-DEVELOPMENT]
+- Shortened and optimized some code
+
+~ v2.4
+- Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
+- Added back the "yt-dlp GitHub" button
+- Added error messages
+- Text typed in the "Custom Arguments" box is now gold
+- Renamed (raw) formats
+- Replace single quotes with double quotes in message boxes
+- Organized some stuff in the code
+- Updated to yt-dlp 2022.06.29
+
+~ v2.3
+- Now licensed under GPL-3.0-only. I did not realize that CC BY-SA 4.0 was incompatible with software
+- Updated info page
+- Re-aligned some UI elements (again) because they needed to be even more pixel-perfect!
+- The "yt-dlp GitHub" button is now the "MediaD GitHub" button (short for MediaDownloader)
+- Modified the secret message very slightly
+
+~ v2.2
+- Added feature that allows to user to specify a download location
+- Set the default download location to the "Downloads" folder that is found alongside "MediaDownloader.exe"
+- Re-aligned some UI elements to make them more pixel-perfect
+- Made the "Info" button orange
+- Added a secret message c:
+
+~ v2.1
+- Fixed bug where the (Custom Arguments) format would be disregarded when executing a (Custom Arguments) download task
+- Fixed bug where closing the application forcefully or through the taskbar would result in the temporary "mediadownloader.bat" file staying
+- Updated the info messagebox with helpful information on how to update yt-dlp
+
+~ v2.0
+- Now uses yt-dlp instead of depricated youtube-dl (enabling faster download speeds, higher quality downloads (for example, a 4k video), a larger selection of arguments/download options, and more.)
+- Running yt-dlp 2022.05.18
+- Running ffmpeg 5.0.1 from gyan.dev
+- More features
+- Minor bug fixes
+- UI redesign
+- New logo
+- Organized some stuff in the code

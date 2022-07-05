@@ -33,7 +33,7 @@ namespace MediaDownloader
             }
             catch
             {
-                // do nothing
+                // ignore
             }
 
             // create downloads directory
@@ -44,7 +44,7 @@ namespace MediaDownloader
             }
             catch
             {
-                // do nothing
+                // ignore
             }
 
             formatbox.SelectedIndex = 4;
@@ -59,7 +59,7 @@ namespace MediaDownloader
             }
             catch
             {
-                // do nothing
+                // ignore
             }
 
             Application.Exit();
@@ -71,53 +71,49 @@ namespace MediaDownloader
             this.WindowState = FormWindowState.Minimized;
         }
 
+        public void MoveForm()
+        {
+            ReleaseCapture();
+            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+
         private void titlebarpanel_MouseMove(object sender, MouseEventArgs e)
         {
-            // allows mousedown to move form
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                MoveForm();
             }
         }
 
         private void titlelabel_MouseMove(object sender, MouseEventArgs e)
         {
-            // allows mousedown to move form
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                MoveForm();
             }
         }
 
         private void byo7qlabel_MouseMove(object sender, MouseEventArgs e)
         {
-            // allows mousedown to move form
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                MoveForm();
             }
         }
 
         private void logo_MouseMove(object sender, MouseEventArgs e)
         {
-            // allows mousedown to move form
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                MoveForm();
             }
         }
 
         private void versionlabel_MouseMove(object sender, MouseEventArgs e)
         {
-            // allows mousedown to move form
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                MoveForm();
             }
         }
 
@@ -142,12 +138,10 @@ namespace MediaDownloader
                     // configure and execute download script
                     if (applycodecs.Checked == true)
                     {
-                        string codecError = "No video codecs are available for this format";
-
-                        // (raw) video
-                        if (formatbox.SelectedIndex == 1)
+                        // invalid formats
+                        if (formatbox.SelectedIndex == 1 || formatbox.SelectedIndex == 6 || formatbox.SelectedIndex == 7 || formatbox.SelectedIndex == 8 || formatbox.SelectedIndex == 9 || formatbox.SelectedIndex == 12)
                         {
-                            MessageBox.Show(codecError);
+                            MessageBox.Show("No video codecs are available for this format");
                         }
 
                         // mp4
@@ -157,12 +151,10 @@ namespace MediaDownloader
                             var numbers = "1234567890";
                             var stringNumbers = new char[8];
                             var randomNumbers = new Random();
-
                             for (int i = 0; i < stringNumbers.Length; i++)
                             {
                                 stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
                             }
-
                             var randomString = new String(stringNumbers);
 
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download\" --path Downloads " + inputbox.Text + "\nffmpeg.exe -i Downloads" + @"\temp_download.mp4 -c:v h264 -c:a aac " + "\"" + selectedLocation + @"\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f Downloads\temp_download.mp4";
@@ -172,7 +164,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -185,12 +177,10 @@ namespace MediaDownloader
                             var numbers = "1234567890";
                             var stringNumbers = new char[8];
                             var randomNumbers = new Random();
-
                             for (int i = 0; i < stringNumbers.Length; i++)
                             {
                                 stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
                             }
-
                             var randomString = new String(stringNumbers);
                             
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download\" --path Downloads " + inputbox.Text + "\nffmpeg.exe -i Downloads" + @"\temp_download.webm -c:v vp9 -c:a libvorbis " + "\"" + selectedLocation + @"\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f Downloads\temp_download.webm";
@@ -200,40 +190,10 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
-                        }
-
-                        // (raw) audio
-                        if (formatbox.SelectedIndex == 6)
-                        {
-                            MessageBox.Show(codecError);
-                        }
-
-                        // mp3
-                        if (formatbox.SelectedIndex == 7)
-                        {
-                            MessageBox.Show(codecError);
-                        }
-
-                        // wav
-                        if (formatbox.SelectedIndex == 8)
-                        {
-                            MessageBox.Show(codecError);
-                        }
-
-                        // m4a
-                        if (formatbox.SelectedIndex == 9)
-                        {
-                            MessageBox.Show(codecError);
-                        }
-
-                        // (Use Custom Arguments)
-                        if (formatbox.SelectedIndex == 12)
-                        {
-                            MessageBox.Show(codecError);
                         }
                     }
                     else
@@ -248,7 +208,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -264,7 +224,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -280,7 +240,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -296,7 +256,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -312,7 +272,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -328,7 +288,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -345,7 +305,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -361,7 +321,7 @@ namespace MediaDownloader
                             }
                             catch
                             {
-                                // do nothing
+                                // ignore
                             }
 
                             Process.Start("mediadownloader.bat");
@@ -396,7 +356,7 @@ namespace MediaDownloader
         private void infobutton_Click(object sender, EventArgs e)
         {
             // opens info panel
-            MessageBox.Show("MediaDownloader v2.4 by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. Click on the \"yt-dlp GitHub\" button within MediaDownloader\n2. Click on the releases tab and download \"yt-dlp.exe\"\n3. Replace \"yt-dlp.exe\" that is next to \"MediaDownloader.exe\" with the new \"yt-dlp.exe\"");
+            MessageBox.Show("MediaDownloader v2.5 by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. Click on the \"yt-dlp GitHub\" button within MediaDownloader\n2. Click on the releases tab and download \"yt-dlp.exe\"\n3. Replace \"yt-dlp.exe\" that is next to \"MediaDownloader.exe\" with the new \"yt-dlp.exe\"");
         }
 
         private void program_FormClosing(object sender, FormClosingEventArgs e)
@@ -408,7 +368,7 @@ namespace MediaDownloader
             }
             catch
             {
-                // do nothing
+                // ignore
             }
         }
 
@@ -417,7 +377,6 @@ namespace MediaDownloader
             // opens file location browser
             FolderBrowserDialog selectLocation = new FolderBrowserDialog();
             selectLocation.Description = "Select Location";
-
             if (selectLocation.ShowDialog() == DialogResult.OK)
             {
                 selectedLocation = selectLocation.SelectedPath;
@@ -455,7 +414,7 @@ namespace MediaDownloader
                 }
                 catch
                 {
-                    // do nothing
+                    // ignore
                 }
 
                 Application.Exit();
@@ -476,7 +435,7 @@ namespace MediaDownloader
                 }
                 catch
                 {
-                    // do nothing
+                    // ignore
                 }
 
                 Application.Exit();
