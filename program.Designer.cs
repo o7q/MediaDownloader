@@ -50,6 +50,8 @@
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.clearLocationButton = new System.Windows.Forms.Button();
+            this.applycodecs = new System.Windows.Forms.CheckBox();
+            this.ytdlpgithubbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarpanel.SuspendLayout();
             this.SuspendLayout();
@@ -136,7 +138,7 @@
             this.versionlabel.Name = "versionlabel";
             this.versionlabel.Size = new System.Drawing.Size(28, 13);
             this.versionlabel.TabIndex = 10;
-            this.versionlabel.Text = "v2.3";
+            this.versionlabel.Text = "v2.4";
             this.versionlabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
             // 
             // minimizebutton
@@ -171,12 +173,12 @@
             this.formatbox.FormattingEnabled = true;
             this.formatbox.Items.AddRange(new object[] {
             "[Video]",
-            "(raw)",
+            "(raw video)",
             "mp4",
             "webm",
             "",
             "[Audio]",
-            "(raw)",
+            "(raw audio)",
             "mp3",
             "wav",
             "m4a",
@@ -244,10 +246,10 @@
             // 
             this.customargsbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.customargsbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customargsbox.ForeColor = System.Drawing.Color.RosyBrown;
-            this.customargsbox.Location = new System.Drawing.Point(183, 94);
+            this.customargsbox.ForeColor = System.Drawing.Color.Gold;
+            this.customargsbox.Location = new System.Drawing.Point(236, 94);
             this.customargsbox.Name = "customargsbox";
-            this.customargsbox.Size = new System.Drawing.Size(158, 87);
+            this.customargsbox.Size = new System.Drawing.Size(105, 87);
             this.customargsbox.TabIndex = 15;
             this.customargsbox.Text = "";
             // 
@@ -256,7 +258,7 @@
             this.customargslabel.AutoSize = true;
             this.customargslabel.BackColor = System.Drawing.Color.Transparent;
             this.customargslabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customargslabel.Location = new System.Drawing.Point(212, 79);
+            this.customargslabel.Location = new System.Drawing.Point(240, 79);
             this.customargslabel.Name = "customargslabel";
             this.customargslabel.Size = new System.Drawing.Size(95, 13);
             this.customargslabel.TabIndex = 16;
@@ -268,7 +270,7 @@
             this.githubbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.githubbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.githubbutton.ForeColor = System.Drawing.Color.IndianRed;
-            this.githubbutton.Location = new System.Drawing.Point(130, 124);
+            this.githubbutton.Location = new System.Drawing.Point(183, 93);
             this.githubbutton.Name = "githubbutton";
             this.githubbutton.Size = new System.Drawing.Size(51, 28);
             this.githubbutton.TabIndex = 17;
@@ -282,9 +284,9 @@
             this.infobutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infobutton.ForeColor = System.Drawing.Color.Coral;
-            this.infobutton.Location = new System.Drawing.Point(130, 155);
+            this.infobutton.Location = new System.Drawing.Point(130, 124);
             this.infobutton.Name = "infobutton";
-            this.infobutton.Size = new System.Drawing.Size(51, 26);
+            this.infobutton.Size = new System.Drawing.Size(51, 28);
             this.infobutton.TabIndex = 18;
             this.infobutton.Text = "Info";
             this.infobutton.UseVisualStyleBackColor = false;
@@ -329,6 +331,34 @@
             this.clearLocationButton.UseVisualStyleBackColor = false;
             this.clearLocationButton.Click += new System.EventHandler(this.clearLocationButton_Click);
             // 
+            // applycodecs
+            // 
+            this.applycodecs.AutoSize = true;
+            this.applycodecs.BackColor = System.Drawing.Color.Transparent;
+            this.applycodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.applycodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.applycodecs.ForeColor = System.Drawing.Color.IndianRed;
+            this.applycodecs.Location = new System.Drawing.Point(130, 152);
+            this.applycodecs.Name = "applycodecs";
+            this.applycodecs.Size = new System.Drawing.Size(105, 28);
+            this.applycodecs.TabIndex = 22;
+            this.applycodecs.Text = "Apply Video Codecs\r\n(slow)";
+            this.applycodecs.UseVisualStyleBackColor = false;
+            // 
+            // ytdlpgithubbutton
+            // 
+            this.ytdlpgithubbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ytdlpgithubbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ytdlpgithubbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ytdlpgithubbutton.ForeColor = System.Drawing.Color.IndianRed;
+            this.ytdlpgithubbutton.Location = new System.Drawing.Point(183, 124);
+            this.ytdlpgithubbutton.Name = "ytdlpgithubbutton";
+            this.ytdlpgithubbutton.Size = new System.Drawing.Size(51, 28);
+            this.ytdlpgithubbutton.TabIndex = 23;
+            this.ytdlpgithubbutton.Text = "yt-dlp GitHub";
+            this.ytdlpgithubbutton.UseVisualStyleBackColor = false;
+            this.ytdlpgithubbutton.Click += new System.EventHandler(this.ytdlpgithubbutton_Click);
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,6 +367,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 190);
+            this.Controls.Add(this.ytdlpgithubbutton);
+            this.Controls.Add(this.applycodecs);
             this.Controls.Add(this.clearLocationButton);
             this.Controls.Add(this.directoryLabel);
             this.Controls.Add(this.locationButton);
@@ -358,6 +390,7 @@
             this.Name = "program";
             this.Text = "MediaDownloader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
+            this.Load += new System.EventHandler(this.program_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.titlebarpanel.ResumeLayout(false);
             this.titlebarpanel.PerformLayout();
@@ -389,5 +422,7 @@
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.Button clearLocationButton;
+        private System.Windows.Forms.CheckBox applycodecs;
+        private System.Windows.Forms.Button ytdlpgithubbutton;
     }
 }
