@@ -71,50 +71,39 @@ namespace MediaDownloader
             this.WindowState = FormWindowState.Minimized;
         }
 
-        public void MoveForm()
+        public void MoveForm(MouseEventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            // function move form on mousedown
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
 
         private void titlebarpanel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MoveForm();
-            }
+            MoveForm(e);
         }
 
         private void titlelabel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MoveForm();
-            }
+            MoveForm(e);
         }
 
         private void byo7qlabel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MoveForm();
-            }
+            MoveForm(e);
         }
 
         private void logo_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MoveForm();
-            }
+            MoveForm(e);
         }
 
         private void versionlabel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MoveForm();
-            }
+            MoveForm(e);
         }
 
         private void downloadbutton_Click(object sender, EventArgs e)
@@ -356,7 +345,7 @@ namespace MediaDownloader
         private void infobutton_Click(object sender, EventArgs e)
         {
             // opens info panel
-            MessageBox.Show("MediaDownloader v2.5 by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. Click on the \"yt-dlp GitHub\" button within MediaDownloader\n2. Click on the releases tab and download \"yt-dlp.exe\"\n3. Replace \"yt-dlp.exe\" that is next to \"MediaDownloader.exe\" with the new \"yt-dlp.exe\"");
+            MessageBox.Show("MediaDownloader by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp github page.\n\nTo update yt-dlp:\n1. Click on the \"yt-dlp GitHub\" button within MediaDownloader\n2. Click on the releases tab and download \"yt-dlp.exe\"\n3. Replace \"yt-dlp.exe\" that is next to \"MediaDownloader.exe\" with the new \"yt-dlp.exe\"");
         }
 
         private void program_FormClosing(object sender, FormClosingEventArgs e)

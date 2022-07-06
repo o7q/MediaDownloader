@@ -72,7 +72,7 @@
             this.titlelabel.AutoSize = true;
             this.titlelabel.BackColor = System.Drawing.Color.Transparent;
             this.titlelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titlelabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titlelabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.titlelabel.Location = new System.Drawing.Point(36, 11);
             this.titlelabel.Name = "titlelabel";
             this.titlelabel.Size = new System.Drawing.Size(185, 25);
@@ -134,10 +134,11 @@
             // 
             this.versionlabel.AutoSize = true;
             this.versionlabel.BackColor = System.Drawing.Color.Transparent;
-            this.versionlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.versionlabel.Location = new System.Drawing.Point(214, 20);
+            this.versionlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versionlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
+            this.versionlabel.Location = new System.Drawing.Point(213, 21);
             this.versionlabel.Name = "versionlabel";
-            this.versionlabel.Size = new System.Drawing.Size(28, 13);
+            this.versionlabel.Size = new System.Drawing.Size(28, 12);
             this.versionlabel.TabIndex = 10;
             this.versionlabel.Text = "v2.5";
             this.versionlabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
@@ -247,8 +248,9 @@
             // 
             this.customargsbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.customargsbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customargsbox.ForeColor = System.Drawing.Color.Gold;
-            this.customargsbox.Location = new System.Drawing.Point(236, 94);
+            this.customargsbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customargsbox.ForeColor = System.Drawing.Color.LightCoral;
+            this.customargsbox.Location = new System.Drawing.Point(236, 93);
             this.customargsbox.Name = "customargsbox";
             this.customargsbox.Size = new System.Drawing.Size(105, 87);
             this.customargsbox.TabIndex = 15;
@@ -259,7 +261,7 @@
             this.customargslabel.AutoSize = true;
             this.customargslabel.BackColor = System.Drawing.Color.Transparent;
             this.customargslabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customargslabel.Location = new System.Drawing.Point(240, 79);
+            this.customargslabel.Location = new System.Drawing.Point(240, 78);
             this.customargslabel.Name = "customargslabel";
             this.customargslabel.Size = new System.Drawing.Size(95, 13);
             this.customargslabel.TabIndex = 16;
@@ -283,7 +285,7 @@
             // 
             this.infobutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.infobutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infobutton.ForeColor = System.Drawing.Color.Coral;
             this.infobutton.Location = new System.Drawing.Point(130, 124);
             this.infobutton.Name = "infobutton";
