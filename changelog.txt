@@ -1,6 +1,6 @@
 ~ v2.5 [IN-DEVELOPMENT]
 - Shortened and optimized some code
-- Changed the color of a few other things
+- Changed the color of a few things
 
 ~ v2.4
 - Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
