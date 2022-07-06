@@ -1,6 +1,5 @@
 ~ v2.5 [IN-DEVELOPMENT]
 - Shortened and optimized some code
-- Text typed in the "Custom Arguments" box is red again
 - Changed the color of a few other things
 
 ~ v2.4
