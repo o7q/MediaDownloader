@@ -1,4 +1,4 @@
-~ DEV. CHANGES
+~ DEV.
 - Shortened and optimized some code
 - Changed the color of a few things
 - Added button for testing

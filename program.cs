@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -29,7 +30,7 @@ namespace MediaDownloader
             try
             {
                 string mediadownloader = "Hey! You found the secret message. c:";
-                File.WriteAllText("mediadownloader.bat", mediadownloader);
+                File.WriteAllText("mediadownloader\\mediadownloader.bat", mediadownloader);
             }
             catch
             {
@@ -55,7 +56,7 @@ namespace MediaDownloader
             // delete mediadownloader.bat
             try
             {
-                File.Delete("mediadownloader.bat");
+                File.Delete("mediadownloader\\mediadownloader.bat");
             }
             catch
             {
@@ -136,27 +137,32 @@ namespace MediaDownloader
                         // mp4
                         if (formatbox.SelectedIndex == 2)
                         {
-                            // generate random id
-                            var numbers = "1234567890";
-                            var stringNumbers = new char[8];
-                            var randomNumbers = new Random();
-                            for (int i = 0; i < stringNumbers.Length; i++)
+                            if (selectedLocation == "Downloads")
                             {
-                                stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
-                            }
-                            var randomString = new String(stringNumbers);
+                                // generate random id
+                                var numbers = "1234567890";
+                                var stringNumbers = new char[8];
+                                var randomNumbers = new Random();
+                                for (int i = 0; i < stringNumbers.Length; i++)
+                                {
+                                    stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
+                                }
+                                var randomString = new String(stringNumbers);
 
-                            string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download\" --path Downloads " + inputbox.Text + "\nffmpeg.exe -i Downloads" + @"\temp_download.mp4 -c:v h264 -c:a aac " + "\"" + selectedLocation + @"\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f Downloads\temp_download.mp4";
-                            try
-                            {
-                                File.WriteAllText("mediadownloader.bat", script);
-                            }
-                            catch
-                            {
-                                // ignore
-                            }
+                                string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download\" " + inputbox.Text + "\nffmpeg.exe -i temp_download.mp4 -c:v h264 -c:a aac " + "\"" + selectedLocation + @"\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f temp_download.mp4" + "\npause";
+                                try
+                                {
+                                    File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
+                                }
+                                catch
+                                {
+                                    // ignore
+                                }
 
-                            Process.Start("mediadownloader.bat");
+                                string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                                mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                                Process.Start(mediadownloaderScript);
+                            }
                         }
 
                         // webm
@@ -175,14 +181,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download\" --path Downloads " + inputbox.Text + "\nffmpeg.exe -i Downloads" + @"\temp_download.webm -c:v vp9 -c:a libvorbis " + "\"" + selectedLocation + @"\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f Downloads\temp_download.webm";
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
                     }
                     else
@@ -193,14 +201,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // mp4
@@ -209,14 +219,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // webm
@@ -225,14 +237,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // (raw) audio
@@ -241,14 +255,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // mp3
@@ -257,14 +273,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // wav
@@ -273,14 +291,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format wav --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
                         else
 
@@ -290,14 +310,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format m4a --path " + "\"" + selectedLocation + "\"" + " " + inputbox.Text;
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
 
                         // (Use Custom Arguments)
@@ -306,14 +328,16 @@ namespace MediaDownloader
                             string script = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + customargsbox.Text + " " + inputbox.Text + "\nPAUSE";
                             try
                             {
-                                File.WriteAllText("mediadownloader.bat", script);
+                                File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
                             }
                             catch
                             {
                                 // ignore
                             }
 
-                            Process.Start("mediadownloader.bat");
+                            string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                            mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                            Process.Start(mediadownloaderScript);
                         }
                     }
                 }
@@ -330,9 +354,11 @@ namespace MediaDownloader
             else
             {
                 string url = "@echo off\ncolor 8\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --list-formats " + inputbox.Text + "\nPAUSE";
-                File.WriteAllText("mediadownloader.bat", url);
+                File.WriteAllText("mediadownloader\\mediadownloader.bat", url);
 
-                Process.Start("mediadownloader.bat");
+                string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+                mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
+                Process.Start(mediadownloaderScript);
             }
         }
 
@@ -353,7 +379,7 @@ namespace MediaDownloader
             // delete mediadownloader.bat on program close
             try
             {
-                File.Delete("mediadownloader.bat");
+                File.Delete("mediadownloader\\mediadownloader.bat");
             }
             catch
             {
@@ -388,7 +414,7 @@ namespace MediaDownloader
 
         private void program_Load(object sender, EventArgs e)
         {
-            if (File.Exists(@"yt-dlp.exe"))
+            if (File.Exists("mediadownloader\\yt-dlp.exe"))
             {
                 // continue loading
             }
@@ -399,7 +425,7 @@ namespace MediaDownloader
                 // delete mediadownloader.bat
                 try
                 {
-                    File.Delete("mediadownloader.bat");
+                    File.Delete("mediadownloader\\mediadownloader.bat");
                 }
                 catch
                 {
@@ -409,7 +435,7 @@ namespace MediaDownloader
                 Application.Exit();
             }
 
-            if (File.Exists(@"ffmpeg.exe"))
+            if (File.Exists("mediadownloader\\ffmpeg.exe"))
             {
                 // continue loading
             }
@@ -420,7 +446,7 @@ namespace MediaDownloader
                 // delete mediadownloader.bat
                 try
                 {
-                    File.Delete("mediadownloader.bat");
+                    File.Delete("mediadownloader\\mediadownloader.bat");
                 }
                 catch
                 {
@@ -433,14 +459,9 @@ namespace MediaDownloader
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-            Directory.CreateDirectory("test");
-
-            string mediadownloader = "echo hello\npause";
-            File.WriteAllText("test/test.bat", mediadownloader);
-            */
-
-            Process.Start("test/test.bat");
+            string a = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            a += "\\mediadownloader\\scriptlauncher.exe";
+            Process.Start(a);
         }
     }
 }
