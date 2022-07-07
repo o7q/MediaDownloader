@@ -430,5 +430,17 @@ namespace MediaDownloader
                 Application.Exit();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /*
+            Directory.CreateDirectory("test");
+
+            string mediadownloader = "echo hello\npause";
+            File.WriteAllText("test/test.bat", mediadownloader);
+            */
+
+            Process.Start("test/test.bat");
+        }
     }
 }

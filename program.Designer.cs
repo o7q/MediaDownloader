@@ -53,6 +53,7 @@
             this.applycodecs = new System.Windows.Forms.CheckBox();
             this.ytdlpgithubbutton = new System.Windows.Forms.Button();
             this.slowwarning = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarpanel.SuspendLayout();
             this.SuspendLayout();
@@ -374,6 +375,16 @@
             this.slowwarning.TabIndex = 24;
             this.slowwarning.Text = "(slow)";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(251, 132);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +393,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(350, 190);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.slowwarning);
             this.Controls.Add(this.ytdlpgithubbutton);
             this.Controls.Add(this.applycodecs);
@@ -441,5 +453,6 @@
         private System.Windows.Forms.CheckBox applycodecs;
         private System.Windows.Forms.Button ytdlpgithubbutton;
         private System.Windows.Forms.Label slowwarning;
+        private System.Windows.Forms.Button button1;
     }
 }
