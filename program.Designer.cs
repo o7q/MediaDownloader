@@ -52,7 +52,8 @@
             this.clearLocationButton = new System.Windows.Forms.Button();
             this.applyCodecs = new System.Windows.Forms.CheckBox();
             this.ytdlpGithubButton = new System.Windows.Forms.Button();
-            this.slowWarning = new System.Windows.Forms.Label();
+            this.useConfig = new System.Windows.Forms.CheckBox();
+            this.resetConfig = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarPanel.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +67,7 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(334, 20);
             this.inputBox.TabIndex = 0;
+            this.inputBox.TextChanged += new System.EventHandler(this.inputBox_TextChanged);
             // 
             // titleLabel
             // 
@@ -100,7 +102,7 @@
             this.urlLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
             this.urlLabel.Location = new System.Drawing.Point(5, 42);
             this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(24, 12);
+            this.urlLabel.Size = new System.Drawing.Size(27, 12);
             this.urlLabel.TabIndex = 5;
             this.urlLabel.Text = "URL";
             // 
@@ -173,11 +175,14 @@
             this.formatBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formatBox.ForeColor = System.Drawing.Color.Silver;
             this.formatBox.FormattingEnabled = true;
+            this.formatBox.ItemHeight = 13;
             this.formatBox.Items.AddRange(new object[] {
             "[Video]",
             "(raw video)",
             "mp4",
             "webm",
+            "gif (convert)",
+            "gif (web) (convert)",
             "",
             "[Audio]",
             "(raw audio)",
@@ -191,6 +196,7 @@
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(121, 21);
             this.formatBox.TabIndex = 10;
+            this.formatBox.SelectedIndexChanged += new System.EventHandler(this.formatBox_SelectedIndexChanged);
             // 
             // formatLabel
             // 
@@ -255,6 +261,7 @@
             this.customArgsBox.Size = new System.Drawing.Size(105, 87);
             this.customArgsBox.TabIndex = 15;
             this.customArgsBox.Text = "";
+            this.customArgsBox.TextChanged += new System.EventHandler(this.customArgsBox_TextChanged);
             // 
             // customArgsLabel
             // 
@@ -347,6 +354,7 @@
             this.applyCodecs.TabIndex = 22;
             this.applyCodecs.Text = "Apply Video Codecs";
             this.applyCodecs.UseVisualStyleBackColor = false;
+            this.applyCodecs.CheckedChanged += new System.EventHandler(this.applyCodecs_CheckedChanged);
             // 
             // ytdlpGithubButton
             // 
@@ -362,17 +370,34 @@
             this.ytdlpGithubButton.UseVisualStyleBackColor = false;
             this.ytdlpGithubButton.Click += new System.EventHandler(this.ytdlpGithubButton_Click);
             // 
-            // slowWarning
+            // useConfig
             // 
-            this.slowWarning.AutoSize = true;
-            this.slowWarning.BackColor = System.Drawing.Color.Transparent;
-            this.slowWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.slowWarning.ForeColor = System.Drawing.Color.IndianRed;
-            this.slowWarning.Location = new System.Drawing.Point(143, 167);
-            this.slowWarning.Name = "slowWarning";
-            this.slowWarning.Size = new System.Drawing.Size(27, 9);
-            this.slowWarning.TabIndex = 24;
-            this.slowWarning.Text = "(slow)";
+            this.useConfig.AutoSize = true;
+            this.useConfig.BackColor = System.Drawing.Color.Transparent;
+            this.useConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useConfig.ForeColor = System.Drawing.Color.IndianRed;
+            this.useConfig.Location = new System.Drawing.Point(130, 167);
+            this.useConfig.Name = "useConfig";
+            this.useConfig.Size = new System.Drawing.Size(77, 16);
+            this.useConfig.TabIndex = 25;
+            this.useConfig.Text = "Save Options";
+            this.useConfig.UseVisualStyleBackColor = false;
+            this.useConfig.CheckedChanged += new System.EventHandler(this.useConfig_CheckedChanged);
+            // 
+            // resetConfig
+            // 
+            this.resetConfig.BackColor = System.Drawing.Color.Transparent;
+            this.resetConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetConfig.ForeColor = System.Drawing.Color.IndianRed;
+            this.resetConfig.Location = new System.Drawing.Point(206, 169);
+            this.resetConfig.Name = "resetConfig";
+            this.resetConfig.Size = new System.Drawing.Size(11, 11);
+            this.resetConfig.TabIndex = 26;
+            this.resetConfig.Text = "x";
+            this.resetConfig.UseVisualStyleBackColor = false;
+            this.resetConfig.Click += new System.EventHandler(this.resetConfig_Click);
             // 
             // program
             // 
@@ -382,7 +407,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(350, 190);
-            this.Controls.Add(this.slowWarning);
+            this.Controls.Add(this.resetConfig);
+            this.Controls.Add(this.useConfig);
             this.Controls.Add(this.ytdlpGithubButton);
             this.Controls.Add(this.applyCodecs);
             this.Controls.Add(this.clearLocationButton);
@@ -406,7 +432,6 @@
             this.Name = "program";
             this.Text = "MediaDownloader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
-            this.Load += new System.EventHandler(this.program_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();
@@ -440,6 +465,7 @@
         private System.Windows.Forms.Button clearLocationButton;
         private System.Windows.Forms.CheckBox applyCodecs;
         private System.Windows.Forms.Button ytdlpGithubButton;
-        private System.Windows.Forms.Label slowWarning;
+        private System.Windows.Forms.CheckBox useConfig;
+        private System.Windows.Forms.Button resetConfig;
     }
 }

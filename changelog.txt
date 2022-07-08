@@ -1,11 +1,7 @@
 ~ DEV.
+- Option to enable a config file where settings will be auto-saved and loaded on startup
+- New formats (gif and gif (web))
 - Shortened and optimized some code
-- Files now go to a new organized directory
-- Finally figured out the stupid path issue
-- Changed m4a format to ogg format
-- Modified info page
-- Changed the color of a few things
-- Re-arranged some code
 - Added more code comments
 
 ~ v2.4
