@@ -29,80 +29,80 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(program));
-            this.inputbox = new System.Windows.Forms.TextBox();
-            this.titlelabel = new System.Windows.Forms.Label();
-            this.byo7qlabel = new System.Windows.Forms.Label();
-            this.urllabel = new System.Windows.Forms.Label();
+            this.inputBox = new System.Windows.Forms.TextBox();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.byO7qLabel = new System.Windows.Forms.Label();
+            this.urlLabel = new System.Windows.Forms.Label();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.titlebarpanel = new System.Windows.Forms.Panel();
-            this.versionlabel = new System.Windows.Forms.Label();
-            this.minimizebutton = new System.Windows.Forms.Button();
-            this.exitbutton = new System.Windows.Forms.Button();
-            this.formatbox = new System.Windows.Forms.ComboBox();
-            this.formatlabel = new System.Windows.Forms.Label();
-            this.downloadbutton = new System.Windows.Forms.Button();
-            this.advancedlabel = new System.Windows.Forms.Label();
-            this.viewavailableformatsbutton = new System.Windows.Forms.Button();
-            this.customargsbox = new System.Windows.Forms.RichTextBox();
-            this.customargslabel = new System.Windows.Forms.Label();
-            this.githubbutton = new System.Windows.Forms.Button();
-            this.infobutton = new System.Windows.Forms.Button();
+            this.titlebarPanel = new System.Windows.Forms.Panel();
+            this.versionLabel = new System.Windows.Forms.Label();
+            this.minimizeButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.formatBox = new System.Windows.Forms.ComboBox();
+            this.formatLabel = new System.Windows.Forms.Label();
+            this.downloadButton = new System.Windows.Forms.Button();
+            this.advancedLabel = new System.Windows.Forms.Label();
+            this.viewAvailableFormatsButton = new System.Windows.Forms.Button();
+            this.customArgsBox = new System.Windows.Forms.RichTextBox();
+            this.customArgsLabel = new System.Windows.Forms.Label();
+            this.githubButton = new System.Windows.Forms.Button();
+            this.infoButton = new System.Windows.Forms.Button();
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.clearLocationButton = new System.Windows.Forms.Button();
-            this.applycodecs = new System.Windows.Forms.CheckBox();
-            this.ytdlpgithubbutton = new System.Windows.Forms.Button();
-            this.slowwarning = new System.Windows.Forms.Label();
+            this.applyCodecs = new System.Windows.Forms.CheckBox();
+            this.ytdlpGithubButton = new System.Windows.Forms.Button();
+            this.slowWarning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-            this.titlebarpanel.SuspendLayout();
+            this.titlebarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // inputbox
+            // inputBox
             // 
-            this.inputbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.inputbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inputbox.ForeColor = System.Drawing.Color.Silver;
-            this.inputbox.Location = new System.Drawing.Point(7, 55);
-            this.inputbox.Name = "inputbox";
-            this.inputbox.Size = new System.Drawing.Size(334, 20);
-            this.inputbox.TabIndex = 0;
+            this.inputBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.inputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inputBox.ForeColor = System.Drawing.Color.Silver;
+            this.inputBox.Location = new System.Drawing.Point(7, 55);
+            this.inputBox.Name = "inputBox";
+            this.inputBox.Size = new System.Drawing.Size(334, 20);
+            this.inputBox.TabIndex = 0;
             // 
-            // titlelabel
+            // titleLabel
             // 
-            this.titlelabel.AutoSize = true;
-            this.titlelabel.BackColor = System.Drawing.Color.Transparent;
-            this.titlelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titlelabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.titlelabel.Location = new System.Drawing.Point(36, 11);
-            this.titlelabel.Name = "titlelabel";
-            this.titlelabel.Size = new System.Drawing.Size(185, 25);
-            this.titlelabel.TabIndex = 3;
-            this.titlelabel.Text = "MediaDownloader";
-            this.titlelabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlelabel_MouseMove);
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.titleLabel.Location = new System.Drawing.Point(36, 11);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(185, 25);
+            this.titleLabel.TabIndex = 3;
+            this.titleLabel.Text = "MediaDownloader";
+            this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlelabel_MouseMove);
             // 
-            // byo7qlabel
+            // byO7qLabel
             // 
-            this.byo7qlabel.AutoSize = true;
-            this.byo7qlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.byo7qlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.byo7qlabel.Location = new System.Drawing.Point(238, 20);
-            this.byo7qlabel.Name = "byo7qlabel";
-            this.byo7qlabel.Size = new System.Drawing.Size(39, 13);
-            this.byo7qlabel.TabIndex = 4;
-            this.byo7qlabel.Text = "by o7q";
-            this.byo7qlabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.byo7qlabel_MouseMove);
+            this.byO7qLabel.AutoSize = true;
+            this.byO7qLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.byO7qLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.byO7qLabel.Location = new System.Drawing.Point(238, 20);
+            this.byO7qLabel.Name = "byO7qLabel";
+            this.byO7qLabel.Size = new System.Drawing.Size(39, 13);
+            this.byO7qLabel.TabIndex = 4;
+            this.byO7qLabel.Text = "by o7q";
+            this.byO7qLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.byo7qlabel_MouseMove);
             // 
-            // urllabel
+            // urlLabel
             // 
-            this.urllabel.AutoSize = true;
-            this.urllabel.BackColor = System.Drawing.Color.Transparent;
-            this.urllabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.urllabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
-            this.urllabel.Location = new System.Drawing.Point(5, 42);
-            this.urllabel.Name = "urllabel";
-            this.urllabel.Size = new System.Drawing.Size(24, 12);
-            this.urllabel.TabIndex = 5;
-            this.urllabel.Text = "URL";
+            this.urlLabel.AutoSize = true;
+            this.urlLabel.BackColor = System.Drawing.Color.Transparent;
+            this.urlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.urlLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
+            this.urlLabel.Location = new System.Drawing.Point(5, 42);
+            this.urlLabel.Name = "urlLabel";
+            this.urlLabel.Size = new System.Drawing.Size(24, 12);
+            this.urlLabel.TabIndex = 5;
+            this.urlLabel.Text = "URL";
             // 
             // logo
             // 
@@ -115,65 +115,65 @@
             this.logo.TabStop = false;
             this.logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.logo_MouseMove);
             // 
-            // titlebarpanel
+            // titlebarPanel
             // 
-            this.titlebarpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
-            this.titlebarpanel.Controls.Add(this.versionlabel);
-            this.titlebarpanel.Controls.Add(this.minimizebutton);
-            this.titlebarpanel.Controls.Add(this.exitbutton);
-            this.titlebarpanel.Controls.Add(this.logo);
-            this.titlebarpanel.Controls.Add(this.titlelabel);
-            this.titlebarpanel.Controls.Add(this.byo7qlabel);
-            this.titlebarpanel.Location = new System.Drawing.Point(-9, -5);
-            this.titlebarpanel.Name = "titlebarpanel";
-            this.titlebarpanel.Size = new System.Drawing.Size(362, 40);
-            this.titlebarpanel.TabIndex = 9;
-            this.titlebarpanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlebarpanel_MouseMove);
+            this.titlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.titlebarPanel.Controls.Add(this.versionLabel);
+            this.titlebarPanel.Controls.Add(this.minimizeButton);
+            this.titlebarPanel.Controls.Add(this.exitButton);
+            this.titlebarPanel.Controls.Add(this.logo);
+            this.titlebarPanel.Controls.Add(this.titleLabel);
+            this.titlebarPanel.Controls.Add(this.byO7qLabel);
+            this.titlebarPanel.Location = new System.Drawing.Point(-9, -5);
+            this.titlebarPanel.Name = "titlebarPanel";
+            this.titlebarPanel.Size = new System.Drawing.Size(362, 40);
+            this.titlebarPanel.TabIndex = 9;
+            this.titlebarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlebarpanel_MouseMove);
             // 
-            // versionlabel
+            // versionLabel
             // 
-            this.versionlabel.AutoSize = true;
-            this.versionlabel.BackColor = System.Drawing.Color.Transparent;
-            this.versionlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.versionlabel.Location = new System.Drawing.Point(213, 21);
-            this.versionlabel.Name = "versionlabel";
-            this.versionlabel.Size = new System.Drawing.Size(28, 12);
-            this.versionlabel.TabIndex = 10;
-            this.versionlabel.Text = "v3.0";
-            this.versionlabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.BackColor = System.Drawing.Color.Transparent;
+            this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
+            this.versionLabel.Location = new System.Drawing.Point(213, 21);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(28, 12);
+            this.versionLabel.TabIndex = 10;
+            this.versionLabel.Text = "v3.0";
+            this.versionLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
             // 
-            // minimizebutton
+            // minimizeButton
             // 
-            this.minimizebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizebutton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.minimizebutton.Location = new System.Drawing.Point(301, 10);
-            this.minimizebutton.Name = "minimizebutton";
-            this.minimizebutton.Size = new System.Drawing.Size(25, 25);
-            this.minimizebutton.TabIndex = 11;
-            this.minimizebutton.Text = "_";
-            this.minimizebutton.UseVisualStyleBackColor = true;
-            this.minimizebutton.Click += new System.EventHandler(this.minimizebutton_Click);
+            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.minimizeButton.Location = new System.Drawing.Point(301, 10);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(25, 25);
+            this.minimizeButton.TabIndex = 11;
+            this.minimizeButton.Text = "_";
+            this.minimizeButton.UseVisualStyleBackColor = true;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
-            // exitbutton
+            // exitButton
             // 
-            this.exitbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitbutton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.exitbutton.Location = new System.Drawing.Point(328, 10);
-            this.exitbutton.Name = "exitbutton";
-            this.exitbutton.Size = new System.Drawing.Size(25, 25);
-            this.exitbutton.TabIndex = 10;
-            this.exitbutton.Text = "❌";
-            this.exitbutton.UseVisualStyleBackColor = true;
-            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.exitButton.Location = new System.Drawing.Point(328, 10);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(25, 25);
+            this.exitButton.TabIndex = 10;
+            this.exitButton.Text = "❌";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // formatbox
+            // formatBox
             // 
-            this.formatbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.formatbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.formatbox.ForeColor = System.Drawing.Color.Silver;
-            this.formatbox.FormattingEnabled = true;
-            this.formatbox.Items.AddRange(new object[] {
+            this.formatBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.formatBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.formatBox.ForeColor = System.Drawing.Color.Silver;
+            this.formatBox.FormattingEnabled = true;
+            this.formatBox.Items.AddRange(new object[] {
             "[Video]",
             "(raw video)",
             "mp4",
@@ -187,113 +187,113 @@
             "",
             "[Custom]",
             "(Custom Arguments)"});
-            this.formatbox.Location = new System.Drawing.Point(7, 93);
-            this.formatbox.Name = "formatbox";
-            this.formatbox.Size = new System.Drawing.Size(121, 21);
-            this.formatbox.TabIndex = 10;
+            this.formatBox.Location = new System.Drawing.Point(7, 93);
+            this.formatBox.Name = "formatBox";
+            this.formatBox.Size = new System.Drawing.Size(121, 21);
+            this.formatBox.TabIndex = 10;
             // 
-            // formatlabel
+            // formatLabel
             // 
-            this.formatlabel.AutoSize = true;
-            this.formatlabel.BackColor = System.Drawing.Color.Transparent;
-            this.formatlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formatlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(128)))));
-            this.formatlabel.Location = new System.Drawing.Point(4, 80);
-            this.formatlabel.Name = "formatlabel";
-            this.formatlabel.Size = new System.Drawing.Size(35, 12);
-            this.formatlabel.TabIndex = 11;
-            this.formatlabel.Text = "Format";
+            this.formatLabel.AutoSize = true;
+            this.formatLabel.BackColor = System.Drawing.Color.Transparent;
+            this.formatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formatLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(128)))));
+            this.formatLabel.Location = new System.Drawing.Point(4, 80);
+            this.formatLabel.Name = "formatLabel";
+            this.formatLabel.Size = new System.Drawing.Size(35, 12);
+            this.formatLabel.TabIndex = 11;
+            this.formatLabel.Text = "Format";
             // 
-            // downloadbutton
+            // downloadButton
             // 
-            this.downloadbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.downloadbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.downloadbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadbutton.ForeColor = System.Drawing.Color.LimeGreen;
-            this.downloadbutton.Location = new System.Drawing.Point(7, 124);
-            this.downloadbutton.Name = "downloadbutton";
-            this.downloadbutton.Size = new System.Drawing.Size(121, 34);
-            this.downloadbutton.TabIndex = 12;
-            this.downloadbutton.Text = "Download";
-            this.downloadbutton.UseVisualStyleBackColor = false;
-            this.downloadbutton.Click += new System.EventHandler(this.downloadbutton_Click);
+            this.downloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadButton.ForeColor = System.Drawing.Color.LimeGreen;
+            this.downloadButton.Location = new System.Drawing.Point(7, 124);
+            this.downloadButton.Name = "downloadButton";
+            this.downloadButton.Size = new System.Drawing.Size(121, 34);
+            this.downloadButton.TabIndex = 12;
+            this.downloadButton.Text = "Download";
+            this.downloadButton.UseVisualStyleBackColor = false;
+            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
-            // advancedlabel
+            // advancedLabel
             // 
-            this.advancedlabel.AutoSize = true;
-            this.advancedlabel.BackColor = System.Drawing.Color.Transparent;
-            this.advancedlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advancedlabel.ForeColor = System.Drawing.Color.Brown;
-            this.advancedlabel.Location = new System.Drawing.Point(128, 79);
-            this.advancedlabel.Name = "advancedlabel";
-            this.advancedlabel.Size = new System.Drawing.Size(56, 13);
-            this.advancedlabel.TabIndex = 13;
-            this.advancedlabel.Text = "Advanced";
+            this.advancedLabel.AutoSize = true;
+            this.advancedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.advancedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advancedLabel.ForeColor = System.Drawing.Color.Brown;
+            this.advancedLabel.Location = new System.Drawing.Point(128, 79);
+            this.advancedLabel.Name = "advancedLabel";
+            this.advancedLabel.Size = new System.Drawing.Size(56, 13);
+            this.advancedLabel.TabIndex = 13;
+            this.advancedLabel.Text = "Advanced";
             // 
-            // viewavailableformatsbutton
+            // viewAvailableFormatsButton
             // 
-            this.viewavailableformatsbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.viewavailableformatsbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.viewavailableformatsbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewavailableformatsbutton.ForeColor = System.Drawing.Color.IndianRed;
-            this.viewavailableformatsbutton.Location = new System.Drawing.Point(130, 93);
-            this.viewavailableformatsbutton.Name = "viewavailableformatsbutton";
-            this.viewavailableformatsbutton.Size = new System.Drawing.Size(51, 28);
-            this.viewavailableformatsbutton.TabIndex = 14;
-            this.viewavailableformatsbutton.Text = "View Raw Formats";
-            this.viewavailableformatsbutton.UseVisualStyleBackColor = false;
-            this.viewavailableformatsbutton.Click += new System.EventHandler(this.viewavailableformatsbutton_Click);
+            this.viewAvailableFormatsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.viewAvailableFormatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.viewAvailableFormatsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewAvailableFormatsButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.viewAvailableFormatsButton.Location = new System.Drawing.Point(130, 93);
+            this.viewAvailableFormatsButton.Name = "viewAvailableFormatsButton";
+            this.viewAvailableFormatsButton.Size = new System.Drawing.Size(51, 28);
+            this.viewAvailableFormatsButton.TabIndex = 14;
+            this.viewAvailableFormatsButton.Text = "View Raw Formats";
+            this.viewAvailableFormatsButton.UseVisualStyleBackColor = false;
+            this.viewAvailableFormatsButton.Click += new System.EventHandler(this.viewAvailableFormatsButton_Click);
             // 
-            // customargsbox
+            // customArgsBox
             // 
-            this.customargsbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.customargsbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customargsbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customargsbox.ForeColor = System.Drawing.Color.LightCoral;
-            this.customargsbox.Location = new System.Drawing.Point(236, 93);
-            this.customargsbox.Name = "customargsbox";
-            this.customargsbox.Size = new System.Drawing.Size(105, 87);
-            this.customargsbox.TabIndex = 15;
-            this.customargsbox.Text = "";
+            this.customArgsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.customArgsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customArgsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customArgsBox.ForeColor = System.Drawing.Color.LightCoral;
+            this.customArgsBox.Location = new System.Drawing.Point(236, 93);
+            this.customArgsBox.Name = "customArgsBox";
+            this.customArgsBox.Size = new System.Drawing.Size(105, 87);
+            this.customArgsBox.TabIndex = 15;
+            this.customArgsBox.Text = "";
             // 
-            // customargslabel
+            // customArgsLabel
             // 
-            this.customargslabel.AutoSize = true;
-            this.customargslabel.BackColor = System.Drawing.Color.Transparent;
-            this.customargslabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customargslabel.Location = new System.Drawing.Point(240, 78);
-            this.customargslabel.Name = "customargslabel";
-            this.customargslabel.Size = new System.Drawing.Size(95, 13);
-            this.customargslabel.TabIndex = 16;
-            this.customargslabel.Text = "Custom Arguments";
+            this.customArgsLabel.AutoSize = true;
+            this.customArgsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.customArgsLabel.ForeColor = System.Drawing.Color.IndianRed;
+            this.customArgsLabel.Location = new System.Drawing.Point(240, 78);
+            this.customArgsLabel.Name = "customArgsLabel";
+            this.customArgsLabel.Size = new System.Drawing.Size(95, 13);
+            this.customArgsLabel.TabIndex = 16;
+            this.customArgsLabel.Text = "Custom Arguments";
             // 
-            // githubbutton
+            // githubButton
             // 
-            this.githubbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.githubbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.githubbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.githubbutton.ForeColor = System.Drawing.Color.IndianRed;
-            this.githubbutton.Location = new System.Drawing.Point(183, 93);
-            this.githubbutton.Name = "githubbutton";
-            this.githubbutton.Size = new System.Drawing.Size(51, 28);
-            this.githubbutton.TabIndex = 17;
-            this.githubbutton.Text = "MediaD GitHub";
-            this.githubbutton.UseVisualStyleBackColor = false;
-            this.githubbutton.Click += new System.EventHandler(this.githubbutton_Click);
+            this.githubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.githubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.githubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.githubButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.githubButton.Location = new System.Drawing.Point(183, 93);
+            this.githubButton.Name = "githubButton";
+            this.githubButton.Size = new System.Drawing.Size(51, 28);
+            this.githubButton.TabIndex = 17;
+            this.githubButton.Text = "MediaD GitHub";
+            this.githubButton.UseVisualStyleBackColor = false;
+            this.githubButton.Click += new System.EventHandler(this.githubButton_Click);
             // 
-            // infobutton
+            // infoButton
             // 
-            this.infobutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.infobutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.infobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infobutton.ForeColor = System.Drawing.Color.Coral;
-            this.infobutton.Location = new System.Drawing.Point(130, 124);
-            this.infobutton.Name = "infobutton";
-            this.infobutton.Size = new System.Drawing.Size(51, 28);
-            this.infobutton.TabIndex = 18;
-            this.infobutton.Text = "Info";
-            this.infobutton.UseVisualStyleBackColor = false;
-            this.infobutton.Click += new System.EventHandler(this.infobutton_Click);
+            this.infoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.infoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.infoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoButton.ForeColor = System.Drawing.Color.Coral;
+            this.infoButton.Location = new System.Drawing.Point(130, 124);
+            this.infoButton.Name = "infoButton";
+            this.infoButton.Size = new System.Drawing.Size(51, 28);
+            this.infoButton.TabIndex = 18;
+            this.infoButton.Text = "Info";
+            this.infoButton.UseVisualStyleBackColor = false;
+            this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
             // 
             // locationButton
             // 
@@ -334,45 +334,45 @@
             this.clearLocationButton.UseVisualStyleBackColor = false;
             this.clearLocationButton.Click += new System.EventHandler(this.clearLocationButton_Click);
             // 
-            // applycodecs
+            // applyCodecs
             // 
-            this.applycodecs.AutoSize = true;
-            this.applycodecs.BackColor = System.Drawing.Color.Transparent;
-            this.applycodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.applycodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applycodecs.ForeColor = System.Drawing.Color.IndianRed;
-            this.applycodecs.Location = new System.Drawing.Point(130, 152);
-            this.applycodecs.Name = "applycodecs";
-            this.applycodecs.Size = new System.Drawing.Size(105, 16);
-            this.applycodecs.TabIndex = 22;
-            this.applycodecs.Text = "Apply Video Codecs";
-            this.applycodecs.UseVisualStyleBackColor = false;
+            this.applyCodecs.AutoSize = true;
+            this.applyCodecs.BackColor = System.Drawing.Color.Transparent;
+            this.applyCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.applyCodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.applyCodecs.ForeColor = System.Drawing.Color.IndianRed;
+            this.applyCodecs.Location = new System.Drawing.Point(130, 152);
+            this.applyCodecs.Name = "applyCodecs";
+            this.applyCodecs.Size = new System.Drawing.Size(105, 16);
+            this.applyCodecs.TabIndex = 22;
+            this.applyCodecs.Text = "Apply Video Codecs";
+            this.applyCodecs.UseVisualStyleBackColor = false;
             // 
-            // ytdlpgithubbutton
+            // ytdlpGithubButton
             // 
-            this.ytdlpgithubbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ytdlpgithubbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ytdlpgithubbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ytdlpgithubbutton.ForeColor = System.Drawing.Color.IndianRed;
-            this.ytdlpgithubbutton.Location = new System.Drawing.Point(183, 124);
-            this.ytdlpgithubbutton.Name = "ytdlpgithubbutton";
-            this.ytdlpgithubbutton.Size = new System.Drawing.Size(51, 28);
-            this.ytdlpgithubbutton.TabIndex = 23;
-            this.ytdlpgithubbutton.Text = "yt-dlp GitHub";
-            this.ytdlpgithubbutton.UseVisualStyleBackColor = false;
-            this.ytdlpgithubbutton.Click += new System.EventHandler(this.ytdlpgithubbutton_Click);
+            this.ytdlpGithubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ytdlpGithubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ytdlpGithubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ytdlpGithubButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.ytdlpGithubButton.Location = new System.Drawing.Point(183, 124);
+            this.ytdlpGithubButton.Name = "ytdlpGithubButton";
+            this.ytdlpGithubButton.Size = new System.Drawing.Size(51, 28);
+            this.ytdlpGithubButton.TabIndex = 23;
+            this.ytdlpGithubButton.Text = "yt-dlp GitHub";
+            this.ytdlpGithubButton.UseVisualStyleBackColor = false;
+            this.ytdlpGithubButton.Click += new System.EventHandler(this.ytdlpGithubButton_Click);
             // 
-            // slowwarning
+            // slowWarning
             // 
-            this.slowwarning.AutoSize = true;
-            this.slowwarning.BackColor = System.Drawing.Color.Transparent;
-            this.slowwarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.slowwarning.ForeColor = System.Drawing.Color.IndianRed;
-            this.slowwarning.Location = new System.Drawing.Point(143, 167);
-            this.slowwarning.Name = "slowwarning";
-            this.slowwarning.Size = new System.Drawing.Size(27, 9);
-            this.slowwarning.TabIndex = 24;
-            this.slowwarning.Text = "(slow)";
+            this.slowWarning.AutoSize = true;
+            this.slowWarning.BackColor = System.Drawing.Color.Transparent;
+            this.slowWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.slowWarning.ForeColor = System.Drawing.Color.IndianRed;
+            this.slowWarning.Location = new System.Drawing.Point(143, 167);
+            this.slowWarning.Name = "slowWarning";
+            this.slowWarning.Size = new System.Drawing.Size(27, 9);
+            this.slowWarning.TabIndex = 24;
+            this.slowWarning.Text = "(slow)";
             // 
             // program
             // 
@@ -382,24 +382,24 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(350, 190);
-            this.Controls.Add(this.slowwarning);
-            this.Controls.Add(this.ytdlpgithubbutton);
-            this.Controls.Add(this.applycodecs);
+            this.Controls.Add(this.slowWarning);
+            this.Controls.Add(this.ytdlpGithubButton);
+            this.Controls.Add(this.applyCodecs);
             this.Controls.Add(this.clearLocationButton);
             this.Controls.Add(this.directoryLabel);
             this.Controls.Add(this.locationButton);
-            this.Controls.Add(this.infobutton);
-            this.Controls.Add(this.githubbutton);
-            this.Controls.Add(this.customargslabel);
-            this.Controls.Add(this.customargsbox);
-            this.Controls.Add(this.viewavailableformatsbutton);
-            this.Controls.Add(this.advancedlabel);
-            this.Controls.Add(this.downloadbutton);
-            this.Controls.Add(this.formatlabel);
-            this.Controls.Add(this.formatbox);
-            this.Controls.Add(this.titlebarpanel);
-            this.Controls.Add(this.urllabel);
-            this.Controls.Add(this.inputbox);
+            this.Controls.Add(this.infoButton);
+            this.Controls.Add(this.githubButton);
+            this.Controls.Add(this.customArgsLabel);
+            this.Controls.Add(this.customArgsBox);
+            this.Controls.Add(this.viewAvailableFormatsButton);
+            this.Controls.Add(this.advancedLabel);
+            this.Controls.Add(this.downloadButton);
+            this.Controls.Add(this.formatLabel);
+            this.Controls.Add(this.formatBox);
+            this.Controls.Add(this.titlebarPanel);
+            this.Controls.Add(this.urlLabel);
+            this.Controls.Add(this.inputBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -408,8 +408,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
             this.Load += new System.EventHandler(this.program_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-            this.titlebarpanel.ResumeLayout(false);
-            this.titlebarpanel.PerformLayout();
+            this.titlebarPanel.ResumeLayout(false);
+            this.titlebarPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,29 +417,29 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox inputbox;
-        private System.Windows.Forms.Label titlelabel;
-        private System.Windows.Forms.Label byo7qlabel;
-        private System.Windows.Forms.Label urllabel;
+        private System.Windows.Forms.TextBox inputBox;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label byO7qLabel;
+        private System.Windows.Forms.Label urlLabel;
         private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.Panel titlebarpanel;
-        private System.Windows.Forms.Button exitbutton;
-        private System.Windows.Forms.Button minimizebutton;
-        private System.Windows.Forms.Label versionlabel;
-        private System.Windows.Forms.ComboBox formatbox;
-        private System.Windows.Forms.Label formatlabel;
-        private System.Windows.Forms.Button downloadbutton;
-        private System.Windows.Forms.Label advancedlabel;
-        private System.Windows.Forms.Button viewavailableformatsbutton;
-        private System.Windows.Forms.RichTextBox customargsbox;
-        private System.Windows.Forms.Label customargslabel;
-        private System.Windows.Forms.Button githubbutton;
-        private System.Windows.Forms.Button infobutton;
+        private System.Windows.Forms.Panel titlebarPanel;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button minimizeButton;
+        private System.Windows.Forms.Label versionLabel;
+        private System.Windows.Forms.ComboBox formatBox;
+        private System.Windows.Forms.Label formatLabel;
+        private System.Windows.Forms.Button downloadButton;
+        private System.Windows.Forms.Label advancedLabel;
+        private System.Windows.Forms.Button viewAvailableFormatsButton;
+        private System.Windows.Forms.RichTextBox customArgsBox;
+        private System.Windows.Forms.Label customArgsLabel;
+        private System.Windows.Forms.Button githubButton;
+        private System.Windows.Forms.Button infoButton;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.Button clearLocationButton;
-        private System.Windows.Forms.CheckBox applycodecs;
-        private System.Windows.Forms.Button ytdlpgithubbutton;
-        private System.Windows.Forms.Label slowwarning;
+        private System.Windows.Forms.CheckBox applyCodecs;
+        private System.Windows.Forms.Button ytdlpGithubButton;
+        private System.Windows.Forms.Label slowWarning;
     }
 }
