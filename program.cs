@@ -87,8 +87,6 @@ namespace MediaDownloader
                 {
                     // ignore
                 }
-
-                Application.Exit();
             }
 
             // configure default variables
@@ -133,7 +131,6 @@ namespace MediaDownloader
             if (File.Exists("mediadownloader\\config4"))
             {
                 string config4 = File.ReadAllText("mediadownloader\\config4");
-
                 if (config4 == "1")
                 {
                     applyCodecs.Checked = true;
@@ -164,6 +161,31 @@ namespace MediaDownloader
             mediadownloaderScript += "\\mediadownloader\\mediadownloader.bat";
             Process.Start(mediadownloaderScript);
         }
+        private void delProgFiles()
+        {
+            // delete mediadownloader.bat and configs
+            try
+            {
+                File.Delete("mediadownloader\\mediadownloader.bat");
+                File.Delete("mediadownloader\\temp_download0.mp4");
+                File.Delete("mediadownloader\\temp_download0.webm");
+                File.Delete("mediadownloader\\temp_download1.mp3");
+
+                if (useConfig.Checked == false)
+                {
+                    File.Delete("mediadownloader\\config0");
+                    File.Delete("mediadownloader\\config1");
+                    File.Delete("mediadownloader\\config2");
+                    File.Delete("mediadownloader\\config3");
+                    File.Delete("mediadownloader\\config4");
+                    File.Delete("mediadownloader\\config5");
+                }
+            }
+            catch
+            {
+                // ignore
+            }
+        }
 
         // buttons
         private void infoButton_Click(object sender, EventArgs e)
@@ -188,32 +210,17 @@ namespace MediaDownloader
             this.WindowState = FormWindowState.Minimized;
         }
 
+        // program closing handler
         private void exitButton_Click(object sender, EventArgs e)
         {
-            // delete mediadownloader.bat and configs
-            try
-            {
-                File.Delete("mediadownloader\\mediadownloader.bat");
-                File.Delete("mediadownloader\\temp_download0.mp4");
-                File.Delete("mediadownloader\\temp_download0.webm");
-                File.Delete("mediadownloader\\temp_download1.mp3");
-
-                if (useConfig.Checked == false)
-                {
-                    File.Delete("mediadownloader\\config0");
-                    File.Delete("mediadownloader\\config1");
-                    File.Delete("mediadownloader\\config2");
-                    File.Delete("mediadownloader\\config3");
-                    File.Delete("mediadownloader\\config4");
-                    File.Delete("mediadownloader\\config5");
-                }
-            }
-            catch
-            {
-                // ignore
-            }
+            delProgFiles();
 
             Application.Exit();
+        }
+
+        private void program_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            delProgFiles();
         }
 
         // call moveform
@@ -242,33 +249,117 @@ namespace MediaDownloader
             MoveForm(e);
         }
 
-        private void program_FormClosing(object sender, FormClosingEventArgs e)
+        // configuration
+        private void useConfig_CheckedChanged(object sender, EventArgs e)
         {
-            // delete mediadownloader.bat and configs
-            try
+            if (useConfig.Checked == true)
             {
-                File.Delete("mediadownloader\\mediadownloader.bat");
-                File.Delete("mediadownloader\\temp_download0.mp4");
-                File.Delete("mediadownloader\\temp_download0.webm");
-                File.Delete("mediadownloader\\temp_download1.mp3");
+                File.WriteAllText("mediadownloader\\config0", "");
+                File.WriteAllText("mediadownloader\\config1", "");
+                File.WriteAllText("mediadownloader\\config2", "");
+                File.WriteAllText("mediadownloader\\config3", "");
+                File.WriteAllText("mediadownloader\\config4", "");
+                File.WriteAllText("mediadownloader\\config5", "");
 
-                if (useConfig.Checked == false)
+                // write config0
+                string config0 = inputBox.Text;
+                File.WriteAllText("mediadownloader\\config0", config0);
+
+                // write config1
+                int config1_int = formatBox.SelectedIndex;
+                string config1 = config1_int.ToString();
+                File.WriteAllText("mediadownloader\\config1", config1);
+
+                // write config2
+                string config2 = selectedLocation;
+                File.WriteAllText("mediadownloader\\config2", config2);
+
+                // write config3
+                string config3 = customArgsBox.Text;
+                File.WriteAllText("mediadownloader\\config3", config3);
+
+                // write config4
+                if (applyCodecs.Checked == true)
                 {
-                    File.Delete("mediadownloader\\config0");
-                    File.Delete("mediadownloader\\config1");
-                    File.Delete("mediadownloader\\config2");
-                    File.Delete("mediadownloader\\config3");
-                    File.Delete("mediadownloader\\config4");
-                    File.Delete("mediadownloader\\config5");
+                    File.WriteAllText("mediadownloader\\config4", "1");
+                }
+                else
+                {
+                    File.WriteAllText("mediadownloader\\config4", "");
                 }
             }
-            catch
+        }
+        private void inputBox_TextChanged(object sender, EventArgs e)
+        {
+            // on change write to config0
+            if (useConfig.Checked == true)
             {
-                // ignore
+                string config0 = inputBox.Text;
+                File.WriteAllText("mediadownloader\\config0", config0);
             }
         }
 
-        // download config buttons
+        private void formatBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // on change write to config1
+            if (useConfig.Checked == true)
+            {
+                int config1_int = formatBox.SelectedIndex;
+                string config1 = config1_int.ToString();
+                File.WriteAllText("mediadownloader\\config1", config1);
+            }
+        }
+
+        private void customArgsBox_TextChanged(object sender, EventArgs e)
+        {
+            // on change write to config3
+            if (useConfig.Checked == true)
+            {
+                string config3 = customArgsBox.Text;
+                File.WriteAllText("mediadownloader\\config3", config3);
+            }
+        }
+
+        private void applyCodecs_CheckedChanged(object sender, EventArgs e)
+        {
+            // on change write to config4
+            if (applyCodecs.Checked == true)
+            {
+                File.WriteAllText("mediadownloader\\config4", "1");
+            }
+            else
+            {
+                File.WriteAllText("mediadownloader\\config4", "");
+            }
+        }
+
+        private void resetConfig_Click(object sender, EventArgs e)
+        {
+            // clear config0
+            File.WriteAllText("mediadownloader\\config0", "");
+            inputBox.Text = "";
+
+            // clear config1
+            int config1_int = 6;
+            string config1 = config1_int.ToString();
+            File.WriteAllText("mediadownloader\\config1", config1);
+            formatBox.SelectedIndex = 6;
+
+            // clear config2
+            File.WriteAllText("mediadownloader\\config2", "");
+            useDefLoc = true;
+            directoryLabel.Text = "";
+
+            // clear config3
+            File.WriteAllText("mediadownloader\\config3", "");
+            customArgsBox.Text = "";
+
+            // clear config4
+            File.WriteAllText("mediadownloader\\config4", "");
+            applyCodecs.Checked = false;
+        }
+
+        // configure download buttons
         private void locationButton_Click(object sender, EventArgs e)
         {
             // opens file location browser, update variables, and write config
@@ -298,6 +389,25 @@ namespace MediaDownloader
             useDefLoc = true;
             selectedLocation = "";
             directoryLabel.Text = "";
+
+            string config2 = selectedLocation;
+            File.WriteAllText("mediadownloader\\config2", config2);
+
+        }
+        private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
+        {
+            // displays available formats of the specified url
+            if (inputBox.Text == "")
+            {
+                MessageBox.Show("Please specify a valid URL");
+            }
+            else
+            {
+                string url = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --list-formats " + inputBox.Text + "\nPAUSE";
+                File.WriteAllText("mediadownloader\\mediadownloader.bat", url);
+
+                mdBatch();
+            }
         }
 
         // download button
@@ -543,7 +653,7 @@ namespace MediaDownloader
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=600:-1 -r 10 " + @"..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=500:-1 -r 10 " + @"..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -557,7 +667,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=600:-1 -r 10 " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=500:-1 -r 10 " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -722,132 +832,6 @@ namespace MediaDownloader
                     }
                 }
             }
-        }
-
-        private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
-        {
-            // displays available formats of the specified url
-            if (inputBox.Text == "")
-            {
-                MessageBox.Show("Please specify a valid URL");
-            }
-            else
-            {
-                string url = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --list-formats " + inputBox.Text + "\nPAUSE";
-                File.WriteAllText("mediadownloader\\mediadownloader.bat", url);
-
-                mdBatch();
-            }
-        }
-
-        private void useConfig_CheckedChanged(object sender, EventArgs e)
-        {
-            if (useConfig.Checked == true)
-            {
-                File.WriteAllText("mediadownloader\\config0", "");
-                File.WriteAllText("mediadownloader\\config1", "");
-                File.WriteAllText("mediadownloader\\config2", "");
-                File.WriteAllText("mediadownloader\\config3", "");
-                File.WriteAllText("mediadownloader\\config4", "");
-                File.WriteAllText("mediadownloader\\config5", "");
-
-                // write config0
-                string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\config0", config0);
-
-                // write config1
-                int config1_int = formatBox.SelectedIndex;
-                string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\config1", config1);
-
-                // write config2
-                string config2 = selectedLocation;
-                File.WriteAllText("mediadownloader\\config2", config2);
-
-                // write config3
-                string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\config3", config3);
-
-                // write config4
-                if (applyCodecs.Checked == true)
-                {
-                    File.WriteAllText("mediadownloader\\config4", "1");
-                }
-                else
-                {
-                    File.WriteAllText("mediadownloader\\config4", "");
-                }
-            }
-        }
-
-        private void inputBox_TextChanged(object sender, EventArgs e)
-        {
-            // on change write to config0
-            if (useConfig.Checked == true)
-            {
-                string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\config0", config0);
-            }
-        }
-
-        private void formatBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // on change write to config1
-            if (useConfig.Checked == true)
-            {
-                int config1_int = formatBox.SelectedIndex;
-                string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\config1", config1);
-            }
-        }
-
-        private void customArgsBox_TextChanged(object sender, EventArgs e)
-        {
-            // on change write to config3
-            if (useConfig.Checked == true)
-            {
-                string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\config3", config3);
-            }
-        }
-
-        private void applyCodecs_CheckedChanged(object sender, EventArgs e)
-        {
-            // on change write to config4
-            if (applyCodecs.Checked == true)
-            {
-                File.WriteAllText("mediadownloader\\config4", "1");
-            }
-            else
-            {
-                File.WriteAllText("mediadownloader\\config4", "");
-            }
-        }
-
-        private void resetConfig_Click(object sender, EventArgs e)
-        {
-            // write config0
-            File.WriteAllText("mediadownloader\\config0", "");
-            inputBox.Text = "";
-
-            // write config1
-            int config1_int = 6;
-            string config1 = config1_int.ToString();
-            File.WriteAllText("mediadownloader\\config1", config1);
-            formatBox.SelectedIndex = 6;
-
-            // write config2
-            File.WriteAllText("mediadownloader\\config2", "");
-            useDefLoc = true;
-            directoryLabel.Text = "";
-
-            // write config3
-            File.WriteAllText("mediadownloader\\config3", "");
-            customArgsBox.Text = "";
-
-            // write config4
-            File.WriteAllText("mediadownloader\\config4", "");
-            applyCodecs.Checked = false;
         }
     }
 }
