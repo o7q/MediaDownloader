@@ -1,7 +1,12 @@
 ~ DEV.
 - Shortened and optimized some code
+- Files now go to a new organized directory
+- Finally figured out the stupid path issue
+- Changed m4a format to ogg format
+- Modified info page
 - Changed the color of a few things
-- Added button for testing
+- Re-arranged some code
+- Added more code comments
 
 ~ v2.4
 - Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
