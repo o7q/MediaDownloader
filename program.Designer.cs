@@ -102,7 +102,7 @@
             this.urlLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
             this.urlLabel.Location = new System.Drawing.Point(5, 42);
             this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(27, 12);
+            this.urlLabel.Size = new System.Drawing.Size(24, 12);
             this.urlLabel.TabIndex = 5;
             this.urlLabel.Text = "URL";
             // 
@@ -432,6 +432,7 @@
             this.Name = "program";
             this.Text = "MediaDownloader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
+            this.Load += new System.EventHandler(this.program_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();

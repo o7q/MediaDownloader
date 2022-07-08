@@ -49,46 +49,6 @@ namespace MediaDownloader
                 // ignore
             }
 
-            if (File.Exists("mediadownloader\\yt-dlp.exe"))
-            {
-                // continue loading
-            }
-            else
-            {
-                MessageBox.Show("\"yt-dlp.exe\" not found! Exiting MediaDownloader.");
-
-                // delete mediadownloader.bat
-                try
-                {
-                    File.Delete("mediadownloader\\mediadownloader.bat");
-                }
-                catch
-                {
-                    // ignore
-                }
-
-                Application.Exit();
-            }
-
-            if (File.Exists("mediadownloader\\ffmpeg.exe"))
-            {
-                // continue loading
-            }
-            else
-            {
-                MessageBox.Show("\"ffmpeg.exe\" not found! Exiting MediaDownloader.");
-
-                // delete mediadownloader.bat
-                try
-                {
-                    File.Delete("mediadownloader\\mediadownloader.bat");
-                }
-                catch
-                {
-                    // ignore
-                }
-            }
-
             // configure default variables
             formatBox.SelectedIndex = 6;
             useDefLoc = true;
@@ -141,6 +101,50 @@ namespace MediaDownloader
             if (File.Exists("mediadownloader\\config5"))
             {
                 useConfig.Checked = true;
+            }
+        }
+        private void program_Load(object sender, EventArgs e)
+        {
+            if (File.Exists("mediadownloader\\yt-dlp.exe"))
+            {
+                // continue loading
+            }
+            else
+            {
+                MessageBox.Show("\"yt-dlp.exe\" not found! Exiting MediaDownloader.");
+
+                // delete mediadownloader.bat
+                try
+                {
+                    File.Delete("mediadownloader\\mediadownloader.bat");
+                }
+                catch
+                {
+                    // ignore
+                }
+
+                Application.Exit();
+            }
+
+            if (File.Exists("mediadownloader\\ffmpeg.exe"))
+            {
+                // continue loading
+            }
+            else
+            {
+                MessageBox.Show("\"ffmpeg.exe\" not found! Exiting MediaDownloader.");
+
+                // delete mediadownloader.bat
+                try
+                {
+                    File.Delete("mediadownloader\\mediadownloader.bat");
+                }
+                catch
+                {
+                    // ignore
+                }
+
+                Application.Exit();
             }
         }
 
