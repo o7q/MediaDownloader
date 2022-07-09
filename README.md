@@ -7,4 +7,5 @@ MediaDownloader: https://github.com/o7q/MediaDownloader
 yt-dlp: https://github.com/yt-dlp/yt-dlp
 ffmpeg: https://ffmpeg.org
 
-If you want to compile the code yourself I highly recommend using .NET Framework 4.8 and Visual Studio.
+Running C# .NET Framework 4.8.
+If you want to compile the code yourself I highly recommend using Visual Studio.
