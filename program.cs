@@ -904,7 +904,7 @@ namespace MediaDownloader
                             }
                         }
 
-                        // (Use Custom Arguments)
+                        // (Custom DL Arguments)
                         if (format == 14)
                         {
                             if (useDefLoc == true)

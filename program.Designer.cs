@@ -469,7 +469,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(350, 197);
+            this.ClientSize = new System.Drawing.Size(349, 197);
             this.Controls.Add(this.fLabel);
             this.Controls.Add(this.rLabel);
             this.Controls.Add(this.gifFramerate);

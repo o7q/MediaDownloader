@@ -1,10 +1,12 @@
-~ DEV.
-- Code update
-- UI update
-- Config update
+~ v3.0
+- Added the option to save user settings to a config file. It will be loaded automatically next time the program is started
+- Added the new "gif" and "gif (web)" formats (both formats require an ffmpeg convert)
+- Replaced the "m4a" format with "ogg" (ogg requires a double ffmpeg convert)
+- UI update (increased directory label font size, some color improvements, slight text changes)
+- MediaDownloader now stores its files in a sub-folder keeping everything neat and tidy
+- Fixed pathing issues
 - MessageBox update
-- Added feature to change web gif quality settings
-- Fixed path bugs
+- Code update and optimizations
 
 ~ v2.4
 - Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
