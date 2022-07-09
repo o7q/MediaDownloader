@@ -100,6 +100,32 @@ namespace MediaDownloader
             // load config5
             if (File.Exists("mediadownloader\\config5"))
             {
+                string config5 = File.ReadAllText("mediadownloader\\config5");
+                gifResolution.Text = config5;
+            }
+            else
+            {
+                int R = 500;
+                string R_string = R.ToString();
+                gifResolution.Text = R_string;
+            }
+
+            // load config6
+            if (File.Exists("mediadownloader\\config6"))
+            {
+                string config6 = File.ReadAllText("mediadownloader\\config6");
+                gifFramerate.Text = config6;
+            }
+            else
+            {
+                int F = 15;
+                string F_string = F.ToString();
+                gifFramerate.Text = F_string;
+            }
+
+            // load config_switch
+            if (File.Exists("mediadownloader\\config_switch"))
+            {
                 useConfig.Checked = true;
             }
         }
@@ -111,7 +137,7 @@ namespace MediaDownloader
             }
             else
             {
-                MessageBox.Show("\"yt-dlp.exe\" not found! Exiting MediaDownloader.");
+                MessageBox.Show("\"yt-dlp.exe\" not found! Exiting MediaDownloader");
 
                 // delete mediadownloader.bat
                 try
@@ -132,7 +158,7 @@ namespace MediaDownloader
             }
             else
             {
-                MessageBox.Show("\"ffmpeg.exe\" not found! Exiting MediaDownloader.");
+                MessageBox.Show("\"ffmpeg.exe\" not found! Exiting MediaDownloader");
 
                 // delete mediadownloader.bat
                 try
@@ -149,7 +175,7 @@ namespace MediaDownloader
         }
 
         // functions
-        public void MoveForm(MouseEventArgs e)
+        private void MoveForm(MouseEventArgs e)
         {
             // function move form on mousedown
             if (e.Button == MouseButtons.Left)
@@ -177,12 +203,14 @@ namespace MediaDownloader
 
                 if (useConfig.Checked == false)
                 {
+                    File.Delete("mediadownloader\\config_switch");
                     File.Delete("mediadownloader\\config0");
                     File.Delete("mediadownloader\\config1");
                     File.Delete("mediadownloader\\config2");
                     File.Delete("mediadownloader\\config3");
                     File.Delete("mediadownloader\\config4");
                     File.Delete("mediadownloader\\config5");
+                    File.Delete("mediadownloader\\config6");
                 }
             }
             catch
@@ -258,12 +286,14 @@ namespace MediaDownloader
         {
             if (useConfig.Checked == true)
             {
+                File.WriteAllText("mediadownloader\\config_switch", "");
                 File.WriteAllText("mediadownloader\\config0", "");
                 File.WriteAllText("mediadownloader\\config1", "");
                 File.WriteAllText("mediadownloader\\config2", "");
                 File.WriteAllText("mediadownloader\\config3", "");
                 File.WriteAllText("mediadownloader\\config4", "");
                 File.WriteAllText("mediadownloader\\config5", "");
+                File.WriteAllText("mediadownloader\\config6", "");
 
                 // write config0
                 string config0 = inputBox.Text;
@@ -291,6 +321,14 @@ namespace MediaDownloader
                 {
                     File.WriteAllText("mediadownloader\\config4", "");
                 }
+
+                // write config5
+                string config5 = gifResolution.Text;
+                File.WriteAllText("mediadownloader\\config5", config5);
+
+                // write config6
+                string config6 = gifFramerate.Text;
+                File.WriteAllText("mediadownloader\\config6", config6);
             }
         }
         private void inputBox_TextChanged(object sender, EventArgs e)
@@ -361,6 +399,14 @@ namespace MediaDownloader
             // clear config4
             File.WriteAllText("mediadownloader\\config4", "");
             applyCodecs.Checked = false;
+
+            // clear config5
+            File.WriteAllText("mediadownloader\\config5", "");
+            gifResolution.Text = "500";
+
+            // clear config6
+            File.WriteAllText("mediadownloader\\config6", "");
+            gifFramerate.Text = "15";
         }
 
         // configure download buttons
@@ -425,9 +471,12 @@ namespace MediaDownloader
             else
             {
                 // ensure user cannot select non-formats
-                int formatSelection = formatBox.SelectedIndex;
+                string url = inputBox.Text;
+                int format = formatBox.SelectedIndex;
+                string gifR = gifResolution.Text;
+                string gifF = gifFramerate.Text;
 
-                if(formatSelection == 0 || formatSelection == 6 || formatSelection == 7 || formatSelection == 12 || formatSelection == 13)
+                if(format == 0 || format == 6 || format == 7 || format == 12 || format == 13)
                 {
                     MessageBox.Show("Please select a valid format");
                 }
@@ -447,17 +496,17 @@ namespace MediaDownloader
                     if (applyCodecs.Checked == true)
                     {
                         // invalid formats
-                        if(formatSelection == 1 || formatSelection == 4 || formatSelection == 5 || formatSelection == 8 || formatSelection == 9 || formatSelection == 10 || formatSelection == 11 || formatSelection == 14)
+                        if(format == 1 || format == 4 || format == 5 || format == 8 || format == 9 || format == 10 || format == 11 || format == 14)
                         {
                             MessageBox.Show("No video codecs are available for this format");
                         }
 
                         // mp4
-                        if (formatSelection == 2)
+                        if (format == 2)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -471,7 +520,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac " + selectedLocation + @"\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac " + selectedLocation + @"\converted_download_" + randomString + ".mp4" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -486,11 +535,11 @@ namespace MediaDownloader
                         }
 
                         // webm
-                        if (formatSelection == 3)
+                        if (format == 3)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f temp_download0.webm";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f temp_download0.webm";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -504,7 +553,7 @@ namespace MediaDownloader
                             }   
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis " + selectedLocation + @"\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f temp_download0.webm";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis " + selectedLocation + @"\converted_download_" + randomString + ".webm" + "\"" + "\n" + @"del /f temp_download0.webm";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -521,11 +570,11 @@ namespace MediaDownloader
                     else
                     {
                         // (raw) video
-                        if (formatSelection == 1)
+                        if (format == 1)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -539,7 +588,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -554,11 +603,11 @@ namespace MediaDownloader
                         }
 
                         // mp4
-                        if (formatSelection == 2)
+                        if (format == 2)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -572,7 +621,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -587,11 +636,11 @@ namespace MediaDownloader
                         }
 
                         // webm
-                        if (formatSelection == 3)
+                        if (format == 3)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -605,7 +654,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video webm --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -620,11 +669,11 @@ namespace MediaDownloader
                         }
 
                         // gif
-                        if (formatSelection == 4)
+                        if (format == 4)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 " + @"..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 " + @"..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -638,7 +687,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -653,44 +702,51 @@ namespace MediaDownloader
                         }
 
                         // gif (web)
-                        if (formatSelection == 5)
+                        if (format == 5)
                         {
-                            if (useDefLoc == true)
+                            if (gifResolution.Text == "" || gifFramerate.Text == "")
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=500:-1 -r 10 " + @"..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
-                                try
-                                {
-                                    File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
-                                }
-                                catch
-                                {
-                                    // ignore
-                                }
-
-                                mdBatch();
-                            }
+                                MessageBox.Show("Please provide valid resolution and framerate values");
+                            } 
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=500:-1 -r 10 " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
-                                try
+                                if (useDefLoc == true)
                                 {
-                                    File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
-                                }
-                                catch
-                                {
-                                    // ignore
-                                }
+                                    string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                    try
+                                    {
+                                        File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
+                                    }
+                                    catch
+                                    {
+                                        // ignore
+                                    }
 
-                                mdBatch();
+                                    mdBatch();
+                                }
+                                else
+                                {
+                                    string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " " + selectedLocation + @"\converted_download_" + randomString + ".gif" + "\"" + "\n" + @"del /f temp_download0.mp4";
+                                    try
+                                    {
+                                        File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
+                                    }
+                                    catch
+                                    {
+                                        // ignore
+                                    }
+
+                                    mdBatch();
+                                }                               
                             }
                         }
 
                         // (raw) audio
-                        if (formatSelection == 8)
+                        if (format == 8)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -704,7 +760,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -719,11 +775,11 @@ namespace MediaDownloader
                         }
 
                         // mp3
-                        if (formatSelection == 9)
+                        if (format == 9)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -737,7 +793,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format mp3 --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -752,11 +808,11 @@ namespace MediaDownloader
                         }
 
                         // wav
-                        if (formatSelection == 10)
+                        if (format == 10)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format wav --path " + @"..\Downloads " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format wav --path " + @"..\Downloads " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -770,7 +826,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format wav --path " + "\"" + selectedLocation + "\"" + " " + inputBox.Text;
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe -x --audio-format wav --path " + "\"" + selectedLocation + "\"" + " " + url;
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -786,11 +842,11 @@ namespace MediaDownloader
                         else
 
                         // ogg
-                        if (formatSelection == 11)
+                        if (format == 11)
                         {
                             if (useDefLoc == true)
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + randomString + ".ogg" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3";                         
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + randomString + ".ogg" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3";                         
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -804,7 +860,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + inputBox.Text + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis " + selectedLocation + @"\converted_download_" + randomString + ".ogg" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3";
+                                string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --remux-video mp4 -o \"temp_download0\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis " + selectedLocation + @"\converted_download_" + randomString + ".ogg" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3";
                                 try
                                 {
                                     File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -819,9 +875,9 @@ namespace MediaDownloader
                         }
 
                         // (Use Custom Arguments)
-                        if (formatSelection == 14)
+                        if (format == 14)
                         {
-                            string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + customArgsBox.Text + " " + inputBox.Text + "\nPAUSE";
+                            string script = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --path " + "\"" + selectedLocation + "\"" + " " + customArgsBox.Text + " " + url + "\nPAUSE";
                             try
                             {
                                 File.WriteAllText("mediadownloader\\mediadownloader.bat", script);
@@ -835,6 +891,26 @@ namespace MediaDownloader
                         }
                     }
                 }
+            }
+        }
+
+        private void gifResolution_TextChanged(object sender, EventArgs e)
+        {
+            // on change write to config6
+            if (useConfig.Checked == true)
+            {
+                string config5 = gifResolution.Text;
+                File.WriteAllText("mediadownloader\\config5", config5);
+            }
+        }
+
+        private void gifFramerate_TextChanged(object sender, EventArgs e)
+        {
+            // on change write to config6
+            if (useConfig.Checked == true)
+            {
+                string config6 = gifFramerate.Text;
+                File.WriteAllText("mediadownloader\\config6", config6);
             }
         }
     }

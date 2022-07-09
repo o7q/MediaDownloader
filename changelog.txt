@@ -1,8 +1,9 @@
 ~ DEV.
-- Updated gif downloader
-- Re-arranged some code
-- Added more code comments
-- Fixed verify files bug
+- Code update
+- UI update
+- Config update
+- MessageBox update
+- Added feature to change web gif quality settings
 
 ~ v2.4
 - Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
