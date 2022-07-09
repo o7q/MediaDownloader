@@ -4,6 +4,7 @@
 - Config update
 - MessageBox update
 - Added feature to change web gif quality settings
+- Fixed path bugs
 
 ~ v2.4
 - Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )

@@ -273,11 +273,11 @@
             this.customArgsLabel.AutoSize = true;
             this.customArgsLabel.BackColor = System.Drawing.Color.Transparent;
             this.customArgsLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customArgsLabel.Location = new System.Drawing.Point(240, 78);
+            this.customArgsLabel.Location = new System.Drawing.Point(233, 78);
             this.customArgsLabel.Name = "customArgsLabel";
-            this.customArgsLabel.Size = new System.Drawing.Size(95, 13);
+            this.customArgsLabel.Size = new System.Drawing.Size(112, 13);
             this.customArgsLabel.TabIndex = 0;
-            this.customArgsLabel.Text = "Custom Arguments";
+            this.customArgsLabel.Text = "Custom DL Arguments";
             // 
             // githubButton
             // 
@@ -400,7 +400,6 @@
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
             this.resetConfig.TabIndex = 13;
-            this.resetConfig.Text = "x";
             this.resetConfig.UseVisualStyleBackColor = false;
             this.resetConfig.Click += new System.EventHandler(this.resetConfig_Click);
             // 
