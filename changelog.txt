@@ -1,3 +1,8 @@
+~ v3.0.1
+- Now using semantic versioning
+- Fixed some bugged temp files staying
+- Make the clear settings button more visible and obvious
+
 ~ v3.0
 - Added the option to save user settings to a config file. It will be loaded automatically next time the program is started
 - Added the new "gif" and "gif (web)" formats (both formats require an ffmpeg convert)

@@ -199,13 +199,18 @@ namespace MediaDownloader
             try
             {
                 File.Delete("mediadownloader\\mediadownloader.bat");
+
+                // clean up temps
                 File.Delete("mediadownloader\\temp_download0.mp4");
                 File.Delete("mediadownloader\\temp_download0.webm");
                 File.Delete("mediadownloader\\temp_download1.mp3");
+                File.Delete("mediadownloader\\temp_download0");
+                File.Delete("mediadownloader\\temp_download1");
 
                 if (useConfig.Checked == false)
                 {
                     File.Delete("mediadownloader\\config_switch");
+
                     File.Delete("mediadownloader\\config0");
                     File.Delete("mediadownloader\\config1");
                     File.Delete("mediadownloader\\config2");
@@ -291,6 +296,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 File.WriteAllText("mediadownloader\\config_switch", "");
+
                 File.WriteAllText("mediadownloader\\config0", "");
                 File.WriteAllText("mediadownloader\\config1", "");
                 File.WriteAllText("mediadownloader\\config2", "");

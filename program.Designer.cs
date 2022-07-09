@@ -59,6 +59,7 @@
             this.gifFramerate = new System.Windows.Forms.TextBox();
             this.rLabel = new System.Windows.Forms.Label();
             this.fLabel = new System.Windows.Forms.Label();
+            this.xLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarPanel.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +93,7 @@
             this.byO7qLabel.AutoSize = true;
             this.byO7qLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.byO7qLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.byO7qLabel.Location = new System.Drawing.Point(238, 20);
+            this.byO7qLabel.Location = new System.Drawing.Point(247, 20);
             this.byO7qLabel.Name = "byO7qLabel";
             this.byO7qLabel.Size = new System.Drawing.Size(39, 13);
             this.byO7qLabel.TabIndex = 0;
@@ -145,9 +146,9 @@
             this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
             this.versionLabel.Location = new System.Drawing.Point(213, 21);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(28, 12);
+            this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.0";
+            this.versionLabel.Text = "v3.0.1";
             this.versionLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
             // 
             // minimizeButton
@@ -400,6 +401,7 @@
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
             this.resetConfig.TabIndex = 13;
+            this.resetConfig.Text = "x";
             this.resetConfig.UseVisualStyleBackColor = false;
             this.resetConfig.Click += new System.EventHandler(this.resetConfig_Click);
             // 
@@ -462,6 +464,17 @@
             this.fLabel.TabIndex = 0;
             this.fLabel.Text = "F:";
             // 
+            // xLabel
+            // 
+            this.xLabel.AutoSize = true;
+            this.xLabel.BackColor = System.Drawing.Color.Transparent;
+            this.xLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.xLabel.Location = new System.Drawing.Point(217, 167);
+            this.xLabel.Name = "xLabel";
+            this.xLabel.Size = new System.Drawing.Size(12, 13);
+            this.xLabel.TabIndex = 0;
+            this.xLabel.Text = "x";
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,6 +483,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
+            this.Controls.Add(this.xLabel);
             this.Controls.Add(this.fLabel);
             this.Controls.Add(this.rLabel);
             this.Controls.Add(this.gifFramerate);
@@ -541,5 +555,6 @@
         private System.Windows.Forms.TextBox gifFramerate;
         private System.Windows.Forms.Label rLabel;
         private System.Windows.Forms.Label fLabel;
+        private System.Windows.Forms.Label xLabel;
     }
 }
