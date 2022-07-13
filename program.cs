@@ -9,7 +9,7 @@ namespace MediaDownloader
 {
     public partial class program : Form
     {
-        // configure window
+        // configure mouse window events
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
