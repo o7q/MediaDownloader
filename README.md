@@ -5,7 +5,6 @@ Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of 
 
 
 ### OVERVIEW
-
 URL: Specify URL of website for MediaDownloader to downloader
 
 Format: Specify format for downloaded media to be converted to
@@ -30,7 +29,6 @@ Custom DL Arguments: Specify custom arguments that yt-dlp will accept
 
 gif (web) Quality: R = Resolution & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
 
-
 <img src="images/v310/v310.png"/>
 
 
@@ -42,5 +40,4 @@ ffmpeg: https://ffmpeg.org
 
 
 Running C# .NET Framework 4.8.
-
 If you want to compile the code yourself I highly recommend using Visual Studio.
