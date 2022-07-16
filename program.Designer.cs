@@ -30,11 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(program));
             this.inputBox = new System.Windows.Forms.TextBox();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.byO7qLabel = new System.Windows.Forms.Label();
             this.urlLabel = new System.Windows.Forms.Label();
-            this.logo = new System.Windows.Forms.PictureBox();
             this.titlebarPanel = new System.Windows.Forms.Panel();
+            this.bannerPicture = new System.Windows.Forms.PictureBox();
             this.versionLabel = new System.Windows.Forms.Label();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
@@ -60,8 +58,8 @@
             this.rLabel = new System.Windows.Forms.Label();
             this.fLabel = new System.Windows.Forms.Label();
             this.xLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.titlebarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // inputBox
@@ -75,31 +73,6 @@
             this.inputBox.TabIndex = 2;
             this.inputBox.TextChanged += new System.EventHandler(this.inputBox_TextChanged);
             // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.titleLabel.Location = new System.Drawing.Point(36, 11);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(185, 25);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "MediaDownloader";
-            this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlelabel_MouseMove);
-            // 
-            // byO7qLabel
-            // 
-            this.byO7qLabel.AutoSize = true;
-            this.byO7qLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.byO7qLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.byO7qLabel.Location = new System.Drawing.Point(247, 20);
-            this.byO7qLabel.Name = "byO7qLabel";
-            this.byO7qLabel.Size = new System.Drawing.Size(39, 13);
-            this.byO7qLabel.TabIndex = 0;
-            this.byO7qLabel.Text = "by o7q";
-            this.byO7qLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.byo7qlabel_MouseMove);
-            // 
             // urlLabel
             // 
             this.urlLabel.AutoSize = true;
@@ -112,44 +85,43 @@
             this.urlLabel.TabIndex = 0;
             this.urlLabel.Text = "URL";
             // 
-            // logo
-            // 
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(12, 11);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(28, 25);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo.TabIndex = 7;
-            this.logo.TabStop = false;
-            this.logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.logo_MouseMove);
-            // 
             // titlebarPanel
             // 
             this.titlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.titlebarPanel.Controls.Add(this.bannerPicture);
             this.titlebarPanel.Controls.Add(this.versionLabel);
             this.titlebarPanel.Controls.Add(this.minimizeButton);
             this.titlebarPanel.Controls.Add(this.exitButton);
-            this.titlebarPanel.Controls.Add(this.logo);
-            this.titlebarPanel.Controls.Add(this.titleLabel);
-            this.titlebarPanel.Controls.Add(this.byO7qLabel);
             this.titlebarPanel.Location = new System.Drawing.Point(-9, -5);
             this.titlebarPanel.Name = "titlebarPanel";
             this.titlebarPanel.Size = new System.Drawing.Size(362, 40);
             this.titlebarPanel.TabIndex = 0;
-            this.titlebarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titlebarpanel_MouseMove);
+            this.titlebarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlebarPanel_MouseDown);
+            // 
+            // bannerPicture
+            // 
+            this.bannerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.bannerPicture.Image = global::MediaDownloader.Properties.Resources.banner;
+            this.bannerPicture.Location = new System.Drawing.Point(11, 5);
+            this.bannerPicture.Name = "bannerPicture";
+            this.bannerPicture.Size = new System.Drawing.Size(158, 33);
+            this.bannerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bannerPicture.TabIndex = 0;
+            this.bannerPicture.TabStop = false;
+            this.bannerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bannerPicture_MouseDown);
             // 
             // versionLabel
             // 
             this.versionLabel.AutoSize = true;
             this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.versionLabel.Location = new System.Drawing.Point(213, 21);
+            this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.versionLabel.Location = new System.Drawing.Point(263, 24);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.0.1";
-            this.versionLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.versionlabel_MouseMove);
+            this.versionLabel.Text = "v3.1.0";
+            this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
             // 
@@ -515,9 +487,9 @@
             this.Text = "MediaDownloader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
             this.Load += new System.EventHandler(this.program_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -526,10 +498,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox inputBox;
-        private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Label byO7qLabel;
         private System.Windows.Forms.Label urlLabel;
-        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel titlebarPanel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button minimizeButton;
@@ -556,5 +525,6 @@
         private System.Windows.Forms.Label rLabel;
         private System.Windows.Forms.Label fLabel;
         private System.Windows.Forms.Label xLabel;
+        private System.Windows.Forms.PictureBox bannerPicture;
     }
 }

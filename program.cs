@@ -265,27 +265,17 @@ namespace MediaDownloader
         }
 
         // call moveform
-        private void titlebarpanel_MouseMove(object sender, MouseEventArgs e)
+        private void titlebarPanel_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(e);
         }
 
-        private void titlelabel_MouseMove(object sender, MouseEventArgs e)
+        private void bannerPicture_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(e);
         }
 
-        private void byo7qlabel_MouseMove(object sender, MouseEventArgs e)
-        {
-            MoveForm(e);
-        }
-
-        private void logo_MouseMove(object sender, MouseEventArgs e)
-        {
-            MoveForm(e);
-        }
-
-        private void versionlabel_MouseMove(object sender, MouseEventArgs e)
+        private void versionLabel_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(e);
         }

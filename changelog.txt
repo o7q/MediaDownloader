@@ -1,3 +1,8 @@
+~ v3.1.0
+- Banner update
+- UI Update
+- Change MouseMove method to MouseDown method for FormMove
+
 ~ v3.0.1
 - Now using semantic versioning
 - Fixed some bugged temp files staying
