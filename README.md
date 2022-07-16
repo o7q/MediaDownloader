@@ -31,7 +31,7 @@ Save Options: Saves all options to config files stored in the "mediadownloader" 
 
 Custom DL Arguments: Specify custom arguments that yt-dlp will accept
 
-gif (web) Quality: R = Resolution & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
+gif (web) Quality: R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
 
 <img src="images/v310/v310.png"/>
 
