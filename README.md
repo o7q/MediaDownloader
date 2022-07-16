@@ -4,7 +4,7 @@ A tool that uses yt-dlp and ffmpeg to download video and audio from virtually an
 Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
 
 
-### OVERVIEW
+### Overview
 URL: Specify URL of website for MediaDownloader to downloader
 
 Format: Specify format for downloaded media to be converted to
