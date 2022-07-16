@@ -33,9 +33,14 @@ gif (web) Quality: R = Resolution & F = Framerate (this is helpful for uploading
 
 <img src="images/v310/v310.png"/>
 
+
 MediaDownloader: https://github.com/o7q/MediaDownloader
+
 yt-dlp: https://github.com/yt-dlp/yt-dlp
+
 ffmpeg: https://ffmpeg.org
 
+
 Running C# .NET Framework 4.8.
+
 If you want to compile the code yourself I highly recommend using Visual Studio.
