@@ -6,12 +6,12 @@
 
 # Overview
 Powered by:\
-yt-dlp: https://github.com/yt-dlp/yt-dlp\
-ffmpeg: https://ffmpeg.org\
+yt-dlp: https://github.com/yt-dlp/yt-dlp \
+ffmpeg: https://ffmpeg.org \
 <br>
 
 ## <b>Components</b>
-<b>URL:</b> Specify URL of website for MediaDownloader to downloader\
+<b>URL:</b> Specify URL of website for MediaDownloader to downloader \
 <b>Format:</b> Specify format for downloaded media to be converted to\
 <b>Download:</b> Downloads the URL with the specified arguments\
 <b>Change Location:</b> Change the location the media file is downloaded to\
