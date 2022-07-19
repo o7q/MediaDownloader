@@ -1,47 +1,33 @@
-# MediaDownloader
-A tool that uses yt-dlp and ffmpeg to download video and audio from virtually any website.
-
-
 <img src="images/gitbanner.png"/>
 
+### https://github.com/o7q/MediaDownloader
+<br>
 
-Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
+Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.\
+<br>
 
+# Overview
+<br>
 
-### Overview
-URL: Specify URL of website for MediaDownloader to downloader
-
-Format: Specify format for downloaded media to be converted to
-
-Download: Download the URL with the specified arguments
-
-Change Location: Change the location the media file is downloaded to
-
-Viewer Raw Formats: Displays all media types found on the specified URL's web server
-
-MediaD GitHub: Opens the MediaDownloader GitHub page
-
-yt-dlp GitHub: Opens the yt-dlp GitHub page (you can use this to find arguments used in the "Custom DL Arguments" section
-
-Info: Shows info about MediaDownloader
-
-Apply Video Codecs: Applies codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow)
-
-Save Options: Saves all options to config files stored in the "mediadownloader" directory
-
-Custom DL Arguments: Specify custom arguments that yt-dlp will accept
-
-gif (web) Quality: R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
+### <b>Components</b>
+<b>URL:</b> Specify URL of website for MediaDownloader to downloader\
+<b>Format:</b> Specify format for downloaded media to be converted to\
+<b>Download:</b> Downloads the URL with the specified arguments\
+<b>Change Location:</b> Change the location the media file is downloaded to\
+<b>View Raw Formats:</b> Displays all media types found on the specified URL's web server\
+<b>MediaD GitHub:</b> Opens the MediaDownloader GitHub page\
+<b>yt-dlp GitHub:</b> Opens the yt-dlp GitHub page (you can use this to find arguments used in the "Custom DL Arguments" section\
+<b>Info:</b> Shows info about MediaDownloader\
+<b>Apply Video Codecs:</b> Applies codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow)\
+<b>Save Options:</b> Saves all options to config files stored in the "mediadownloader" directory\
+<b>Custom DL Arguments:</b> Specify custom arguments that yt-dlp will accept\
+<b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)\
 
 <img src="images/v310/v310.png"/>
 
 
-MediaDownloader: https://github.com/o7q/MediaDownloader
-
 yt-dlp: https://github.com/yt-dlp/yt-dlp
-
 ffmpeg: https://ffmpeg.org
-
 
 Running C# .NET Framework 4.8.
 If you want to compile the code yourself I highly recommend using Visual Studio.
