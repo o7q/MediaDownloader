@@ -1,15 +1,12 @@
 <img src="images/gitbanner.png"/>
 
-### https://github.com/o7q/MediaDownloader
-<br>
+#### https://github.com/o7q/MediaDownloader
 
-Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.\
+#### Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
 <br>
 
 # Overview
-<br>
-
-### <b>Components</b>
+## <b>Components</b>
 <b>URL:</b> Specify URL of website for MediaDownloader to downloader\
 <b>Format:</b> Specify format for downloaded media to be converted to\
 <b>Download:</b> Downloads the URL with the specified arguments\
@@ -22,12 +19,14 @@ Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of 
 <b>Save Options:</b> Saves all options to config files stored in the "mediadownloader" directory\
 <b>Custom DL Arguments:</b> Specify custom arguments that yt-dlp will accept\
 <b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)\
+<br>
 
-<img src="images/v310/v310.png"/>
+<img src="images/v310/v310.png"/>\
+<br>
 
+yt-dlp: https://github.com/yt-dlp/yt-dlp\
+ffmpeg: https://ffmpeg.org\
+<br>
 
-yt-dlp: https://github.com/yt-dlp/yt-dlp
-ffmpeg: https://ffmpeg.org
-
-Running C# .NET Framework 4.8.
+Running C# .NET Framework 4.8.\
 If you want to compile the code yourself I highly recommend using Visual Studio.
