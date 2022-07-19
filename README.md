@@ -1,4 +1,4 @@
-<img src="images/gitbanner.png"/>
+<img src="assets/images/readmebanner.png"/>
 
 #### https://github.com/o7q/MediaDownloader
 #### Welcome! MediaDownloader is a simple, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
@@ -25,7 +25,7 @@ ffmpeg: https://ffmpeg.org \
 <b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro) \
 <br>
 
-<img src="images/v310/v310.png"/> \
+<img src="assets/images/v310/v310.png"/> \
 <br>
 
 Running C# .NET Framework 4.8. \
