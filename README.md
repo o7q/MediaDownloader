@@ -6,6 +6,11 @@
 <br>
 
 # Overview
+Powered by:\
+yt-dlp: https://github.com/yt-dlp/yt-dlp\
+ffmpeg: https://ffmpeg.org\
+<br>
+
 ## <b>Components</b>
 <b>URL:</b> Specify URL of website for MediaDownloader to downloader\
 <b>Format:</b> Specify format for downloaded media to be converted to\
@@ -22,10 +27,6 @@
 <br>
 
 <img src="images/v310/v310.png"/>\
-<br>
-
-yt-dlp: https://github.com/yt-dlp/yt-dlp\
-ffmpeg: https://ffmpeg.org\
 <br>
 
 Running C# .NET Framework 4.8.\
