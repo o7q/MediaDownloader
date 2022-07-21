@@ -1,1 +1,2 @@
 - Add tooltips
+- Update logo
