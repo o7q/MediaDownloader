@@ -1,3 +1,9 @@
+~ v3.2.0
+- Added tooltips
+- Clear component state button visual fix
+- Slight changes to the README.md banner
+- Updated to yt-dlp 2022.07.18
+
 ~ v3.1.0
 - Banner update
 - UI Update

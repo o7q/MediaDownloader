@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(program));
             this.inputBox = new System.Windows.Forms.TextBox();
             this.urlLabel = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@
             this.gifFramerate = new System.Windows.Forms.TextBox();
             this.rLabel = new System.Windows.Forms.Label();
             this.fLabel = new System.Windows.Forms.Label();
-            this.xLabel = new System.Windows.Forms.Label();
+            this.programToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -115,12 +116,12 @@
             this.versionLabel.AutoSize = true;
             this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.versionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.versionLabel.Location = new System.Drawing.Point(263, 24);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.1.0";
+            this.versionLabel.Text = "v3.2.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -304,7 +305,7 @@
             this.directoryLabel.Location = new System.Drawing.Point(5, 182);
             this.directoryLabel.Name = "directoryLabel";
             this.directoryLabel.Size = new System.Drawing.Size(0, 12);
-            this.directoryLabel.TabIndex = 20;
+            this.directoryLabel.TabIndex = 0;
             // 
             // clearLocationButton
             // 
@@ -367,8 +368,9 @@
             // 
             this.resetConfig.BackColor = System.Drawing.Color.Transparent;
             this.resetConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetConfig.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.resetConfig.Image = ((System.Drawing.Image)(resources.GetObject("resetConfig.Image")));
             this.resetConfig.Location = new System.Drawing.Point(206, 169);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
@@ -436,17 +438,6 @@
             this.fLabel.TabIndex = 0;
             this.fLabel.Text = "F:";
             // 
-            // xLabel
-            // 
-            this.xLabel.AutoSize = true;
-            this.xLabel.BackColor = System.Drawing.Color.Transparent;
-            this.xLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.xLabel.Location = new System.Drawing.Point(217, 167);
-            this.xLabel.Name = "xLabel";
-            this.xLabel.Size = new System.Drawing.Size(12, 13);
-            this.xLabel.TabIndex = 0;
-            this.xLabel.Text = "x";
-            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +446,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
-            this.Controls.Add(this.xLabel);
             this.Controls.Add(this.fLabel);
             this.Controls.Add(this.rLabel);
             this.Controls.Add(this.gifFramerate);
@@ -524,7 +514,7 @@
         private System.Windows.Forms.TextBox gifFramerate;
         private System.Windows.Forms.Label rLabel;
         private System.Windows.Forms.Label fLabel;
-        private System.Windows.Forms.Label xLabel;
         private System.Windows.Forms.PictureBox bannerPicture;
+        private System.Windows.Forms.ToolTip programToolTip;
     }
 }

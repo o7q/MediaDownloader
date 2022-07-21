@@ -23,6 +23,9 @@ namespace MediaDownloader
         string selectedLocation;
         bool useDefLoc;
 
+        // program events
+
+        // form initialize component
         public program()
         {
             InitializeComponent();
@@ -128,8 +131,29 @@ namespace MediaDownloader
             {
                 useConfig.Checked = true;
             }
+
+            // configure tooltips
+            programToolTip.SetToolTip(minimizeButton, "Minimize");
+            programToolTip.SetToolTip(exitButton, "Close");
+            programToolTip.SetToolTip(inputBox, "URL to be downloaded");
+            programToolTip.SetToolTip(formatBox, "Media format for download");
+            programToolTip.SetToolTip(downloadButton, "Download from the URL with the specified arguments");
+            programToolTip.SetToolTip(locationButton, "Location for download");
+            programToolTip.SetToolTip(clearLocationButton, "Reset the selected download location");
+            programToolTip.SetToolTip(directoryLabel, "Currently selected download location");
+            programToolTip.SetToolTip(viewAvailableFormatsButton, "Display all the available media formats found on the server for the specified URL");
+            programToolTip.SetToolTip(githubButton, "Open the MediaDownloader github repository in the default web browser");
+            programToolTip.SetToolTip(infoButton, "Display info about MediaDownloader");
+            programToolTip.SetToolTip(ytdlpGithubButton, "Open the yt-dlp github repository in the default web browser");
+            programToolTip.SetToolTip(applyCodecs, "Uses ffmpeg to apply valid video codecs after the video is downloaded\nThis can fix problems with importing videos into some software\n(only supports mp4 and webm)");
+            programToolTip.SetToolTip(useConfig, "Save all current component states to a config file\nIf enabled, then on program restart all component states will be restored");
+            programToolTip.SetToolTip(resetConfig, "Clear all component states");
+            programToolTip.SetToolTip(customArgsBox, "Custom arguments for yt-dlp (not for ffmpeg)");
+            programToolTip.SetToolTip(gifResolution, "Width resolution for gif (web)\nKeeps ratio (ffmpeg args = r:-1)");
+            programToolTip.SetToolTip(gifFramerate, "Framerate for gif (web)");
         }
 
+        // form load
         private void program_Load(object sender, EventArgs e)
         {
             if (File.Exists("mediadownloader\\yt-dlp.exe"))
