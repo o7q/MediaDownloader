@@ -316,7 +316,7 @@
             this.clearLocationButton.Name = "clearLocationButton";
             this.clearLocationButton.Size = new System.Drawing.Size(23, 23);
             this.clearLocationButton.TabIndex = 6;
-            this.clearLocationButton.Text = "X";
+            this.clearLocationButton.Text = "❌";
             this.clearLocationButton.UseVisualStyleBackColor = false;
             this.clearLocationButton.Click += new System.EventHandler(this.clearLocationButton_Click);
             // 

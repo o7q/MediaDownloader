@@ -1,3 +1,6 @@
+~ vdev
+- Minor visual and spelling changes
+
 ~ v3.2.0
 - Added tooltips
 - Clear component state button visual fix

@@ -146,7 +146,7 @@ namespace MediaDownloader
             programToolTip.SetToolTip(infoButton, "Display info about MediaDownloader");
             programToolTip.SetToolTip(ytdlpGithubButton, "Open the yt-dlp github repository in the default web browser");
             programToolTip.SetToolTip(applyCodecs, "Uses ffmpeg to apply valid video codecs after the video is downloaded\nThis can fix problems with importing videos into some software\n(only supports mp4 and webm)");
-            programToolTip.SetToolTip(useConfig, "Save all current component states to a config file\nIf enabled, then on program restart all component states will be restored");
+            programToolTip.SetToolTip(useConfig, "Save all current component states to config files\nIf enabled, then on program startup all component states will be restored");
             programToolTip.SetToolTip(resetConfig, "Clear all component states");
             programToolTip.SetToolTip(customArgsBox, "Custom arguments for yt-dlp (not for ffmpeg)");
             programToolTip.SetToolTip(gifResolution, "Width resolution for gif (web)\nKeeps ratio (ffmpeg args = r:-1)");
