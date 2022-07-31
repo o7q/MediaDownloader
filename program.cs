@@ -24,8 +24,8 @@ namespace MediaDownloader
         string dlScript;
         bool useDefLoc;
         // redist check global variables
-        bool ytdlpcheck;
-        bool ffmpegcheck;
+        bool ytdlpCheck;
+        bool ffmpegCheck;
 
         // program events
 
@@ -156,7 +156,7 @@ namespace MediaDownloader
         {
             if (File.Exists("mediadownloader\\yt-dlp.exe"))
             {
-                ytdlpcheck = true;
+                ytdlpCheck = true;
 
                 // continue loading
             }
@@ -179,7 +179,7 @@ namespace MediaDownloader
 
             if (File.Exists("mediadownloader\\ffmpeg.exe"))
             {
-                ffmpegcheck = true;
+                ffmpegCheck = true;
 
                 // continue loading
             }
@@ -200,7 +200,7 @@ namespace MediaDownloader
                 Application.Exit();
             }
 
-            if (ytdlpcheck && ffmpegcheck)
+            if (ytdlpCheck && ffmpegCheck)
             {
                 // create downloads directory
                 try
