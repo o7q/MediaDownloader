@@ -59,6 +59,7 @@
             this.rLabel = new System.Windows.Forms.Label();
             this.fLabel = new System.Windows.Forms.Label();
             this.programToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.openLocationButton = new System.Windows.Forms.Button();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +122,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.2.0";
+            this.versionLabel.Text = "v3.3.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -224,7 +225,7 @@
             this.viewAvailableFormatsButton.Location = new System.Drawing.Point(130, 93);
             this.viewAvailableFormatsButton.Name = "viewAvailableFormatsButton";
             this.viewAvailableFormatsButton.Size = new System.Drawing.Size(51, 28);
-            this.viewAvailableFormatsButton.TabIndex = 7;
+            this.viewAvailableFormatsButton.TabIndex = 8;
             this.viewAvailableFormatsButton.Text = "View Raw Formats";
             this.viewAvailableFormatsButton.UseVisualStyleBackColor = false;
             this.viewAvailableFormatsButton.Click += new System.EventHandler(this.viewAvailableFormatsButton_Click);
@@ -238,7 +239,7 @@
             this.customArgsBox.Location = new System.Drawing.Point(236, 93);
             this.customArgsBox.Name = "customArgsBox";
             this.customArgsBox.Size = new System.Drawing.Size(105, 60);
-            this.customArgsBox.TabIndex = 14;
+            this.customArgsBox.TabIndex = 15;
             this.customArgsBox.Text = "";
             this.customArgsBox.TextChanged += new System.EventHandler(this.customArgsBox_TextChanged);
             // 
@@ -262,7 +263,7 @@
             this.githubButton.Location = new System.Drawing.Point(183, 93);
             this.githubButton.Name = "githubButton";
             this.githubButton.Size = new System.Drawing.Size(51, 28);
-            this.githubButton.TabIndex = 8;
+            this.githubButton.TabIndex = 9;
             this.githubButton.Text = "MediaD GitHub";
             this.githubButton.UseVisualStyleBackColor = false;
             this.githubButton.Click += new System.EventHandler(this.githubButton_Click);
@@ -276,7 +277,7 @@
             this.infoButton.Location = new System.Drawing.Point(130, 124);
             this.infoButton.Name = "infoButton";
             this.infoButton.Size = new System.Drawing.Size(51, 28);
-            this.infoButton.TabIndex = 9;
+            this.infoButton.TabIndex = 10;
             this.infoButton.Text = "Info";
             this.infoButton.UseVisualStyleBackColor = false;
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
@@ -289,9 +290,9 @@
             this.locationButton.ForeColor = System.Drawing.Color.ForestGreen;
             this.locationButton.Location = new System.Drawing.Point(7, 158);
             this.locationButton.Name = "locationButton";
-            this.locationButton.Size = new System.Drawing.Size(98, 23);
+            this.locationButton.Size = new System.Drawing.Size(77, 23);
             this.locationButton.TabIndex = 5;
-            this.locationButton.Text = "Change Location";
+            this.locationButton.Text = "Change Path";
             this.locationButton.UseVisualStyleBackColor = false;
             this.locationButton.Click += new System.EventHandler(this.locationButton_Click);
             // 
@@ -315,7 +316,7 @@
             this.clearLocationButton.Location = new System.Drawing.Point(105, 158);
             this.clearLocationButton.Name = "clearLocationButton";
             this.clearLocationButton.Size = new System.Drawing.Size(23, 23);
-            this.clearLocationButton.TabIndex = 6;
+            this.clearLocationButton.TabIndex = 7;
             this.clearLocationButton.Text = "❌";
             this.clearLocationButton.UseVisualStyleBackColor = false;
             this.clearLocationButton.Click += new System.EventHandler(this.clearLocationButton_Click);
@@ -330,7 +331,7 @@
             this.applyCodecs.Location = new System.Drawing.Point(130, 152);
             this.applyCodecs.Name = "applyCodecs";
             this.applyCodecs.Size = new System.Drawing.Size(105, 16);
-            this.applyCodecs.TabIndex = 11;
+            this.applyCodecs.TabIndex = 12;
             this.applyCodecs.Text = "Apply Video Codecs";
             this.applyCodecs.UseVisualStyleBackColor = false;
             this.applyCodecs.CheckedChanged += new System.EventHandler(this.applyCodecs_CheckedChanged);
@@ -344,7 +345,7 @@
             this.ytdlpGithubButton.Location = new System.Drawing.Point(183, 124);
             this.ytdlpGithubButton.Name = "ytdlpGithubButton";
             this.ytdlpGithubButton.Size = new System.Drawing.Size(51, 28);
-            this.ytdlpGithubButton.TabIndex = 10;
+            this.ytdlpGithubButton.TabIndex = 11;
             this.ytdlpGithubButton.Text = "yt-dlp GitHub";
             this.ytdlpGithubButton.UseVisualStyleBackColor = false;
             this.ytdlpGithubButton.Click += new System.EventHandler(this.ytdlpGithubButton_Click);
@@ -359,7 +360,7 @@
             this.useConfig.Location = new System.Drawing.Point(130, 167);
             this.useConfig.Name = "useConfig";
             this.useConfig.Size = new System.Drawing.Size(77, 16);
-            this.useConfig.TabIndex = 12;
+            this.useConfig.TabIndex = 13;
             this.useConfig.Text = "Save Options";
             this.useConfig.UseVisualStyleBackColor = false;
             this.useConfig.CheckedChanged += new System.EventHandler(this.useConfig_CheckedChanged);
@@ -374,8 +375,7 @@
             this.resetConfig.Location = new System.Drawing.Point(206, 169);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
-            this.resetConfig.TabIndex = 13;
-            this.resetConfig.Text = "x";
+            this.resetConfig.TabIndex = 14;
             this.resetConfig.UseVisualStyleBackColor = false;
             this.resetConfig.Click += new System.EventHandler(this.resetConfig_Click);
             // 
@@ -399,7 +399,7 @@
             this.gifResolution.Location = new System.Drawing.Point(250, 169);
             this.gifResolution.Name = "gifResolution";
             this.gifResolution.Size = new System.Drawing.Size(31, 13);
-            this.gifResolution.TabIndex = 15;
+            this.gifResolution.TabIndex = 16;
             this.gifResolution.TextChanged += new System.EventHandler(this.gifResolution_TextChanged);
             // 
             // gifFramerate
@@ -411,7 +411,7 @@
             this.gifFramerate.Location = new System.Drawing.Point(299, 169);
             this.gifFramerate.Name = "gifFramerate";
             this.gifFramerate.Size = new System.Drawing.Size(31, 13);
-            this.gifFramerate.TabIndex = 16;
+            this.gifFramerate.TabIndex = 17;
             this.gifFramerate.TextChanged += new System.EventHandler(this.gifFramerate_TextChanged);
             // 
             // rLabel
@@ -438,6 +438,23 @@
             this.fLabel.TabIndex = 0;
             this.fLabel.Text = "F:";
             // 
+            // programToolTip
+            // 
+            this.programToolTip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.programToolTip_Draw);
+            // 
+            // openLocationButton
+            // 
+            this.openLocationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.openLocationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openLocationButton.ForeColor = System.Drawing.Color.ForestGreen;
+            this.openLocationButton.Image = ((System.Drawing.Image)(resources.GetObject("openLocationButton.Image")));
+            this.openLocationButton.Location = new System.Drawing.Point(83, 158);
+            this.openLocationButton.Name = "openLocationButton";
+            this.openLocationButton.Size = new System.Drawing.Size(23, 23);
+            this.openLocationButton.TabIndex = 6;
+            this.openLocationButton.UseVisualStyleBackColor = false;
+            this.openLocationButton.Click += new System.EventHandler(this.openLocationButton_Click);
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +463,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
+            this.Controls.Add(this.openLocationButton);
             this.Controls.Add(this.fLabel);
             this.Controls.Add(this.rLabel);
             this.Controls.Add(this.gifFramerate);
@@ -516,5 +534,6 @@
         private System.Windows.Forms.Label fLabel;
         private System.Windows.Forms.PictureBox bannerPicture;
         private System.Windows.Forms.ToolTip programToolTip;
+        private System.Windows.Forms.Button openLocationButton;
     }
 }

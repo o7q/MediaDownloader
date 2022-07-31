@@ -1,5 +1,10 @@
-~ vdev
-- Minor visual and spelling changes
+~ v3.3.0dev
+- Added a button to open explorer to the selected download path
+- Minor visual changes
+- Major code optimizations
+- Changed default values for gif (web) quality settings
+- Change method for versioning slightly (explained in "versioning.txt")
+- Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
 
 ~ v3.2.0
 - Added tooltips
