@@ -1,0 +1,1 @@
+- Add button to open selected directory in explorer
