@@ -5,6 +5,7 @@
 - Changed default values for gif (web) quality settings
 - Change method for versioning slightly (explained in "versioning.txt")
 - Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
+- Fixed the order of when the "Downloads" folder was created. If MediaDownloader fails a redist check the "Downloads" folder would still be created
 
 ~ v3.2.0
 - Added tooltips

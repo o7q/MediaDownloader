@@ -23,6 +23,9 @@ namespace MediaDownloader
         string selectedLocation;
         string dlScript;
         bool useDefLoc;
+        // redist check global variables
+        bool ytdlpcheck;
+        bool ffmpegcheck;
 
         // program events
 
@@ -36,17 +39,6 @@ namespace MediaDownloader
             {
                 string mediadownloader = "";
                 File.WriteAllText("mediadownloader\\mediadownloader.bat", mediadownloader);
-            }
-            catch
-            {
-                // ignore
-            }
-
-            // create downloads directory
-            try
-            {
-                Directory.CreateDirectory("Downloads");
-                selectedLocation = "";
             }
             catch
             {
@@ -159,19 +151,13 @@ namespace MediaDownloader
             programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
         }
 
-        // draw tooltips
-        private void programToolTip_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawBorder();
-            e.DrawText();
-        }
-
         // form load
         private void program_Load(object sender, EventArgs e)
         {
             if (File.Exists("mediadownloader\\yt-dlp.exe"))
             {
+                ytdlpcheck = true;
+
                 // continue loading
             }
             else
@@ -193,6 +179,8 @@ namespace MediaDownloader
 
             if (File.Exists("mediadownloader\\ffmpeg.exe"))
             {
+                ffmpegcheck = true;
+
                 // continue loading
             }
             else
@@ -211,6 +199,28 @@ namespace MediaDownloader
 
                 Application.Exit();
             }
+
+            if (ytdlpcheck && ffmpegcheck)
+            {
+                // create downloads directory
+                try
+                {
+                    Directory.CreateDirectory("Downloads");
+                    selectedLocation = "";
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+        }
+
+        // draw tooltips
+        private void programToolTip_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
         }
 
         // functions
@@ -269,6 +279,20 @@ namespace MediaDownloader
                     File.Delete("mediadownloader\\config5");
                     File.Delete("mediadownloader\\config6");
                 }
+            }
+            catch
+            {
+                // ignore
+            }
+        }
+
+        private void crtDlDir()
+        {
+            // create downloads directory
+            try
+            {
+                Directory.CreateDirectory("Downloads");
+                selectedLocation = "";
             }
             catch
             {
@@ -387,15 +411,8 @@ namespace MediaDownloader
             // on change write to config0
             if (useConfig.Checked == true)
             {
-                if (inputBox.Text != "")
-                {
-                    string config0 = inputBox.Text;
-                    File.WriteAllText("mediadownloader\\config0", config0);
-                }
-                else
-                {
-                    File.Delete("mediadownloader\\config0");
-                }
+                string config0 = inputBox.Text;
+                File.WriteAllText("mediadownloader\\config0", config0);
             }
         }
 
