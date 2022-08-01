@@ -29,7 +29,7 @@ FFmpeg is then used for farther media processing if specified to do so.
 <b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro) \
 <br>
 
-<img src="assets/images/v330/v330.png"/> \
+<img src="assets/images/v331/v331.png"/> \
 <br>
 
 Running C# .NET Framework 4.8. \

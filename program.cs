@@ -73,7 +73,7 @@ namespace MediaDownloader
                 if (selectedLocation != "")
                 {
                     useDefLoc = false;
-                    directoryLabel.Text = config2;
+                    directoryLabel.Text = selectedLocation;
                 }
             }
 
@@ -211,7 +211,6 @@ namespace MediaDownloader
                 try
                 {
                     Directory.CreateDirectory("Downloads");
-                    selectedLocation = "";
                 }
                 catch
                 {

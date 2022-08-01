@@ -1,3 +1,7 @@
+~ v3.3.1
+- Fixed issue where when redist checks succeeded the program would set selectedLocation to " "
+- Added more and updated code comments
+
 ~ v3.3.0
 - Added a button to open explorer to the selected download path
 - Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
