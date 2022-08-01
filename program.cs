@@ -22,8 +22,9 @@ namespace MediaDownloader
         // create global variables
         string selectedLocation;
         string dlScript;
+        string srtArgs;
         bool useDefLoc;
-        // redist check global variables
+        // redist check
         bool ytdlpCheck;
         bool ffmpegCheck;
 
@@ -37,12 +38,12 @@ namespace MediaDownloader
             // create mediadownloader.bat
             try
             {
-                string mediadownloader = "";
-                File.WriteAllText("mediadownloader\\mediadownloader.bat", mediadownloader);
+                File.WriteAllText("mediadownloader\\mediadownloader.bat", "");
+                File.WriteAllText("mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", "");
             }
             catch
             {
-                // ignore
+                // skip
             }
 
             // configure default variables
@@ -139,7 +140,7 @@ namespace MediaDownloader
             programToolTip.SetToolTip(githubButton, "Open the MediaDownloader github repository in the default web browser");
             programToolTip.SetToolTip(infoButton, "Display info about MediaDownloader");
             programToolTip.SetToolTip(ytdlpGithubButton, "Open the yt-dlp github repository in the default web browser");
-            programToolTip.SetToolTip(applyCodecs, "Uses ffmpeg to apply valid video codecs after the video is downloaded - This can fix problems with importing videos into some software - (only supports mp4 and webm)");
+            programToolTip.SetToolTip(applyCodecs, "Uses ffmpeg to apply valid video codecs after the video is downloaded - This can fix problems with importing videos into some software - (this feature is very slow and it only supports mp4 and webm)");
             programToolTip.SetToolTip(useConfig, "Save all current component states to config files - If enabled, then on program startup all component states will be restored");
             programToolTip.SetToolTip(resetConfig, "Clear all component states");
             programToolTip.SetToolTip(customArgsBox, "Custom arguments for yt-dlp (not for ffmpeg)");
@@ -149,6 +150,8 @@ namespace MediaDownloader
             programToolTip.OwnerDraw = true;
             programToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+
+            srtArgs = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
         }
 
         // form load
@@ -171,7 +174,7 @@ namespace MediaDownloader
                 }
                 catch
                 {
-                    // ignore
+                    // skip
                 }
 
                 Application.Exit();
@@ -194,7 +197,7 @@ namespace MediaDownloader
                 }
                 catch
                 {
-                    // ignore
+                    // skip
                 }
 
                 Application.Exit();
@@ -210,7 +213,7 @@ namespace MediaDownloader
                 }
                 catch
                 {
-                    // ignore
+                    // skip
                 }
             }
         }
@@ -224,7 +227,7 @@ namespace MediaDownloader
         }
 
         // functions
-        private void MoveForm(MouseEventArgs e)
+        private void mvFrm(MouseEventArgs e)
         {
             // function move form on mousedown
             if (e.Button == MouseButtons.Left)
@@ -242,7 +245,7 @@ namespace MediaDownloader
             }
             catch
             {
-                // ignore
+                // skip
             }
         }
 
@@ -253,19 +256,27 @@ namespace MediaDownloader
             Process.Start(mediadownloaderScript);
         }
 
-        private void delProgFiles()
+        private void clnFiles()
         {
-            // delete mediadownloader.bat and configs
             try
             {
-                File.Delete("mediadownloader\\mediadownloader.bat");
-
-                // clean up temps
-                File.Delete("mediadownloader\\temp_download0.mp4");
-                File.Delete("mediadownloader\\temp_download0.webm");
-                File.Delete("mediadownloader\\temp_download1.mp3");
-                File.Delete("mediadownloader\\temp_download0");
-                File.Delete("mediadownloader\\temp_download1");
+                // clean temp files
+                string[] files = Directory.GetFiles("mediadownloader");
+                foreach (string file in files)
+                {
+                    var n = new FileInfo(file).Name;
+                    if (n != "yt-dlp.exe" & n != "ffmpeg.exe" & n != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & n != "config_switch" & n != "config0" & n != "config1" & n != "config2" & n != "config3" & n != "config4" & n != "config5" & n != "config6")
+                    {
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch
+                        {
+                            // skip
+                        }
+                    }
+                }
 
                 if (useConfig.Checked == false)
                 {
@@ -282,43 +293,11 @@ namespace MediaDownloader
             }
             catch
             {
-                // ignore
-            }
-        }
-
-        private void crtDlDir()
-        {
-            // create downloads directory
-            try
-            {
-                Directory.CreateDirectory("Downloads");
-                selectedLocation = "";
-            }
-            catch
-            {
-                // ignore
+                // skip
             }
         }
 
         // buttons
-        private void infoButton_Click(object sender, EventArgs e)
-        {
-            // opens info panel
-            MessageBox.Show("MediaDownloader by o7q\nPowered by yt-dlp and ffmpeg\n\nMediaDownloader is licensed under GPL-3.0-only\nyt-dlp is licensed under Unlicense\nffmpeg is licensed under LGPL-2.1\n\nIf the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page\n\nTo update yt-dlp:\n1. Click on the \"yt-dlp GitHub\" button within MediaDownloader\n2. Click on the releases tab and download \"yt-dlp.exe\"\n3. Replace \"yt-dlp.exe\" that is inside the \"mediadownloader\" directory with the new \"yt-dlp.exe\"");
-        }
-
-        private void githubButton_Click(object sender, EventArgs e)
-        {
-            // opens mediadownloader github page in the default web browser
-            System.Diagnostics.Process.Start("https://github.com/o7q/MediaDownloader");
-        }
-
-        private void ytdlpGithubButton_Click(object sender, EventArgs e)
-        {
-            // opens yt-dlp github page in the default web browser
-            System.Diagnostics.Process.Start("https://github.com/yt-dlp/yt-dlp");
-        }
-
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             // minimize button
@@ -328,30 +307,49 @@ namespace MediaDownloader
         // program closing handler
         private void exitButton_Click(object sender, EventArgs e)
         {
-            delProgFiles();
+            clnFiles();
 
             Application.Exit();
         }
 
+        private void infoButton_Click(object sender, EventArgs e)
+        {
+            // read from infoText and open info panel
+            string infoText = MediaDownloader.Properties.Resources.infoText;
+            MessageBox.Show(infoText);
+        }
+
+        private void githubButton_Click(object sender, EventArgs e)
+        {
+            // open mediadownloader github page in the default web browser
+            System.Diagnostics.Process.Start("https://github.com/o7q/MediaDownloader");
+        }
+
+        private void ytdlpGithubButton_Click(object sender, EventArgs e)
+        {
+            // open yt-dlp github page in the default web browser
+            System.Diagnostics.Process.Start("https://github.com/yt-dlp/yt-dlp");
+        }
+
         private void program_FormClosing(object sender, FormClosingEventArgs e)
         {
-            delProgFiles();
+            clnFiles();
         }
 
         // call moveform
         private void titlebarPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            MoveForm(e);
+            mvFrm(e);
         }
 
         private void bannerPicture_MouseDown(object sender, MouseEventArgs e)
         {
-            MoveForm(e);
+            mvFrm(e);
         }
 
         private void versionLabel_MouseDown(object sender, MouseEventArgs e)
         {
-            MoveForm(e);
+            mvFrm(e);
         }
 
         // configuration
@@ -565,8 +563,8 @@ namespace MediaDownloader
             }
             else
             {
-                string url = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe --list-formats " + inputBox.Text + "\nPAUSE";
-                File.WriteAllText("mediadownloader\\mediadownloader.bat", url);
+                dlScript = srtArgs + "--list-formats " + inputBox.Text + "\nPAUSE";
+                wrtBatch();
 
                 srtBatch();
             }
@@ -588,7 +586,6 @@ namespace MediaDownloader
                 int format = formatBox.SelectedIndex;
                 string gifR = gifResolution.Text;
                 string gifF = gifFramerate.Text;
-                string srtArgs = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
 
                 if (format == 0 || format == 6 || format == 7 || format == 12 || format == 13)
                 {
@@ -689,7 +686,7 @@ namespace MediaDownloader
                                 dlScript = srtArgs + "--remux-video mp4 --path \"" + selectedLocation + "\" " + url;
                                 wrtBatch();
 
-                                srtBatch(); ;
+                                srtBatch();
                             }
                         }
 

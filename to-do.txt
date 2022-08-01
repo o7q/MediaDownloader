@@ -1,2 +1,1 @@
 - Add anti-spam protection. Buttons do not have anti-spam protection. An issue would be most prevalent within the download button. Running multiple instances of yt-dlp may break both it and/or MediaDownloader
-- Fix tooltip visual bugs. If using \n breaks inside tooltip texts, then the tooltip does not render correctly. The current alternative is using " - " text spacers

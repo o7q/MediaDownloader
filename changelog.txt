@@ -1,11 +1,13 @@
-~ v3.3.0dev
+~ v3.3.0
 - Added a button to open explorer to the selected download path
+- Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
+- Fixed the order of when the "Downloads" folder was created. If MediaDownloader fails a redist check the "Downloads" folder would still be created
+- Fixed unknown temp files staying. All files inside the "mediadownloader" folder will now be deleted
 - Minor visual changes
 - Major code optimizations
 - Changed default values for gif (web) quality settings
 - Change method for versioning slightly (explained in "versioning.txt")
-- Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
-- Fixed the order of when the "Downloads" folder was created. If MediaDownloader fails a redist check the "Downloads" folder would still be created
+- Updated to ffmpeg 5.1 from gyan.dev
 
 ~ v3.2.0
 - Added tooltips

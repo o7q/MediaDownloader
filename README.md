@@ -16,9 +16,11 @@ FFmpeg is then used for farther media processing if specified to do so.
 <b>URL:</b> Specify URL of website for MediaDownloader to downloader \
 <b>Format:</b> Specify format for downloaded media to be converted to \
 <b>Download:</b> Downloads the URL with the specified arguments \
-<b>Change Location:</b> Change the location the media file is downloaded to \
+<b>Change Path:</b> Change the location the media file is downloaded to \
+<b>Open Path:</b> Opens the selected download location in Windows Explorer \
+<b>Clear Path:</b> Clears the selected path \
 <b>View Raw Formats:</b> Displays all media types found on the specified URL's web server \
-<b>MediaD GitHub:</b> Opens the MediaDownloader GitHub page \
+<b>MediaD GitHub:</b> Opens this MediaDownloader GitHub page \
 <b>yt-dlp GitHub:</b> Opens the yt-dlp GitHub page (you can use this to find arguments used in the "Custom DL Arguments" section \
 <b>Info:</b> Shows info about MediaDownloader \
 <b>Apply Video Codecs:</b> Applies codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow) \
@@ -27,7 +29,7 @@ FFmpeg is then used for farther media processing if specified to do so.
 <b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro) \
 <br>
 
-<img src="assets/images/v320/v320.png"/> \
+<img src="assets/images/v330/v330.png"/> \
 <br>
 
 Running C# .NET Framework 4.8. \

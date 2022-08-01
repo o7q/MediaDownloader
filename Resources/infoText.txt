@@ -1,0 +1,15 @@
+MediaDownloader by o7q
+Powered by yt-dlp and ffmpeg
+
+MediaDownloader is licensed under GPL-3.0-only
+yt-dlp is licensed under Unlicense
+ffmpeg is licensed under LGPL-2.1
+
+If the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page
+
+To update yt-dlp:
+1. Click on the "yt-dlp GitHub" button within MediaDownloader
+2. Click on the releases tab and download "yt-dlp.exe"
+3. Replace "yt-dlp.exe" that is inside the "mediadownloader" folder with the new "yt-dlp.exe"
+
+* Farther documentation can be found on the MediaDownloader GitHub page which can be accessed from the "MediaD GitHub" button
