@@ -35,7 +35,7 @@ namespace MediaDownloader
         {
             InitializeComponent();
 
-            // create mediadownloader.bat
+            // create mediadownloader.bat and warn file
             try
             {
                 File.WriteAllText("mediadownloader\\mediadownloader.bat", "");
@@ -147,10 +147,12 @@ namespace MediaDownloader
             programToolTip.SetToolTip(gifResolution, "Width resolution for gif (web) - Keeps ratio (ffmpeg args = r:-1)");
             programToolTip.SetToolTip(gifFramerate, "Framerate for gif (web)");
 
+            // configure tooltip draw
             programToolTip.OwnerDraw = true;
             programToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
 
+            // set default beginner args
             srtArgs = "@echo off\ncolor 8\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
         }
 
@@ -227,9 +229,10 @@ namespace MediaDownloader
         }
 
         // functions
+
+        // move form on mousedown function
         private void mvFrm(MouseEventArgs e)
         {
-            // function move form on mousedown
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
@@ -237,6 +240,7 @@ namespace MediaDownloader
             }
         }
 
+        // write batch function
         private void wrtBatch()
         {
             try
@@ -249,6 +253,7 @@ namespace MediaDownloader
             }
         }
 
+        // start batch function
         private void srtBatch()
         {
             string mediadownloaderScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
@@ -256,6 +261,7 @@ namespace MediaDownloader
             Process.Start(mediadownloaderScript);
         }
 
+        // clean files function
         private void clnFiles()
         {
             try
@@ -297,14 +303,15 @@ namespace MediaDownloader
             }
         }
 
-        // buttons
+        // controls
+
+        // minimize button
         private void minimizeButton_Click(object sender, EventArgs e)
         {
-            // minimize button
             this.WindowState = FormWindowState.Minimized;
         }
 
-        // program closing handler
+        // exit button
         private void exitButton_Click(object sender, EventArgs e)
         {
             clnFiles();
@@ -312,6 +319,7 @@ namespace MediaDownloader
             Application.Exit();
         }
 
+        // info button
         private void infoButton_Click(object sender, EventArgs e)
         {
             // read from infoText and open info panel
@@ -319,18 +327,21 @@ namespace MediaDownloader
             MessageBox.Show(infoText);
         }
 
+        // mediadownloader github button
         private void githubButton_Click(object sender, EventArgs e)
         {
             // open mediadownloader github page in the default web browser
             System.Diagnostics.Process.Start("https://github.com/o7q/MediaDownloader");
         }
 
+        // yt-dlp github button
         private void ytdlpGithubButton_Click(object sender, EventArgs e)
         {
             // open yt-dlp github page in the default web browser
             System.Diagnostics.Process.Start("https://github.com/yt-dlp/yt-dlp");
         }
 
+        // program closing handler
         private void program_FormClosing(object sender, FormClosingEventArgs e)
         {
             clnFiles();
@@ -404,6 +415,7 @@ namespace MediaDownloader
             }
         }
 
+        // input box checkbox
         private void inputBox_TextChanged(object sender, EventArgs e)
         {
             // on change write to config0
@@ -414,6 +426,7 @@ namespace MediaDownloader
             }
         }
 
+        // format box combobox
         private void formatBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // on change write to config1
@@ -425,6 +438,7 @@ namespace MediaDownloader
             }
         }
 
+        // custom arguments box checkbox
         private void customArgsBox_TextChanged(object sender, EventArgs e)
         {
             // on change write to config3
@@ -435,6 +449,7 @@ namespace MediaDownloader
             }
         }
 
+        // apply codecs checkbox
         private void applyCodecs_CheckedChanged(object sender, EventArgs e)
         {
             // on change write to config4
@@ -448,6 +463,7 @@ namespace MediaDownloader
             }
         }
 
+        // gif resolution textbox
         private void gifResolution_TextChanged(object sender, EventArgs e)
         {
             // on change write to config5
@@ -458,6 +474,7 @@ namespace MediaDownloader
             }
         }
 
+        // gif framerate textbox
         private void gifFramerate_TextChanged(object sender, EventArgs e)
         {
             // on change write to config6
@@ -468,6 +485,7 @@ namespace MediaDownloader
             }
         }
 
+        // reset config button
         private void resetConfig_Click(object sender, EventArgs e)
         {
             // clear config0
@@ -530,6 +548,7 @@ namespace MediaDownloader
             }
         }
 
+        // open location button
         private void openLocationButton_Click(object sender, EventArgs e)
         {
             if (selectedLocation == "")
@@ -542,6 +561,7 @@ namespace MediaDownloader
             }
         }
 
+        // clear location button
         private void clearLocationButton_Click(object sender, EventArgs e)
         {
             // clears selected location
@@ -553,7 +573,8 @@ namespace MediaDownloader
             File.WriteAllText("mediadownloader\\config2", config2);
 
         }
-
+        
+        // view available formats button
         private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
         {
             // displays available formats of the specified url
@@ -570,6 +591,7 @@ namespace MediaDownloader
             }
         }
 
+        // download button
         private void downloadButton_Click(object sender, EventArgs e)
         {
             // download button
