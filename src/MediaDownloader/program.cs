@@ -262,28 +262,28 @@ namespace MediaDownloader
 
         // clean files function
         private void clnFiles()
-        {
-            try
+        {      
+            // clean temp files
+            string[] files = Directory.GetFiles("mediadownloader");
+            foreach (string file in files)
             {
-                // clean temp files
-                string[] files = Directory.GetFiles("mediadownloader");
-                foreach (string file in files)
+                var n = new FileInfo(file).Name;
+                if (n != "yt-dlp.exe" & n != "ffmpeg.exe" & n != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & n != "config_switch" & n != "config0" & n != "config1" & n != "config2" & n != "config3" & n != "config4" & n != "config5" & n != "config6")
                 {
-                    var n = new FileInfo(file).Name;
-                    if (n != "yt-dlp.exe" & n != "ffmpeg.exe" & n != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & n != "config_switch" & n != "config0" & n != "config1" & n != "config2" & n != "config3" & n != "config4" & n != "config5" & n != "config6")
+                    try
                     {
-                        try
-                        {
-                            File.Delete(file);
-                        }
-                        catch
-                        {
-                            // skip
-                        }
+                        File.Delete(file);
+                    }
+                    catch
+                    {
+                        // skip
                     }
                 }
-
-                if (useConfig.Checked == false)
+            }
+                
+            if (useConfig.Checked == false)
+            {
+                try
                 {
                     File.Delete("mediadownloader\\config_switch");
 
@@ -295,11 +295,11 @@ namespace MediaDownloader
                     File.Delete("mediadownloader\\config5");
                     File.Delete("mediadownloader\\config6");
                 }
-            }
-            catch
-            {
-                // skip
-            }
+                catch
+                {
+                    // skip
+                }
+            }        
         }
 
         // controls

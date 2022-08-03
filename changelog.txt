@@ -1,3 +1,6 @@
+~ v3.4.0dev
+- Optimise clnFiles function exception handler (try-catch)
+
 ~ v3.3.1
 - Fixed issue where when redist checks succeeded the program would set selectedLocation to " "
 - Added more and updated code comments
