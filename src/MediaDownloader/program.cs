@@ -262,7 +262,7 @@ namespace MediaDownloader
 
         // clean files function
         private void clnFiles()
-        {      
+        {
             // clean temp files
             string[] files = Directory.GetFiles("mediadownloader");
             foreach (string file in files)
@@ -280,7 +280,7 @@ namespace MediaDownloader
                     }
                 }
             }
-                
+
             if (useConfig.Checked == false)
             {
                 try
@@ -299,7 +299,7 @@ namespace MediaDownloader
                 {
                     // skip
                 }
-            }        
+            }
         }
 
         // controls
@@ -572,7 +572,7 @@ namespace MediaDownloader
             File.WriteAllText("mediadownloader\\config2", config2);
 
         }
-        
+
         // view available formats button
         private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
         {
