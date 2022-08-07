@@ -1,11 +1,8 @@
-rel = release
-dev = development
-
 Release titles:
 MediaDownloader vMAJOR.MINOR.PATCH
 
 Release commit titles:
-[vMAJOR.MINOR.PATCHrel] Ready!
+[vMAJOR.MINOR.PATCH] Release
 
 Release commit descriptions:
 (state what is inside of changelog.txt for the specific version)
