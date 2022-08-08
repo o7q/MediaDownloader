@@ -159,6 +159,19 @@ namespace MediaDownloader
         // form load
         private void program_Load(object sender, EventArgs e)
         {
+            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
+            {
+                DialogResult prompt = MessageBox.Show("An instance of MediaDownloader is already running.\nHaving two or more instances of MediaDownloader running simultaneously can cause issues (file corruption, malfunctioning).\n\nAre you sure you want to continue?", "", MessageBoxButtons.YesNo);
+                if (prompt == DialogResult.Yes)
+                {
+                    // continue
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+
             if (File.Exists("mediadownloader\\yt-dlp.exe"))
             {
                 ytdlpCheck = true;
