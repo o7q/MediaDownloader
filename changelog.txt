@@ -1,6 +1,7 @@
 ~ v3.3.2
 - Added warning if the user trys to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)
 - Optimise clnFiles function exception handler (try-catch)
+- Updated to yt-dlp 2022.08.08
 
 ~ v3.3.1
 - Fixed issue where when redist checks succeeded the program would set selectedLocation to " "
