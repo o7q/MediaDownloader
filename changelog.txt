@@ -1,4 +1,4 @@
-~ v3.4.0dev
+~ v3.3.2
 - Added warning if the user trys to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)
 - Optimise clnFiles function exception handler (try-catch)
 
