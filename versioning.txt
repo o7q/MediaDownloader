@@ -2,7 +2,7 @@ Release titles:
 MediaDownloader vMAJOR.MINOR.PATCH
 
 Release commit titles:
-[vMAJOR.MINOR.PATCH] Release
+[vMAJOR.MINOR.PATCH] RELEASE
 
 Release commit descriptions:
 (state what is inside of changelog.txt for the specific version)
