@@ -1,7 +1,11 @@
 <img src="assets/images/readmebanner.png"/>
 
 #### https://github.com/o7q/MediaDownloader
-#### Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
+### Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
+
+<br>
+
+<img src="assets/images/program.png"/>
 
 <br>
 
@@ -28,10 +32,6 @@ FFmpeg is then used for farther media processing if specified to do so.
 <b>Save Options:</b> Saves all options to config files stored in the "mediadownloader" directory \
 <b>Custom DL Arguments:</b> Specify custom arguments that yt-dlp will accept \
 <b>gif (web) Quality:</b> R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro) 
-
-<br>
-
-<img src="assets/images/v332/v332.png"/>
 
 <br>
 
