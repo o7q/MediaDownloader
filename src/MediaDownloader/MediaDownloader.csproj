@@ -85,9 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\x.png" />
+    <None Include="Resources\download_gradient.png" />
     <None Include="Resources\infoText.txt" />
     <None Include="Resources\folder.png" />
-    <None Include="Resources\x.png" />
     <None Include="Resources\banner.png" />
     <None Include="Resources\background.png" />
   </ItemGroup>

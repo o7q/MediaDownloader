@@ -1,5 +1,10 @@
-~ vdev
-- Change method for versioning slightly (explained in "versioning.txt")
+~ v3.4.0
+- Fix major download issue for formats that use ffmpeg (temp files did not include a file extension resulting in ffmpeg erroring)
+- Tiny UI improvements
+- Optimized code (now using ternary operators to make some logic operations shorter, shortened variable names)
+- Update "README.md"
+- Removed "builds"
+- Removed "versioning.txt"
 
 ~ v3.3.2
 - Added warning if the user trys to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)

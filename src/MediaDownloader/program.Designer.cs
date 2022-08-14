@@ -44,13 +44,11 @@
             this.viewAvailableFormatsButton = new System.Windows.Forms.Button();
             this.customArgsBox = new System.Windows.Forms.RichTextBox();
             this.customArgsLabel = new System.Windows.Forms.Label();
-            this.githubButton = new System.Windows.Forms.Button();
             this.infoButton = new System.Windows.Forms.Button();
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.clearLocationButton = new System.Windows.Forms.Button();
             this.applyCodecs = new System.Windows.Forms.CheckBox();
-            this.ytdlpGithubButton = new System.Windows.Forms.Button();
             this.useConfig = new System.Windows.Forms.CheckBox();
             this.resetConfig = new System.Windows.Forms.Button();
             this.gifQualityLabel = new System.Windows.Forms.Label();
@@ -60,6 +58,8 @@
             this.fLabel = new System.Windows.Forms.Label();
             this.programToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.openLocationButton = new System.Windows.Forms.Button();
+            this.ytdlpGithubButton = new System.Windows.Forms.Button();
+            this.githubButton = new System.Windows.Forms.Button();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -122,7 +122,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.3.2";
+            this.versionLabel.Text = "v3.4.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -193,6 +193,7 @@
             // downloadButton
             // 
             this.downloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.downloadButton.BackgroundImage = global::MediaDownloader.Properties.Resources.download_gradient;
             this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.downloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadButton.ForeColor = System.Drawing.Color.LimeGreen;
@@ -221,7 +222,7 @@
             this.viewAvailableFormatsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.viewAvailableFormatsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewAvailableFormatsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewAvailableFormatsButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.viewAvailableFormatsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(92)))), ((int)(((byte)(115)))));
             this.viewAvailableFormatsButton.Location = new System.Drawing.Point(130, 93);
             this.viewAvailableFormatsButton.Name = "viewAvailableFormatsButton";
             this.viewAvailableFormatsButton.Size = new System.Drawing.Size(51, 28);
@@ -254,20 +255,6 @@
             this.customArgsLabel.TabIndex = 0;
             this.customArgsLabel.Text = "Custom DL Arguments";
             // 
-            // githubButton
-            // 
-            this.githubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.githubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.githubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.githubButton.ForeColor = System.Drawing.Color.IndianRed;
-            this.githubButton.Location = new System.Drawing.Point(183, 93);
-            this.githubButton.Name = "githubButton";
-            this.githubButton.Size = new System.Drawing.Size(51, 28);
-            this.githubButton.TabIndex = 9;
-            this.githubButton.Text = "MediaD GitHub";
-            this.githubButton.UseVisualStyleBackColor = false;
-            this.githubButton.Click += new System.EventHandler(this.githubButton_Click);
-            // 
             // infoButton
             // 
             this.infoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
@@ -277,7 +264,7 @@
             this.infoButton.Location = new System.Drawing.Point(130, 124);
             this.infoButton.Name = "infoButton";
             this.infoButton.Size = new System.Drawing.Size(51, 28);
-            this.infoButton.TabIndex = 10;
+            this.infoButton.TabIndex = 9;
             this.infoButton.Text = "Info";
             this.infoButton.UseVisualStyleBackColor = false;
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
@@ -292,7 +279,7 @@
             this.locationButton.Name = "locationButton";
             this.locationButton.Size = new System.Drawing.Size(77, 23);
             this.locationButton.TabIndex = 5;
-            this.locationButton.Text = "Change Path";
+            this.locationButton.Text = "Change Folder";
             this.locationButton.UseVisualStyleBackColor = false;
             this.locationButton.Click += new System.EventHandler(this.locationButton_Click);
             // 
@@ -328,27 +315,13 @@
             this.applyCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.applyCodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.applyCodecs.ForeColor = System.Drawing.Color.IndianRed;
-            this.applyCodecs.Location = new System.Drawing.Point(130, 152);
+            this.applyCodecs.Location = new System.Drawing.Point(130, 153);
             this.applyCodecs.Name = "applyCodecs";
             this.applyCodecs.Size = new System.Drawing.Size(105, 16);
             this.applyCodecs.TabIndex = 12;
             this.applyCodecs.Text = "Apply Video Codecs";
             this.applyCodecs.UseVisualStyleBackColor = false;
             this.applyCodecs.CheckedChanged += new System.EventHandler(this.applyCodecs_CheckedChanged);
-            // 
-            // ytdlpGithubButton
-            // 
-            this.ytdlpGithubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ytdlpGithubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ytdlpGithubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ytdlpGithubButton.ForeColor = System.Drawing.Color.IndianRed;
-            this.ytdlpGithubButton.Location = new System.Drawing.Point(183, 124);
-            this.ytdlpGithubButton.Name = "ytdlpGithubButton";
-            this.ytdlpGithubButton.Size = new System.Drawing.Size(51, 28);
-            this.ytdlpGithubButton.TabIndex = 11;
-            this.ytdlpGithubButton.Text = "yt-dlp GitHub";
-            this.ytdlpGithubButton.UseVisualStyleBackColor = false;
-            this.ytdlpGithubButton.Click += new System.EventHandler(this.ytdlpGithubButton_Click);
             // 
             // useConfig
             // 
@@ -357,7 +330,7 @@
             this.useConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.useConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.useConfig.ForeColor = System.Drawing.Color.DarkCyan;
-            this.useConfig.Location = new System.Drawing.Point(130, 167);
+            this.useConfig.Location = new System.Drawing.Point(130, 168);
             this.useConfig.Name = "useConfig";
             this.useConfig.Size = new System.Drawing.Size(77, 16);
             this.useConfig.TabIndex = 13;
@@ -372,7 +345,7 @@
             this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetConfig.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.resetConfig.Image = ((System.Drawing.Image)(resources.GetObject("resetConfig.Image")));
-            this.resetConfig.Location = new System.Drawing.Point(206, 169);
+            this.resetConfig.Location = new System.Drawing.Point(206, 170);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
             this.resetConfig.TabIndex = 14;
@@ -398,7 +371,7 @@
             this.gifResolution.ForeColor = System.Drawing.Color.LightCoral;
             this.gifResolution.Location = new System.Drawing.Point(250, 169);
             this.gifResolution.Name = "gifResolution";
-            this.gifResolution.Size = new System.Drawing.Size(31, 13);
+            this.gifResolution.Size = new System.Drawing.Size(37, 13);
             this.gifResolution.TabIndex = 16;
             this.gifResolution.TextChanged += new System.EventHandler(this.gifResolution_TextChanged);
             // 
@@ -408,9 +381,9 @@
             this.gifFramerate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifFramerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gifFramerate.ForeColor = System.Drawing.Color.LightCoral;
-            this.gifFramerate.Location = new System.Drawing.Point(299, 169);
+            this.gifFramerate.Location = new System.Drawing.Point(304, 169);
             this.gifFramerate.Name = "gifFramerate";
-            this.gifFramerate.Size = new System.Drawing.Size(31, 13);
+            this.gifFramerate.Size = new System.Drawing.Size(37, 13);
             this.gifFramerate.TabIndex = 17;
             this.gifFramerate.TextChanged += new System.EventHandler(this.gifFramerate_TextChanged);
             // 
@@ -432,7 +405,7 @@
             this.fLabel.BackColor = System.Drawing.Color.Transparent;
             this.fLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.fLabel.Location = new System.Drawing.Point(285, 169);
+            this.fLabel.Location = new System.Drawing.Point(290, 169);
             this.fLabel.Name = "fLabel";
             this.fLabel.Size = new System.Drawing.Size(14, 12);
             this.fLabel.TabIndex = 0;
@@ -454,6 +427,34 @@
             this.openLocationButton.TabIndex = 6;
             this.openLocationButton.UseVisualStyleBackColor = false;
             this.openLocationButton.Click += new System.EventHandler(this.openLocationButton_Click);
+            // 
+            // ytdlpGithubButton
+            // 
+            this.ytdlpGithubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ytdlpGithubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ytdlpGithubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ytdlpGithubButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.ytdlpGithubButton.Location = new System.Drawing.Point(183, 124);
+            this.ytdlpGithubButton.Name = "ytdlpGithubButton";
+            this.ytdlpGithubButton.Size = new System.Drawing.Size(51, 28);
+            this.ytdlpGithubButton.TabIndex = 11;
+            this.ytdlpGithubButton.Text = "yt-dlp GitHub";
+            this.ytdlpGithubButton.UseVisualStyleBackColor = false;
+            this.ytdlpGithubButton.Click += new System.EventHandler(this.ytdlpGithubButton_Click);
+            // 
+            // githubButton
+            // 
+            this.githubButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.githubButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.githubButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.githubButton.ForeColor = System.Drawing.Color.IndianRed;
+            this.githubButton.Location = new System.Drawing.Point(183, 93);
+            this.githubButton.Name = "githubButton";
+            this.githubButton.Size = new System.Drawing.Size(51, 28);
+            this.githubButton.TabIndex = 10;
+            this.githubButton.Text = "MediaD GitHub";
+            this.githubButton.UseVisualStyleBackColor = false;
+            this.githubButton.Click += new System.EventHandler(this.githubButton_Click);
             // 
             // program
             // 
@@ -518,13 +519,11 @@
         private System.Windows.Forms.Button viewAvailableFormatsButton;
         private System.Windows.Forms.RichTextBox customArgsBox;
         private System.Windows.Forms.Label customArgsLabel;
-        private System.Windows.Forms.Button githubButton;
         private System.Windows.Forms.Button infoButton;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.Button clearLocationButton;
         private System.Windows.Forms.CheckBox applyCodecs;
-        private System.Windows.Forms.Button ytdlpGithubButton;
         private System.Windows.Forms.CheckBox useConfig;
         private System.Windows.Forms.Button resetConfig;
         private System.Windows.Forms.Label gifQualityLabel;
@@ -535,5 +534,7 @@
         private System.Windows.Forms.PictureBox bannerPicture;
         private System.Windows.Forms.ToolTip programToolTip;
         private System.Windows.Forms.Button openLocationButton;
+        private System.Windows.Forms.Button ytdlpGithubButton;
+        private System.Windows.Forms.Button githubButton;
     }
 }

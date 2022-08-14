@@ -5,9 +5,6 @@ namespace MediaDownloader
 {
     internal static class init
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
