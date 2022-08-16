@@ -35,5 +35,5 @@ FFmpeg is then used for farther media processing if specified to do so.
 
 <br>
 
-<i>Programmed with C# and .NET Framework 4.8</i> \
+<i>Programmed with C# and .NET Framework 4.8.</i> \
 <i>If you want to compile the code yourself I highly recommend using Visual Studio.</i>
