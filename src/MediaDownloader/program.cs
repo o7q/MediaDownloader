@@ -275,14 +275,14 @@ namespace MediaDownloader
         private void githubButton_Click(object sender, EventArgs e)
         {
             // open mediadownloader github page in the default web browser
-            System.Diagnostics.Process.Start("https://github.com/o7q/MediaDownloader");
+            Process.Start("https://github.com/o7q/MediaDownloader");
         }
 
         // yt-dlp github button
         private void ytdlpGithubButton_Click(object sender, EventArgs e)
         {
             // open yt-dlp github page in the default web browser
-            System.Diagnostics.Process.Start("https://github.com/yt-dlp/yt-dlp");
+            Process.Start("https://github.com/yt-dlp/yt-dlp");
         }
 
         // configuration components

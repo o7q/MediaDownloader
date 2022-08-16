@@ -1,3 +1,8 @@
+~ v3.4.1
+- Now using the MIT license
+- Removed licensing info in the "Info" screen
+- Optimized code
+
 ~ v3.4.0
 - Fix major download issue for formats that use ffmpeg (temp files did not include a file extension resulting in ffmpeg erroring)
 - Tiny UI improvements
