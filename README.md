@@ -1,6 +1,6 @@
 <img src="assets/images/readmebanner.png"/>
 
-#### https://github.com/o7q/MediaDownloader/releases
+# Downloads: https://github.com/o7q/MediaDownloader/releases
 ### Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
 
 <br>
