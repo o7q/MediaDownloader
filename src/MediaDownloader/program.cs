@@ -267,7 +267,7 @@ namespace MediaDownloader
         private void infoButton_Click(object sender, EventArgs e)
         {
             // read from infoText and open info panel
-            string infoText = MediaDownloader.Properties.Resources.infoText;
+            string infoText = Properties.Resources.infoText;
             MessageBox.Show(infoText);
         }
 
