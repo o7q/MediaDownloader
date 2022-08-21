@@ -28,7 +28,7 @@ FFmpeg is then used for farther media processing if specified to do so.
 <b>MediaD GitHub Button</b> Opens this MediaDownloader GitHub page \
 <b>yt-dlp GitHub Button</b> Opens the `yt-dlp` GitHub page (you can use this to find arguments used in the `Custom DL Arguments` section \
 <b>Info Button</b> Shows info about MediaDownloader \
-<b>Apply Video Codecs Checkbox</b> Applies codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow) \
+<b>Apply Video Codecs Checkbox</b> Applies codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow depending on your hardware) \
 <b>Save Options Checkbox</b> Saves all options to config files stored in the `mediadownloader` directory \
 <b>Custom DL Arguments Input</b> Specify custom arguments that `yt-dlp` will accept \
 <b>gif (web) Quality Inputs</b> `R = X Resolution` (will preserve aspect ratio) & `F = Framerate` (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
