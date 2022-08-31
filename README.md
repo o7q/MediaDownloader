@@ -10,12 +10,18 @@
 <br>
 
 # Overview
-Powered by: \
-yt-dlp: https://github.com/yt-dlp/yt-dlp \
-ffmpeg: https://ffmpeg.org
+### MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.
+### FFmpeg is then used for farther media processing if specified to do so.
 
-MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.\
-FFmpeg is then used for farther media processing if specified to do so.
+<br>
+
+### Powered by:
+### yt-dlp: https://github.com/yt-dlp/yt-dlp
+### ffmpeg: https://ffmpeg.org
+
+<br>
+
+# Usage
 
 ## <b>Components</b>
 <b>URL Input</b> Specify the URL of website for MediaDownloader to download \
