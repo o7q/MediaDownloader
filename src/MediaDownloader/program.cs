@@ -493,7 +493,7 @@ namespace MediaDownloader
             }
             else
             {
-                dlScr = srtArgs + "--list-formats " + inputBox.Text + "\nPAUSE";
+                dlScr = srtArgs + "--list-formats " + inputBox.Text + "\n\npause";
                 runBat();
             }
         }
