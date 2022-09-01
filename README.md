@@ -15,9 +15,9 @@
 
 <br>
 
-### Powered by:
-### yt-dlp: https://github.com/yt-dlp/yt-dlp
-### ffmpeg: https://ffmpeg.org
+<h3>Powered by:</h3>
+<h3>yt-dlp: https://github.com/yt-dlp/yt-dlp</h3>
+<h3>ffmpeg: https://ffmpeg.org</h3>
 
 <br>
 
