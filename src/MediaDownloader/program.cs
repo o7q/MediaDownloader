@@ -545,14 +545,14 @@ namespace MediaDownloader
                         // mp4
                         if (form == 2)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + rndId + ".mp4\n" + @"del /f temp_download0.mp4" : srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:v h264 -c:a aac \"" + selLoc + @"\converted_download_" + rndId + ".mp4\"\n" + @"del /f temp_download0.mp4";
+                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + rndId + ".mp4\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac \"" + selLoc + @"\converted_download_" + rndId + ".mp4\"\n" + @"del /f tmp_dl0.mp4";
                             runBat();
                         }
 
                         // webm
                         if (form == 3)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video webm -o \"temp_download0.webm\" " + url + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".webm\n" + @"del /f temp_download0.webm" : srtArgs + "--remux-video webm -o \"temp_download0.webm\" " + url + "\nffmpeg.exe -i temp_download0.webm -c:v vp9 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".webm\"\n" + @"del /f temp_download0.webm";
+                            dlScr = useDefLoc == true ? srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".webm\n" + @"del /f tmp_dl0.webm" : srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".webm\"\n" + @"del /f tmp_dl0.webm";
                             runBat();
                         }
                     }
@@ -582,7 +582,7 @@ namespace MediaDownloader
                         // gif
                         if (form == 4)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 " + @"..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f temp_download0.mp4" : srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f temp_download0.mp4";
+                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 " + @"..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
                             runBat();
                         }
 
@@ -595,7 +595,7 @@ namespace MediaDownloader
                             }
                             else
                             {
-                                dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f temp_download0.mp4" : srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f temp_download0.mp4";
+                                dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
                                 runBat();
                             }
                         }
@@ -624,7 +624,7 @@ namespace MediaDownloader
                         // ogg
                         if (form == 11)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".ogg" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3" : srtArgs + "--remux-video mp4 -o \"temp_download0.mp4\" " + url + "\nffmpeg.exe -i temp_download0.mp4 -c:a libmp3lame temp_download1.mp3" + "\nffmpeg.exe -i temp_download1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".ogg\"" + "\ndel /f temp_download0.mp4" + "\ndel /f temp_download1.mp3";
+                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dl1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".ogg" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dld1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".ogg\"" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3";
                             runBat();
                         }
 

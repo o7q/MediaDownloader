@@ -1,6 +1,5 @@
 MediaDownloader by o7q
-A GUI tool that uses yt-dlp and ffmpeg to quickly download video and audio from virtually any website.
-Powered by yt-dlp and ffmpeg.
+A GUI-based tool that uses yt-dlp and ffmpeg to quickly download video and audio from virtually any website.
 
 If the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page.
 

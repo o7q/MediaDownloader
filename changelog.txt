@@ -1,5 +1,8 @@
-~
+~ v3.4.2
 - Shortened program file names
+- Fixed typos
+- Update to yt-dlp 2022.09.01
+- Updated to ffmpeg 5.5.1 from gyan.dev
 
 ~ v3.4.1
 - Now using the MIT license
