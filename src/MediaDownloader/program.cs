@@ -43,7 +43,7 @@ namespace MediaDownloader
             // try to create mediadownloader.bat and warning files
             try
             {
-                File.WriteAllText("mediadownloader\\mediadownloader.bat", "");
+                File.WriteAllText("mediadownloader\\md.bat", "");
                 File.WriteAllText("mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", "");
             }
             catch
@@ -56,24 +56,24 @@ namespace MediaDownloader
             useDefLoc = true;
 
             // load config0
-            if (File.Exists("mediadownloader\\config0"))
+            if (File.Exists("mediadownloader\\cfg0"))
             {
-                string config0 = File.ReadAllText("mediadownloader\\config0");
+                string config0 = File.ReadAllText("mediadownloader\\cfg0");
                 inputBox.Text = config0;
             }
 
             // load config1
-            if (File.Exists("mediadownloader\\config1"))
+            if (File.Exists("mediadownloader\\cfg1"))
             {
-                string config1_string = File.ReadAllText("mediadownloader\\config1");
+                string config1_string = File.ReadAllText("mediadownloader\\cfg1");
                 int config1 = int.Parse(config1_string);
                 formatBox.SelectedIndex = config1;
             }
 
             // load config2
-            if (File.Exists("mediadownloader\\config2"))
+            if (File.Exists("mediadownloader\\cfg2"))
             {
-                string config2 = File.ReadAllText("mediadownloader\\config2");
+                string config2 = File.ReadAllText("mediadownloader\\cfg2");
                 selLoc = config2;
 
                 useDefLoc = selLoc != "" ? false : true;
@@ -81,23 +81,23 @@ namespace MediaDownloader
             }
 
             // load config3
-            if (File.Exists("mediadownloader\\config3"))
+            if (File.Exists("mediadownloader\\cfg3"))
             {
-                string config3 = File.ReadAllText("mediadownloader\\config3");
+                string config3 = File.ReadAllText("mediadownloader\\cfg3");
                 customArgsBox.Text = config3;
             }
 
             // load config4
-            if (File.Exists("mediadownloader\\config4"))
+            if (File.Exists("mediadownloader\\cfg4"))
             {
-                string config4 = File.ReadAllText("mediadownloader\\config4");
+                string config4 = File.ReadAllText("mediadownloader\\cfg4");
                 applyCodecs.Checked = config4 == "1" ? true : false;
             }
 
             // load config5
-            if (File.Exists("mediadownloader\\config5"))
+            if (File.Exists("mediadownloader\\cfg5"))
             {
-                string config5 = File.ReadAllText("mediadownloader\\config5");
+                string config5 = File.ReadAllText("mediadownloader\\cfg5");
                 gifResolution.Text = config5;
             }
             else
@@ -108,9 +108,9 @@ namespace MediaDownloader
             }
 
             // load config6
-            if (File.Exists("mediadownloader\\config6"))
+            if (File.Exists("mediadownloader\\cfg6"))
             {
-                string config6 = File.ReadAllText("mediadownloader\\config6");
+                string config6 = File.ReadAllText("mediadownloader\\cfg6");
                 gifFramerate.Text = config6;
             }
             else
@@ -121,7 +121,7 @@ namespace MediaDownloader
             }
 
             // load config_switch
-            useConfig.Checked = File.Exists("mediadownloader\\config_switch") ? true : false;
+            useConfig.Checked = File.Exists("mediadownloader\\cfg_sw") ? true : false;
 
             // configure tooltips
             programToolTip.SetToolTip(minimizeButton, "Minimize");
@@ -186,7 +186,7 @@ namespace MediaDownloader
                 // delete mediadownloader.bat
                 try
                 {
-                    File.Delete("mediadownloader\\mediadownloader.bat");
+                    File.Delete("mediadownloader\\md.bat");
                 }
                 catch
                 {
@@ -209,7 +209,7 @@ namespace MediaDownloader
                 // delete mediadownloader.bat
                 try
                 {
-                    File.Delete("mediadownloader\\mediadownloader.bat");
+                    File.Delete("mediadownloader\\md.bat");
                 }
                 catch
                 {
@@ -292,44 +292,44 @@ namespace MediaDownloader
         {
             if (useConfig.Checked == true)
             {
-                File.WriteAllText("mediadownloader\\config_switch", "");
+                File.WriteAllText("mediadownloader\\cfg_sw", "");
 
-                File.WriteAllText("mediadownloader\\config0", "");
-                File.WriteAllText("mediadownloader\\config1", "");
-                File.WriteAllText("mediadownloader\\config2", "");
-                File.WriteAllText("mediadownloader\\config3", "");
-                File.WriteAllText("mediadownloader\\config4", "");
-                File.WriteAllText("mediadownloader\\config5", "");
-                File.WriteAllText("mediadownloader\\config6", "");
+                File.WriteAllText("mediadownloader\\cfg0", "");
+                File.WriteAllText("mediadownloader\\cfg1", "");
+                File.WriteAllText("mediadownloader\\cfg2", "");
+                File.WriteAllText("mediadownloader\\cfg3", "");
+                File.WriteAllText("mediadownloader\\cfg4", "");
+                File.WriteAllText("mediadownloader\\cfg5", "");
+                File.WriteAllText("mediadownloader\\cfg6", "");
 
                 // write config0
                 string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\config0", config0);
+                File.WriteAllText("mediadownloader\\cfg0", config0);
 
                 // write config1
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\config1", config1);
+                File.WriteAllText("mediadownloader\\cfg1", config1);
 
                 // write config2
                 string config2 = selLoc;
-                File.WriteAllText("mediadownloader\\config2", config2);
+                File.WriteAllText("mediadownloader\\cfg2", config2);
 
                 // write config3
                 string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\config3", config3);
+                File.WriteAllText("mediadownloader\\cfg3", config3);
 
                 // write config4
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText("mediadownloader\\config4", config4);
+                File.WriteAllText("mediadownloader\\cfg4", config4);
 
                 // write config5
                 string config5 = gifResolution.Text;
-                File.WriteAllText("mediadownloader\\config5", config5);
+                File.WriteAllText("mediadownloader\\cfg5", config5);
 
                 // write config6
                 string config6 = gifFramerate.Text;
-                File.WriteAllText("mediadownloader\\config6", config6);
+                File.WriteAllText("mediadownloader\\cfg6", config6);
             }
         }
 
@@ -340,7 +340,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\config0", config0);
+                File.WriteAllText("mediadownloader\\cfg0", config0);
             }
         }
 
@@ -352,7 +352,7 @@ namespace MediaDownloader
             {
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\config1", config1);
+                File.WriteAllText("mediadownloader\\cfg1", config1);
             }
         }
 
@@ -363,7 +363,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\config3", config3);
+                File.WriteAllText("mediadownloader\\cfg3", config3);
             }
         }
 
@@ -374,7 +374,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText("mediadownloader\\config4", config4);
+                File.WriteAllText("mediadownloader\\cfg4", config4);
             }
         }
 
@@ -385,7 +385,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config5 = gifResolution.Text;
-                File.WriteAllText("mediadownloader\\config5", config5);
+                File.WriteAllText("mediadownloader\\cfg5", config5);
             }
         }
 
@@ -396,7 +396,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config6 = gifFramerate.Text;
-                File.WriteAllText("mediadownloader\\config6", config6);
+                File.WriteAllText("mediadownloader\\cfg6", config6);
             }
         }
 
@@ -428,15 +428,15 @@ namespace MediaDownloader
             // reset configs
             if (useConfig.Checked == true)
             {
-                File.WriteAllText("mediadownloader\\config0", "");
+                File.WriteAllText("mediadownloader\\cfg0", "");
                 int config1_int = 6;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\config1", config1);
-                File.WriteAllText("mediadownloader\\config2", "");
-                File.WriteAllText("mediadownloader\\config3", "");
-                File.WriteAllText("mediadownloader\\config4", "");
-                File.WriteAllText("mediadownloader\\config5", "400");
-                File.WriteAllText("mediadownloader\\config6", "20");
+                File.WriteAllText("mediadownloader\\cfg1", config1);
+                File.WriteAllText("mediadownloader\\cfg2", "");
+                File.WriteAllText("mediadownloader\\cfg3", "");
+                File.WriteAllText("mediadownloader\\cfg4", "");
+                File.WriteAllText("mediadownloader\\cfg5", "400");
+                File.WriteAllText("mediadownloader\\cfg6", "20");
             }
         }
 
@@ -456,7 +456,7 @@ namespace MediaDownloader
                 {
                     // on change write to config2
                     string config2 = selLoc;
-                    File.WriteAllText("mediadownloader\\config2", config2);
+                    File.WriteAllText("mediadownloader\\cfg2", config2);
                 }
             }
         }
@@ -479,7 +479,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config2 = selLoc;
-                File.WriteAllText("mediadownloader\\config2", config2);
+                File.WriteAllText("mediadownloader\\cfg2", config2);
             }
         }
 
@@ -493,7 +493,7 @@ namespace MediaDownloader
             }
             else
             {
-                dlScr = srtArgs + "--list-formats " + inputBox.Text + "\n\npause";
+                dlScr = srtArgs + "--list-formats " + inputBox.Text + "\necho.\npause";
                 runBat();
             }
         }
@@ -657,7 +657,7 @@ namespace MediaDownloader
             // write batch script
             try
             {
-                File.WriteAllText("mediadownloader\\mediadownloader.bat", dlScr);
+                File.WriteAllText("mediadownloader\\md.bat", dlScr);
             }
             catch
             {
@@ -666,7 +666,7 @@ namespace MediaDownloader
 
             // start batch script
             string batchScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-            batchScript += "\\mediadownloader\\mediadownloader.bat";
+            batchScript += "\\mediadownloader\\md.bat";
             Process.Start(batchScript);
         }
 
@@ -680,7 +680,7 @@ namespace MediaDownloader
                 foreach (string file in files)
                 {
                     var f = new FileInfo(file).Name;
-                    if (f != "yt-dlp.exe" & f != "ffmpeg.exe" & f != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & f != "config_switch" & f != "config0" & f != "config1" & f != "config2" & f != "config3" & f != "config4" & f != "config5" & f != "config6")
+                    if (f != "yt-dlp.exe" & f != "ffmpeg.exe" & f != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & f != "cfg_sw" & f != "cfg0" & f != "cfg1" & f != "cfg2" & f != "cfg3" & f != "cfg4" & f != "cfg5" & f != "cfg6")
                     {
                         try
                         {
@@ -699,15 +699,15 @@ namespace MediaDownloader
             {
                 try
                 {
-                    File.Delete("mediadownloader\\config_switch");
+                    File.Delete("mediadownloader\\cfg_sw");
 
-                    File.Delete("mediadownloader\\config0");
-                    File.Delete("mediadownloader\\config1");
-                    File.Delete("mediadownloader\\config2");
-                    File.Delete("mediadownloader\\config3");
-                    File.Delete("mediadownloader\\config4");
-                    File.Delete("mediadownloader\\config5");
-                    File.Delete("mediadownloader\\config6");
+                    File.Delete("mediadownloader\\cfg0");
+                    File.Delete("mediadownloader\\cfg1");
+                    File.Delete("mediadownloader\\cfg2");
+                    File.Delete("mediadownloader\\cfg3");
+                    File.Delete("mediadownloader\\cfg4");
+                    File.Delete("mediadownloader\\cfg5");
+                    File.Delete("mediadownloader\\cfg6");
                 }
                 catch
                 {

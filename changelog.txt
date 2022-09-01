@@ -1,3 +1,6 @@
+~
+- Shortened program file names
+
 ~ v3.4.1
 - Now using the MIT license
 - Removed licensing info in the "Info" screen
