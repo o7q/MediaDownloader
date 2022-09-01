@@ -1,7 +1,7 @@
 <img src="assets/images/readmebanner.png"/>
 
 # Downloads: https://github.com/o7q/MediaDownloader/releases
-### Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
+<h3>Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.</h3>
 
 <br>
 
@@ -10,8 +10,7 @@
 <br>
 
 # Overview
-<h3>MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.</h3>
-<h3>FFmpeg is then used for farther media processing if specified to do so.</h3>
+<h3>MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp. FFmpeg is then used for farther media processing if specified to do so.</h3>
 
 <br>
 
