@@ -89,7 +89,7 @@
             // 
             // titlebarPanel
             // 
-            this.titlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.titlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
             this.titlebarPanel.Controls.Add(this.bannerPicture);
             this.titlebarPanel.Controls.Add(this.versionLabel);
             this.titlebarPanel.Controls.Add(this.minimizeButton);
@@ -122,7 +122,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.4.2";
+            this.versionLabel.Text = "v3.4.3";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton

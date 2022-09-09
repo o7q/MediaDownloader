@@ -63,6 +63,16 @@ namespace MediaDownloader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background {
+            get {
+                object obj = ResourceManager.GetObject("background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap banner {
             get {
                 object obj = ResourceManager.GetObject("banner", resourceCulture);
@@ -92,18 +102,16 @@ namespace MediaDownloader.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to MediaDownloader by o7q
-        ///Powered by yt-dlp and ffmpeg
-        ///
-        ///MediaDownloader is licensed under GPL-3.0-only
-        ///yt-dlp is licensed under Unlicense
-        ///ffmpeg is licensed under LGPL-2.1
+        ///A GUI-based tool that uses yt-dlp and ffmpeg to quickly download video and audio from virtually any website.
         ///
         ///If the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page.
         ///
         ///To update yt-dlp:
         ///1. Click on the &quot;yt-dlp GitHub&quot; button within MediaDownloader
         ///2. Click on the releases tab and download &quot;yt-dlp.exe&quot;
-        ///3. Replace &quot;yt-dlp.exe&quot; that is inside the &quot;mediadownloader&quot; folder with the new &quot;y [rest of string was truncated]&quot;;.
+        ///3. Replace &quot;yt-dlp.exe&quot; that is inside the &quot;mediadownloader&quot; folder with the new &quot;yt-dlp.exe&quot;
+        ///
+        ///* Farther documentation can [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string infoText {
             get {

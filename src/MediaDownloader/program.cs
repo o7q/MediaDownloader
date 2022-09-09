@@ -33,6 +33,9 @@ namespace MediaDownloader
         bool ytdlpCheck;
         bool ffmpegCheck;
 
+        // config name arry
+        string[] configs = { "mediadownloader\\cfg0", "mediadownloader\\cfg1", "mediadownloader\\cfg2", "mediadownloader\\cfg3", "mediadownloader\\cfg4", "mediadownloader\\cfg5", "mediadownloader\\cfg6", "mediadownloader\\cfg_sw" };
+
         // program events
 
         // form initialize component
@@ -56,24 +59,24 @@ namespace MediaDownloader
             useDefLoc = true;
 
             // load config0
-            if (File.Exists("mediadownloader\\cfg0"))
+            if (File.Exists(configs[0]))
             {
-                string config0 = File.ReadAllText("mediadownloader\\cfg0");
+                string config0 = File.ReadAllText(configs[0]);
                 inputBox.Text = config0;
             }
 
             // load config1
-            if (File.Exists("mediadownloader\\cfg1"))
+            if (File.Exists(configs[1]))
             {
-                string config1_string = File.ReadAllText("mediadownloader\\cfg1");
+                string config1_string = File.ReadAllText(configs[1]);
                 int config1 = int.Parse(config1_string);
                 formatBox.SelectedIndex = config1;
             }
 
             // load config2
-            if (File.Exists("mediadownloader\\cfg2"))
+            if (File.Exists(configs[2]))
             {
-                string config2 = File.ReadAllText("mediadownloader\\cfg2");
+                string config2 = File.ReadAllText(configs[2]);
                 selLoc = config2;
 
                 useDefLoc = selLoc != "" ? false : true;
@@ -81,23 +84,23 @@ namespace MediaDownloader
             }
 
             // load config3
-            if (File.Exists("mediadownloader\\cfg3"))
+            if (File.Exists(configs[3]))
             {
-                string config3 = File.ReadAllText("mediadownloader\\cfg3");
+                string config3 = File.ReadAllText(configs[3]);
                 customArgsBox.Text = config3;
             }
 
             // load config4
-            if (File.Exists("mediadownloader\\cfg4"))
+            if (File.Exists(configs[4]))
             {
-                string config4 = File.ReadAllText("mediadownloader\\cfg4");
+                string config4 = File.ReadAllText(configs[4]);
                 applyCodecs.Checked = config4 == "1" ? true : false;
             }
 
             // load config5
-            if (File.Exists("mediadownloader\\cfg5"))
+            if (File.Exists(configs[5]))
             {
-                string config5 = File.ReadAllText("mediadownloader\\cfg5");
+                string config5 = File.ReadAllText(configs[5]);
                 gifResolution.Text = config5;
             }
             else
@@ -108,9 +111,9 @@ namespace MediaDownloader
             }
 
             // load config6
-            if (File.Exists("mediadownloader\\cfg6"))
+            if (File.Exists(configs[6]))
             {
-                string config6 = File.ReadAllText("mediadownloader\\cfg6");
+                string config6 = File.ReadAllText(configs[6]);
                 gifFramerate.Text = config6;
             }
             else
@@ -121,7 +124,7 @@ namespace MediaDownloader
             }
 
             // load config_switch
-            useConfig.Checked = File.Exists("mediadownloader\\cfg_sw") ? true : false;
+            useConfig.Checked = File.Exists(configs[7]) ? true : false;
 
             // configure tooltips
             programToolTip.SetToolTip(minimizeButton, "Minimize");
@@ -292,44 +295,44 @@ namespace MediaDownloader
         {
             if (useConfig.Checked == true)
             {
-                File.WriteAllText("mediadownloader\\cfg_sw", "");
+                File.WriteAllText(configs[7], "");
 
-                File.WriteAllText("mediadownloader\\cfg0", "");
-                File.WriteAllText("mediadownloader\\cfg1", "");
-                File.WriteAllText("mediadownloader\\cfg2", "");
-                File.WriteAllText("mediadownloader\\cfg3", "");
-                File.WriteAllText("mediadownloader\\cfg4", "");
-                File.WriteAllText("mediadownloader\\cfg5", "");
-                File.WriteAllText("mediadownloader\\cfg6", "");
+                File.WriteAllText(configs[0], "");
+                File.WriteAllText(configs[1], "");
+                File.WriteAllText(configs[2], "");
+                File.WriteAllText(configs[3], "");
+                File.WriteAllText(configs[4], "");
+                File.WriteAllText(configs[5], "");
+                File.WriteAllText(configs[6], "");
 
                 // write config0
                 string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\cfg0", config0);
+                File.WriteAllText(configs[0], config0);
 
                 // write config1
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\cfg1", config1);
+                File.WriteAllText(configs[1], config1);
 
                 // write config2
                 string config2 = selLoc;
-                File.WriteAllText("mediadownloader\\cfg2", config2);
+                File.WriteAllText(configs[2], config2);
 
                 // write config3
                 string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\cfg3", config3);
+                File.WriteAllText(configs[3], config3);
 
                 // write config4
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText("mediadownloader\\cfg4", config4);
+                File.WriteAllText(configs[4], config4);
 
                 // write config5
                 string config5 = gifResolution.Text;
-                File.WriteAllText("mediadownloader\\cfg5", config5);
+                File.WriteAllText(configs[5], config5);
 
                 // write config6
                 string config6 = gifFramerate.Text;
-                File.WriteAllText("mediadownloader\\cfg6", config6);
+                File.WriteAllText(configs[6], config6);
             }
         }
 
@@ -340,7 +343,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config0 = inputBox.Text;
-                File.WriteAllText("mediadownloader\\cfg0", config0);
+                File.WriteAllText(configs[0], config0);
             }
         }
 
@@ -352,7 +355,7 @@ namespace MediaDownloader
             {
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\cfg1", config1);
+                File.WriteAllText(configs[1], config1);
             }
         }
 
@@ -363,7 +366,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config3 = customArgsBox.Text;
-                File.WriteAllText("mediadownloader\\cfg3", config3);
+                File.WriteAllText(configs[3], config3);
             }
         }
 
@@ -374,7 +377,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText("mediadownloader\\cfg4", config4);
+                File.WriteAllText(configs[4], config4);
             }
         }
 
@@ -385,7 +388,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config5 = gifResolution.Text;
-                File.WriteAllText("mediadownloader\\cfg5", config5);
+                File.WriteAllText(configs[5], config5);
             }
         }
 
@@ -396,7 +399,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config6 = gifFramerate.Text;
-                File.WriteAllText("mediadownloader\\cfg6", config6);
+                File.WriteAllText(configs[6], config6);
             }
         }
 
@@ -428,15 +431,15 @@ namespace MediaDownloader
             // reset configs
             if (useConfig.Checked == true)
             {
-                File.WriteAllText("mediadownloader\\cfg0", "");
+                File.WriteAllText(configs[0], "");
                 int config1_int = 6;
                 string config1 = config1_int.ToString();
-                File.WriteAllText("mediadownloader\\cfg1", config1);
-                File.WriteAllText("mediadownloader\\cfg2", "");
-                File.WriteAllText("mediadownloader\\cfg3", "");
-                File.WriteAllText("mediadownloader\\cfg4", "");
-                File.WriteAllText("mediadownloader\\cfg5", "400");
-                File.WriteAllText("mediadownloader\\cfg6", "20");
+                File.WriteAllText(configs[1], config1);
+                File.WriteAllText(configs[2], "");
+                File.WriteAllText(configs[3], "");
+                File.WriteAllText(configs[4], "");
+                File.WriteAllText(configs[5], "400");
+                File.WriteAllText(configs[6], "20");
             }
         }
 
@@ -456,7 +459,7 @@ namespace MediaDownloader
                 {
                     // on change write to config2
                     string config2 = selLoc;
-                    File.WriteAllText("mediadownloader\\cfg2", config2);
+                    File.WriteAllText(configs[2], config2);
                 }
             }
         }
@@ -479,7 +482,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config2 = selLoc;
-                File.WriteAllText("mediadownloader\\cfg2", config2);
+                File.WriteAllText(configs[2], config2);
             }
         }
 
@@ -546,14 +549,12 @@ namespace MediaDownloader
                         if (form == 2)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + rndId + ".mp4\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac \"" + selLoc + @"\converted_download_" + rndId + ".mp4\"\n" + @"del /f tmp_dl0.mp4";
-                            runBat();
                         }
 
                         // webm
                         if (form == 3)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".webm\n" + @"del /f tmp_dl0.webm" : srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".webm\"\n" + @"del /f tmp_dl0.webm";
-                            runBat();
                         }
                     }
                     else
@@ -562,28 +563,24 @@ namespace MediaDownloader
                         if (form == 1)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--path " + @"..\Downloads " + url : srtArgs + "--path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // mp4
                         if (form == 2)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 --path " + @"..\Downloads " + url : srtArgs + "--remux-video mp4 --path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // webm
                         if (form == 3)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video webm --path " + @"..\Downloads " + url : srtArgs + "--remux-video webm --path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // gif
                         if (form == 4)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 " + @"..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
-                            runBat();
                         }
 
                         // gif (web)
@@ -596,7 +593,6 @@ namespace MediaDownloader
                             else
                             {
                                 dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
-                                runBat();
                             }
                         }
 
@@ -604,37 +600,34 @@ namespace MediaDownloader
                         if (form == 8)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "-x --path " + @"..\Downloads " + url : srtArgs + "-x --path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // mp3
                         if (form == 9)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "-x --audio-format mp3 --path " + @"..\Downloads " + url : srtArgs + "-x --audio-format mp3 --path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // wav
                         if (form == 10)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "-x --audio-format wav --path " + @"..\Downloads " + url : srtArgs + "-x --audio-format wav --path \"" + selLoc + "\" " + url;
-                            runBat();
                         }
 
                         // ogg
                         if (form == 11)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dl1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".ogg" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dld1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".ogg\"" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3";
-                            runBat();
                         }
 
                         // (Custom DL Arguments)
                         if (form == 14)
                         {
                             dlScr = useDefLoc == true ? srtArgs + "--path " + @"..\Downloads " + customArgsBox.Text + " " + url : srtArgs + "--path \"" + selLoc + "\"" + " " + customArgsBox.Text + " " + url;
-                            runBat();
                         }
                     }
+
+                    runBat();
                 }
             }
         }
@@ -699,15 +692,15 @@ namespace MediaDownloader
             {
                 try
                 {
-                    File.Delete("mediadownloader\\cfg_sw");
+                    File.Delete(configs[7]);
 
-                    File.Delete("mediadownloader\\cfg0");
-                    File.Delete("mediadownloader\\cfg1");
-                    File.Delete("mediadownloader\\cfg2");
-                    File.Delete("mediadownloader\\cfg3");
-                    File.Delete("mediadownloader\\cfg4");
-                    File.Delete("mediadownloader\\cfg5");
-                    File.Delete("mediadownloader\\cfg6");
+                    File.Delete(configs[0]);
+                    File.Delete(configs[1]);
+                    File.Delete(configs[2]);
+                    File.Delete(configs[3]);
+                    File.Delete(configs[4]);
+                    File.Delete(configs[5]);
+                    File.Delete(configs[6]);
                 }
                 catch
                 {
