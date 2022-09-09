@@ -196,7 +196,7 @@ namespace MediaDownloader
                     // skip
                 }
 
-                Environment.Exit(0);
+                Environment.Exit(1);
             }
 
             if (File.Exists("mediadownloader\\ffmpeg.exe"))
@@ -219,7 +219,7 @@ namespace MediaDownloader
                     // skip
                 }
 
-                Environment.Exit(0);
+                Environment.Exit(1);
             }
 
             if (ytdlpCheck && ffmpegCheck)
@@ -255,7 +255,7 @@ namespace MediaDownloader
         // minimize button
         private void minimizeButton_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         // exit button
