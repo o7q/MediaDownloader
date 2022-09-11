@@ -23,7 +23,7 @@ namespace MediaDownloader
         // create global variables
 
         // batch configuration
-        string srtArgs;
+        string srtArgs = "@echo off\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
         string selLoc;
         string mdScr;
 
@@ -34,7 +34,7 @@ namespace MediaDownloader
         bool ytdlpCheck;
         bool ffmpegCheck;
 
-        // asset dictionary array
+        // asset dictionary
         string[] asset = { "mediadownloader\\cfg0", "mediadownloader\\cfg1", "mediadownloader\\cfg2", "mediadownloader\\cfg3", "mediadownloader\\cfg4", "mediadownloader\\cfg5", "mediadownloader\\cfg6", "mediadownloader\\cfg_sw", "mediadownloader\\md.bat", "mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", "mediadownloader\\yt-dlp.exe", "mediadownloader\\ffmpeg.exe" };
 
         // program events
@@ -156,9 +156,6 @@ namespace MediaDownloader
             programToolTip.OwnerDraw = true;
             programToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-
-            // set default starter args
-            srtArgs = "@echo off\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
         }
 
         // form load

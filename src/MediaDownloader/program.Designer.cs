@@ -239,7 +239,7 @@
             this.customArgsBox.ForeColor = System.Drawing.Color.LightCoral;
             this.customArgsBox.Location = new System.Drawing.Point(236, 93);
             this.customArgsBox.Name = "customArgsBox";
-            this.customArgsBox.Size = new System.Drawing.Size(105, 60);
+            this.customArgsBox.Size = new System.Drawing.Size(105, 28);
             this.customArgsBox.TabIndex = 15;
             this.customArgsBox.Text = "";
             this.customArgsBox.TextChanged += new System.EventHandler(this.customArgsBox_TextChanged);
@@ -345,7 +345,7 @@
             this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetConfig.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.resetConfig.Image = ((System.Drawing.Image)(resources.GetObject("resetConfig.Image")));
-            this.resetConfig.Location = new System.Drawing.Point(206, 170);
+            this.resetConfig.Location = new System.Drawing.Point(205, 170);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
             this.resetConfig.TabIndex = 14;
@@ -357,7 +357,7 @@
             this.gifQualityLabel.AutoSize = true;
             this.gifQualityLabel.BackColor = System.Drawing.Color.Transparent;
             this.gifQualityLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.gifQualityLabel.Location = new System.Drawing.Point(234, 154);
+            this.gifQualityLabel.Location = new System.Drawing.Point(234, 124);
             this.gifQualityLabel.Name = "gifQualityLabel";
             this.gifQualityLabel.Size = new System.Drawing.Size(82, 13);
             this.gifQualityLabel.TabIndex = 0;
@@ -369,7 +369,7 @@
             this.gifResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifResolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gifResolution.ForeColor = System.Drawing.Color.LightCoral;
-            this.gifResolution.Location = new System.Drawing.Point(250, 169);
+            this.gifResolution.Location = new System.Drawing.Point(250, 139);
             this.gifResolution.Name = "gifResolution";
             this.gifResolution.Size = new System.Drawing.Size(37, 13);
             this.gifResolution.TabIndex = 16;
@@ -381,7 +381,7 @@
             this.gifFramerate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifFramerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gifFramerate.ForeColor = System.Drawing.Color.LightCoral;
-            this.gifFramerate.Location = new System.Drawing.Point(304, 169);
+            this.gifFramerate.Location = new System.Drawing.Point(304, 139);
             this.gifFramerate.Name = "gifFramerate";
             this.gifFramerate.Size = new System.Drawing.Size(37, 13);
             this.gifFramerate.TabIndex = 17;
@@ -393,7 +393,7 @@
             this.rLabel.BackColor = System.Drawing.Color.Transparent;
             this.rLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.rLabel.Location = new System.Drawing.Point(235, 169);
+            this.rLabel.Location = new System.Drawing.Point(235, 139);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(15, 12);
             this.rLabel.TabIndex = 0;
@@ -405,7 +405,7 @@
             this.fLabel.BackColor = System.Drawing.Color.Transparent;
             this.fLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.fLabel.Location = new System.Drawing.Point(290, 169);
+            this.fLabel.Location = new System.Drawing.Point(290, 139);
             this.fLabel.Name = "fLabel";
             this.fLabel.Size = new System.Drawing.Size(14, 12);
             this.fLabel.TabIndex = 0;
