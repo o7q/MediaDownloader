@@ -1,3 +1,7 @@
+~ 3.4.3
+- Added a script code dictionary (used for easy debugging)
+- Slight UI color updates
+
 ~ v3.4.2
 - Shortened program file names
 - Fixed typos

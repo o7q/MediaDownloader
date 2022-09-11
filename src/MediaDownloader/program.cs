@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace MediaDownloader
         // batch configuration
         string srtArgs;
         string selLoc;
-        string dlScr;
+        string mdScr;
 
         // use default location
         bool useDefLoc;
@@ -33,8 +34,8 @@ namespace MediaDownloader
         bool ytdlpCheck;
         bool ffmpegCheck;
 
-        // config name arry
-        string[] configs = { "mediadownloader\\cfg0", "mediadownloader\\cfg1", "mediadownloader\\cfg2", "mediadownloader\\cfg3", "mediadownloader\\cfg4", "mediadownloader\\cfg5", "mediadownloader\\cfg6", "mediadownloader\\cfg_sw" };
+        // asset dictionary array
+        string[] asset = { "mediadownloader\\cfg0", "mediadownloader\\cfg1", "mediadownloader\\cfg2", "mediadownloader\\cfg3", "mediadownloader\\cfg4", "mediadownloader\\cfg5", "mediadownloader\\cfg6", "mediadownloader\\cfg_sw", "mediadownloader\\md.bat", "mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", "mediadownloader\\yt-dlp.exe", "mediadownloader\\ffmpeg.exe" };
 
         // program events
 
@@ -46,8 +47,8 @@ namespace MediaDownloader
             // try to create mediadownloader.bat and warning files
             try
             {
-                File.WriteAllText("mediadownloader\\md.bat", "");
-                File.WriteAllText("mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", "");
+                File.WriteAllText(asset[8], "");
+                File.WriteAllText(asset[9], "");
             }
             catch
             {
@@ -59,24 +60,24 @@ namespace MediaDownloader
             useDefLoc = true;
 
             // load config0
-            if (File.Exists(configs[0]))
+            if (File.Exists(asset[0]))
             {
-                string config0 = File.ReadAllText(configs[0]);
+                string config0 = File.ReadAllText(asset[0]);
                 inputBox.Text = config0;
             }
 
             // load config1
-            if (File.Exists(configs[1]))
+            if (File.Exists(asset[1]))
             {
-                string config1_string = File.ReadAllText(configs[1]);
+                string config1_string = File.ReadAllText(asset[1]);
                 int config1 = int.Parse(config1_string);
                 formatBox.SelectedIndex = config1;
             }
 
             // load config2
-            if (File.Exists(configs[2]))
+            if (File.Exists(asset[2]))
             {
-                string config2 = File.ReadAllText(configs[2]);
+                string config2 = File.ReadAllText(asset[2]);
                 selLoc = config2;
 
                 useDefLoc = selLoc != "" ? false : true;
@@ -84,23 +85,23 @@ namespace MediaDownloader
             }
 
             // load config3
-            if (File.Exists(configs[3]))
+            if (File.Exists(asset[3]))
             {
-                string config3 = File.ReadAllText(configs[3]);
+                string config3 = File.ReadAllText(asset[3]);
                 customArgsBox.Text = config3;
             }
 
             // load config4
-            if (File.Exists(configs[4]))
+            if (File.Exists(asset[4]))
             {
-                string config4 = File.ReadAllText(configs[4]);
+                string config4 = File.ReadAllText(asset[4]);
                 applyCodecs.Checked = config4 == "1" ? true : false;
             }
 
             // load config5
-            if (File.Exists(configs[5]))
+            if (File.Exists(asset[5]))
             {
-                string config5 = File.ReadAllText(configs[5]);
+                string config5 = File.ReadAllText(asset[5]);
                 gifResolution.Text = config5;
             }
             else
@@ -111,9 +112,9 @@ namespace MediaDownloader
             }
 
             // load config6
-            if (File.Exists(configs[6]))
+            if (File.Exists(asset[6]))
             {
-                string config6 = File.ReadAllText(configs[6]);
+                string config6 = File.ReadAllText(asset[6]);
                 gifFramerate.Text = config6;
             }
             else
@@ -124,7 +125,7 @@ namespace MediaDownloader
             }
 
             // load config_switch
-            useConfig.Checked = File.Exists(configs[7]) ? true : false;
+            useConfig.Checked = File.Exists(asset[7]) ? true : false;
 
             // configure tooltips
             programToolTip.SetToolTip(minimizeButton, "Minimize");
@@ -176,7 +177,7 @@ namespace MediaDownloader
                 }
             }
 
-            if (File.Exists("mediadownloader\\yt-dlp.exe"))
+            if (File.Exists(asset[10]))
             {
                 ytdlpCheck = true;
 
@@ -186,10 +187,11 @@ namespace MediaDownloader
             {
                 MessageBox.Show("\"yt-dlp.exe\" not found! Exiting MediaDownloader.");
 
-                // delete mediadownloader.bat
+                // delete mediadownloader.bat and warn file
                 try
                 {
-                    File.Delete("mediadownloader\\md.bat");
+                    File.Delete(asset[8]);
+                    File.Delete(asset[9]);
                 }
                 catch
                 {
@@ -199,7 +201,7 @@ namespace MediaDownloader
                 Environment.Exit(1);
             }
 
-            if (File.Exists("mediadownloader\\ffmpeg.exe"))
+            if (File.Exists(asset[11]))
             {
                 ffmpegCheck = true;
 
@@ -209,10 +211,11 @@ namespace MediaDownloader
             {
                 MessageBox.Show("\"ffmpeg.exe\" not found! Exiting MediaDownloader.");
 
-                // delete mediadownloader.bat
+                // delete mediadownloader.bat and
                 try
                 {
-                    File.Delete("mediadownloader\\md.bat");
+                    File.Delete(asset[8]);
+                    File.Delete(asset[9]);
                 }
                 catch
                 {
@@ -295,44 +298,44 @@ namespace MediaDownloader
         {
             if (useConfig.Checked == true)
             {
-                File.WriteAllText(configs[7], "");
+                File.WriteAllText(asset[7], "");
 
-                File.WriteAllText(configs[0], "");
-                File.WriteAllText(configs[1], "");
-                File.WriteAllText(configs[2], "");
-                File.WriteAllText(configs[3], "");
-                File.WriteAllText(configs[4], "");
-                File.WriteAllText(configs[5], "");
-                File.WriteAllText(configs[6], "");
+                File.WriteAllText(asset[0], "");
+                File.WriteAllText(asset[1], "");
+                File.WriteAllText(asset[2], "");
+                File.WriteAllText(asset[3], "");
+                File.WriteAllText(asset[4], "");
+                File.WriteAllText(asset[5], "");
+                File.WriteAllText(asset[6], "");
 
                 // write config0
                 string config0 = inputBox.Text;
-                File.WriteAllText(configs[0], config0);
+                File.WriteAllText(asset[0], config0);
 
                 // write config1
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText(configs[1], config1);
+                File.WriteAllText(asset[1], config1);
 
                 // write config2
                 string config2 = selLoc;
-                File.WriteAllText(configs[2], config2);
+                File.WriteAllText(asset[2], config2);
 
                 // write config3
                 string config3 = customArgsBox.Text;
-                File.WriteAllText(configs[3], config3);
+                File.WriteAllText(asset[3], config3);
 
                 // write config4
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText(configs[4], config4);
+                File.WriteAllText(asset[4], config4);
 
                 // write config5
                 string config5 = gifResolution.Text;
-                File.WriteAllText(configs[5], config5);
+                File.WriteAllText(asset[5], config5);
 
                 // write config6
                 string config6 = gifFramerate.Text;
-                File.WriteAllText(configs[6], config6);
+                File.WriteAllText(asset[6], config6);
             }
         }
 
@@ -343,7 +346,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config0 = inputBox.Text;
-                File.WriteAllText(configs[0], config0);
+                File.WriteAllText(asset[0], config0);
             }
         }
 
@@ -355,7 +358,7 @@ namespace MediaDownloader
             {
                 int config1_int = formatBox.SelectedIndex;
                 string config1 = config1_int.ToString();
-                File.WriteAllText(configs[1], config1);
+                File.WriteAllText(asset[1], config1);
             }
         }
 
@@ -366,7 +369,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config3 = customArgsBox.Text;
-                File.WriteAllText(configs[3], config3);
+                File.WriteAllText(asset[3], config3);
             }
         }
 
@@ -377,7 +380,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config4 = applyCodecs.Checked == true ? "1" : "";
-                File.WriteAllText(configs[4], config4);
+                File.WriteAllText(asset[4], config4);
             }
         }
 
@@ -388,7 +391,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config5 = gifResolution.Text;
-                File.WriteAllText(configs[5], config5);
+                File.WriteAllText(asset[5], config5);
             }
         }
 
@@ -399,7 +402,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config6 = gifFramerate.Text;
-                File.WriteAllText(configs[6], config6);
+                File.WriteAllText(asset[6], config6);
             }
         }
 
@@ -431,15 +434,15 @@ namespace MediaDownloader
             // reset configs
             if (useConfig.Checked == true)
             {
-                File.WriteAllText(configs[0], "");
+                File.WriteAllText(asset[0], "");
                 int config1_int = 6;
                 string config1 = config1_int.ToString();
-                File.WriteAllText(configs[1], config1);
-                File.WriteAllText(configs[2], "");
-                File.WriteAllText(configs[3], "");
-                File.WriteAllText(configs[4], "");
-                File.WriteAllText(configs[5], "400");
-                File.WriteAllText(configs[6], "20");
+                File.WriteAllText(asset[1], config1);
+                File.WriteAllText(asset[2], "");
+                File.WriteAllText(asset[3], "");
+                File.WriteAllText(asset[4], "");
+                File.WriteAllText(asset[5], "400");
+                File.WriteAllText(asset[6], "20");
             }
         }
 
@@ -459,7 +462,7 @@ namespace MediaDownloader
                 {
                     // on change write to config2
                     string config2 = selLoc;
-                    File.WriteAllText(configs[2], config2);
+                    File.WriteAllText(asset[2], config2);
                 }
             }
         }
@@ -482,7 +485,7 @@ namespace MediaDownloader
             if (useConfig.Checked == true)
             {
                 string config2 = selLoc;
-                File.WriteAllText(configs[2], config2);
+                File.WriteAllText(asset[2], config2);
             }
         }
 
@@ -496,7 +499,7 @@ namespace MediaDownloader
             }
             else
             {
-                dlScr = srtArgs + "--list-formats " + inputBox.Text + "\necho.\npause";
+                mdScr = srtArgs + "--list-formats " + inputBox.Text + "\necho.\npause";
                 runBat();
             }
         }
@@ -504,7 +507,70 @@ namespace MediaDownloader
         // download button
         private void downloadButton_Click(object sender, EventArgs e)
         {
-            // download button
+            // configure variables
+            string url = inputBox.Text;
+            string customArgs = customArgsBox.Text;
+            string gifR = gifResolution.Text;
+            string gifF = gifFramerate.Text;
+            int form = formatBox.SelectedIndex;
+
+            // generate a random id
+            string numbers = "1234567890";
+            var stringNumbers = new char[8];
+            var randomNumbers = new Random();
+            for (int i = 0; i < stringNumbers.Length; i++)
+            {
+                stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
+            }
+            string rndId = new String(stringNumbers);
+
+            #region scriptDictionary
+
+            // (raw) video
+            string rawVideo = srtArgs + "--path \"" + selLoc + "\" " + url;
+            string rawVideo_useDefLoc = srtArgs + "--path " + @"..\Downloads " + url;
+
+            // mp4
+            string mp4 = srtArgs + "--remux-video mp4 --path \"" + selLoc + "\" " + url;
+            string mp4_useDefLoc = srtArgs + "--remux-video mp4 --path " + @"..\Downloads " + url;
+            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac \"" + selLoc + @"\converted_download_" + rndId + ".mp4\"\n" + @"del /f tmp_dl0.mp4";
+            string mp4_applyCodecs_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + rndId + ".mp4\n" + @"del /f tmp_dl0.mp4";
+
+            // webm
+            string webm = srtArgs + "--remux-video webm --path \"" + selLoc + "\" " + url;
+            string webm_useDefLoc = srtArgs + "--remux-video webm --path " + @"..\Downloads " + url;
+            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".webm\"\n" + @"del /f tmp_dl0.webm";
+            string webm_applyCodecs_useDefLoc = srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".webm\n" + @"del /f tmp_dl0.webm";
+
+            // gif
+            string gif = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
+            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 " + @"..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4";
+
+            // gif (web)
+            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
+            string gifWeb_useDefLoc = "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4";
+
+            // (raw) audio
+            string rawAudio = srtArgs + "-x --path \"" + selLoc + "\" " + url;
+            string rawAudio_useDefLoc = srtArgs + "-x --path " + @"..\Downloads " + url;
+
+            // mp3
+            string mp3 = srtArgs + "-x --audio-format mp3 --path \"" + selLoc + "\" " + url;
+            string mp3_useDefLoc = srtArgs + "-x --audio-format mp3 --path " + @"..\Downloads " + url;
+
+            // wav
+            string wav = srtArgs + "-x --audio-format wav --path \"" + selLoc + "\" " + url;
+            string wav_useDefLoc = srtArgs + "-x --audio-format wav --path " + @"..\Downloads " + url;
+
+            // ogg
+            string ogg = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dld1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".ogg\"" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3";
+            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dl1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".ogg" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3";
+
+            // (Custom Arguments)
+            string customArguments = srtArgs + "--path \"" + selLoc + "\"" + " " + customArgs + " " + url;
+            string customArguments_useDefLoc = srtArgs + "--path " + @"..\Downloads " + customArgs + " " + url;
+
+            #endregion
 
             // ensure user specifies valid url
             if (inputBox.Text == "")
@@ -513,12 +579,6 @@ namespace MediaDownloader
             }
             else
             {
-                // configure variables
-                string url = inputBox.Text;
-                int form = formatBox.SelectedIndex;
-                string gifR = gifResolution.Text;
-                string gifF = gifFramerate.Text;
-
                 // ensure user cannot select non-formats
                 if (form == 0 || form == 6 || form == 7 || form == 12 || form == 13)
                 {
@@ -526,16 +586,6 @@ namespace MediaDownloader
                 }
                 else
                 {
-                    // generate a random id
-                    string numbers = "1234567890";
-                    var stringNumbers = new char[8];
-                    var randomNumbers = new Random();
-                    for (int i = 0; i < stringNumbers.Length; i++)
-                    {
-                        stringNumbers[i] = numbers[randomNumbers.Next(numbers.Length)];
-                    }
-                    string rndId = new String(stringNumbers);
-
                     // configure and execute download script
                     if (applyCodecs.Checked == true)
                     {
@@ -548,13 +598,13 @@ namespace MediaDownloader
                         // mp4
                         if (form == 2)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac " + @"..\Downloads\converted_download_" + rndId + ".mp4\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:v h264 -c:a aac \"" + selLoc + @"\converted_download_" + rndId + ".mp4\"\n" + @"del /f tmp_dl0.mp4";
+                            mdScr = useDefLoc == true ? mp4_applyCodecs_useDefLoc : mp4_applyCodecs;
                         }
 
                         // webm
                         if (form == 3)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".webm\n" + @"del /f tmp_dl0.webm" : srtArgs + "--remux-video webm -o \"tmp_dl0.webm\" " + url + "\nffmpeg.exe -i tmp_dl0.webm -c:v vp9 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".webm\"\n" + @"del /f tmp_dl0.webm";
+                            mdScr = useDefLoc == true ? webm_applyCodecs_useDefLoc : webm_applyCodecs;
                         }
                     }
                     else
@@ -562,68 +612,68 @@ namespace MediaDownloader
                         // (raw) video
                         if (form == 1)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--path " + @"..\Downloads " + url : srtArgs + "--path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? rawVideo_useDefLoc : rawVideo;
                         }
 
                         // mp4
                         if (form == 2)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 --path " + @"..\Downloads " + url : srtArgs + "--remux-video mp4 --path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? mp4_useDefLoc : mp4;
                         }
 
                         // webm
                         if (form == 3)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video webm --path " + @"..\Downloads " + url : srtArgs + "--remux-video webm --path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? webm_useDefLoc : webm;
                         }
 
                         // gif
                         if (form == 4)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 " + @"..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
+                            mdScr = useDefLoc == true ? gif_useDefLoc : gif;
                         }
 
                         // gif (web)
                         if (form == 5)
                         {
-                            if (gifResolution.Text == "" || gifFramerate.Text == "")
+                            if (gifR == "" || gifF == "")
                             {
                                 MessageBox.Show("Please provide valid resolution and framerate values.");
                             }
                             else
                             {
-                                dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + rndId + ".gif\n" + @"del /f tmp_dl0.mp4" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + rndId + ".gif\"\n" + @"del /f tmp_dl0.mp4";
+                                mdScr = useDefLoc == true ? gifWeb_useDefLoc : gifWeb;
                             }
                         }
 
                         // (raw) audio
                         if (form == 8)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "-x --path " + @"..\Downloads " + url : srtArgs + "-x --path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? rawAudio_useDefLoc : rawAudio;
                         }
 
                         // mp3
                         if (form == 9)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "-x --audio-format mp3 --path " + @"..\Downloads " + url : srtArgs + "-x --audio-format mp3 --path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? mp3_useDefLoc : mp3;
                         }
 
                         // wav
                         if (form == 10)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "-x --audio-format wav --path " + @"..\Downloads " + url : srtArgs + "-x --audio-format wav --path \"" + selLoc + "\" " + url;
+                            mdScr = useDefLoc == true ? wav_useDefLoc : wav;
                         }
 
                         // ogg
                         if (form == 11)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dl1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + rndId + ".ogg" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3" : srtArgs + "--remux-video mp4 -o \"tmp_dl0.mp4\" " + url + "\nffmpeg.exe -i tmp_dl0.mp4 -c:a libmp3lame tmp_dl1.mp3" + "\nffmpeg.exe -i tmp_dld1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + rndId + ".ogg\"" + "\ndel /f tmp_dl0.mp4" + "\ndel /f tmp_dl1.mp3";
+                            mdScr = useDefLoc == true ? ogg_useDefLoc : ogg;
                         }
 
                         // (Custom DL Arguments)
                         if (form == 14)
                         {
-                            dlScr = useDefLoc == true ? srtArgs + "--path " + @"..\Downloads " + customArgsBox.Text + " " + url : srtArgs + "--path \"" + selLoc + "\"" + " " + customArgsBox.Text + " " + url;
+                            mdScr = useDefLoc == true ? customArguments_useDefLoc : customArguments;
                         }
                     }
 
@@ -650,7 +700,7 @@ namespace MediaDownloader
             // write batch script
             try
             {
-                File.WriteAllText("mediadownloader\\md.bat", dlScr);
+                File.WriteAllText(asset[8], mdScr);
             }
             catch
             {
@@ -667,13 +717,14 @@ namespace MediaDownloader
         private void clnFiles()
         {
             // clean temp files
+            string[] asset_fix = asset.Select(x => x.Replace("mediadownloader\\", "")).ToArray();
             if (Directory.Exists("mediadownloader"))
             {
                 string[] files = Directory.GetFiles("mediadownloader");
                 foreach (string file in files)
                 {
-                    var f = new FileInfo(file).Name;
-                    if (f != "yt-dlp.exe" & f != "ffmpeg.exe" & f != "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED" & f != "cfg_sw" & f != "cfg0" & f != "cfg1" & f != "cfg2" & f != "cfg3" & f != "cfg4" & f != "cfg5" & f != "cfg6")
+                    var f = new FileInfo(file).Name; 
+                    if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & /*f != asset_fix[8] & */f != asset_fix[9] & f != asset_fix[10] & f != asset_fix[11])
                     {
                         try
                         {
@@ -692,15 +743,15 @@ namespace MediaDownloader
             {
                 try
                 {
-                    File.Delete(configs[7]);
+                    File.Delete(asset[7]);
 
-                    File.Delete(configs[0]);
-                    File.Delete(configs[1]);
-                    File.Delete(configs[2]);
-                    File.Delete(configs[3]);
-                    File.Delete(configs[4]);
-                    File.Delete(configs[5]);
-                    File.Delete(configs[6]);
+                    File.Delete(asset[0]);
+                    File.Delete(asset[1]);
+                    File.Delete(asset[2]);
+                    File.Delete(asset[3]);
+                    File.Delete(asset[4]);
+                    File.Delete(asset[5]);
+                    File.Delete(asset[6]);
                 }
                 catch
                 {
