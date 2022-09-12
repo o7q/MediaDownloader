@@ -1,6 +1,10 @@
-~ 3.4.3
+~ 3.5.0
+- New option to enable GPU acceleration (by default, it uses the "h264_nvenc" nvidia encoder)
+- Changed the way IDs are generated (uses date and time instead of a random string)
+- Added anti-spam protection (you can't accidently double click the download button)
+- Fixed the ogg downloader (using a custom directory prevented the ogg files from being downloaded)
 - Added a script code dictionary (used for easy debugging)
-- Slight UI color updates
+- Minor UI change
 
 ~ v3.4.2
 - Shortened program file names

@@ -60,6 +60,9 @@
             this.openLocationButton = new System.Windows.Forms.Button();
             this.ytdlpGithubButton = new System.Windows.Forms.Button();
             this.githubButton = new System.Windows.Forms.Button();
+            this.useGpu = new System.Windows.Forms.CheckBox();
+            this.codecLabel = new System.Windows.Forms.Label();
+            this.gpuEncoder = new System.Windows.Forms.TextBox();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -79,11 +82,11 @@
             // 
             this.urlLabel.AutoSize = true;
             this.urlLabel.BackColor = System.Drawing.Color.Transparent;
-            this.urlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.urlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urlLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
-            this.urlLabel.Location = new System.Drawing.Point(5, 42);
+            this.urlLabel.Location = new System.Drawing.Point(4, 41);
             this.urlLabel.Name = "urlLabel";
-            this.urlLabel.Size = new System.Drawing.Size(24, 12);
+            this.urlLabel.Size = new System.Drawing.Size(29, 13);
             this.urlLabel.TabIndex = 0;
             this.urlLabel.Text = "URL";
             // 
@@ -122,7 +125,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.4.3";
+            this.versionLabel.Text = "v3.5.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -182,11 +185,11 @@
             // 
             this.formatLabel.AutoSize = true;
             this.formatLabel.BackColor = System.Drawing.Color.Transparent;
-            this.formatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.formatLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(128)))));
-            this.formatLabel.Location = new System.Drawing.Point(4, 80);
+            this.formatLabel.Location = new System.Drawing.Point(4, 79);
             this.formatLabel.Name = "formatLabel";
-            this.formatLabel.Size = new System.Drawing.Size(35, 12);
+            this.formatLabel.Size = new System.Drawing.Size(39, 13);
             this.formatLabel.TabIndex = 0;
             this.formatLabel.Text = "Format";
             // 
@@ -249,7 +252,7 @@
             this.customArgsLabel.AutoSize = true;
             this.customArgsLabel.BackColor = System.Drawing.Color.Transparent;
             this.customArgsLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customArgsLabel.Location = new System.Drawing.Point(233, 78);
+            this.customArgsLabel.Location = new System.Drawing.Point(233, 79);
             this.customArgsLabel.Name = "customArgsLabel";
             this.customArgsLabel.Size = new System.Drawing.Size(112, 13);
             this.customArgsLabel.TabIndex = 0;
@@ -345,7 +348,7 @@
             this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetConfig.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.resetConfig.Image = ((System.Drawing.Image)(resources.GetObject("resetConfig.Image")));
-            this.resetConfig.Location = new System.Drawing.Point(205, 170);
+            this.resetConfig.Location = new System.Drawing.Point(204, 170);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
             this.resetConfig.TabIndex = 14;
@@ -357,7 +360,7 @@
             this.gifQualityLabel.AutoSize = true;
             this.gifQualityLabel.BackColor = System.Drawing.Color.Transparent;
             this.gifQualityLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.gifQualityLabel.Location = new System.Drawing.Point(234, 124);
+            this.gifQualityLabel.Location = new System.Drawing.Point(234, 125);
             this.gifQualityLabel.Name = "gifQualityLabel";
             this.gifQualityLabel.Size = new System.Drawing.Size(82, 13);
             this.gifQualityLabel.TabIndex = 0;
@@ -392,7 +395,7 @@
             this.rLabel.AutoSize = true;
             this.rLabel.BackColor = System.Drawing.Color.Transparent;
             this.rLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rLabel.ForeColor = System.Drawing.Color.IndianRed;
+            this.rLabel.ForeColor = System.Drawing.Color.LightCoral;
             this.rLabel.Location = new System.Drawing.Point(235, 139);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(15, 12);
@@ -404,7 +407,7 @@
             this.fLabel.AutoSize = true;
             this.fLabel.BackColor = System.Drawing.Color.Transparent;
             this.fLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fLabel.ForeColor = System.Drawing.Color.IndianRed;
+            this.fLabel.ForeColor = System.Drawing.Color.LightCoral;
             this.fLabel.Location = new System.Drawing.Point(290, 139);
             this.fLabel.Name = "fLabel";
             this.fLabel.Size = new System.Drawing.Size(14, 12);
@@ -456,6 +459,45 @@
             this.githubButton.UseVisualStyleBackColor = false;
             this.githubButton.Click += new System.EventHandler(this.githubButton_Click);
             // 
+            // useGpu
+            // 
+            this.useGpu.AutoSize = true;
+            this.useGpu.BackColor = System.Drawing.Color.Transparent;
+            this.useGpu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useGpu.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useGpu.ForeColor = System.Drawing.Color.YellowGreen;
+            this.useGpu.Location = new System.Drawing.Point(236, 153);
+            this.useGpu.Name = "useGpu";
+            this.useGpu.Size = new System.Drawing.Size(114, 16);
+            this.useGpu.TabIndex = 18;
+            this.useGpu.Text = "Use GPU Acceleration";
+            this.useGpu.UseVisualStyleBackColor = false;
+            this.useGpu.CheckedChanged += new System.EventHandler(this.useGpu_CheckedChanged);
+            // 
+            // codecLabel
+            // 
+            this.codecLabel.AutoSize = true;
+            this.codecLabel.BackColor = System.Drawing.Color.Transparent;
+            this.codecLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codecLabel.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.codecLabel.Location = new System.Drawing.Point(233, 168);
+            this.codecLabel.Name = "codecLabel";
+            this.codecLabel.Size = new System.Drawing.Size(42, 12);
+            this.codecLabel.TabIndex = 0;
+            this.codecLabel.Text = "Encoder:";
+            // 
+            // gpuEncoder
+            // 
+            this.gpuEncoder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gpuEncoder.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gpuEncoder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpuEncoder.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.gpuEncoder.Location = new System.Drawing.Point(275, 168);
+            this.gpuEncoder.Name = "gpuEncoder";
+            this.gpuEncoder.Size = new System.Drawing.Size(66, 13);
+            this.gpuEncoder.TabIndex = 19;
+            this.gpuEncoder.TextChanged += new System.EventHandler(this.gpuEncoder_TextChanged);
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,6 +506,9 @@
             this.BackgroundImage = global::MediaDownloader.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
+            this.Controls.Add(this.gpuEncoder);
+            this.Controls.Add(this.codecLabel);
+            this.Controls.Add(this.useGpu);
             this.Controls.Add(this.openLocationButton);
             this.Controls.Add(this.fLabel);
             this.Controls.Add(this.rLabel);
@@ -494,6 +539,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "program";
             this.Text = "MediaDownloader";
+            this.Activated += new System.EventHandler(this.program_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
             this.Load += new System.EventHandler(this.program_Load);
             this.titlebarPanel.ResumeLayout(false);
@@ -536,5 +582,8 @@
         private System.Windows.Forms.Button openLocationButton;
         private System.Windows.Forms.Button ytdlpGithubButton;
         private System.Windows.Forms.Button githubButton;
+        private System.Windows.Forms.CheckBox useGpu;
+        private System.Windows.Forms.Label codecLabel;
+        private System.Windows.Forms.TextBox gpuEncoder;
     }
 }
