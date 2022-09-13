@@ -1,16 +1,18 @@
-~ 3.5.0
+~ v3.5.0
 - New option to enable GPU acceleration (by default, it uses the "h264_nvenc" nvidia encoder)
-- Changed the way IDs are generated (uses date and time instead of a random string)
-- Added anti-spam protection (you can't accidently double click the download button)
+- Visual update for the command prompt (has fancy ascii art and it shows the stage of the download/conversion process)
 - Fixed the ogg downloader (using a custom directory prevented the ogg files from being downloaded)
-- Added a script code dictionary (used for easy debugging)
-- Minor UI change
+- Added anti-spam protection (you can't accidently double click the download button)
+- Changed the way IDs are generated (uses date and time instead of a random string)
+- If the custom directory does not exist it will revert to the default directory
+- Code update (added a script code and asset dictionary (used for easy debugging), added a string repeater function)
+- Minor UI changes
 
 ~ v3.4.2
 - Shortened program file names
 - Fixed typos
 - Update to yt-dlp 2022.09.01
-- Updated to ffmpeg 5.5.1 from gyan.dev
+- Updated to ffmpeg 5.1.1 from gyan.dev
 
 ~ v3.4.1
 - Now using the MIT license
@@ -27,8 +29,8 @@
 - Removed "versioning.txt"
 
 ~ v3.3.2
-- Added warning if the user trys to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)
-- Optimise clnFiles function exception handler (try-catch)
+- Added warning if the user tries to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)
+- Optimize clnFiles function exception handler (try-catch)
 - Updated to yt-dlp 2022.08.08
 
 ~ v3.3.1
@@ -102,7 +104,7 @@
 - Updated the info messagebox with helpful information on how to update yt-dlp
 
 ~ v2.0
-- Now uses yt-dlp instead of depricated youtube-dl (enabling faster download speeds, higher quality downloads (for example, a 4k video), a larger selection of arguments/download options, and more.)
+- Now uses yt-dlp instead of deprecated youtube-dl (enabling faster download speeds, higher quality downloads (for example, a 4k video), a larger selection of arguments/download options, and more.)
 - Running yt-dlp 2022.05.18
 - Running ffmpeg 5.0.1 from gyan.dev
 - More features

@@ -61,6 +61,18 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  __  __        _ _      ___                  _              _
+        ///|  \/  |___ __| (_)__ _|   \ _____ __ ___ _ | |___  __ _ __| |___ _ _
+        ///| |\/| / -_) _` | / _` | |) / _ \ V  V / &apos; \| / _ \/ _` / _` / -_) &apos;_|
+        ///|_|  |_\___\__,_|_\__,_|___/\___/\_/\_/|_||_|_\___/\__,_\__,_\___|_|.
+        /// </summary>
+        internal static string asciiBanner {
+            get {
+                return ResourceManager.GetString("asciiBanner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap background {

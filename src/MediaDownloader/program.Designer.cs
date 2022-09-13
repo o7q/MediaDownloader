@@ -164,17 +164,17 @@
             "(raw video)",
             "mp4",
             "webm",
-            "gif (convert)",
-            "gif (web) (convert)",
+            "gif [ffmpeg]",
+            "gif (web) [ffmpeg]",
             "",
             "[Audio]",
             "(raw audio)",
             "mp3",
             "wav",
-            "ogg (convert)",
+            "ogg [ffmpeg]",
             "",
             "[Custom]",
-            "(Custom Arguments)"});
+            "(Custom DL Arguments)"});
             this.formatBox.Location = new System.Drawing.Point(7, 93);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(121, 21);
@@ -416,6 +416,9 @@
             // 
             // programToolTip
             // 
+            this.programToolTip.AutoPopDelay = 5000;
+            this.programToolTip.InitialDelay = 500;
+            this.programToolTip.ReshowDelay = 100;
             this.programToolTip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.programToolTip_Draw);
             // 
             // openLocationButton

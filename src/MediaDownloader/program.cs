@@ -11,8 +11,8 @@ namespace MediaDownloader
     public partial class program : Form
     {
         // configure mouse window events
-        public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+        public const int WM_NCLBUTTONDOWN = 0xA1;
 
         // grab dlls for mousedown
         [DllImportAttribute("user32.dll")]
@@ -22,13 +22,15 @@ namespace MediaDownloader
 
         // create global variables
 
+        // program attributes
+        string title;
+        const string ver = "v3.5.0";
+
         // batch configuration
-        string srtArgs = "@echo off\ncd mediadownloader\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
+        string srtArgs;
+        bool useDefLoc;
         string selLoc;
         string mdScr;
-
-        // use default location
-        bool useDefLoc;
 
         // redist check
         bool ytdlpCheck;
@@ -48,14 +50,15 @@ namespace MediaDownloader
             "mediadownloader\\cfg8", // 8
             "mediadownloader\\cfg_sw", // 9
             "mediadownloader\\md.bat", // 10
-            "mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", // 11
-            "mediadownloader\\yt-dlp.exe", // 12
-            "mediadownloader\\ffmpeg.exe" // 13
+            "mediadownloader\\mdAscii", // 11
+            "mediadownloader\\DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", // 12
+            "mediadownloader\\yt-dlp.exe", // 13
+            "mediadownloader\\ffmpeg.exe" // 14
         };
 
         // program events
 
-        // form initialize component
+        // program initialize component
         public program()
         {
             InitializeComponent();
@@ -64,7 +67,7 @@ namespace MediaDownloader
             try
             {
                 File.WriteAllText(asset[10], "");
-                File.WriteAllText(asset[11], "");
+                File.WriteAllText(asset[12], "");
             }
             catch
             {
@@ -157,24 +160,59 @@ namespace MediaDownloader
             // load config_switch
             useConfig.Checked = File.Exists(asset[9]) ? true : false;
 
+            // check if the custom directory is missing
+            if (!Directory.Exists(selLoc) && useDefLoc == false)
+            {
+                clrLoc();
+                directoryLabel.ForeColor = System.Drawing.Color.Brown;
+                directoryLabel.Text = "Directory no longer exists";
+            }
+
+            // create mdAscii
+            try
+            {
+                string asciiBanner = Properties.Resources.asciiBanner;
+                File.WriteAllText(asset[11], asciiBanner);
+            }
+            catch
+            {
+                // skip
+            }
+
+            // configure title
+            title = "\ntitle MediaDownloader " + ver + "     ";
+
+            // configure starting arguments
+            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype mdAscii\necho    " + ver + "\necho" + strRep(" ", 72) + "by o7q\necho.\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
+
             // configure tooltips
+            programToolTip.SetToolTip(bannerPicture, "MediaDownloader by o7q");
+            programToolTip.SetToolTip(versionLabel, "Running " + ver);
             programToolTip.SetToolTip(minimizeButton, "Minimize");
             programToolTip.SetToolTip(exitButton, "Close");
-            programToolTip.SetToolTip(inputBox, "URL to be downloaded");
-            programToolTip.SetToolTip(formatBox, "Media format for download");
+            string urlTT = "URL to be downloaded";
+            programToolTip.SetToolTip(urlLabel, urlTT);
+            programToolTip.SetToolTip(inputBox, urlTT);
+            string formTT = "Media format for download";
+            programToolTip.SetToolTip(formatLabel, formTT);
+            programToolTip.SetToolTip(formatBox, formTT);
             programToolTip.SetToolTip(downloadButton, "Download from the URL with the specified arguments");
             programToolTip.SetToolTip(locationButton, "Change folder location for download");
             programToolTip.SetToolTip(openLocationButton, "Open the selected download location in Windows Explorer");
             programToolTip.SetToolTip(clearLocationButton, "Reset the selected download location");
-            programToolTip.SetToolTip(directoryLabel, "Currently selected download location");
+            programToolTip.SetToolTip(directoryLabel, "Currently selected download location [" + selLoc + "]");
+            programToolTip.SetToolTip(advancedLabel, "Slightly more advanced settings");
             programToolTip.SetToolTip(viewAvailableFormatsButton, "Display all the available media formats found on the server for the specified URL");
-            programToolTip.SetToolTip(githubButton, "Open the MediaDownloader github repository in the default web browser");
             programToolTip.SetToolTip(infoButton, "Display info about MediaDownloader");
+            programToolTip.SetToolTip(githubButton, "Open the MediaDownloader github repository in the default web browser");
             programToolTip.SetToolTip(ytdlpGithubButton, "Open the yt-dlp github repository in the default web browser");
             programToolTip.SetToolTip(applyCodecs, "Apply valid video codecs after the video is downloaded (encodes using ffmpeg on the CPU) - This can fix problems with importing videos into some software - (this feature is very slow and it only supports mp4 and webm, does not work while \"Use GPU Acceleration\" is enabled)");
             programToolTip.SetToolTip(useConfig, "Save all current component states to config files - If enabled, then on program startup all component states will be restored");
             programToolTip.SetToolTip(resetConfig, "Clear all component states");
-            programToolTip.SetToolTip(customArgsBox, "Custom arguments for yt-dlp (not for ffmpeg)");
+            string cstmArgTT = "Custom arguments for yt-dlp (not for ffmpeg)";
+            programToolTip.SetToolTip(customArgsLabel, cstmArgTT);
+            programToolTip.SetToolTip(customArgsBox, cstmArgTT);
+            programToolTip.SetToolTip(gifQualityLabel, "Quality settings for gif (web)");
             string rTT = "Width resolution for gif (web) - Keeps ratio (ffmpeg args = r:-1)";
             programToolTip.SetToolTip(rLabel, rTT);
             programToolTip.SetToolTip(gifResolution, rTT);
@@ -187,12 +225,21 @@ namespace MediaDownloader
             programToolTip.SetToolTip(gpuEncoder, cTT);
 
             // configure tooltip draw
+            programToolTip.AutoPopDelay = 10000;
             programToolTip.OwnerDraw = true;
             programToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
         }
 
-        // form load
+        // draw tooltips
+        private void programToolTip_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+
+        // program load
         private void program_Load(object sender, EventArgs e)
         {
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
@@ -208,7 +255,7 @@ namespace MediaDownloader
                 }
             }
 
-            if (File.Exists(asset[12]))
+            if (File.Exists(asset[13]))
             {
                 ytdlpCheck = true;
 
@@ -222,7 +269,7 @@ namespace MediaDownloader
                 try
                 {
                     File.Delete(asset[10]);
-                    File.Delete(asset[11]);
+                    File.Delete(asset[12]);
                 }
                 catch
                 {
@@ -232,7 +279,7 @@ namespace MediaDownloader
                 Environment.Exit(1);
             }
 
-            if (File.Exists(asset[13]))
+            if (File.Exists(asset[14]))
             {
                 ffmpegCheck = true;
 
@@ -246,7 +293,7 @@ namespace MediaDownloader
                 try
                 {
                     File.Delete(asset[10]);
-                    File.Delete(asset[11]);
+                    File.Delete(asset[12]);
                 }
                 catch
                 {
@@ -270,15 +317,7 @@ namespace MediaDownloader
             }
         }
 
-        // draw tooltips
-        private void programToolTip_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawBorder();
-            e.DrawText();
-        }
-
-        // form activated
+        // program activated
         private void program_Activated(object sender, EventArgs e)
         {
             downloadButton.ForeColor = System.Drawing.Color.LimeGreen;
@@ -460,8 +499,11 @@ namespace MediaDownloader
             if (selectLocation.ShowDialog() == DialogResult.OK)
             {
                 selLoc = selectLocation.SelectedPath;
-                directoryLabel.Text = selLoc;
                 useDefLoc = selLoc == "" ? true : false;
+
+                directoryLabel.Text = selLoc;
+                programToolTip.SetToolTip(directoryLabel, "Currently selected download location [" + selLoc + "]");
+                directoryLabel.ForeColor = System.Drawing.Color.ForestGreen;
 
                 if (useConfig.Checked == true)
                 {
@@ -482,16 +524,7 @@ namespace MediaDownloader
         // clear location button
         private void clearLocationButton_Click(object sender, EventArgs e)
         {
-            // clears selected location
-            useDefLoc = true;
-            selLoc = "";
-            directoryLabel.Text = "";
-
-            if (useConfig.Checked == true)
-            {
-                string config2 = selLoc;
-                File.WriteAllText(asset[2], config2);
-            }
+            clrLoc();
         }
 
         // apply codecs checkbox
@@ -570,6 +603,8 @@ namespace MediaDownloader
             }
         }
 
+        // execute buttons
+
         // view available formats button
         private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
         {
@@ -598,9 +633,15 @@ namespace MediaDownloader
             int form = formatBox.SelectedIndex;
 
             // generate a date id
-            string dID = DateTime.Now.ToString("Mdy-hms");
+            string dID = DateTime.Now.ToString("[Mdy-hms]");
 
             #region scriptDictionary
+
+            // stages
+            string encodePass = "ENCODING - PASS";
+            string ffStage1 = "[" + encodePass + "1]\n";
+            string ffStage2 = "[" + encodePass + "2]\n";
+            string GPU_ffStage1 = "[GPU " + encodePass + "1]\n";
 
             // (raw) video
             string rawVideo = srtArgs + "--path \"" + selLoc + "\" " + url;
@@ -609,24 +650,24 @@ namespace MediaDownloader
             // mp4
             string mp4 = srtArgs + "--remux-video mp4 --path \"" + selLoc + "\" " + url;
             string mp4_useDefLoc = srtArgs + "--remux-video mp4 --path " + @"..\Downloads " + url;
-            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + @"..\Downloads\converted_download_" + dID + ".mp4\n" + @"del /f tmp0.mp4";
-            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + @"..\Downloads\converted_download_" + dID + ".mp4\n" + @"del / f tmp0.mp4";
-            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download_" + dID + ".mp4\"\n" + @"del /f tmp0.mp4";
-            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download_" + dID + ".mp4\"\n" + @"del /f tmp0.mp4"; ;
+            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + @"..\Downloads\converted_download" + dID + ".mp4\n" + @"del /f tmp0.mp4";
+            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + @"..\Downloads\converted_download" + dID + ".mp4\n" + @"del / f tmp0.mp4";
+            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4";
+            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4"; ;
 
             // webm
             string webm = srtArgs + "--remux-video webm --path \"" + selLoc + "\" " + url;
             string webm_useDefLoc = srtArgs + "--remux-video webm --path " + @"..\Downloads " + url;
-            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + "\nffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + @"..\Downloads\converted_download_" + dID + ".webm\n" + @"del /f tmp0.webm";
-            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + "\nffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + "\"" + selLoc + @"\converted_download_" + dID + ".webm\"\n" + @"del /f tmp0.webm";
+            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + @"..\Downloads\converted_download" + dID + ".webm\n" + @"del /f tmp0.webm";
+            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".webm\"\n" + @"del /f tmp0.webm";
 
             // gif
-            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 \"" + selLoc + @"\converted_download_" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
-            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 " + @"..\Downloads\converted_download_" + dID + ".gif\n" + @"del /f tmp0.mp4";
+            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 \"" + selLoc + @"\converted_download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
+            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 " + @"..\Downloads\converted_download" + dID + ".gif\n" + @"del /f tmp0.mp4";
 
             // gif (web)
-            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download_" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
-            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download_" + dID + ".gif\n" + @"del /f tmp0.mp4";
+            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
+            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download" + dID + ".gif\n" + @"del /f tmp0.mp4";
 
             // (raw) audio
             string rawAudio = srtArgs + "-x --path \"" + selLoc + "\" " + url;
@@ -641,8 +682,8 @@ namespace MediaDownloader
             string wav_useDefLoc = srtArgs + "-x --audio-format wav --path " + @"..\Downloads " + url;
 
             // ogg
-            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + "\nffmpeg.exe -i tmp1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download_" + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
-            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + "\nffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + "\nffmpeg.exe -i tmp1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download_" + dID + ".ogg" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -i tmp1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download" + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -i tmp1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download" + dID + ".ogg" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
 
             // (Custom Arguments)
             string customArguments = srtArgs + "--path \"" + selLoc + "\"" + " " + customArgs + " " + url;
@@ -686,6 +727,7 @@ namespace MediaDownloader
                             mdScr = useDefLoc == true ? webm_useDefLoc_applyCodecs : webm_applyCodecs;
                         }
                     }
+
                     if (useGpu.Checked == true)
                     {
                         // mp4
@@ -699,6 +741,7 @@ namespace MediaDownloader
                             mdScr = useDefLoc == true ? mp4_useDefLoc_useGpu : mp4_useGpu;
                         }
                     }
+
                     if (applyCodecs.Checked != true && useGpu.Checked != true)
                     {
                         // (raw) video
@@ -769,6 +812,7 @@ namespace MediaDownloader
                             mdScr = useDefLoc == true ? customArguments_useDefLoc : customArguments;
                         }
                     }
+
                     if (mdScr != null)
                     {
                         bool progOpen = false;
@@ -782,6 +826,10 @@ namespace MediaDownloader
                         if (progOpen == false)
                         {
                             runBat();
+                        }
+                        else
+                        {
+                            downloadButton.ForeColor = System.Drawing.Color.DarkSeaGreen;
                         }
                     }
                 }
@@ -822,7 +870,7 @@ namespace MediaDownloader
                 foreach (string file in files)
                 {
                     var f = new FileInfo(file).Name;
-                    if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & */f != asset_fix[11] & f != asset_fix[12] & f != asset_fix[13])
+                    if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & f != asset_fix[11] & */f != asset_fix[12] & f != asset_fix[13] & f != asset_fix[14])
                     {
                         try
                         {
@@ -860,6 +908,21 @@ namespace MediaDownloader
             }
         }
 
+        // clear location function
+        private void clrLoc()
+        {
+            // clears selected location
+            useDefLoc = true;
+            selLoc = "";
+            directoryLabel.Text = "";
+
+            if (useConfig.Checked == true)
+            {
+                string config2 = selLoc;
+                File.WriteAllText(asset[2], config2);
+            }
+        }
+
         // move form on mousedown function
         private void mvFrm(MouseEventArgs e)
         {
@@ -868,6 +931,17 @@ namespace MediaDownloader
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        // string repeater function
+        string strRep(string charIn, int amount)
+        {
+            string output = "";
+            for (int i = 0; i < amount; i++)
+            {
+                output += charIn;
+            }
+            return output;
         }
 
         // titlebar panel sender
