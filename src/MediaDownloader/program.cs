@@ -93,19 +93,16 @@ namespace MediaDownloader
             if (File.Exists(asset[4])) applyCodecs.Checked = File.ReadAllText(asset[4]) == "1" ? true : false;
 
             // load config5
-            if (File.Exists(asset[5])) gifResolution.Text = File.ReadAllText(asset[5]);
-            else gifResolution.Text = "400";
+            if (File.Exists(asset[5])) gifResolution.Text = File.ReadAllText(asset[5]); else gifResolution.Text = "400";
 
             // load config6
-            if (File.Exists(asset[6])) gifFramerate.Text = File.ReadAllText(asset[6]);
-            else gifFramerate.Text = "20";
+            if (File.Exists(asset[6])) gifFramerate.Text = File.ReadAllText(asset[6]); else gifFramerate.Text = "20";
 
             // load config7
             if (File.Exists(asset[7])) useGpu.Checked = File.ReadAllText(asset[7]) == "1" ? true : false;
 
             // load config8
-            if (File.Exists(asset[8])) gpuEncoder.Text = File.ReadAllText(asset[8]);
-            else gpuEncoder.Text = "h264_nvenc";
+            if (File.Exists(asset[8])) gpuEncoder.Text = File.ReadAllText(asset[8]); else gpuEncoder.Text = "h264_nvenc";
 
             // load config_switch
             useConfig.Checked = File.Exists(asset[9]) ? true : false;
@@ -188,13 +185,8 @@ namespace MediaDownloader
                 if (prompt == DialogResult.No) Environment.Exit(0);
             }
 
-            if (File.Exists(asset[13])) ytdlpCheck = true;
-            else progChckFail("yt-dlp.exe");
-
-            if (File.Exists(asset[14])) ffmpegCheck = true;
-            else progChckFail("ffmpeg.exe");
-
-            // create downloads directory
+            if (File.Exists(asset[13])) ytdlpCheck = true; else progChckFail("yt-dlp.exe");
+            if (File.Exists(asset[14])) ffmpegCheck = true; else progChckFail("ffmpeg.exe");
             if (ytdlpCheck && ffmpegCheck) Directory.CreateDirectory("Downloads");
         }
 
@@ -572,8 +564,7 @@ namespace MediaDownloader
                     {
                         bool progOpen = false;
                         foreach (Process progOpenCheck in Process.GetProcesses()) progOpen = progOpenCheck.ProcessName.Contains("yt-dlp") || progOpenCheck.ProcessName.Contains("ffmpeg") ? true : false;
-                        if (progOpen == false) runBat();
-                        else downloadButton.ForeColor = System.Drawing.Color.DarkSeaGreen;
+                        if (progOpen == false) runBat(); else downloadButton.ForeColor = System.Drawing.Color.DarkSeaGreen;
                     }
                 }
             }
@@ -607,14 +598,12 @@ namespace MediaDownloader
                 foreach (string file in files)
                 {
                     var f = new FileInfo(file).Name;
-                    try { if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & f != asset_fix[11] & */f != asset_fix[12] & f != asset_fix[13] & f != asset_fix[14]) File.Delete(file); }
-                    catch { }
+                    try { if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & f != asset_fix[11] & */f != asset_fix[12] & f != asset_fix[13] & f != asset_fix[14]) File.Delete(file); } catch { }
                 }
             }
 
             // delete configs if use config is disabled
-            try { if (useConfig.Checked == false) for (int i = 0; i < 10; i++) File.Delete(asset[i]); }
-            catch { }
+            try { if (useConfig.Checked == false) for (int i = 0; i < 10; i++) File.Delete(asset[i]); } catch { }
         }
 
         // clear location function
