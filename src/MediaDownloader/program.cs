@@ -607,26 +607,14 @@ namespace MediaDownloader
                 foreach (string file in files)
                 {
                     var f = new FileInfo(file).Name;
-                    try
-                    {
-                        if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & f != asset_fix[11] & */f != asset_fix[12] & f != asset_fix[13] & f != asset_fix[14]) File.Delete(file);
-                    }
-                    catch
-                    {
-                        // skip
-                    }
+                    try { if (f != asset_fix[0] & f != asset_fix[1] & f != asset_fix[2] & f != asset_fix[3] & f != asset_fix[4] & f != asset_fix[5] & f != asset_fix[6] & f != asset_fix[7] & f != asset_fix[8] & f != asset_fix[9] & /*f != asset_fix[10] & f != asset_fix[11] & */f != asset_fix[12] & f != asset_fix[13] & f != asset_fix[14]) File.Delete(file); }
+                    catch { }
                 }
             }
 
             // delete configs if use config is disabled
-            try
-            {
-                if (useConfig.Checked == false) for (int i = 0; i < 10; i++) File.Delete(asset[i]);
-            }
-            catch
-            {
-                // skip
-            }
+            try { if (useConfig.Checked == false) for (int i = 0; i < 10; i++) File.Delete(asset[i]); }
+            catch { }
         }
 
         // clear location function
@@ -667,10 +655,7 @@ namespace MediaDownloader
                 File.Delete(asset[10]);
                 File.Delete(asset[12]);
             }
-            catch
-            {
-                // skip
-            }
+            catch { }
             Environment.Exit(1);
         }
 
