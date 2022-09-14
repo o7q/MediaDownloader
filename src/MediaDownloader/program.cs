@@ -64,8 +64,12 @@ namespace MediaDownloader
             InitializeComponent();
 
             // create mediadownloader.bat and warning files
-            File.WriteAllText(asset[10], "");
-            File.WriteAllText(asset[12], "");
+            try
+            {
+                File.WriteAllText(asset[10], "");
+                File.WriteAllText(asset[12], "");
+            }
+            catch { }
 
             // configure default variables
             formatBox.SelectedIndex = 6;
@@ -220,21 +224,18 @@ namespace MediaDownloader
         // info button
         private void infoButton_Click(object sender, EventArgs e)
         {
-            // read from infoText and open info panel
             MessageBox.Show(Properties.Resources.infoText);
         }
 
         // mediadownloader github button
         private void githubButton_Click(object sender, EventArgs e)
         {
-            // open mediadownloader github page in the default web browser
             Process.Start("https://github.com/o7q/MediaDownloader");
         }
 
         // yt-dlp github button
         private void ytdlpGithubButton_Click(object sender, EventArgs e)
         {
-            // open yt-dlp github page in the default web browser
             Process.Start("https://github.com/yt-dlp/yt-dlp");
         }
 
@@ -245,34 +246,34 @@ namespace MediaDownloader
         {
             if (useConfig.Checked == true)
             {
-                for (int i = 0; i < 10; i++) File.WriteAllText(asset[i], "");
+                try { for (int i = 0; i < 10; i++) File.WriteAllText(asset[i], ""); } catch { }
 
                 // write config0
-                File.WriteAllText(asset[0], inputBox.Text);
+                try { File.WriteAllText(asset[0], inputBox.Text); } catch { }
 
                 // write config1
-                File.WriteAllText(asset[1], formatBox.SelectedIndex.ToString());
+                try { File.WriteAllText(asset[1], formatBox.SelectedIndex.ToString()); } catch { }
 
                 // write config2
-                File.WriteAllText(asset[2], selLoc);
+                try { File.WriteAllText(asset[2], selLoc); } catch { }
 
                 // write config3
-                File.WriteAllText(asset[3], customArgsBox.Text);
+                try { File.WriteAllText(asset[3], customArgsBox.Text); } catch { }
 
                 // write config4
-                File.WriteAllText(asset[4], applyCodecs.Checked == true ? "1" : "");
+                try { File.WriteAllText(asset[4], applyCodecs.Checked == true ? "1" : ""); } catch { }
 
                 // write config5
-                File.WriteAllText(asset[5], gifResolution.Text);
+                try { File.WriteAllText(asset[5], gifResolution.Text); } catch { }
 
                 // write config6
-                File.WriteAllText(asset[6], gifFramerate.Text);
+                try { File.WriteAllText(asset[6], gifFramerate.Text); } catch { }
 
                 // write config7
-                File.WriteAllText(asset[7], useGpu.Checked == true ? "1" : "");
+                try { File.WriteAllText(asset[7], useGpu.Checked == true ? "1" : ""); } catch { }
 
                 // write config8
-                File.WriteAllText(asset[8], gpuEncoder.Text);
+                try { File.WriteAllText(asset[8], gpuEncoder.Text); } catch { }
             }
         }
 
@@ -309,21 +310,19 @@ namespace MediaDownloader
 
             // default configs
             string[] configDef = { "", "6", "", "", "", "400", "20", "", "h264_nvenc" };
-            if (useConfig.Checked == true) for (int i = 0; i < 9; i++) File.WriteAllText(asset[i], configDef[i]);
+            if (useConfig.Checked == true) for (int i = 0; i < 9; i++) try { File.WriteAllText(asset[i], configDef[i]); } catch { }
         }
 
         // input box checkbox
         private void inputBox_TextChanged(object sender, EventArgs e)
         {
-            // on change write to config0
-            if (useConfig.Checked == true) File.WriteAllText(asset[0], inputBox.Text);
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[0], inputBox.Text); } catch { }
         }
 
         // format box combobox
         private void formatBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // on change write to config1
-            if (useConfig.Checked == true) File.WriteAllText(asset[1], formatBox.SelectedIndex.ToString());
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[1], formatBox.SelectedIndex.ToString()); } catch { }
         }
 
         // change location button
@@ -341,15 +340,14 @@ namespace MediaDownloader
                 programToolTip.SetToolTip(directoryLabel, "Currently selected download location [" + selLoc + "]");
                 directoryLabel.ForeColor = System.Drawing.Color.ForestGreen;
 
-                // on change write to config2
-                if (useConfig.Checked == true) File.WriteAllText(asset[2], selLoc);
+                if (useConfig.Checked == true) try { File.WriteAllText(asset[2], selLoc); } catch { }
             }
         }
 
         // open location button
         private void openLocationButton_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", selLoc == "" || useDefLoc == true ? "Downloads" : selLoc);
+            try { Process.Start("explorer.exe", selLoc == "" || useDefLoc == true ? "Downloads" : selLoc); } catch { }
         }
 
         // clear location button
@@ -361,45 +359,39 @@ namespace MediaDownloader
         // custom arguments textbox
         private void customArgsBox_TextChanged(object sender, EventArgs e)
         {
-            // on change write to config3
-            if (useConfig.Checked == true) File.WriteAllText(asset[3], customArgsBox.Text);
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[3], customArgsBox.Text); } catch { }
         }
 
         // apply codecs checkbox
         private void applyCodecs_CheckedChanged(object sender, EventArgs e)
         {
-            // on change write to config4
-            if (useConfig.Checked == true) File.WriteAllText(asset[4], applyCodecs.Checked == true ? "1" : "");
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[4], applyCodecs.Checked == true ? "1" : ""); } catch { }
             if (applyCodecs.Checked == true) useGpu.Checked = false;
         }
 
         // gif resolution textbox
         private void gifResolution_TextChanged(object sender, EventArgs e)
         {
-            // on change write to config5
-            if (useConfig.Checked == true) File.WriteAllText(asset[5], gifResolution.Text);
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[5], gifResolution.Text); } catch { }
         }
 
         // gif framerate textbox
         private void gifFramerate_TextChanged(object sender, EventArgs e)
         {
-            // on change write to config6
-            if (useConfig.Checked == true) File.WriteAllText(asset[6], gifFramerate.Text);
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[6], gifFramerate.Text); } catch { }
         }
 
         // use gpu checkbox
         private void useGpu_CheckedChanged(object sender, EventArgs e)
         {
-            // on change write to config7
-            if (useConfig.Checked == true) File.WriteAllText(asset[7], useGpu.Checked == true ? "1" : "");
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[7], useGpu.Checked == true ? "1" : ""); } catch { }
             if (useGpu.Checked == true) applyCodecs.Checked = false;
         }
 
         // gpu encoder textbox
         private void gpuEncoder_TextChanged(object sender, EventArgs e)
         {
-            // on change write to config8
-            if (useConfig.Checked == true) File.WriteAllText(asset[8], gpuEncoder.Text);
+            if (useConfig.Checked == true) try { File.WriteAllText(asset[8], gpuEncoder.Text); } catch { }
         }
 
         // execute buttons
@@ -577,12 +569,10 @@ namespace MediaDownloader
         {
             clnFiles();
 
-            // create mdAscii
-            File.WriteAllText(asset[11], Properties.Resources.asciiBanner);
-
             // write and start batch script
-            File.WriteAllText(asset[10], mdScr);
-            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\mediadownloader\\md.bat");
+            try { File.WriteAllText(asset[11], Properties.Resources.asciiBanner); } catch { }
+            try { File.WriteAllText(asset[10], mdScr); } catch { }
+            try { Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\mediadownloader\\md.bat"); } catch { }
 
             downloadButton.ForeColor = System.Drawing.Color.DarkSeaGreen;
         }
@@ -590,7 +580,6 @@ namespace MediaDownloader
         // clean files function
         private void clnFiles()
         {
-            // clean temp files
             string[] asset_fix = asset.Select(x => x.Replace("mediadownloader\\", "")).ToArray();
             if (Directory.Exists("mediadownloader"))
             {
