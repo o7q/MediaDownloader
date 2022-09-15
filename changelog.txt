@@ -1,3 +1,7 @@
+~
+- clnFiles now runs before downloading
+- Optimize code
+
 ~ v3.5.0
 - New option to enable GPU acceleration (by default, it uses the "h264_nvenc" nvidia encoder)
 - Visual update for the command prompt (has fancy ascii art and it shows the stage of the download/conversion process)
