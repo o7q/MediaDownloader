@@ -76,28 +76,28 @@ namespace MediaDownloader
             useDefLoc = true;
 
             // load configs
-            if (File.Exists(asset[0])) inputBox.Text = File.ReadAllText(asset[0]);
-            if (File.Exists(asset[1])) formatBox.SelectedIndex = int.Parse(File.ReadAllText(asset[1]));
+            if (File.Exists(asset[0])) try { inputBox.Text = File.ReadAllText(asset[0]); } catch { }
+            if (File.Exists(asset[1])) try { formatBox.SelectedIndex = int.Parse(File.ReadAllText(asset[1])); } catch { }
             if (File.Exists(asset[2]))
             {
-                selLoc = File.ReadAllText(asset[2]);
+                try { selLoc = File.ReadAllText(asset[2]); } catch { }
 
                 useDefLoc = selLoc != "" ? false : true;
                 directoryLabel.Text = selLoc != "" ? selLoc : "";
             }
-            if (File.Exists(asset[3])) customArgsBox.Text = File.ReadAllText(asset[3]);
-            if (File.Exists(asset[4])) applyCodecs.Checked = File.ReadAllText(asset[4]) == "1" ? true : false;
-            if (File.Exists(asset[5])) gifResolution.Text = File.ReadAllText(asset[5]); else gifResolution.Text = "400";
-            if (File.Exists(asset[6])) gifFramerate.Text = File.ReadAllText(asset[6]); else gifFramerate.Text = "20";
-            if (File.Exists(asset[7])) useGpu.Checked = File.ReadAllText(asset[7]) == "1" ? true : false;
-            if (File.Exists(asset[8])) gpuEncoder.Text = File.ReadAllText(asset[8]); else gpuEncoder.Text = "h264_nvenc";
+            if (File.Exists(asset[3])) try { customArgsBox.Text = File.ReadAllText(asset[3]); } catch { }
+            if (File.Exists(asset[4])) try { applyCodecs.Checked = File.ReadAllText(asset[4]) == "1" ? true : false; } catch { }
+            if (File.Exists(asset[5])) try { gifResolution.Text = File.ReadAllText(asset[5]); } catch { } else gifResolution.Text = "400";
+            if (File.Exists(asset[6])) try { gifFramerate.Text = File.ReadAllText(asset[6]); } catch { } else gifFramerate.Text = "20";
+            if (File.Exists(asset[7])) try { useGpu.Checked = File.ReadAllText(asset[7]) == "1" ? true : false; } catch { }
+            if (File.Exists(asset[8])) try { gpuEncoder.Text = File.ReadAllText(asset[8]); } catch { } else gpuEncoder.Text = "h264_nvenc";
             useConfig.Checked = File.Exists(asset[9]) ? true : false;
 
             // configure title
             title = "\ntitle MediaDownloader " + ver + "     ";
 
             // configure starting arguments
-            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype mdAscii\necho    " + ver + "\necho" + strRep(" ", 72) + "by o7q\necho.\nyt-dlp.exe --ffmpeg-location ffmpeg.exe ";
+            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype mdAscii\necho    " + ver + "\necho" + strRep(" ", 72) + "by o7q\necho.\nyt-dlp.exe -vU --ffmpeg-location ffmpeg.exe ";
 
             #region tooltipDictionary
 
@@ -225,7 +225,7 @@ namespace MediaDownloader
         // program activated
         private void program_Activated(object sender, EventArgs e)
         {
-            prepBat(false);
+            chkBat(false);
         }
 
         // program closing handler
@@ -381,18 +381,6 @@ namespace MediaDownloader
 
         // execute buttons
 
-        // view available formats button
-        private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
-        {
-            // displays available formats of the specified url
-            if (inputBox.Text == "") MessageBox.Show("No URL was specified.");
-            else
-            {
-                mdScr = srtArgs + "--list-formats " + inputBox.Text + "\necho.\npause";
-                runBat();
-            }
-        }
-
         // download button
         private void downloadButton_Click(object sender, EventArgs e)
         {
@@ -419,24 +407,24 @@ namespace MediaDownloader
             // mp4
             string mp4 = srtArgs + "--remux-video mp4 --path \"" + selLoc + "\" " + url;
             string mp4_useDefLoc = srtArgs + "--remux-video mp4 --path " + @"..\Downloads " + url;
-            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + @"..\Downloads\converted_download" + dID + ".mp4\n" + @"del /f tmp0.mp4";
-            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + @"..\Downloads\converted_download" + dID + ".mp4\n" + @"del / f tmp0.mp4";
-            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4";
-            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4"; ;
+            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + @"..\Downloads\download" + dID + ".mp4\n" + @"del /f tmp0.mp4";
+            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + @"..\Downloads\download" + dID + ".mp4\n" + @"del / f tmp0.mp4";
+            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + BrVA + "\"" + selLoc + @"\download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4";
+            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + GPU_ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + BrVA + "\"" + selLoc + @"\download" + dID + ".mp4\"\n" + @"del /f tmp0.mp4"; ;
 
             // webm
             string webm = srtArgs + "--remux-video webm --path \"" + selLoc + "\" " + url;
             string webm_useDefLoc = srtArgs + "--remux-video webm --path " + @"..\Downloads " + url;
-            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + @"..\Downloads\converted_download" + dID + ".webm\n" + @"del /f tmp0.webm";
-            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + "\"" + selLoc + @"\converted_download" + dID + ".webm\"\n" + @"del /f tmp0.webm";
+            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + @"..\Downloads\download" + dID + ".webm\n" + @"del /f tmp0.webm";
+            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + BrVA + "\"" + selLoc + @"\download" + dID + ".webm\"\n" + @"del /f tmp0.webm";
 
             // gif
-            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 \"" + selLoc + @"\converted_download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
-            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 " + @"..\Downloads\converted_download" + dID + ".gif\n" + @"del /f tmp0.mp4";
+            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 \"" + selLoc + @"\download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
+            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 " + @"..\Downloads\download" + dID + ".gif\n" + @"del /f tmp0.mp4";
 
             // gif (web)
-            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\converted_download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
-            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\converted_download" + dID + ".gif\n" + @"del /f tmp0.mp4";
+            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + @"\download" + dID + ".gif\"\n" + @"del /f tmp0.mp4";
+            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + @" ..\Downloads\download" + dID + ".gif\n" + @"del /f tmp0.mp4";
 
             // (raw) audio
             string rawAudio = srtArgs + "-x --path \"" + selLoc + "\" " + url;
@@ -451,8 +439,8 @@ namespace MediaDownloader
             string wav_useDefLoc = srtArgs + "-x --audio-format wav --path " + @"..\Downloads " + url;
 
             // ogg
-            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -i tmp1.mp3 -c:a libvorbis \"" + selLoc + @"\converted_download" + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
-            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -i tmp1.mp3 -c:a libvorbis " + @"..\Downloads\converted_download" + dID + ".ogg" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis \"" + selLoc + @"\download" + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + ffStage1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + ffStage2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis " + @"..\Downloads\download" + dID + ".ogg" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
 
             // (Custom Arguments)
             string customArguments = srtArgs + "--path \"" + selLoc + "\"" + " " + customArgs + " " + url;
@@ -539,16 +527,28 @@ namespace MediaDownloader
 
                     if (mdScr != null)
                     {
-                        prepBat(true);
+                        chkBat(true);
                     }
                 }
             }
         }
 
+        // view available formats button
+        private void viewAvailableFormatsButton_Click(object sender, EventArgs e)
+        {
+            // displays available formats of the specified url
+            if (inputBox.Text == "") MessageBox.Show("No URL was specified.");
+            else
+            {
+                mdScr = srtArgs + "--list-formats " + inputBox.Text + "\necho.\npause";
+                chkBat(true);
+            }
+        }
+
         // functions
 
-        // prepare batch function
-        private void prepBat(bool srt, bool progOpen = false)
+        // check batch function
+        private void chkBat(bool srt, bool progOpen = false)
         {
             foreach (Process progOpenCheck in Process.GetProcesses()) if (progOpenCheck.ProcessName.Contains("yt-dlp") || progOpenCheck.ProcessName.Contains("ffmpeg")) progOpen = true;
             if (progOpen == false)
