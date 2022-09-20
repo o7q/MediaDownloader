@@ -13,8 +13,6 @@
 MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.\
 FFmpeg is then used for farther media processing if specified to do so.
 
-<br>
-
 ### Powered by:
 yt-dlp: https://github.com/yt-dlp/yt-dlp\
 ffmpeg: https://ffmpeg.org
@@ -39,8 +37,6 @@ ffmpeg: https://ffmpeg.org
 <b>Custom DL Arguments Input</b> Specify custom arguments that `yt-dlp` will accept \
 <b>gif (web) Quality Inputs</b> `R = X Resolution` (will preserve aspect ratio) & `F = Framerate` (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)\
 <b>GPU Acceleration Inputs</b> Use the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
-
-<br>
 
 ## <b>Formats</b>
 ### <b>[Video]</b>
