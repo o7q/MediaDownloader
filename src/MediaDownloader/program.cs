@@ -222,16 +222,16 @@ namespace MediaDownloader
             if (ytdlpCheck && ffmpegCheck) Directory.CreateDirectory("Downloads");
         }
 
-        // program activated
-        private void program_Activated(object sender, EventArgs e)
-        {
-            chkBat(false);
-        }
-
         // program closing handler
         private void program_FormClosing(object sender, FormClosingEventArgs e)
         {
             clnFiles();
+        }
+
+        // program mousemove
+        private void program_MouseMove(object sender, MouseEventArgs e)
+        {
+            chkBat(false);
         }
 
         // components

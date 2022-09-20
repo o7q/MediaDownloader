@@ -1,4 +1,5 @@
 ~ v3.5.1
+- Minor visual updates
 - Enable verbose debugging within yt-dlp and ffmpeg
 - clnFiles now runs before downloading
 - Optimize code

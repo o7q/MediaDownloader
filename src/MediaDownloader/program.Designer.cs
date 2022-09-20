@@ -542,9 +542,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "program";
             this.Text = "MediaDownloader";
-            this.Activated += new System.EventHandler(this.program_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
             this.Load += new System.EventHandler(this.program_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.program_MouseMove);
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).EndInit();
