@@ -28,8 +28,6 @@ body {
 }
 
 .dlButtonAll {
-    border: 2px solid #228B22;
-    padding: 2px 5px;
     font-family: KarrikRegular;
     color: #228B22;
     text-decoration: none;
