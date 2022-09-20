@@ -3,21 +3,21 @@
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.5.0/MediaDownloader.v3.5.0.7z)
 ### Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
 
-<br>
+---
 
 <img src="assets/images/program.png"/>
 
-<br>
+---
 
 # Overview
 MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.\
 FFmpeg is then used for farther media processing if specified to do so.
 
 ### Powered by:
-yt-dlp: https://github.com/yt-dlp/yt-dlp\
+yt-dlp: https://github.com/yt-dlp/yt-dlp \
 ffmpeg: https://ffmpeg.org
 
-<br>
+---
 
 # Usage
 
@@ -55,7 +55,7 @@ ffmpeg: https://ffmpeg.org
 ### <b>[Custom]</b>
 <b>(Custom DL Arguments)</b> Downloads using the specified download arguments
 
-<br>
+---
 
 <i>Programmed with C# and .NET Framework 4.8.</i> \
 <i>If you want to compile the code yourself I highly recommend using Visual Studio.</i>
