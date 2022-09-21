@@ -1,15 +1,18 @@
-@font-face {
+@font-face
+{
     font-family: KarrikRegular;
     src: url(fonts/karrikregular.ttf);
 }
 
-body {
+body
+{
     text-align: center;
     background-color: black;
     background-image: linear-gradient(#0C0D0D, #282928);
 }
 
-.headDesc {
+.headDesc
+{
     margin: 0 auto;
     font-family: KarrikRegular;
     font-size: 15px;
@@ -17,7 +20,8 @@ body {
     color: #FFFFFF;
 }
 
-.dlButton {
+.dlButton
+{
     padding: 10px 25px;
     background-image: linear-gradient(#1F231F, #1C351C);
     border: 3px solid #00d600;
@@ -27,7 +31,8 @@ body {
     text-decoration: none;
 }
 
-.dlButtonAll {
+.dlButtonAll
+{
     position: relative;
     top: 15px;
     font-family: KarrikRegular;
