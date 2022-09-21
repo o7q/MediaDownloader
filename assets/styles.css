@@ -53,3 +53,11 @@ body
     color: #228B22;
     text-decoration: none;
 }
+
+.copyright 
+{
+    font-family: KarrikRegular;
+    font-size: 10px;
+    color: #696969;
+    padding-top: 5px;
+}
