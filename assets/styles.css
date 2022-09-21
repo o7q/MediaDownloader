@@ -24,11 +24,18 @@ body
 {
     padding: 10px 25px;
     background-image: linear-gradient(#1F231F, #1C351C);
-    border: 3px solid #00d600;
+    border: 3px solid #32CD32;
     font-family: KarrikRegular;
     font-size: 30px;
     color: #32CD32;
     text-decoration: none;
+    transition: all 0.15s ease-in-out;
+}
+.dlButton:hover
+{
+    color: rgba(95, 204, 95, 1);
+    border: 3px solid rgba(95, 204, 95, 1);
+    box-shadow: 0 5px 15px rgba(50, 205, 50, .2);
 }
 
 .dlButtonAll
