@@ -24,7 +24,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.5.1";
+        const string ver = "v3.5.2";
 
         // batch configuration
         string srtArgs;
@@ -621,7 +621,7 @@ namespace MediaDownloader
         // program check fail function
         private void progChckFail(string errMsg)
         {
-            MessageBox.Show("\"" + errMsg + "\" not found! Exiting MediaDownloader.");
+            MessageBox.Show("\"" + errMsg + "\" was not found! Exiting MediaDownloader.\n(make sure you have \"yt-dlp.exe\" and \"ffmpeg.exe\" in a folder named \"mediadownloader\" next to \"MediaDownloader.exe\"!)");
             try
             {
                 File.Delete(asset[10]);

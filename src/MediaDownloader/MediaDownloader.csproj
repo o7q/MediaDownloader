@@ -84,13 +84,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <None Include="Resources\asciiBanner.txt" />
     <None Include="Resources\background.png" />
     <None Include="Resources\x.png" />
     <None Include="Resources\download_gradient.png" />
     <None Include="Resources\infoText.txt" />
     <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
     <None Include="Resources\banner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,3 +1,7 @@
+~ v3.5.2
+- Fixed the ugly icon (it was low quality and looked terrible so I re-drew it, it looks very crisp now)
+- Display more information when a redist error occurs
+
 ~ v3.5.1
 - Minor visual updates
 - Enable verbose debugging within yt-dlp and ffmpeg
