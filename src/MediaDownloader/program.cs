@@ -196,8 +196,8 @@ namespace MediaDownloader
             // configure tooltip draw
             programToolTip.AutoPopDelay = 10000;
             programToolTip.OwnerDraw = true;
-            programToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            programToolTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            programToolTip.BackColor = System.Drawing.Color.FromArgb(32, 32, 32);
+            programToolTip.ForeColor = System.Drawing.Color.FromArgb(150, 150, 150);
         }
 
         // draw tooltips
