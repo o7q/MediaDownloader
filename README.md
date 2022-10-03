@@ -1,7 +1,7 @@
 <img src="assets/images/readmebanner.png">
 
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.5.2/MediaDownloader.v3.5.2.redists.included.7z)
-<h3>Welcome! <b>MediaDownloader</b> is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.</h3>
+<h3>Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.</h3>
 
 ---
 
