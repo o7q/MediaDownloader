@@ -4,6 +4,22 @@
     src: url(../../assets/fonts/karrikregular.ttf);
 }
 
+::-webkit-scrollbar
+{
+    width: 0.75em;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 100px;
+    background: #282928;
+}
+
+::-webkit-scrollbar-track
+{
+    background: #0C0D0D;
+}
+
 body
 {
     text-align: center;
