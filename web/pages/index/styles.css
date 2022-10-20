@@ -55,9 +55,9 @@ body
 }
 .dlButton:hover
 {
-    color: rgba(95, 204, 95, 1);
-    border: 3px solid rgba(95, 204, 95, 1);
-    box-shadow: 0 5px 15px rgba(50, 205, 50, .2);
+    color: #5FCC5F;
+    border: 3px solid #5FCC5F;
+    box-shadow: 0 5px 15px #32CD3233;
 }
 
 .dlButtonAll
