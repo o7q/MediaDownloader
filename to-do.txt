@@ -1,2 +1,0 @@
-- Add an option to download only a specific part of a video
-- Remove custom download arguments (it is the most useless feature) It would be replaced by the to-do above

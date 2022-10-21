@@ -42,8 +42,6 @@
             this.downloadButton = new System.Windows.Forms.Button();
             this.advancedLabel = new System.Windows.Forms.Label();
             this.viewAvailableFormatsButton = new System.Windows.Forms.Button();
-            this.customArgsBox = new System.Windows.Forms.RichTextBox();
-            this.customArgsLabel = new System.Windows.Forms.Label();
             this.infoButton = new System.Windows.Forms.Button();
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
@@ -63,6 +61,11 @@
             this.useGpu = new System.Windows.Forms.CheckBox();
             this.codecLabel = new System.Windows.Forms.Label();
             this.gpuEncoder = new System.Windows.Forms.TextBox();
+            this.timeframeStart = new System.Windows.Forms.TextBox();
+            this.timeframeEnd = new System.Windows.Forms.TextBox();
+            this.useTimeframe = new System.Windows.Forms.CheckBox();
+            this.sLabel = new System.Windows.Forms.Label();
+            this.eLabel = new System.Windows.Forms.Label();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -125,7 +128,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.5.2";
+            this.versionLabel.Text = "v3.6.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -171,10 +174,7 @@
             "(raw audio)",
             "mp3",
             "wav",
-            "ogg [ffmpeg]",
-            "",
-            "[Custom]",
-            "(Custom DL Arguments)"});
+            "ogg [ffmpeg]"});
             this.formatBox.Location = new System.Drawing.Point(7, 93);
             this.formatBox.Name = "formatBox";
             this.formatBox.Size = new System.Drawing.Size(121, 21);
@@ -216,9 +216,9 @@
             this.advancedLabel.ForeColor = System.Drawing.Color.Brown;
             this.advancedLabel.Location = new System.Drawing.Point(128, 79);
             this.advancedLabel.Name = "advancedLabel";
-            this.advancedLabel.Size = new System.Drawing.Size(56, 13);
+            this.advancedLabel.Size = new System.Drawing.Size(70, 13);
             this.advancedLabel.TabIndex = 0;
-            this.advancedLabel.Text = "Advanced";
+            this.advancedLabel.Text = "More Options";
             // 
             // viewAvailableFormatsButton
             // 
@@ -233,30 +233,6 @@
             this.viewAvailableFormatsButton.Text = "View Raw Formats";
             this.viewAvailableFormatsButton.UseVisualStyleBackColor = false;
             this.viewAvailableFormatsButton.Click += new System.EventHandler(this.viewAvailableFormatsButton_Click);
-            // 
-            // customArgsBox
-            // 
-            this.customArgsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.customArgsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customArgsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customArgsBox.ForeColor = System.Drawing.Color.LightCoral;
-            this.customArgsBox.Location = new System.Drawing.Point(236, 93);
-            this.customArgsBox.Name = "customArgsBox";
-            this.customArgsBox.Size = new System.Drawing.Size(105, 28);
-            this.customArgsBox.TabIndex = 15;
-            this.customArgsBox.Text = "";
-            this.customArgsBox.TextChanged += new System.EventHandler(this.customArgsBox_TextChanged);
-            // 
-            // customArgsLabel
-            // 
-            this.customArgsLabel.AutoSize = true;
-            this.customArgsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.customArgsLabel.ForeColor = System.Drawing.Color.IndianRed;
-            this.customArgsLabel.Location = new System.Drawing.Point(233, 79);
-            this.customArgsLabel.Name = "customArgsLabel";
-            this.customArgsLabel.Size = new System.Drawing.Size(112, 13);
-            this.customArgsLabel.TabIndex = 0;
-            this.customArgsLabel.Text = "Custom DL Arguments";
             // 
             // infoButton
             // 
@@ -317,7 +293,7 @@
             this.applyCodecs.BackColor = System.Drawing.Color.Transparent;
             this.applyCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.applyCodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyCodecs.ForeColor = System.Drawing.Color.IndianRed;
+            this.applyCodecs.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.applyCodecs.Location = new System.Drawing.Point(130, 153);
             this.applyCodecs.Name = "applyCodecs";
             this.applyCodecs.Size = new System.Drawing.Size(105, 16);
@@ -359,7 +335,7 @@
             // 
             this.gifQualityLabel.AutoSize = true;
             this.gifQualityLabel.BackColor = System.Drawing.Color.Transparent;
-            this.gifQualityLabel.ForeColor = System.Drawing.Color.IndianRed;
+            this.gifQualityLabel.ForeColor = System.Drawing.Color.Gold;
             this.gifQualityLabel.Location = new System.Drawing.Point(234, 125);
             this.gifQualityLabel.Name = "gifQualityLabel";
             this.gifQualityLabel.Size = new System.Drawing.Size(82, 13);
@@ -371,11 +347,11 @@
             this.gifResolution.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gifResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifResolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gifResolution.ForeColor = System.Drawing.Color.LightCoral;
+            this.gifResolution.ForeColor = System.Drawing.Color.Khaki;
             this.gifResolution.Location = new System.Drawing.Point(250, 139);
             this.gifResolution.Name = "gifResolution";
             this.gifResolution.Size = new System.Drawing.Size(37, 13);
-            this.gifResolution.TabIndex = 16;
+            this.gifResolution.TabIndex = 18;
             this.gifResolution.TextChanged += new System.EventHandler(this.gifResolution_TextChanged);
             // 
             // gifFramerate
@@ -383,11 +359,11 @@
             this.gifFramerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gifFramerate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifFramerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gifFramerate.ForeColor = System.Drawing.Color.LightCoral;
+            this.gifFramerate.ForeColor = System.Drawing.Color.Khaki;
             this.gifFramerate.Location = new System.Drawing.Point(304, 139);
             this.gifFramerate.Name = "gifFramerate";
             this.gifFramerate.Size = new System.Drawing.Size(37, 13);
-            this.gifFramerate.TabIndex = 17;
+            this.gifFramerate.TabIndex = 19;
             this.gifFramerate.TextChanged += new System.EventHandler(this.gifFramerate_TextChanged);
             // 
             // rLabel
@@ -395,7 +371,7 @@
             this.rLabel.AutoSize = true;
             this.rLabel.BackColor = System.Drawing.Color.Transparent;
             this.rLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rLabel.ForeColor = System.Drawing.Color.LightCoral;
+            this.rLabel.ForeColor = System.Drawing.Color.Khaki;
             this.rLabel.Location = new System.Drawing.Point(235, 139);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(15, 12);
@@ -407,7 +383,7 @@
             this.fLabel.AutoSize = true;
             this.fLabel.BackColor = System.Drawing.Color.Transparent;
             this.fLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fLabel.ForeColor = System.Drawing.Color.LightCoral;
+            this.fLabel.ForeColor = System.Drawing.Color.Khaki;
             this.fLabel.Location = new System.Drawing.Point(290, 139);
             this.fLabel.Name = "fLabel";
             this.fLabel.Size = new System.Drawing.Size(14, 12);
@@ -472,7 +448,7 @@
             this.useGpu.Location = new System.Drawing.Point(236, 153);
             this.useGpu.Name = "useGpu";
             this.useGpu.Size = new System.Drawing.Size(114, 16);
-            this.useGpu.TabIndex = 18;
+            this.useGpu.TabIndex = 20;
             this.useGpu.Text = "Use GPU Acceleration";
             this.useGpu.UseVisualStyleBackColor = false;
             this.useGpu.CheckedChanged += new System.EventHandler(this.useGpu_CheckedChanged);
@@ -498,8 +474,69 @@
             this.gpuEncoder.Location = new System.Drawing.Point(275, 168);
             this.gpuEncoder.Name = "gpuEncoder";
             this.gpuEncoder.Size = new System.Drawing.Size(66, 13);
-            this.gpuEncoder.TabIndex = 19;
+            this.gpuEncoder.TabIndex = 21;
             this.gpuEncoder.TextChanged += new System.EventHandler(this.gpuEncoder_TextChanged);
+            // 
+            // timeframeStart
+            // 
+            this.timeframeStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeframeStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeframeStart.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeStart.Location = new System.Drawing.Point(250, 107);
+            this.timeframeStart.Name = "timeframeStart";
+            this.timeframeStart.Size = new System.Drawing.Size(37, 13);
+            this.timeframeStart.TabIndex = 16;
+            this.timeframeStart.TextChanged += new System.EventHandler(this.timeframeStart_TextChanged);
+            // 
+            // timeframeEnd
+            // 
+            this.timeframeEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeframeEnd.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeframeEnd.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeEnd.Location = new System.Drawing.Point(304, 107);
+            this.timeframeEnd.Name = "timeframeEnd";
+            this.timeframeEnd.Size = new System.Drawing.Size(37, 13);
+            this.timeframeEnd.TabIndex = 17;
+            this.timeframeEnd.TextChanged += new System.EventHandler(this.timeframeEnd_TextChanged);
+            // 
+            // useTimeframe
+            // 
+            this.useTimeframe.AutoSize = true;
+            this.useTimeframe.BackColor = System.Drawing.Color.Transparent;
+            this.useTimeframe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useTimeframe.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useTimeframe.ForeColor = System.Drawing.Color.MediumSeaGreen;
+            this.useTimeframe.Location = new System.Drawing.Point(236, 91);
+            this.useTimeframe.Name = "useTimeframe";
+            this.useTimeframe.Size = new System.Drawing.Size(111, 16);
+            this.useTimeframe.TabIndex = 15;
+            this.useTimeframe.Text = "Trim Length Between:";
+            this.useTimeframe.UseVisualStyleBackColor = false;
+            this.useTimeframe.CheckedChanged += new System.EventHandler(this.useTimeframe_CheckedChanged);
+            // 
+            // sLabel
+            // 
+            this.sLabel.AutoSize = true;
+            this.sLabel.BackColor = System.Drawing.Color.Transparent;
+            this.sLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.sLabel.Location = new System.Drawing.Point(235, 107);
+            this.sLabel.Name = "sLabel";
+            this.sLabel.Size = new System.Drawing.Size(14, 12);
+            this.sLabel.TabIndex = 0;
+            this.sLabel.Text = "S:";
+            // 
+            // eLabel
+            // 
+            this.eLabel.AutoSize = true;
+            this.eLabel.BackColor = System.Drawing.Color.Transparent;
+            this.eLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.eLabel.Location = new System.Drawing.Point(289, 107);
+            this.eLabel.Name = "eLabel";
+            this.eLabel.Size = new System.Drawing.Size(14, 12);
+            this.eLabel.TabIndex = 0;
+            this.eLabel.Text = "E:";
             // 
             // program
             // 
@@ -509,6 +546,11 @@
             this.BackgroundImage = global::MediaDownloader.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
+            this.Controls.Add(this.eLabel);
+            this.Controls.Add(this.sLabel);
+            this.Controls.Add(this.useTimeframe);
+            this.Controls.Add(this.timeframeEnd);
+            this.Controls.Add(this.timeframeStart);
             this.Controls.Add(this.gpuEncoder);
             this.Controls.Add(this.codecLabel);
             this.Controls.Add(this.useGpu);
@@ -527,8 +569,6 @@
             this.Controls.Add(this.locationButton);
             this.Controls.Add(this.infoButton);
             this.Controls.Add(this.githubButton);
-            this.Controls.Add(this.customArgsLabel);
-            this.Controls.Add(this.customArgsBox);
             this.Controls.Add(this.viewAvailableFormatsButton);
             this.Controls.Add(this.advancedLabel);
             this.Controls.Add(this.downloadButton);
@@ -566,8 +606,6 @@
         private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.Label advancedLabel;
         private System.Windows.Forms.Button viewAvailableFormatsButton;
-        private System.Windows.Forms.RichTextBox customArgsBox;
-        private System.Windows.Forms.Label customArgsLabel;
         private System.Windows.Forms.Button infoButton;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
@@ -588,5 +626,10 @@
         private System.Windows.Forms.CheckBox useGpu;
         private System.Windows.Forms.Label codecLabel;
         private System.Windows.Forms.TextBox gpuEncoder;
+        private System.Windows.Forms.TextBox timeframeStart;
+        private System.Windows.Forms.TextBox timeframeEnd;
+        private System.Windows.Forms.CheckBox useTimeframe;
+        private System.Windows.Forms.Label sLabel;
+        private System.Windows.Forms.Label eLabel;
     }
 }
