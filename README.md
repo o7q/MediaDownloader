@@ -21,6 +21,25 @@ ffmpeg: https://ffmpeg.org
 
 # Usage
 
+## <b>Installation</b>
+To install MediaDownloader and its dependencies you can either do it manually or you can use scoop.
+
+<b>Manual Installation</b> \
+<b>1.</b> Go to https://o7q.github.io/MediaDownloader \
+<b>2.</b> Click `Download <version>`
+
+<br>
+
+<b>Scoop Installation</b> \
+<b>1.</b> Open `cmd.exe` and run this command:
+```powershell
+powershell -noe "iex(irm tl.ctt.cx);Get utils/mediadownloader"
+```
+<b>2.</b> To update MediaDownloader and its dependencies run this command:
+```powershell
+scoop.cmd update *
+```
+
 ## <b>Components</b>
 <b>URL Input</b> Specify the URL of website for MediaDownloader to download \
 <b>Format Dropdown</b> Specify the format for downloaded media to be converted to \
@@ -39,14 +58,14 @@ ffmpeg: https://ffmpeg.org
 <b>GPU Acceleration Inputs</b> Use the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
 
 ## <b>Formats</b>
-### <b>[Video]</b>
+### <b>Video</b>
 <b>(raw video)</b> Downloads in the raw video format. Does not apply any codecs\
 <b>mp4</b> Downloads in the mp4 video format. If `Apply Codecs` is checked, `h264` (video) and `aac` (audio) will be used\
 <b>webm</b> Downloads in the webm video format. If `Apply Codecs` is checked, `vp9` (video) and `vorbis` (audio) will be used\
 <b>gif [ffmpeg]</b> Downloads in the uncompressed gif video format (uses ffmpeg) \
 <b>gif (web) [ffmpeg]</b> Downloads in the gif format with a modifiable framerate and resolution (uses ffmpeg, see <b>Components</b> for info)
 
-### <b>[Audio]</b>
+### <b>Audio</b>
 <b>(raw audio)</b> Downloads in the raw audio format. Does not apply any codecs\
 <b>mp3</b> Downloads in the mp3 format\
 <b>wav</b> Downloads in the wav format\
