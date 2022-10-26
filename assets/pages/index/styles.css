@@ -8,13 +8,11 @@
 {
     width: 0.75em;
 }
-
 ::-webkit-scrollbar-thumb
 {
     border-radius: 100px;
     background: #282928;
 }
-
 ::-webkit-scrollbar-track
 {
     background: #0C0D0D;
@@ -75,4 +73,15 @@ body
     font-size: 10px;
     color: #696969;
     padding-top: 5px;
+}
+
+/* functions */
+.disablePointer
+{
+    cursor: default;
+}
+
+.disableSelect
+{
+    user-select: none;
 }
