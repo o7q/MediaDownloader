@@ -1,1 +1,2 @@
-- Remove raw media options
+- Re-add the option to inject custom arguments into yt-dlp
+- Add an option to name the output file
