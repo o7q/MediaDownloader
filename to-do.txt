@@ -1,3 +1,0 @@
-- Re-add the option to inject custom arguments into yt-dlp
-- Add an option to name the output file
-- Fix an issue with trimming raw downloads

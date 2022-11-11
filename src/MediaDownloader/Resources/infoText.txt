@@ -1,11 +1,42 @@
 MediaDownloader by o7q
-A GUI-based tool that uses yt-dlp and ffmpeg to quickly download video and audio from virtually any website.
+A GUI-based tool that uses yt-dlp and FFmpeg to quickly download video and audio from virtually any website.
 
-If the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page.
+OVERVIEW
+MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.
+FFmpeg is then used for further media processing if specified to do so.
 
-To update yt-dlp:
-1. Click on the "yt-dlp GitHub" button within MediaDownloader
-2. Click on the releases tab and download "yt-dlp.exe"
-3. Replace "yt-dlp.exe" that is inside the "mediadownloader" folder with the new "yt-dlp.exe"
+Powered by:
+yt-dlp: https://github.com/yt-dlp/yt-dlp
+FFmpeg: https://ffmpeg.org
 
-* Farther documentation can be found on the MediaDownloader GitHub page which can be accessed from the "MediaD GitHub" button.
+COMPONENTS
+URL Input | Specify the URL of website for MediaDownloader to download
+Format Dropdown | Specify the format for downloaded media to be converted to
+Format Info Button | Displays all media types found on the specified URL's web server
+Download Button | Downloads the URL with the specified arguments
+Change Path Button | Change the location the media file is downloaded to
+Open Path Button | Opens the selected download location in Windows Explorer
+Clear Path Button | Clears the selected path
+Trim Length Inputs | Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: 0:00 - 0:10 | 1:25 - 2:30 | 2:30:40 - 3:05:15
+Apply Video Codecs Checkbox | Use the CPU to apply codecs to downloaded media files (this can fix issues when importing into some video editors. warning: this option can be very slow depending on your hardware)
+Save Options Checkbox | Saves all options to config files stored in the mediadownloader directory
+yt-dlp Arguments Input | Specify arguments to send to yt-dlp (double-click on the textbox to open the yt-dlp GitHub repository page)
+gif (web) | Options R = X Resolution (will preserve aspect ratio) & F = Framerate (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
+GPU Acceleration Inputs | Use the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = h264_nvenc | AMD = h264_amf
+
+FORMATS
+Video
+mp4 | Downloads in the mp4 video format. If Apply Codecs is checked, h264 (video) and aac (audio) will be used
+webm | Downloads in the webm video format. If Apply Codecs is checked, vp9 (video) and vorbis (audio) will be used
+gif [FFmpeg] | Downloads in the uncompressed gif video format (uses FFmpeg)
+gif (web) [FFmpeg] | Downloads in the gif format with a modifiable framerate and resolution (uses FFmpeg, see Components for info)
+
+Audio
+mp3 | Downloads in the mp3 format
+wav | Downloads in the wav format
+ogg [FFmpeg] | Downloads in the ogg format (uses FFmpeg)
+
+Programmed with C# and .NET Framework 4.8
+
+
+* Farther documentation can be found on the MediaDownloader GitHub page which can be accessed by double-clicking on the "MediaDownloader banner" again.

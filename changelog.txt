@@ -1,3 +1,12 @@
+~ v3.7.0
+- Added a feature to change the output filename
+- Re-added the option to download a video with custom arguments
+- Improved UI
+- Removed the option to download raw video and audio (those options had a rare chance to create corrupt undeletable files, you can still download raw formats through the yt-dlp arguments section)
+- Optimized code
+- Updated to yt-dlp 2022.11.11
+- Updated to FFmpeg 5.1.2
+
 ~ v3.6.0
 - New option to trim the download within a time range
 - Added scoop support (thanks to https://github.com/couleurm for setting that up)
