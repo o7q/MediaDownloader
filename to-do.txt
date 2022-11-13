@@ -1,1 +1,5 @@
+High priority (either easy to implement or very important)
 - Fix the tiny pixel offset of the "Name" textbox and "yt-dlp Arguments" label
+
+Low priority (either hard to implement or not as important)
+- Make the form either resizeable or bigger
