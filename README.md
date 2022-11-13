@@ -76,4 +76,5 @@ scoop.cmd update *
 
 ---
 
-###### Programmed with C# and .NET Framework 4.8, If you want to compile the code yourself I highly recommend using Visual Studio
+###### Programmed with C# and .NET Framework 4.8
+###### If you want to compile the code yourself I highly recommend using Visual Studio
