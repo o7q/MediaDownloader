@@ -91,9 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="Resources\download_gradient.png" />
     <None Include="Resources\background.png" />
     <None Include="Resources\banner.png" />
+    <None Include="Resources\download_gradient.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

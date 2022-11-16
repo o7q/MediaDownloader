@@ -24,11 +24,12 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.7.0";
+        const string ver = "v3.7.1";
 
         // shortcut strings
         const string md = "mediadownloader";
         const string md2 = md + "\\";
+        const string mdc = md2 + "config\\";
 
         // redist check
         bool ytdlpCheck;
@@ -46,25 +47,26 @@ namespace MediaDownloader
         // asset dictionary
         string[] asset =
         {
-            md2 + "c0_u", // 0 (url)
-            md2 + "c1_fN", // 1 (filename)
-            md2 + "c2_f", // 2 (format)
-            md2 + "c3_l", // 3 (location)
-            md2 + "c4_uTF", // 4 (use time frame)
-            md2 + "c5_tS", // 5 (time start)
-            md2 + "c6_tE", // 6 (time end)
-            md2 + "c7_gR", // 7 (gif resolution)
-            md2 + "c8_gF", // 8 (gif framerate)
-            md2 + "c9_aC", // 9 (apply codecs)
-            md2 + "c10_cYA", // 10 (custom yt-dlp arguments)
-            md2 + "c11_uG", // 11 (use gpu)
-            md2 + "c12_gE", // 12 (gpu encoder)
-            md2 + "c", // 13 (config state)
-            md2 + "mdHead", // 14
-            md2 + "md.bat", // 15
-            md2 + "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", // 16
-            md2 + "yt-dlp.exe", // 17
-            md2 + "ffmpeg.exe" // 18
+            mdc + "c0_u", // 0 (url)
+            mdc + "c1_fN", // 1 (filename)
+            mdc + "c2_f", // 2 (format)
+            mdc + "c3_l", // 3 (location)
+            mdc + "c4_uTF", // 4 (use time frame)
+            mdc + "c5_tS", // 5 (time start)
+            mdc + "c6_tE", // 6 (time end)
+            mdc + "c7_gR", // 7 (gif resolution)
+            mdc + "c8_gF", // 8 (gif framerate)
+            mdc + "c9_aC", // 9 (apply codecs)
+            mdc + "c10_cYA", // 10 (custom yt-dlp arguments)
+            mdc + "c11_uG", // 11 (use gpu)
+            mdc + "c12_gE", // 12 (gpu encoder)
+            mdc + "c_switch", // 13 (config switch)
+            mdc + "c_base", // 14 (config base)
+            md2 + "md_header", // 15
+            md2 + "md.bat", // 16
+            md2 + "DO NOT PLACE ANY FILES HERE - THEY WILL BE REMOVED", // 17
+            md2 + "yt-dlp.exe", // 18
+            md2 + "ffmpeg.exe" // 19
         };
 
         // program events
@@ -74,13 +76,8 @@ namespace MediaDownloader
         {
             InitializeComponent();
 
-            // create mediadownloader.bat and warning files
-            try
-            {
-                File.WriteAllText(asset[15], "");
-                File.WriteAllText(asset[16], "");
-            }
-            catch { }
+            // create warning file
+            try { File.WriteAllText(asset[17], ""); } catch { }
 
             // configure default variables
             formatBox.SelectedIndex = 5;
@@ -112,7 +109,7 @@ namespace MediaDownloader
             title = "\ntitle MediaDownloader " + ver + "     ";
 
             // configure starting arguments
-            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype mdHead\necho    " + ver + "\necho" + strRep(" ", 71) + "by o7q\necho.\nyt-dlp.exe -vU --ffmpeg-location ffmpeg.exe ";
+            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype md_header\necho    " + ver + "\necho" + strRep(" ", 71) + "by o7q\necho.\nyt-dlp.exe -vU --ffmpeg-location ffmpeg.exe ";
 
             #region tooltipDictionary
 
@@ -250,8 +247,8 @@ namespace MediaDownloader
             {
                 try
                 {
-                    if (File.Exists(asset[17])) File.Delete(asset[17]);
-                    File.Copy("..\\..\\yt-dlp\\current\\yt-dlp.exe", asset[17]);
+                    if (File.Exists(asset[18])) File.Delete(asset[18]);
+                    File.Copy("..\\..\\yt-dlp\\current\\yt-dlp.exe", asset[18]);
                 }
                 catch (Exception ex) { MessageBox.Show("Error while installing \"yt-dlp\" from scoop!\n\nFull Error:\n" + ex); }
             }
@@ -266,9 +263,15 @@ namespace MediaDownloader
             }
 
             // check if redists exist
-            if (File.Exists(asset[17])) ytdlpCheck = true; else progChckFail("yt-dlp.exe");
-            if (File.Exists(asset[18])) ffmpegCheck = true; else progChckFail("ffmpeg.exe");
-            if (ytdlpCheck && ffmpegCheck) Directory.CreateDirectory("Downloads");
+            if (File.Exists(asset[18])) ytdlpCheck = true; else progChckFail("yt-dlp.exe");
+            if (File.Exists(asset[19])) ffmpegCheck = true; else progChckFail("ffmpeg.exe");
+            if (ytdlpCheck && ffmpegCheck)
+            {
+                try { Directory.CreateDirectory("Downloads"); } catch { }
+                try { Directory.CreateDirectory(md2 + "config"); } catch { }
+                if (!File.Exists(asset[14])) useConfig.Checked = true;
+                try { File.WriteAllText(asset[14], ""); } catch { }
+            }
         }
 
         // program closing handler
@@ -616,8 +619,8 @@ namespace MediaDownloader
             clnFiles();
 
             // write and start batch script
-            try { File.WriteAllText(asset[14], Properties.Resources.asciiBanner); } catch { }
-            try { File.WriteAllText(asset[15], mdScr); } catch { }
+            try { File.WriteAllText(asset[15], Properties.Resources.asciiBanner); } catch { }
+            try { File.WriteAllText(asset[16], mdScr); } catch { }
             try { Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\mediadownloader\\md.bat"); } catch { }
 
             downloadButton.ForeColor = System.Drawing.Color.DarkSeaGreen;
@@ -634,8 +637,8 @@ namespace MediaDownloader
                 {
                     var f = new FileInfo(file).Name;
                     bool fIndex = true;
-                    for (int i = 0; i <= 13; i++) if (f == asset_fix[i]) { fIndex = false; break; }
-                    for (int i = 16; i <= 18; i++) if (f == asset_fix[i]) { fIndex = false; break; }
+                    for (int i = 0; i <= 14; i++) if (f == asset_fix[i]) { fIndex = false; break; }
+                    for (int i = 17; i <= 19; i++) if (f == asset_fix[i]) { fIndex = false; break; }
                     if (fIndex) try { File.Delete(file); } catch { }
                 }
             }
@@ -654,14 +657,11 @@ namespace MediaDownloader
             if (useConfig.Checked) File.WriteAllText(asset[3], selLoc);
         }
 
-        // move form on mousedown function
-        private void mvFrm(MouseEventArgs e)
+        // program check fail function
+        private void progChckFail(string errMsg)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            MessageBox.Show("\"" + errMsg + "\" was not found! Exiting MediaDownloader.\n\nMake sure you have \"yt-dlp.exe\" and \"ffmpeg.exe\" in a folder named \"mediadownloader\" next to \"MediaDownloader.exe\".\nIf you are using scoop please make sure you have installed everything correctly.");
+            Environment.Exit(1);
         }
 
         // string repeater function
@@ -671,17 +671,14 @@ namespace MediaDownloader
             return output;
         }
 
-        // program check fail function
-        private void progChckFail(string errMsg)
+        // move form on mousedown function
+        private void mvFrm(MouseEventArgs e)
         {
-            MessageBox.Show("\"" + errMsg + "\" was not found! Exiting MediaDownloader.\n\nMake sure you have \"yt-dlp.exe\" and \"ffmpeg.exe\" in a folder named \"mediadownloader\" next to \"MediaDownloader.exe\".\nIf you are using scoop please make sure you have installed everything correctly.");
-            try
+            if (e.Button == MouseButtons.Left)
             {
-                File.Delete(asset[15]);
-                File.Delete(asset[16]);
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-            catch { }
-            Environment.Exit(1);
         }
 
         // titlebar panel sender
@@ -693,16 +690,7 @@ namespace MediaDownloader
         // banner picture sender
         private void bannerPicture_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 0)
-            {
-                MessageBox.Show(Properties.Resources.infoText);
-                toggle = 1;
-            }
-            else if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 1)
-            {
-                Process.Start("https://github.com/o7q/MediaDownloader");
-                toggle = 0;
-            }
+            if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 0) { MessageBox.Show(Properties.Resources.infoText); toggle = 1; } else if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 1) { Process.Start("https://github.com/o7q/MediaDownloader"); toggle = 0; }
 
             mvFrm(e);
         }

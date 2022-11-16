@@ -76,4 +76,5 @@ scoop.cmd update *
 
 ---
 
-###### Programmed with C# and .NET Framework 4.8
+<b>MediaDownloader</b> \
+Programmed with C# and .NET Framework 4.8

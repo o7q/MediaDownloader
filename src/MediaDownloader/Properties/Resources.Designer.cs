@@ -113,17 +113,23 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MediaDownloader by o7q
-        ///A GUI-based tool that uses yt-dlp and ffmpeg to quickly download video and audio from virtually any website.
+        ///   Looks up a localized string similar to MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
         ///
-        ///If the program stops functioning you may need to download a new version of yt-dlp from the yt-dlp GitHub page.
+        ///OVERVIEW
+        ///MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.
+        ///FFmpeg is then used for further media processing if specified to do so.
         ///
-        ///To update yt-dlp:
-        ///1. Click on the &quot;yt-dlp GitHub&quot; button within MediaDownloader
-        ///2. Click on the releases tab and download &quot;yt-dlp.exe&quot;
-        ///3. Replace &quot;yt-dlp.exe&quot; that is inside the &quot;mediadownloader&quot; folder with the new &quot;yt-dlp.exe&quot;
+        ///Powered by
+        ///yt-dlp: https://github.com/yt-dlp/yt-dlp
+        ///FFmpeg: https://ffmpeg.org
         ///
-        ///* Farther documentation can [rest of string was truncated]&quot;;.
+        ///USAGE
+        ///
+        ///Interface
+        ///
+        ///File Output
+        ///Name Input | Specify a name for the output file
+        ///Change Path Button | Change the location the medi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string infoText {
             get {

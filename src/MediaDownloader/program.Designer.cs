@@ -129,7 +129,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.7.0";
+            this.versionLabel.Text = "v3.7.1";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -337,9 +337,9 @@
             this.gifResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifResolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gifResolution.ForeColor = System.Drawing.Color.Khaki;
-            this.gifResolution.Location = new System.Drawing.Point(144, 139);
+            this.gifResolution.Location = new System.Drawing.Point(145, 139);
             this.gifResolution.Name = "gifResolution";
-            this.gifResolution.Size = new System.Drawing.Size(37, 13);
+            this.gifResolution.Size = new System.Drawing.Size(35, 13);
             this.gifResolution.TabIndex = 13;
             this.gifResolution.TextChanged += new System.EventHandler(this.gifResolution_TextChanged);
             // 
@@ -349,9 +349,9 @@
             this.gifFramerate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gifFramerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gifFramerate.ForeColor = System.Drawing.Color.Khaki;
-            this.gifFramerate.Location = new System.Drawing.Point(198, 139);
+            this.gifFramerate.Location = new System.Drawing.Point(199, 139);
             this.gifFramerate.Name = "gifFramerate";
-            this.gifFramerate.Size = new System.Drawing.Size(37, 13);
+            this.gifFramerate.Size = new System.Drawing.Size(35, 13);
             this.gifFramerate.TabIndex = 14;
             this.gifFramerate.TextChanged += new System.EventHandler(this.gifFramerate_TextChanged);
             // 
@@ -432,9 +432,9 @@
             this.gpuEncoder.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gpuEncoder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpuEncoder.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.gpuEncoder.Location = new System.Drawing.Point(277, 168);
+            this.gpuEncoder.Location = new System.Drawing.Point(278, 168);
             this.gpuEncoder.Name = "gpuEncoder";
-            this.gpuEncoder.Size = new System.Drawing.Size(64, 13);
+            this.gpuEncoder.Size = new System.Drawing.Size(62, 13);
             this.gpuEncoder.TabIndex = 20;
             this.gpuEncoder.TextChanged += new System.EventHandler(this.gpuEncoder_TextChanged);
             // 
@@ -443,9 +443,9 @@
             this.timeframeStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.timeframeStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.timeframeStart.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.timeframeStart.Location = new System.Drawing.Point(144, 107);
+            this.timeframeStart.Location = new System.Drawing.Point(145, 107);
             this.timeframeStart.Name = "timeframeStart";
-            this.timeframeStart.Size = new System.Drawing.Size(37, 13);
+            this.timeframeStart.Size = new System.Drawing.Size(35, 13);
             this.timeframeStart.TabIndex = 11;
             this.timeframeStart.TextChanged += new System.EventHandler(this.timeframeStart_TextChanged);
             // 
@@ -454,9 +454,9 @@
             this.timeframeEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.timeframeEnd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.timeframeEnd.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.timeframeEnd.Location = new System.Drawing.Point(198, 107);
+            this.timeframeEnd.Location = new System.Drawing.Point(199, 107);
             this.timeframeEnd.Name = "timeframeEnd";
-            this.timeframeEnd.Size = new System.Drawing.Size(37, 13);
+            this.timeframeEnd.Size = new System.Drawing.Size(35, 13);
             this.timeframeEnd.TabIndex = 12;
             this.timeframeEnd.TextChanged += new System.EventHandler(this.timeframeEnd_TextChanged);
             // 
@@ -505,9 +505,9 @@
             this.ytArgsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ytArgsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ytArgsBox.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ytArgsBox.Location = new System.Drawing.Point(238, 107);
+            this.ytArgsBox.Location = new System.Drawing.Point(239, 107);
             this.ytArgsBox.Name = "ytArgsBox";
-            this.ytArgsBox.Size = new System.Drawing.Size(103, 45);
+            this.ytArgsBox.Size = new System.Drawing.Size(101, 45);
             this.ytArgsBox.TabIndex = 18;
             this.ytArgsBox.Text = "";
             this.ytArgsBox.TextChanged += new System.EventHandler(this.ytArgsBox_TextChanged);
@@ -518,9 +518,9 @@
             this.fileNameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.fileNameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fileNameBox.ForeColor = System.Drawing.Color.Silver;
-            this.fileNameBox.Location = new System.Drawing.Point(237, 55);
+            this.fileNameBox.Location = new System.Drawing.Point(238, 55);
             this.fileNameBox.Name = "fileNameBox";
-            this.fileNameBox.Size = new System.Drawing.Size(104, 20);
+            this.fileNameBox.Size = new System.Drawing.Size(103, 20);
             this.fileNameBox.TabIndex = 3;
             this.fileNameBox.TextChanged += new System.EventHandler(this.fileNameBox_TextChanged);
             // 
@@ -530,7 +530,7 @@
             this.ytArgsLabel.BackColor = System.Drawing.Color.Transparent;
             this.ytArgsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ytArgsLabel.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ytArgsLabel.Location = new System.Drawing.Point(234, 93);
+            this.ytArgsLabel.Location = new System.Drawing.Point(237, 93);
             this.ytArgsLabel.Name = "ytArgsLabel";
             this.ytArgsLabel.Size = new System.Drawing.Size(76, 12);
             this.ytArgsLabel.TabIndex = 0;
@@ -542,7 +542,7 @@
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.fileNameLabel.ForeColor = System.Drawing.Color.SeaGreen;
-            this.fileNameLabel.Location = new System.Drawing.Point(233, 41);
+            this.fileNameLabel.Location = new System.Drawing.Point(234, 41);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(35, 13);
             this.fileNameLabel.TabIndex = 0;
@@ -553,7 +553,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::MediaDownloader.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
             this.Controls.Add(this.fileNameLabel);

@@ -1,3 +1,8 @@
+~ v3.7.1
+- "Save Options" is now enabled by default
+- Improve UI visuals slightly
+- Made the config files more organized
+
 ~ v3.7.0
 - Added a feature to change the output filename
 - Re-added the option to download a video with custom arguments
