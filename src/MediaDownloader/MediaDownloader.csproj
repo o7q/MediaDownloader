@@ -22,6 +22,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -85,13 +88,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\asciiBanner.txt" />
-    <None Include="Resources\x.png" />
     <None Include="Resources\infoText.txt" />
     <None Include="Resources\folder.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\background.png" />
+    <None Include="Resources\x.png" />
+    <None Include="Resources\gradient_1280x.png" />
     <None Include="Resources\banner.png" />
     <None Include="Resources\download_gradient.png" />
   </ItemGroup>

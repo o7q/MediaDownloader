@@ -1,6 +1,6 @@
 <img src="assets/images/banner.png">
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.7.0/MediaDownloader.v3.7.0.zip)
+# [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.7.0/MediaDownloader.v3.8.0.zip)
 <h3>Welcome! MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.</h3>
 
 ---
@@ -53,13 +53,19 @@ scoop.cmd update *
         - <b>URL Input</b> Specify the URL of website for MediaDownloader to download
         - <b>Format Dropdown</b> Specify the format for downloaded media to be converted to
         - <b>Format Info Button</b> Displays all media types found on the specified URL's web server
-        - <b>Save Options Checkbox</b> Saves all options to config files stored in the `mediadownloader` directory
+        - <b>Save Options Checkbox</b> Saves all options to config files stored in the `mediadownloader\config` directory
     - <b>Advanced Options</b>
         - <b>Trim Length Inputs</b> Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: `0:00 - 0:10` | `1:25 - 2:30` | `2:30:40 - 3:05:15`
-        - <b>Apply Video Codecs Checkbox</b> Use the CPU to apply codecs to downloaded media files (this can fix issues when importing into some video editors. <b>warning:</b> this option can be very slow depending on your hardware)
+        - <b>gif (web) Options</b> A compressed version of `gif` This is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro
+            - <b>Resolution</b> `R = X Resolution` (will preserve aspect ratio)
+            - <b>Framerate</b> `F = Framerate`
+        - <b>Encode Video Options</b>
+            - <b>Encode Video (GPU) Checkbox</b> Uses the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
+            - <b>Encode Video (CPU) Checkbox</b> Uses the CPU to encode videos (this can fix issues when importing into some video editors. <b>warning:</b> this option can be very slow depending on your hardware)
         - <b>yt-dlp Arguments Input</b> Specify arguments to send to yt-dlp (double-click on the textbox to open the yt-dlp GitHub repository page)
-        - <b>gif (web) Options</b> `R = X Resolution` (will preserve aspect ratio) & `F = Framerate` (this is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro)
-        - <b>GPU Acceleration Inputs</b> Use the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
+        - <b>Log Output Options</b> Controls how MediaDownloader displays the download process
+            - <b>Display Checkbox</b> Displays the ongoing download log
+            - <b>Keep Checkbox</b> Keeps the log open even after MediaDownloader finishes downloading
 
 <br>
 

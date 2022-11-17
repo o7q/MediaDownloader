@@ -1,3 +1,9 @@
+~ v3.8.0
+- Added output log options
+- Improved UI
+- Improved the anti-spam feature (improved yt-dlp and ffmpeg detector)
+- Fixed tiny bugs that probably no one noticed
+
 ~ v3.7.1
 - "Save Options" is now enabled by default
 - Improve UI visuals slightly

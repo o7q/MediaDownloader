@@ -40,7 +40,6 @@
             this.formatBox = new System.Windows.Forms.ComboBox();
             this.formatLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
-            this.advancedLabel = new System.Windows.Forms.Label();
             this.viewAvailableFormatsButton = new System.Windows.Forms.Button();
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
@@ -67,6 +66,10 @@
             this.fileNameBox = new System.Windows.Forms.TextBox();
             this.ytArgsLabel = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
+            this.displayOutput = new System.Windows.Forms.CheckBox();
+            this.advancedLabel = new System.Windows.Forms.Label();
+            this.keepOutput = new System.Windows.Forms.CheckBox();
+            this.outputLabel = new System.Windows.Forms.Label();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +132,7 @@
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(38, 12);
             this.versionLabel.TabIndex = 0;
-            this.versionLabel.Text = "v3.7.1";
+            this.versionLabel.Text = "v3.8.0";
             this.versionLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.versionLabel_MouseDown);
             // 
             // minimizeButton
@@ -210,18 +213,6 @@
             this.downloadButton.UseVisualStyleBackColor = false;
             this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
-            // advancedLabel
-            // 
-            this.advancedLabel.AutoSize = true;
-            this.advancedLabel.BackColor = System.Drawing.Color.Transparent;
-            this.advancedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advancedLabel.ForeColor = System.Drawing.Color.Brown;
-            this.advancedLabel.Location = new System.Drawing.Point(126, 79);
-            this.advancedLabel.Name = "advancedLabel";
-            this.advancedLabel.Size = new System.Drawing.Size(70, 13);
-            this.advancedLabel.TabIndex = 0;
-            this.advancedLabel.Text = "More Options";
-            // 
             // viewAvailableFormatsButton
             // 
             this.viewAvailableFormatsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
@@ -281,12 +272,12 @@
             this.applyCodecs.BackColor = System.Drawing.Color.Transparent;
             this.applyCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.applyCodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyCodecs.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.applyCodecs.Location = new System.Drawing.Point(130, 153);
+            this.applyCodecs.ForeColor = System.Drawing.Color.MediumPurple;
+            this.applyCodecs.Location = new System.Drawing.Point(239, 168);
             this.applyCodecs.Name = "applyCodecs";
-            this.applyCodecs.Size = new System.Drawing.Size(105, 16);
-            this.applyCodecs.TabIndex = 15;
-            this.applyCodecs.Text = "Apply Video Codecs";
+            this.applyCodecs.Size = new System.Drawing.Size(106, 16);
+            this.applyCodecs.TabIndex = 20;
+            this.applyCodecs.Text = "Encode Video (CPU)";
             this.applyCodecs.UseVisualStyleBackColor = false;
             this.applyCodecs.CheckedChanged += new System.EventHandler(this.applyCodecs_CheckedChanged);
             // 
@@ -296,11 +287,11 @@
             this.useConfig.BackColor = System.Drawing.Color.Transparent;
             this.useConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.useConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useConfig.ForeColor = System.Drawing.Color.DarkCyan;
-            this.useConfig.Location = new System.Drawing.Point(130, 168);
+            this.useConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.useConfig.Location = new System.Drawing.Point(238, 77);
             this.useConfig.Name = "useConfig";
             this.useConfig.Size = new System.Drawing.Size(77, 16);
-            this.useConfig.TabIndex = 16;
+            this.useConfig.TabIndex = 21;
             this.useConfig.Text = "Save Options";
             this.useConfig.UseVisualStyleBackColor = false;
             this.useConfig.CheckedChanged += new System.EventHandler(this.useConfig_CheckedChanged);
@@ -310,12 +301,12 @@
             this.resetConfig.BackColor = System.Drawing.Color.Transparent;
             this.resetConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resetConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetConfig.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.resetConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.resetConfig.Image = ((System.Drawing.Image)(resources.GetObject("resetConfig.Image")));
-            this.resetConfig.Location = new System.Drawing.Point(204, 170);
+            this.resetConfig.Location = new System.Drawing.Point(313, 79);
             this.resetConfig.Name = "resetConfig";
             this.resetConfig.Size = new System.Drawing.Size(11, 11);
-            this.resetConfig.TabIndex = 17;
+            this.resetConfig.TabIndex = 22;
             this.resetConfig.UseVisualStyleBackColor = false;
             this.resetConfig.Click += new System.EventHandler(this.resetConfig_Click);
             // 
@@ -406,11 +397,11 @@
             this.useGpu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.useGpu.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.useGpu.ForeColor = System.Drawing.Color.YellowGreen;
-            this.useGpu.Location = new System.Drawing.Point(238, 153);
+            this.useGpu.Location = new System.Drawing.Point(130, 153);
             this.useGpu.Name = "useGpu";
-            this.useGpu.Size = new System.Drawing.Size(114, 16);
-            this.useGpu.TabIndex = 19;
-            this.useGpu.Text = "Use GPU Acceleration";
+            this.useGpu.Size = new System.Drawing.Size(106, 16);
+            this.useGpu.TabIndex = 15;
+            this.useGpu.Text = "Encode Video (GPU)";
             this.useGpu.UseVisualStyleBackColor = false;
             this.useGpu.CheckedChanged += new System.EventHandler(this.useGpu_CheckedChanged);
             // 
@@ -420,7 +411,7 @@
             this.codecLabel.BackColor = System.Drawing.Color.Transparent;
             this.codecLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codecLabel.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.codecLabel.Location = new System.Drawing.Point(235, 168);
+            this.codecLabel.Location = new System.Drawing.Point(127, 168);
             this.codecLabel.Name = "codecLabel";
             this.codecLabel.Size = new System.Drawing.Size(42, 12);
             this.codecLabel.TabIndex = 0;
@@ -432,10 +423,10 @@
             this.gpuEncoder.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gpuEncoder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpuEncoder.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.gpuEncoder.Location = new System.Drawing.Point(278, 168);
+            this.gpuEncoder.Location = new System.Drawing.Point(170, 168);
             this.gpuEncoder.Name = "gpuEncoder";
-            this.gpuEncoder.Size = new System.Drawing.Size(62, 13);
-            this.gpuEncoder.TabIndex = 20;
+            this.gpuEncoder.Size = new System.Drawing.Size(64, 13);
+            this.gpuEncoder.TabIndex = 16;
             this.gpuEncoder.TextChanged += new System.EventHandler(this.gpuEncoder_TextChanged);
             // 
             // timeframeStart
@@ -507,8 +498,8 @@
             this.ytArgsBox.ForeColor = System.Drawing.Color.DodgerBlue;
             this.ytArgsBox.Location = new System.Drawing.Point(239, 107);
             this.ytArgsBox.Name = "ytArgsBox";
-            this.ytArgsBox.Size = new System.Drawing.Size(101, 45);
-            this.ytArgsBox.TabIndex = 18;
+            this.ytArgsBox.Size = new System.Drawing.Size(101, 34);
+            this.ytArgsBox.TabIndex = 17;
             this.ytArgsBox.Text = "";
             this.ytArgsBox.TextChanged += new System.EventHandler(this.ytArgsBox_TextChanged);
             this.ytArgsBox.DoubleClick += new System.EventHandler(this.ytArgsBox_DoubleClick);
@@ -548,17 +539,76 @@
             this.fileNameLabel.TabIndex = 0;
             this.fileNameLabel.Text = "Name";
             // 
+            // displayOutput
+            // 
+            this.displayOutput.AutoSize = true;
+            this.displayOutput.BackColor = System.Drawing.Color.Transparent;
+            this.displayOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.displayOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayOutput.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.displayOutput.Location = new System.Drawing.Point(239, 153);
+            this.displayOutput.Name = "displayOutput";
+            this.displayOutput.Size = new System.Drawing.Size(52, 16);
+            this.displayOutput.TabIndex = 18;
+            this.displayOutput.Text = "Display";
+            this.displayOutput.UseVisualStyleBackColor = false;
+            this.displayOutput.CheckedChanged += new System.EventHandler(this.displayOutput_CheckedChanged);
+            // 
+            // advancedLabel
+            // 
+            this.advancedLabel.AutoSize = true;
+            this.advancedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.advancedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advancedLabel.ForeColor = System.Drawing.Color.Brown;
+            this.advancedLabel.Location = new System.Drawing.Point(126, 79);
+            this.advancedLabel.Name = "advancedLabel";
+            this.advancedLabel.Size = new System.Drawing.Size(70, 13);
+            this.advancedLabel.TabIndex = 0;
+            this.advancedLabel.Text = "More Options";
+            // 
+            // keepOutput
+            // 
+            this.keepOutput.AutoSize = true;
+            this.keepOutput.BackColor = System.Drawing.Color.Transparent;
+            this.keepOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.keepOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keepOutput.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.keepOutput.Location = new System.Drawing.Point(293, 153);
+            this.keepOutput.Name = "keepOutput";
+            this.keepOutput.Size = new System.Drawing.Size(42, 16);
+            this.keepOutput.TabIndex = 19;
+            this.keepOutput.Text = "Keep";
+            this.keepOutput.UseVisualStyleBackColor = false;
+            this.keepOutput.CheckedChanged += new System.EventHandler(this.keepOutput_CheckedChanged);
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.BackColor = System.Drawing.Color.Transparent;
+            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.ForeColor = System.Drawing.Color.DarkCyan;
+            this.outputLabel.Location = new System.Drawing.Point(236, 142);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(84, 12);
+            this.outputLabel.TabIndex = 0;
+            this.outputLabel.Text = "Output Log Options";
+            // 
             // program
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BackgroundImage = global::MediaDownloader.Properties.Resources.background;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
+            this.Controls.Add(this.outputLabel);
+            this.Controls.Add(this.keepOutput);
+            this.Controls.Add(this.displayOutput);
             this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.ytArgsLabel);
             this.Controls.Add(this.fileNameBox);
+            this.Controls.Add(this.resetConfig);
+            this.Controls.Add(this.useConfig);
             this.Controls.Add(this.ytArgsBox);
             this.Controls.Add(this.eLabel);
             this.Controls.Add(this.sLabel);
@@ -574,8 +624,6 @@
             this.Controls.Add(this.gifFramerate);
             this.Controls.Add(this.gifResolution);
             this.Controls.Add(this.gifQualityLabel);
-            this.Controls.Add(this.resetConfig);
-            this.Controls.Add(this.useConfig);
             this.Controls.Add(this.applyCodecs);
             this.Controls.Add(this.clearLocationButton);
             this.Controls.Add(this.directoryLabel);
@@ -595,7 +643,6 @@
             this.Text = "MediaDownloader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.program_FormClosing);
             this.Load += new System.EventHandler(this.program_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.program_MouseMove);
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).EndInit();
@@ -615,7 +662,6 @@
         private System.Windows.Forms.ComboBox formatBox;
         private System.Windows.Forms.Label formatLabel;
         private System.Windows.Forms.Button downloadButton;
-        private System.Windows.Forms.Label advancedLabel;
         private System.Windows.Forms.Button viewAvailableFormatsButton;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
@@ -643,5 +689,9 @@
         private System.Windows.Forms.TextBox fileNameBox;
         private System.Windows.Forms.Label ytArgsLabel;
         private System.Windows.Forms.Label fileNameLabel;
+        private System.Windows.Forms.CheckBox displayOutput;
+        private System.Windows.Forms.Label advancedLabel;
+        private System.Windows.Forms.CheckBox keepOutput;
+        private System.Windows.Forms.Label outputLabel;
     }
 }
