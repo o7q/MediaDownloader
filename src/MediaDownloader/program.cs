@@ -203,7 +203,7 @@ namespace MediaDownloader
                 gifRTT, // 26
                 gifFTT, // 27
                 gifFTT, // 28
-                "Enable GPU accelerated video encoding - This can fix problems with importing or viewing videos in some software (encodes using FFmpeg, this feature only supports mp4, does not work while \"Encode Video (CPU)\" is enabled)", // 29
+                "Enable GPU accelerated video encoding - This can fix problems with importing or viewing videos in some software (encodes on the GPU using FFmpeg, this feature only supports mp4, does not work while \"Encode Video (CPU)\" is enabled)", // 29
                 encodeTT, // 30
                 encodeTT, // 31
                 cstmArgTT, // 32
