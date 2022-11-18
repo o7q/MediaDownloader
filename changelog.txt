@@ -1,0 +1,150 @@
+~ v3.8.0
+- Added output log options
+- Improved UI
+- Improved the anti-spam feature (improved yt-dlp and ffmpeg detector)
+- Fixed tiny bugs that probably no one noticed
+
+~ v3.7.1
+- "Save Options" is now enabled by default
+- Improve UI visuals slightly
+- Made the config files more organized
+
+~ v3.7.0
+- Added a feature to change the output filename
+- Re-added the option to download a video with custom arguments
+- Improved UI
+- Removed the option to download raw video and audio (those options had a rare chance to create corrupt undeletable files, you can still download raw formats through the yt-dlp arguments section)
+- Optimized code
+- Updated to yt-dlp 2022.11.11
+- Updated to FFmpeg 5.1.2
+
+~ v3.6.0
+- New option to trim the download within a time range
+- Added scoop support (thanks to https://github.com/couleurm for setting that up)
+- Removed the option to download a video with custom arguments (I do not think anyone used this feature)
+- Improved the config system for debugging
+
+~ v3.5.2
+- Fixed the ugly icon (it was low quality and looked terrible so I re-drew it, it looks very crisp now)
+- Display more information when a redist error occurs
+
+~ v3.5.1
+- Minor visual updates
+- Enable verbose debugging within yt-dlp and ffmpeg
+- clnFiles now runs before downloading
+- Optimize code
+
+~ v3.5.0
+- New option to enable GPU acceleration (by default, it uses the "h264_nvenc" nvidia encoder)
+- Visual update for the command prompt (has fancy ascii art and it shows the stage of the download/conversion process)
+- Fixed the ogg downloader (using a custom directory prevented the ogg files from being downloaded)
+- Added anti-spam protection (you can't accidently double click the download button)
+- Changed the way IDs are generated (uses date and time instead of a random string)
+- If the custom directory does not exist it will revert to the default directory
+- Code update (added a script code and asset dictionary (used for easy debugging), added a string repeater function)
+- Minor UI changes
+
+~ v3.4.2
+- Shortened program file names
+- Fixed typos
+- Update to yt-dlp 2022.09.01
+- Updated to ffmpeg 5.1.1 from gyan.dev
+
+~ v3.4.1
+- Now using the MIT license
+- Removed licensing info in the "Info" screen
+- Optimized code
+- Updated to yt-dlp 2022.08.14
+
+~ v3.4.0
+- Fix major download issue for formats that use ffmpeg (temp files did not include a file extension resulting in ffmpeg erroring)
+- Tiny UI improvements
+- Optimized code (now using ternary operators to make some logic operations shorter, shortened variable names)
+- Update "README.md"
+- Removed "builds"
+- Removed "versioning.txt"
+
+~ v3.3.2
+- Added warning if the user tries to launch multiple instances of MediaDownloader (having multiple instances open can cause problems)
+- Optimize clnFiles function exception handler (try-catch)
+- Updated to yt-dlp 2022.08.08
+
+~ v3.3.1
+- Fixed issue where when redist checks succeeded the program would set selectedLocation to " "
+- Added more and updated code comments
+
+~ v3.3.0
+- Added a button to open explorer to the selected download path
+- Added dev_builds folder. (while MediaDownloader is in its development stage, latest development builds will be available in that folder that you can use to test and find issues)
+- Fixed the order of when the "Downloads" folder was created. If MediaDownloader fails a redist check the "Downloads" folder would still be created
+- Fixed unknown temp files staying. All files inside the "mediadownloader" folder will now be deleted
+- Minor visual changes
+- Major code optimizations
+- Changed default values for gif (web) quality settings
+- Change method for versioning slightly (explained in "versioning.txt")
+- Updated to ffmpeg 5.1 from gyan.dev
+
+~ v3.2.0
+- Added tooltips
+- Clear component state button visual fix
+- Slight changes to the README.md banner
+- Updated to yt-dlp 2022.07.18
+
+~ v3.1.0
+- Banner update
+- UI Update
+- Change MouseMove method to MouseDown method for FormMove
+
+~ v3.0.1
+- Now using semantic versioning
+- Fixed some bugged temp files staying
+- Make the clear settings button more visible and obvious
+
+~ v3.0
+- Added the option to save user settings to a config file. It will be loaded automatically next time the program is started
+- Added the new "gif" and "gif (web)" formats (both formats require an ffmpeg convert)
+- Replaced the "m4a" format with "ogg" (ogg requires a double ffmpeg convert)
+- UI update (increased directory label font size, some color improvements, slight text changes)
+- MediaDownloader now stores its files in a sub-folder keeping everything neat and tidy
+- Fixed pathing issues
+- MessageBox update
+- Code update and optimizations
+
+~ v2.4
+- Added option to apply video codecs (originally downloaded videos had no codec. this made it troublesome to import downloaded videos into some programs. (use with patience! this feature is very slow...) )
+- Added back the "yt-dlp GitHub" button
+- Added error messages
+- Text typed in the "Custom Arguments" box is now gold
+- Renamed (raw) formats
+- Replace single quotes with double quotes in message boxes
+- Organized some stuff in the code
+- Updated to yt-dlp 2022.06.29
+
+~ v2.3
+- Now licensed under GPL-3.0-only. I did not realize that CC BY-SA 4.0 was incompatible with software
+- Updated info page
+- Re-aligned some UI elements (again) because they needed to be even more pixel-perfect!
+- The "yt-dlp GitHub" button is now the "MediaD GitHub" button (short for MediaDownloader)
+- Modified the secret message very slightly
+
+~ v2.2
+- Added feature that allows to user to specify a download location
+- Set the default download location to the "Downloads" folder that is found alongside "MediaDownloader.exe"
+- Re-aligned some UI elements to make them more pixel-perfect
+- Made the "Info" button orange
+- Added a secret message c:
+
+~ v2.1
+- Fixed bug where the (Custom Arguments) format would be disregarded when executing a (Custom Arguments) download task
+- Fixed bug where closing the application forcefully or through the taskbar would result in the temporary "mediadownloader.bat" file staying
+- Updated the info messagebox with helpful information on how to update yt-dlp
+
+~ v2.0
+- Now uses yt-dlp instead of deprecated youtube-dl (enabling faster download speeds, higher quality downloads (for example, a 4k video), a larger selection of arguments/download options, and more.)
+- Running yt-dlp 2022.05.18
+- Running ffmpeg 5.0.1 from gyan.dev
+- More features
+- Minor bug fixes
+- UI redesign
+- New logo
+- Organized some stuff in the code

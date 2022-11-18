@@ -1,0 +1,4 @@
+High priority (either easy to implement or very important)
+
+Low priority (either hard to implement or not as important)
+- Make the form either resizeable or bigger
