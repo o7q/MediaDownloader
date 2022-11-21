@@ -24,7 +24,7 @@ FFmpeg: https://ffmpeg.org
 ## <b>Installation</b>
 To install MediaDownloader and its dependencies you can either do it manually or you can use scoop.
 
-- <b>Manual Installation</b> \
+- <b>Normal Installation</b> \
 <b>1.</b> Go to https://o7q.github.io/MediaDownloader \
 <b>2.</b> Click `Download <version>`
 
