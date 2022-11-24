@@ -5,7 +5,7 @@
 
 ---
 
-<img src="assets/images/program.png"/>
+<img src="assets/images/program.png">
 
 ---
 
