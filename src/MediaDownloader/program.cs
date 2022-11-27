@@ -25,7 +25,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.8.0";
+        const string ver = "v4.0.0";
 
         // shortcut strings
         const string md = "mediadownloader";
@@ -115,7 +115,7 @@ namespace MediaDownloader
             title = "\ntitle MediaDownloader " + ver + "     ";
 
             // configure starting arguments
-            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype md_header\necho    " + ver + "\necho" + strRep(" ", 71) + "by o7q\necho.\nyt-dlp.exe -vU --ffmpeg-location ffmpeg.exe ";
+            srtArgs = "@echo off\ncd mediadownloader" + title + "[RUNNING]\ntype md_header\necho    " + ver + "\necho" + strRep(" ", 72) + "by o7q\necho.\nyt-dlp.exe -vU --ffmpeg-location ffmpeg.exe ";
 
             #region tooltipDictionary
 
