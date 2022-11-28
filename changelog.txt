@@ -1,4 +1,4 @@
-~ 4.0.0 [IN DEVELOPMENT]
+~ v4.0.0-100 [IN-DEVELOPMENT]
 - Added a new command-line based program called "MediaConverter" (allows you to convert videos in ways MediaDownloader can not)
 
 ~ v3.8.0
