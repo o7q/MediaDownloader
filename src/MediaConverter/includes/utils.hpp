@@ -61,11 +61,7 @@ void sys(string cmd)
     int cmds_index = 0;
     for (int i = 0; i < cmds_size; i++)
     {
-        if (cmd == cmds[i])
-        {
-            system(cmds[i + 1].c_str());
-            return;
-        }
+        if (cmd == cmds[i]) { system(cmds[i + 1].c_str()); return; }
         cmds_index++;
     }
     if (cmds_index == cmds_size) system(cmd.c_str());
