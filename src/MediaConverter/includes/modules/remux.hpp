@@ -43,10 +43,8 @@ void MOD_REMUX()
 
     string FORMAT = IS_INT(FORMAT_INPUT) ? STR_STORE::FORMAT_STORE[stoi(FORMAT_INPUT) - 1] : FORMAT_INPUT.front() == '.' ? FORMAT_INPUT : '.' + FORMAT_INPUT;
 
-    SYS("ps");
-
     DRAW_SPACER();
-    system((STR_STORE::FFMPEG_INIT + GET_FILE_INFO(true, PATH) + " \"" + GET_FILE_INFO(false, PATH) + "_out" + FORMAT + "\"").c_str());
+    SYS(STR_STORE::FFMPEG_INIT + GET_FILE_INFO(true, PATH) + " \"" + GET_FILE_INFO(false, PATH) + "_out" + FORMAT + "\"");
     DRAW_SPACER();
 
     cout << " WANT TO REMUX ANOTHER? (y = yes | anything else = return to main menu)\n -> ";
