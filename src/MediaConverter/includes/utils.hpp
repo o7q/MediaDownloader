@@ -3,118 +3,134 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include "color/color.hpp"
 using namespace std;
 
-void SYS(string INPUT);
-string GET_FILE_INFO(bool COMPUTE_PATH, string INPUT);
-string GET_FILE_INFO_cut(string INPUT);
-string STR_REPEAT(string CHAR_IN, int AMOUNT);
-bool IS_INT(string INPUT);
-void DRAW_HEAD();
-void DRAW_SPACER();
-void SYNC_CIN();
+void sys(string input);
+string getFileInfo(bool computePath, string rawPath);
+string getFileInfo_cut(string rawFile);
+string repeatChar(string character, int length);
+bool isInt(string input);
+void syncCin();
+void draw_cursor();
+string draw_array(string array[], int from, int to, string charInsert, bool doCount);
+void draw_header();
+void draw_spacer();
 
-const string VERSION = "v1.0.0";
+extern const string version = "v1.0.0";
 
-namespace STR_STORE
+namespace stringStore
 {
-    string FFMPEG_INIT = "ffmpeg.exe -loglevel verbose -i ";
+    string ffmpegInit = "ffmpeg.exe -loglevel verbose -i ";
 
-    string FORMAT_STORE[] =
+    string formatData[] =
     {
         // video
-        ".avi",
-        ".mkv",
-        ".mov",
-        ".mp4",
-        ".webm",
-        ".wmv",
+        "avi", // 1
+        "mkv", // 2
+        "mov", // 3
+        "mp4", // 4
+        "webm", // 5
+        "wmv", // 6
 
         // audio
-        ".aac",
-        ".flac",
-        ".m4a",
-        ".mp3",
-        ".ogg",
-        ".opus",
-        ".wav",
+        "aac", // 7
+        "flac", // 8
+        "m4a", // 9
+        "mp3", // 10
+        "ogg", // 11
+        "opus", // 12
+        "wav", // 13
 
         // image
-        ".ico",
-        ".jpg",
-        ".png",
-        ".webp"
+        "ico", // 14
+        "jpg", // 15
+        "png", // 16
+        "webp" // 17
     };
 }
 
 // system cmd function
-void SYS(string INPUT)
+void sys(string input)
 {
-    string CMDS[] =
+    string cmds[] =
     {
         "ps", "pause",
         "clr", "cls",
         "col1", "color 7",
         "col2", "color 8"
     };
-    int CMDS_size = sizeof(CMDS) / sizeof(string);
-    int CMDS_index = 0;
-    for (int i = 0; i < CMDS_size; i++)
-    {
-        if (INPUT == CMDS[i]) { system(CMDS[i + 1].c_str()); return; }
-        CMDS_index++;
-    }
-    if (CMDS_index == CMDS_size) system(INPUT.c_str());
+    int cmds_size = sizeof(cmds) / sizeof(string);
+    int cmds_index = 0;
+    for (int i = 0; i < cmds_size; i++) { if (input == cmds[i]) { system(cmds[i + 1].c_str()); return; } cmds_index++; }
+    if (cmds_index == cmds_size) system(input.c_str());
 }
 
 // get file info function
-string GET_FILE_INFO(bool COMPUTE_PATH, string INPUT)
+string getFileInfo(bool computePath, string rawPath)
 {
-    if (COMPUTE_PATH) return '"' + GET_FILE_INFO_cut(INPUT) + '"';
+    if (computePath) return '"' + getFileInfo_cut(rawPath) + '"';
     else
     {
-        string FILE = GET_FILE_INFO_cut(INPUT.substr(INPUT.find_last_of("/\\") + 1));
-        size_t FILE_lastIndex = FILE.find_last_of("."); 
-        return FILE.substr(0, FILE_lastIndex); 
+        string file = getFileInfo_cut(rawPath.substr(rawPath.find_last_of("/\\") + 1));
+        size_t file_lastIndex = file.find_last_of("."); 
+        return file.substr(0, file_lastIndex); 
     }
 }
-string GET_FILE_INFO_cut(string INPUT)
+string getFileInfo_cut(string rawFile)
 {
-    return regex_replace(INPUT, regex("\\\""), "");;
+    return regex_replace(rawFile, regex("\\\""), "");
 }
 
-// string repeater function
-string STR_REPEAT(string CHAR_IN, int AMOUNT)
+// string character function
+string repeatChar(string character, int length)
 {
-    string OUTPUT;
-    for (int i = 0; i < AMOUNT; i++) OUTPUT += CHAR_IN;
-    return OUTPUT;
+    string output;
+    for (int i = 0; i < length; i++) output += character;
+    return output;
 }
 
 // is integer function
-bool IS_INT(string INPUT)
+bool isInt(string input)
 {
-    return !INPUT.empty() && INPUT.find_first_not_of("0123456789");
-}
-
-// draw head function
-void DRAW_HEAD()
-{
-    cout << "    __  ___       ___      _____                      __         \n"
-            "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
-            "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
-            " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ";
-    cout << " " + VERSION + "\n" + STR_REPEAT(" ", 66) + "by o7q\n\n+" + STR_REPEAT("=", 71) + "+\n\n";
-}
-
-// draw spacer function
-void DRAW_SPACER()
-{
-    cout << "\n+" + STR_REPEAT("=", 71) + "+\n\n";
+    return !input.empty() && input.find_first_not_of("0123456789");
 }
 
 // cin clear function
-void SYNC_CIN()
+void syncCin()
 {
     cin.clear(); cin.sync();
+}
+
+void draw_cursor()
+{
+    cout << dye::light_yellow(" -> ");
+}
+
+// draw array function
+string draw_array(string array[], int from, int to, string charInsert, bool doCount)
+{
+    string output;
+    for (int i = from - 1; i < to; i++)
+    {
+        output += charInsert + array[i] + "\n";
+        if (doCount) output = regex_replace(output, regex("\\$"), to_string(i + 1));
+    }
+    return output;
+}
+
+// draw header function
+void draw_header()
+{
+    cout << dye::white("    __  ___       ___      _____                      __         \n"
+            "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
+            "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
+            " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ");
+    cout << " " + dye::white(version) + "\n" + repeatChar(" ", 66) + dye::white("by o7q") + "\n\n+" + repeatChar("=", 71) + "+\n\n";
+}
+
+// draw spacer function
+void draw_spacer()
+{
+    cout << "\n+" + repeatChar("=", 71) + "+\n\n";
 }

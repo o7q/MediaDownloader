@@ -5,6 +5,6 @@ using namespace std;
 
 main()
 {
-    while (true) MODULE_INIT();
+    while (true) moduleInit();
     return 0;
 }

@@ -2,31 +2,32 @@
 
 #include <iostream>
 #include "utils.hpp"
-#include "modules/remux.hpp"
+#include "color/color.hpp"
+#include "modules/m_remux.hpp"
 using namespace std;
 
-void MODULE_INIT();
+void moduleInit();
 
-void MODULE_INIT()
+void moduleInit()
 {
-    SYS("col1");
-    SYS("title MediaConverter " + VERSION);
-    DRAW_HEAD();
+    sys("col1");
+    sys("title MediaConverter " + version);
+    draw_header();
 
-    cout << " SELECT AN OPTION\n"
-            "  > [1] REMUX\n"
+    cout << " SELECT AN OPTION (enter a non-number to exit)\n";
+    cout << dye::bright_white("  > [1] REMUX\n"
             "  > [2] COMPRESS\n"
-            "  > [3] RESIZE\n";
-    cout << " -> ";
+            "  > [3] RESIZE\n");
+    draw_cursor();
 
-    string MODULE_PROMPT;
-    getline(cin, MODULE_PROMPT); SYNC_CIN();
+    string module_select;
+    getline(cin, module_select); syncCin();
 
-    if (!IS_INT(MODULE_PROMPT)) _Exit(0);
+    if (!isInt(module_select)) _Exit(0);
 
-    SYS("col2"); SYS("clr"); 
-    switch (stoi(MODULE_PROMPT))
+    sys("col2"); sys("clr"); 
+    switch (stoi(module_select))
     {
-        case 1: MOD_REMUX(); break;
+        case 1: module_remux(); break;
     }
 }
