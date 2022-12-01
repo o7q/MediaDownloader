@@ -5,13 +5,13 @@
 #include "modules/remux.hpp"
 using namespace std;
 
-void modInit();
+void MODULE_INIT();
 
-void modInit()
+void MODULE_INIT()
 {
-    sys("col1");
-    system(("title MediaConverter " + ver).c_str());
-    drawHead();
+    SYS("col1");
+    SYS("title MediaConverter " + VERSION);
+    DRAW_HEAD();
 
     cout << " SELECT AN OPTION\n"
             "  > [1] REMUX\n"
@@ -19,14 +19,14 @@ void modInit()
             "  > [3] RESIZE\n";
     cout << " -> ";
 
-    string s;
-    getline(cin, s); cc();
+    string MODULE_PROMPT;
+    getline(cin, MODULE_PROMPT); SYNC_CIN();
 
-    if (!isInt(s)) _Exit(0);
+    if (!IS_INT(MODULE_PROMPT)) _Exit(0);
 
-    sys("col2"); sys("clr"); 
-    switch (stoi(s))
+    SYS("col2"); SYS("clr"); 
+    switch (stoi(MODULE_PROMPT))
     {
-        case 1: remux(); break;
+        case 1: MOD_REMUX(); break;
     }
 }

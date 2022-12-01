@@ -4,15 +4,17 @@
 #include "../utils.hpp"
 using namespace std;
 
-void remux()
+void MOD_REMUX();
+
+void MOD_REMUX()
 {
-    sys("col1"); 
-    drawHead();
+    SYS("col1"); 
+    DRAW_HEAD();
 
     cout << " MEDIA PATH\n";
     cout << " -> ";
-    string filePath;
-    getline(cin, filePath); cc();
+    string PATH;
+    getline(cin, PATH); SYNC_CIN();
 
     cout << "\n SELECT A FORMAT OR SPECIFY IN YOUR OWN\n"
             "  VIDEO\n"
@@ -36,21 +38,21 @@ void remux()
             "   > [16] png\n"
             "   > [17] webp\n";
     cout << " -> ";
-    string format;
-    getline(cin, format); cc();
+    string FORMAT_INPUT;
+    getline(cin, FORMAT_INPUT); SYNC_CIN();
 
-    string ext = isInt(format) ? str::exts[stoi(format) - 1] : format.front() == '.' ? format : '.' + format;
+    string FORMAT = IS_INT(FORMAT) ? STR_STORE::FORMAT_STORE[stoi(FORMAT) - 1] : FORMAT.front() == '.' ? FORMAT : '.' + FORMAT;
 
-    drawSp();
-    sys(str::ffmpegSrt + getFInfo(true, filePath) + " \"" + getFInfo(false, filePath) + "_out" + ext + "\"");
-    drawSp();
+    DRAW_SPACER();
+    SYS(STR_STORE::FFMPEG_INIT + GET_FILE_INFO(true, PATH) + " \"" + GET_FILE_INFO(false, PATH) + "_out" + FORMAT + "\"");
+    DRAW_SPACER();
 
     cout << " WANT TO REMUX ANOTHER? (y = yes | anything else = return to main menu)\n -> ";
 
-    string s;
-    getline(cin, s);
+    string EXIT_PROMPT;
+    getline(cin, EXIT_PROMPT);
 
-    sys("col2"); sys("clr");
+    SYS("col2"); SYS("clr");
 
-    if (s == "y") remux();
+    if (EXIT_PROMPT == "y") MOD_REMUX();
 }
