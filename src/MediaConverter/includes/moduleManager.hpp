@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "utils.hpp"
-#include "objectVault.hpp"
 #include "color/color.hpp"
 #include "modules/remux.hpp"
 using namespace std;
@@ -22,7 +21,7 @@ void moduleInit()
     string moduleSelect;
     getline(cin, moduleSelect); syncCin();
 
-    if (!isInt(moduleSelect)) { OBJECT_VAULT::GLOBAL::PERSISTENT = false; return; }
+    if (!isInt(moduleSelect)) _Exit(0);
 
     sys("col2"); sys("clr"); 
     switch (stoi(moduleSelect))
