@@ -23,23 +23,23 @@ void module_remux()
 
     cout << "\n SELECT A FORMAT OR ENTER YOUR OWN\n"
          << "  VIDEO\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT_DATA, 1, 6, "   > [#] ", true))
+         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 1, 6, "   > [#] ", true))
          << "  AUDIO\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT_DATA, 7, 13, "   > [#] ", true))
+         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 7, 13, "   > [#] ", true))
          << "  IMAGE\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT_DATA, 14, 17, "   > [#] ", true));
+         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 14, 17, "   > [#] ", true));
     draw_cursor();
 
     string formatSelect;
     getline(cin, formatSelect); syncCin();
 
-    string format = isInt(formatSelect) ? '.' + OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT_DATA[stoi(formatSelect) - 1] : formatSelect.front() == '.' ? formatSelect : '.' + formatSelect;
+    string format = isInt(formatSelect) ? '.' + OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT[stoi(formatSelect) - 1] : formatSelect.front() == '.' ? formatSelect : '.' + formatSelect;
 
     draw_spacer();
-    sys(OBJECT_VAULT::DATA::FFMPEG_INIT_DATA + getFileInfo(true, path) + " \"" + getFileInfo(false, path) + "_out" + format + "\"");
+    sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, path) + " \"" + getFileInfo(false, path) + "_out" + format + "\"");
     draw_spacer();
 
-    cout << " REMUX ANOTHER? " + OBJECT_VAULT::MESSAGE::EXIT_SELECT_MESSAGE + "\n";
+    cout << " REMUX ANOTHER? " + OBJECT_VAULT::MESSAGE::EXIT_SELECT + "\n";
     draw_cursor();
 
     string exitPrompt;

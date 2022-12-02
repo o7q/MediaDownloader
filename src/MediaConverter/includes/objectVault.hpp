@@ -12,19 +12,19 @@ namespace OBJECT_VAULT
     }
     namespace MESSAGE
     {
-        string OPTION_SELECT_MESSAGE = "SELECT AN OPTION";
-        string EXIT_SELECT_MESSAGE = "(y = yes | anything else = return to main menu)";
+        string OPTION_SELECT = "SELECT AN OPTION";
+        string EXIT_SELECT = "(y = yes | anything else = return to main menu)";
     }
     namespace DATA
     {
-        string FFMPEG_INIT_DATA = "ffmpeg.exe -loglevel verbose -i ";
-        string MODULE_TITLE_DATA[] =
+        string FFMPEG_INIT = "ffmpeg.exe -loglevel verbose -i ";
+        string MODULE_TITLE[] =
         {
             "REMUX", // 1
             "COMPRESS", // 2
             "RESIZE" // 3
         };
-        string COMMON_MEDIA_FORMAT_DATA[] =
+        string COMMON_MEDIA_FORMAT[] =
         {
             // video
             "avi", // 1
