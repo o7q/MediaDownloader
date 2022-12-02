@@ -22,7 +22,8 @@ namespace OBJECT_VAULT
         {
             "REMUX", // 1
             "COMPRESS", // 2
-            "RESIZE" // 3
+            "RESIZE", // 3
+            "OPTIONS" // 4
         };
         string COMMON_MEDIA_FORMAT[] =
         {

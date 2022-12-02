@@ -95,7 +95,8 @@ void draw_header()
                               "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
                               "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
                               " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ")
-         << " " + dye::light_green(OBJECT_VAULT::GLOBAL::VERSION) + "\n" + repeatChar(" ", 66) + dye::green("by o7q") + dye::grey("\n\n+" + repeatChar("=", 71) + "+\n\n");
+         << " " + dye::light_green(OBJECT_VAULT::GLOBAL::VERSION) + "\n" + repeatChar(" ", 66) + dye::green("by o7q\n");
+    draw_spacer();
 }
 
 // draw spacer function

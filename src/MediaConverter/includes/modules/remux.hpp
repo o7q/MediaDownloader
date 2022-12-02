@@ -1,8 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <sys/stat.h>
 #include <dirent.h>
 #include "../utils.hpp"
+#include "../objectVault.hpp"
 #include "../color/color.hpp"
 using namespace std;
 
@@ -18,6 +20,16 @@ void module_remux()
     string path;
     getline(cin, path); syncCin();
 
+    // decide if the path is a file or directory, set doBulk state
+    string rawPath = getFileInfo_cut(path);
+    bool doBulk = false;
+    struct stat s;
+    if (stat(rawPath.c_str(), &s) == 0)
+    {
+        if (s.st_mode & S_IFDIR) { doBulk = true; }
+        else if (s.st_mode & S_IFREG) { doBulk = false; }
+    }
+
     cout << "\n SELECT A FORMAT OR ENTER YOUR OWN\n"
          << "  VIDEO\n"
          << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 1, 6, "   > [#] ", true))
@@ -32,19 +44,27 @@ void module_remux()
 
     string format = isInt(formatSelect) ? '.' + OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT[stoi(formatSelect) - 1] : formatSelect.front() == '.' ? formatSelect : '.' + formatSelect;
 
-    if (auto dir = opendir(path.c_str()))
+    if (doBulk)
     {
-        while (auto f = readdir(dir))
+        if (auto dir = opendir(rawPath.c_str()))
         {
-            if (!f->d_name || f->d_name[0] == '.') continue;
-
-            string filePath = path + "\\" + f->d_name;
-
+            while (auto f = readdir(dir))
+            {
+                if (!f->d_name || f->d_name[0] == '.') continue;
+                
+                draw_spacer();
+                string filePath = rawPath + "\\" + f->d_name;
+                sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, filePath) + " \"" + getFileInfo(false, filePath) + "_out" + format + "\""); 
+            }
+            closedir(dir);
             draw_spacer();
-            sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, filePath) + " \"" + getFileInfo(false, filePath) + "_out" + format + "\""); 
         }
-        closedir(dir);
+    }
+    else
+    {
         draw_spacer();
+        sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, path) + " \"" + getFileInfo(false, path) + "_out" + format + "\"");
+        draw_spacer(); 
     }
 
     cout << " REMUX ANOTHER? " + OBJECT_VAULT::MESSAGE::EXIT_SELECT + "\n";
