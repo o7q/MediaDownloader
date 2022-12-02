@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include "stringVault.hpp"
+#include "objectVault.hpp"
 #include "color/color.hpp"
 using namespace std;
 
@@ -91,15 +91,15 @@ string draw_array(string array[], int from, int to, string charInsert, bool doCo
 // draw header function
 void draw_header()
 {
-    cout << dye::bright_white("    __  ___       ___      _____                      __         \n"
+    cout << dye::light_green("    __  ___       ___      _____                      __         \n"
                               "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
                               "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
                               " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ")
-         << " " + dye::bright_white(VERSION) + "\n" + repeatChar(" ", 66) + dye::bright_white("by o7q") + "\n\n+" + repeatChar("=", 71) + "+\n\n";
+         << " " + dye::light_green(OBJECT_VAULT::GLOBAL::VERSION) + "\n" + repeatChar(" ", 66) + dye::green("by o7q") + dye::grey("\n\n+" + repeatChar("=", 71) + "+\n\n");
 }
 
 // draw spacer function
 void draw_spacer()
 {
-    cout << "\n+" + repeatChar("=", 71) + "+\n\n";
+    cout << dye::grey("\n+" + repeatChar("=", 71) + "+\n\n");
 }

@@ -5,6 +5,7 @@ using namespace std;
 
 main()
 {
-    while (true) moduleInit();
+    OBJECT_VAULT::GLOBAL::PERSISTENT = true;
+    while (OBJECT_VAULT::GLOBAL::PERSISTENT) moduleInit();
     return 0;
 }

@@ -11,11 +11,11 @@ void moduleInit();
 void moduleInit()
 {
     sys("col1");
-    sys("title MediaConverter " + VERSION);
+    sys("title MediaConverter " + OBJECT_VAULT::GLOBAL::VERSION);
     draw_header();
 
-    cout << " SELECT AN OPTION (enter a non-number to exit)\n"
-         << dye::bright_white(draw_array(stringVault::MODULE_TITLE_DATA, 1, 3, "  > [#] ", true));
+    cout << " " + OBJECT_VAULT::MESSAGE::OPTION_SELECT_MESSAGE + " (enter a non-number to exit)\n"
+         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::MODULE_TITLE_DATA, 1, 3, "  > [#] ", true));
     draw_cursor();
 
     string moduleSelect;
