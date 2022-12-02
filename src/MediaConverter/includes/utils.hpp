@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include "stringVault.hpp"
 #include "color/color.hpp"
 using namespace std;
 
@@ -12,43 +13,11 @@ string getFileInfo_cut(string rawFile);
 string repeatChar(string character, int length);
 bool isInt(string input);
 void syncCin();
+// draw functions
 void draw_cursor();
 string draw_array(string array[], int from, int to, string charInsert, bool doCount);
 void draw_header();
 void draw_spacer();
-
-extern const string version = "v1.0.0";
-
-namespace stringStore
-{
-    string ffmpegInit = "ffmpeg.exe -loglevel verbose -i ";
-
-    string formatData[] =
-    {
-        // video
-        "avi", // 1
-        "mkv", // 2
-        "mov", // 3
-        "mp4", // 4
-        "webm", // 5
-        "wmv", // 6
-
-        // audio
-        "aac", // 7
-        "flac", // 8
-        "m4a", // 9
-        "mp3", // 10
-        "ogg", // 11
-        "opus", // 12
-        "wav", // 13
-
-        // image
-        "ico", // 14
-        "jpg", // 15
-        "png", // 16
-        "webp" // 17
-    };
-}
 
 // system cmd function
 void sys(string input)
@@ -114,7 +83,7 @@ string draw_array(string array[], int from, int to, string charInsert, bool doCo
     for (int i = from - 1; i < to; i++)
     {
         output += charInsert + array[i] + "\n";
-        if (doCount) output = regex_replace(output, regex("\\$"), to_string(i + 1));
+        if (doCount) output = regex_replace(output, regex("\\#"), to_string(i + 1));
     }
     return output;
 }
@@ -122,11 +91,11 @@ string draw_array(string array[], int from, int to, string charInsert, bool doCo
 // draw header function
 void draw_header()
 {
-    cout << dye::white("    __  ___       ___      _____                      __         \n"
-            "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
-            "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
-            " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ");
-    cout << " " + dye::white(version) + "\n" + repeatChar(" ", 66) + dye::white("by o7q") + "\n\n+" + repeatChar("=", 71) + "+\n\n";
+    cout << dye::bright_white("    __  ___       ___      _____                      __         \n"
+                              "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
+                              "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
+                              " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ")
+         << " " + dye::bright_white(VERSION) + "\n" + repeatChar(" ", 66) + dye::bright_white("by o7q") + "\n\n+" + repeatChar("=", 71) + "+\n\n";
 }
 
 // draw spacer function

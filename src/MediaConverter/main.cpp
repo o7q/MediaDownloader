@@ -1,6 +1,6 @@
 #include <iostream>
 #include "includes/utils.hpp"
-#include "includes/moduleInit.hpp"
+#include "includes/moduleManager.hpp"
 using namespace std;
 
 main()
