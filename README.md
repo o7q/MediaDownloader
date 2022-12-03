@@ -83,7 +83,7 @@ scoop.cmd update *
 ---
 
 <b>MediaDownloader</b> \
-Programmed with C# and .NET Framework 4.8
+Programmed with C# .NET Framework 4.8
 
 <b>MediaConverter</b> \
 Programmed with C++ and compiled using MinGW G++
