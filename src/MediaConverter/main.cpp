@@ -1,19 +1,25 @@
 #include <iostream>
+#include <sys/stat.h>
 #include <direct.h>
-#include <fstream>
+#include "includes/wizard.hpp"
 #include "includes/objectStorage.hpp"
 #include "includes/moduleManager.hpp"
 using namespace std;
 
 main()
 {
-    _mkdir("mediaconverter");
+    struct stat dirScan;
+    if (stat("mediaconverter", &dirScan) != 0)
+    {
+        _mkdir("mediaconverter");
+        wizard();
+    }
 
     // get the path of the executable
     // return the handle of the exe and use GetModuleFileName() with module handle to get the path
-    char exePath[MAX_PATH]; 
+    char exePath[MAX_PATH];
     HMODULE hModule = GetModuleHandle(NULL);
-    if (hModule != NULL) GetModuleFileName(hModule, exePath, (sizeof(exePath))); 
+    if (hModule != NULL) GetModuleFileName(hModule, exePath, (sizeof(exePath)));
 
     string exePath_string = exePath;
     OBJECT_STORAGE::ENVIRONMENT::ROOT_PATH = exePath_string.substr(0, exePath_string.find_last_of("\\/"));

@@ -12,7 +12,8 @@ void module_remux();
 
 void module_remux()
 {
-    sys("col1"); 
+    sys("col1");
+    sys("title MediaConverter " + OBJECT_STORAGE::ENVIRONMENT::VERSION + "   [REMUX]");
     draw_header();
 
     cout << " MEDIA PATH\n";
@@ -23,11 +24,11 @@ void module_remux()
     // decide if the path is a file or directory, set doBulk state
     string rawPath = getFileInfo_cut(path);
     bool doBulk = false;
-    struct stat s;
-    if (stat(rawPath.c_str(), &s) == 0)
+    struct stat bulkCheck;
+    if (stat(rawPath.c_str(), &bulkCheck) == 0)
     {
-        if (s.st_mode & S_IFDIR) { doBulk = true; }
-        else if (s.st_mode & S_IFREG) { doBulk = false; }
+        if (bulkCheck.st_mode & S_IFDIR) { doBulk = true; }
+        else if (bulkCheck.st_mode & S_IFREG) { doBulk = false; }
     }
 
     cout << "\n SELECT A FORMAT OR ENTER YOUR OWN\n"
@@ -75,5 +76,5 @@ void module_remux()
 
     sys("col2"); sys("clr");
 
-    if (exitPrompt == "y") module_remux();
+    if (exitPrompt == "Y" || exitPrompt == "y") module_remux();
 }
