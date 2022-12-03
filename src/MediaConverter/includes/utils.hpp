@@ -3,12 +3,12 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include "objectVault.hpp"
+#include "objectStorage.hpp"
 #include "color/color.hpp"
 using namespace std;
 
 void sys(string input);
-string getFileInfo(bool computePath, string rawPath);
+string getFileInfo(string rawPath, bool computePath);
 string getFileInfo_cut(string rawFile);
 string repeatChar(string character, int length);
 bool isInt(string input);
@@ -36,7 +36,7 @@ void sys(string input)
 }
 
 // get file info function
-string getFileInfo(bool computePath, string rawPath)
+string getFileInfo(string rawPath, bool computePath)
 {
     if (computePath) return '"' + getFileInfo_cut(rawPath) + '"';
     else
@@ -95,7 +95,7 @@ void draw_header()
                               "   /  |/  /__ ___/ (_)__ _/ ___/__  ___ _  _____ ____/ /____ ____\n"
                               "  / /|_/ / -_) _  / / _ `/ /__/ _ \\/ _ \\ |/ / -_) __/ __/ -_) __/\n"
                               " /_/  /_/\\__/\\_,_/_/\\_,_/\\___/\\___/_//_/___/\\__/_/  \\__/\\__/_/   ")
-         << " " + dye::light_green(OBJECT_VAULT::GLOBAL::VERSION) + "\n" + repeatChar(" ", 66) + dye::green("by o7q\n");
+         << " " + dye::light_green(OBJECT_STORAGE::ENVIRONMENT::VERSION) + "\n" + repeatChar(" ", 66) + dye::green("by o7q\n");
     draw_spacer();
 }
 

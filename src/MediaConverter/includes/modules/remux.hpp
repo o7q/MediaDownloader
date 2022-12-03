@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include "../utils.hpp"
-#include "../objectVault.hpp"
+#include "../objectStorage.hpp"
 #include "../color/color.hpp"
 using namespace std;
 
@@ -32,17 +32,17 @@ void module_remux()
 
     cout << "\n SELECT A FORMAT OR ENTER YOUR OWN\n"
          << "  VIDEO\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 1, 6, "   > [#] ", true))
+         << dye::bright_white(draw_array(OBJECT_STORAGE::DATA::COMMON_MEDIA_FORMAT, 1, 6, "   > [#] ", true))
          << "  AUDIO\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 7, 13, "   > [#] ", true))
+         << dye::bright_white(draw_array(OBJECT_STORAGE::DATA::COMMON_MEDIA_FORMAT, 7, 13, "   > [#] ", true))
          << "  IMAGE\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT, 14, 17, "   > [#] ", true));
+         << dye::bright_white(draw_array(OBJECT_STORAGE::DATA::COMMON_MEDIA_FORMAT, 14, 17, "   > [#] ", true));
     draw_cursor();
 
     string formatSelect;
     getline(cin, formatSelect); syncCin();
 
-    string format = isInt(formatSelect) ? '.' + OBJECT_VAULT::DATA::COMMON_MEDIA_FORMAT[stoi(formatSelect) - 1] : formatSelect.front() == '.' ? formatSelect : '.' + formatSelect;
+    string format = isInt(formatSelect) ? '.' + OBJECT_STORAGE::DATA::COMMON_MEDIA_FORMAT[stoi(formatSelect) - 1] : formatSelect.front() == '.' ? formatSelect : '.' + formatSelect;
 
     if (doBulk)
     {
@@ -54,7 +54,7 @@ void module_remux()
                 
                 draw_spacer();
                 string filePath = rawPath + "\\" + f->d_name;
-                sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, filePath) + " \"" + getFileInfo(false, filePath) + "_out" + format + "\""); 
+                sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(filePath, true) + " \"" + getFileInfo(filePath, false) + "_out" + format + "\""); 
             }
             closedir(dir);
             draw_spacer();
@@ -63,11 +63,11 @@ void module_remux()
     else
     {
         draw_spacer();
-        sys(OBJECT_VAULT::DATA::FFMPEG_INIT + getFileInfo(true, path) + " \"" + getFileInfo(false, path) + "_out" + format + "\"");
+        sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(path, true) + " \"" + getFileInfo(path, false) + "_out" + format + "\"");
         draw_spacer(); 
     }
 
-    cout << " REMUX ANOTHER? " + OBJECT_VAULT::MESSAGE::EXIT_SELECT + "\n";
+    cout << " REMUX ANOTHER? " + OBJECT_STORAGE::MESSAGE::EXIT_SELECT + "\n";
     draw_cursor();
 
     string exitPrompt;

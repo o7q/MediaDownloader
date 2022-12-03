@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "utils.hpp"
-#include "objectVault.hpp"
+#include "objectStorage.hpp"
 #include "color/color.hpp"
 #include "modules/remux.hpp"
 using namespace std;
@@ -12,17 +12,17 @@ void moduleInit();
 void moduleInit()
 {
     sys("col1");
-    sys("title MediaConverter " + OBJECT_VAULT::GLOBAL::VERSION);
+    sys("title MediaConverter " + OBJECT_STORAGE::ENVIRONMENT::VERSION);
     draw_header();
 
-    cout << " " + OBJECT_VAULT::MESSAGE::OPTION_SELECT + " (enter a non-number to exit)\n"
-         << dye::bright_white(draw_array(OBJECT_VAULT::DATA::MODULE_TITLE, 1, 3, "  > [#] ", true));
+    cout << " " + OBJECT_STORAGE::MESSAGE::OPTION_SELECT + " (enter a non-number to exit)\n"
+         << dye::bright_white(draw_array(OBJECT_STORAGE::DATA::MODULE_TITLE, 1, 3, "  > [#] ", true));
     draw_cursor();
 
     string moduleSelect;
     getline(cin, moduleSelect); syncCin();
 
-    if (!isInt(moduleSelect)) { OBJECT_VAULT::GLOBAL::PERSISTENT = false; return; }
+    if (!isInt(moduleSelect)) { OBJECT_STORAGE::ENVIRONMENT::PERSISTENT = false; return; }
 
     sys("col2"); sys("clr"); 
     switch (stoi(moduleSelect))

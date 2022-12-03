@@ -3,12 +3,15 @@
 #include <iostream>
 using namespace std;
 
-namespace OBJECT_VAULT
+namespace OBJECT_STORAGE
 {
-    namespace GLOBAL
+    namespace ENVIRONMENT
     {
         const string VERSION = "v1.0.0";
         bool PERSISTENT;
+        string ROOT_PATH;
+        string MAIN_PATH;
+        string FFMPEG_PATH = "ffmpeg.exe";
     }
     namespace MESSAGE
     {
