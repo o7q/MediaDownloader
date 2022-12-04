@@ -3,9 +3,9 @@
 #include <iostream>
 #include <sys/stat.h>
 #include <dirent.h>
-#include "../utils.hpp"
-#include "../objectStorage.hpp"
-#include "../color/color.hpp"
+#include "../../utils.hpp"
+#include "../../objectStorage.hpp"
+#include "../../color/color.hpp"
 using namespace std;
 
 void module_remux();
@@ -55,7 +55,7 @@ void module_remux()
                 
                 draw_spacer();
                 string filePath = rawPath + "\\" + f->d_name;
-                sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(filePath, true) + " \"" + getFileInfo(filePath, false) + "_out" + format + "\""); 
+                sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(filePath, true, true) + " \"" + getFileInfo(filePath, false, false) + "_out" + format + "\""); 
             }
             closedir(dir);
             draw_spacer();
@@ -64,11 +64,11 @@ void module_remux()
     else
     {
         draw_spacer();
-        sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(path, true) + " \"" + getFileInfo(path, false) + "_out" + format + "\"");
+        sys(OBJECT_STORAGE::DATA::FFMPEG_INIT + getFileInfo(path, true, true) + " \"" + getFileInfo(path, false, false) + "_out" + format + "\"");
         draw_spacer(); 
     }
 
-    cout << " REMUX ANOTHER? " + OBJECT_STORAGE::MESSAGE::EXIT_SELECT + "\n";
+    cout << " REMUX ANOTHER? (y = yes | anything else = return to main menu)\n";
     draw_cursor();
 
     string exitPrompt;

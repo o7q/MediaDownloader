@@ -1,12 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include "utils.hpp"
+#include "../utils.hpp"
 using namespace std;
 
-void options();
+void module_options();
 
-void options()
+void module_options()
 {
     sys("col1");
     sys("title MediaConverter " + OBJECT_STORAGE::ENVIRONMENT::VERSION + "   [OPTIONS]");

@@ -7,29 +7,26 @@ namespace OBJECT_STORAGE
 {
     namespace ENVIRONMENT
     {
-        const string VERSION = "v1.0.0";
+        const string VERSION = "v1.0.0 (PROTOTYPE)";
         bool PERSISTENT;
+        
         string ROOT_PATH;
         string MAIN_PATH;
         string FFMPEG_PATH;
         string OUTPUT_PATH;
     }
-    namespace MESSAGE
-    {
-        string OPTION_SELECT = "SELECT AN OPTION";
-        string EXIT_SELECT = "(y = yes | anything else = return to main menu)";
-    }
     namespace DATA
     {
-        string FFMPEG_INIT = OBJECT_STORAGE::ENVIRONMENT::FFMPEG_PATH + " -loglevel verbose -i ";
+        string FFMPEG_INIT = "ffmpeg.exe -loglevel verbose -i ";
         string MODULE_TITLE[] =
         {
             "REMUX", // 1
             "COMPRESS", // 2
             "RESIZE", // 3
+            // etc.
             "OPTIONS", // 4
             "GITHUB", // 5
-            "ABOUT" // 6
+            "INFO" // 6
         };
         string COMMON_MEDIA_FORMAT[] =
         {

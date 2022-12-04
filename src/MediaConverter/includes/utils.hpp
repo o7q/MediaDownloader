@@ -8,7 +8,7 @@
 using namespace std;
 
 void sys(string input);
-string getFileInfo(string rawPath, bool computePath);
+string getFileInfo(string rawPath, bool computePath, bool finalize);
 string getFileInfo_cut(string rawFile);
 string repeatChar(string character, int length);
 bool isInt(string input);
@@ -36,15 +36,13 @@ void sys(string input)
 }
 
 // get file info function
-string getFileInfo(string rawPath, bool computePath)
+string getFileInfo(string rawPath, bool computePath, bool finalize)
 {
-    if (computePath) return '"' + getFileInfo_cut(rawPath) + '"';
-    else
-    {
-        string file = getFileInfo_cut(rawPath.substr(rawPath.find_last_of("/\\") + 1));
-        size_t file_lastIndex = file.find_last_of("."); 
-        return file.substr(0, file_lastIndex); 
-    }
+    if (computePath && finalize) return '"' + getFileInfo_cut(rawPath) + '"';
+    if (computePath && !finalize) return getFileInfo_cut(rawPath);
+    string file = getFileInfo_cut(rawPath.substr(rawPath.find_last_of("/\\") + 1));
+    size_t file_lastIndex = file.find_last_of("."); 
+    return file.substr(0, file_lastIndex); 
 }
 string getFileInfo_cut(string rawFile)
 {

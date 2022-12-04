@@ -1,7 +1,6 @@
 #include <iostream>
 #include <sys/stat.h>
 #include <direct.h>
-#include "includes/wizard.hpp"
 #include "includes/objectStorage.hpp"
 #include "includes/moduleManager.hpp"
 using namespace std;
@@ -9,11 +8,7 @@ using namespace std;
 main()
 {
     struct stat dirScan;
-    if (stat("mediaconverter", &dirScan) != 0)
-    {
-        _mkdir("mediaconverter");
-        wizard();
-    }
+    if (stat("mediaconverter", &dirScan) != 0) _mkdir("mediaconverter");
 
     // get the path of the executable
     // return the handle of the exe and use GetModuleFileName() with module handle to get the path
