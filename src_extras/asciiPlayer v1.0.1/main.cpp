@@ -10,7 +10,7 @@ using namespace std;
 void playFrames();
 void replayPrompt();
 
-const string version = "v1.0.0";
+const string version = "v1.0.1";
 
 bool persistent = true;
 string path_fix;
@@ -88,5 +88,5 @@ void replayPrompt()
 
         system("cls");
         if (prompt == "Y" || prompt == "y") playFrames();
-        if (!((prompt == "Y" || prompt == "y") && (prompt == "U" || prompt == "u"))) persistent = false;
+        if (!(prompt == "Y" || prompt == "y") && !(prompt == "U" || prompt == "u")) persistent = false;
 }

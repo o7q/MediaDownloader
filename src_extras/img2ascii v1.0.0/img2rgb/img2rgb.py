@@ -2,37 +2,35 @@ from PIL import Image
 import os
 import sys
 
-version = "v1.0.0"
-
 fileCount = next(os.walk("img2ascii\\render_temp\\raw"))[2]
 
 nameIndex = 1
 for list_item in fileCount:
-    imgPath = "img2ascii\\render_temp\\raw\\frame.raw." + str(nameIndex) + ".png"
+    framePath = "img2ascii\\render_temp\\raw\\frame.raw." + str(nameIndex) + ".png"
 
     widthRead = open("img2ascii\\render_temp\\frame_width", "r")
-    imgWidth = widthRead.read()
-    imgWidth_int = int(imgWidth)
+    frameWidth = widthRead.read()
+    frameWidth_int = int(frameWidth)
     widthRead.close()
 
     heightRead = open("img2ascii\\render_temp\\frame_height", "r")
-    imgHeight = heightRead.read()
-    imgHeight_int = int(imgHeight)
+    frameHeight = heightRead.read()
+    frameHeight_int = int(frameHeight)
     heightRead.close()
 
-    area = imgWidth_int * imgHeight_int
+    area = frameWidth_int * frameHeight_int
 
     x = 0
     y = 0
     rgb_str = ""
 
-    img = Image.open(imgPath).convert('RGB')
+    frame = Image.open(framePath).convert('RGB')
     for i in range(area):
-        rgb = img.getpixel((x, y))
+        rgb = frame.getpixel((x, y))
         rgb_str += str(rgb[0]) + "," + str(rgb[1]) + "," + str(rgb[2]) + "|"
 
         x += 1
-        if x == imgWidth_int:
+        if x == frameWidth_int:
             y += 1
             x = 0
 
