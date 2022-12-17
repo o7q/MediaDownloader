@@ -4,18 +4,18 @@ import sys
 
 version = "v1.0.0"
 
-fileCount = next(os.walk("img2ascii\\render_temp\\raw"))[2]
+fileCount = next(os.walk("img2ascii\\convert_temp\\raw"))[2]
 
 nameIndex = 1
 for list_item in fileCount:
-    framePath = "img2ascii\\render_temp\\raw\\frame.raw." + str(nameIndex) + ".png"
+    framePath = "img2ascii\\convert_temp\\raw\\frame.raw." + str(nameIndex) + ".png"
 
-    widthRead = open("img2ascii\\render_temp\\frame_width", "r")
+    widthRead = open("img2ascii\\convert_temp\\frame_width", "r")
     frameWidth = widthRead.read()
     frameWidth_int = int(frameWidth)
     widthRead.close()
 
-    heightRead = open("img2ascii\\render_temp\\frame_height", "r")
+    heightRead = open("img2ascii\\convert_temp\\frame_height", "r")
     frameHeight = heightRead.read()
     frameHeight_int = int(frameHeight)
     heightRead.close()
@@ -37,7 +37,7 @@ for list_item in fileCount:
             x = 0
 
     print(" Converting [frame.raw." + str(nameIndex) + ".png] to RGB")
-    output_file = open("img2ascii\\render_temp\\rgb\\frame.rgb." + str(nameIndex) + ".txt", "w")
+    output_file = open("img2ascii\\convert_temp\\rgb\\frame.rgb." + str(nameIndex) + ".txt", "w")
     output_file.write(rgb_str[:-1])
     output_file.close()
 

@@ -1,27 +1,27 @@
 #include <iostream>
 #include <regex>
 #include <fstream>
+#include <chrono>
 #include <dirent.h>
-#include <string>
 using namespace std;
+using namespace std::chrono;
 
-const string version = "v1.0.0";
+const string version = "v1.1.0";
 
 int main()
 {
-    system("rmdir \"img2ascii\\render_temp\" /s /q 2> nul");
-
     system(("title img2ascii " + version).c_str());
+
+    cout << "Cleaning previous session...";
+    system("rmdir \"img2ascii\\convert_temp\" /s /q 2> nul");
+    system("mkdir \"img2ascii\" 2> nul");
+    system("cls");
 
     cout << "  _            ___             _ _ \n"
             " (_)_ __  __ _|_  )__ _ ___ __(_|_)\n"
             " | | '  \\/ _` |/ // _` (_-</ _| | |\n"
             " |_|_|_|_\\__, /___\\__,_/__/\\__|_|_| " + version + "\n"
             "         |___/                      by o7q\n\n";
-
-    system("mkdir \"img2ascii\\render_temp\" 2> nul");
-    system("mkdir \"img2ascii\\render_temp\\raw\" 2> nul");
-    system("mkdir \"img2ascii\\render_temp\\rgb\" 2> nul");
 
     cout << " PROJECT NAME\n -> ";
     string name;
@@ -32,14 +32,15 @@ int main()
     getline(cin, path);
     string path_fix = regex_replace(path, regex("\\\""), "");
     
-    cout << "\n FRAME SIZE (WIDTHxHEIGHT, example: 100x50)\n -> ";
+    cout << "\n FRAMESIZE (WIDTHxHEIGHT, example: 100x50)\n -> ";
     string size;
     getline(cin, size);
 
-    cout << "\n FRAME SKIP RATE (type ! to ignore or if it is an image)\n -> ";
+    cout << "\n FRAMERATE (type ! to use original fps or if it is an image)\n -> ";
     string fps;
     getline(cin, fps);
 
+    if(!(!fps.empty() && fps.find_first_not_of("0123456789")) && fps != "!") fps = "15";
     string fps_controller = fps == "!" ? "" : " -r " + fps;
 
     // read size parameters and split them into width*height
@@ -48,12 +49,11 @@ int main()
     vector<std::string> sizeRead_list;
     while (getline(sizeData, sizeRead, 'x')) sizeRead_list.push_back(sizeRead);
 
-    string width = sizeRead_list[0];
-    string height = sizeRead_list[1];
+    // process width/height values
+    int width = (size.find('x') != string::npos) ? ((!sizeRead_list[0].empty() && sizeRead_list[0].find_first_not_of("0123456789")) ? stoi(sizeRead_list[0]) : 100) : 100;
+    int height = (size.find('x') != string::npos) ? ((!sizeRead_list[1].empty() && sizeRead_list[0].find_first_not_of("0123456789")) ? stoi(sizeRead_list[1]) : 50) : 50;
 
-    int width_int = stoi(width);
-    int height_int = stoi(height);
-    int area = width_int * height_int;
+    int area = width * height;
 
     cout << "\n ASCII CHARACTERS (choose a number or enter your own in brightness levels low to high):\n"
             "  [1] ascii (standard ascii special characters only)\n"
@@ -68,7 +68,7 @@ int main()
 
     // ascii colorspace based on: https://stackoverflow.com/a/74186686
     //  `.-'":_,^=;><+!rc*\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@
-    if(!chars.empty() && chars.find_first_not_of("0123456789"))
+    if (!chars.empty() && chars.find_first_not_of("0123456789"))
     {
         switch(stoi(chars))
         {
@@ -91,41 +91,51 @@ int main()
     for (int i = 0; i < chars_length; i++) asciiChars[i] = chars_split[i];
     int asciiQuantize = (255 / chars_length) + 1;
 
-    cout << "\n ASCII COMPRESSION (0 - 255, A value of 0 would utilize " + to_string((255 / (asciiQuantize + 0)) + 1) + " characters. A value of 50 would utilize " + to_string((255 / (asciiQuantize + 50)) + 1) + " characters.)\n -> ";
+    cout << "\n ASCII COMPRESSION (0 - 255, A value of 0 would utilize " + to_string((255 / (asciiQuantize + 0)) + 1) + " characters. A value of 25 would utilize " + to_string((255 / (asciiQuantize + 25)) + 1) + " characters.)\n -> ";
     string asciiQuantize_str;
     getline(cin, asciiQuantize_str);
 
-    asciiQuantize = stoi(asciiQuantize_str) + asciiQuantize;
+    asciiQuantize = !asciiQuantize_str.empty() && asciiQuantize_str.find_first_not_of("0123456789") ? asciiQuantize + stoi(asciiQuantize_str) : asciiQuantize + 25;
+
+    // START
+
+    // start execution stopwatch
+    auto stopwatch_start = high_resolution_clock::now();   
 
     system(("mkdir \"" + name + "\" 2> nul").c_str());
+    system(("mkdir \"" + name + "\\frames\" 2> nul").c_str());
+    system(("mkdir \"" + name + "\\stats\" 2> nul").c_str());
+
+    system("mkdir \"img2ascii\\convert_temp\" 2> nul");
+    system("mkdir \"img2ascii\\convert_temp\\raw\" 2> nul");
+    system("mkdir \"img2ascii\\convert_temp\\rgb\" 2> nul");
 
     ofstream widthFile;
-    widthFile.open("img2ascii\\render_temp\\frame_width");
+    widthFile.open("img2ascii\\convert_temp\\frame_width");
     widthFile << width;
     widthFile.close();
 
     ofstream heightFile;
-    heightFile.open("img2ascii\\render_temp\\frame_height");
+    heightFile.open("img2ascii\\convert_temp\\frame_height");
     heightFile << height;
     heightFile.close();
 
-    cout << "\n";
-    system(("img2ascii\\ffmpeg.exe -loglevel verbose -i \"" + path_fix + "\" -vf scale=" + width + ":" + height + fps_controller + " \"img2ascii\\render_temp\\raw\\frame.raw.%d.png\"").c_str());
+    cout << "\nCONVERTING TO RAW SEQUENCE\n";
+    system(("img2ascii\\ffmpeg.exe -loglevel verbose -i \"" + path_fix + "\" -vf scale=" + to_string(width) + ":" + to_string(height) + fps_controller + " \"img2ascii\\convert_temp\\raw\\frame.raw.%d.png\"").c_str());
 
-    cout << "\n";
+    cout << "\nCONVERTING TO RGB SEQUENCE\n";
     system("img2ascii\\img2rgb.exe");
-    cout << "\n";
 
-    int imgIndex = 1;
-
-    if (auto dir = opendir("img2ascii\\render_temp\\rgb"))
+    cout << "\nCONVERTING TO ASCII SEQUENCE\n";
+    int imgIndex = 1; 
+    if (auto dir = opendir("img2ascii\\convert_temp\\rgb"))
     {
         while (auto f = readdir(dir))
         {
             if (!f->d_name || f->d_name[0] == '.') continue;
 
             // load rgb frame
-            ifstream imgRGB_path("img2ascii\\render_temp\\rgb\\frame.rgb." + to_string(imgIndex) + ".txt");
+            ifstream imgRGB_path("img2ascii\\convert_temp\\rgb\\frame.rgb." + to_string(imgIndex) + ".txt");
             string line;
             string imgRGB;
             while (getline(imgRGB_path, line))
@@ -167,7 +177,7 @@ int main()
             int widthIndex = 0;
             for (int i = 0; i < readRGB_index; i++)
             {
-                if (widthIndex == width_int)
+                if (widthIndex == width)
                 {
                     asciiImage += "\n";
                     widthIndex = 0;
@@ -182,7 +192,7 @@ int main()
             // write ascii frame
             cout << " Converting [frame.rgb." + to_string(imgIndex) + ".txt] to ASCII\n";
             ofstream asciiFile;
-            asciiFile.open(name + "\\frame.ascii." + to_string(imgIndex) + ".txt");
+            asciiFile.open(name + "\\frames\\frame.ascii." + to_string(imgIndex) + ".txt");
             asciiFile << asciiImage;
             asciiFile.close();
 
@@ -191,12 +201,56 @@ int main()
         closedir(dir);
     }
 
-    cout << "\n RENDER FINISHED!\n DO YOU WANT TO KEEP THE TEMPORARY RENDER FILES? (img2ascii\\render_temp) (Y = yes | anything else = no)\n -> ";
-    string keepTempPrompt;
-    getline(cin, keepTempPrompt);
+    int fileFrameIndex = 0;
+    if (auto dir = opendir((name + "\\frames").c_str()))
+    {
+        while (auto f = readdir(dir))
+        {
+            if (!f->d_name || f->d_name[0] == '.') continue;
 
-    if (!(keepTempPrompt == "Y" || keepTempPrompt == "y")) system("rmdir \"img2ascii\\render_temp\" /s /q 2> nul");
+            fileFrameIndex++;
+        }
+        closedir(dir);
+    }
 
-    cout << "\n";
+    // stop execution stopwatch
+    auto stopwatch_stop = high_resolution_clock::now();
+
+    // END
+
+    // process stats
+    string stats[] =
+    {
+        to_string((duration_cast<seconds>(stopwatch_stop - stopwatch_start)).count()), "stat_time",
+        to_string(fileFrameIndex), "stat_frames",
+        to_string(width), "stat_resolution_width",
+        to_string(height), "stat_resolution_height",
+        fps == "!" ? "Original" : fps, "stat_framerate",
+        chars, "stat_characters",
+        !asciiQuantize_str.empty() && asciiQuantize_str.find_first_not_of("0123456789") ? asciiQuantize_str : "n/a", "stat_compression_user",
+        to_string(asciiQuantize), "stat_compression_quantize",
+        to_string(chars.length()), "stat_compression_factor"
+    };
+    int statsIndex = 0;
+    while (size_t(statsIndex) < sizeof(stats) / sizeof(string))
+    {
+        ofstream writeStats;
+        writeStats.open(name + "\\stats\\" + stats[statsIndex + 1]);
+        writeStats << stats[statsIndex];
+        writeStats.close();
+        statsIndex += 2;
+    }
+
+    // display stats
+    cout << "\n Conversion Finished!"
+            "\n - Time Taken: " + stats[0] + " seconds"
+            "\n - Total Frames: " + stats[2] +
+            "\n - Resolution: " + stats[4] + "x" + stats[6] +
+            "\n - Framerate: " + stats[8] +
+            "\n - Characters: " + stats[10] +
+            "\n - Compression: " + stats[12] + " (quantize: " + stats[14] + ", factor: " + stats[16] + ")";
+    cout << "\n\n";
+    system("pause");
+
     return 0;
 }
