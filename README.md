@@ -56,7 +56,7 @@ scoop.cmd update *
         - <b>Save Options Checkbox</b> Saves all options to config files stored in the `mediadownloader\config` directory
     - <b>Advanced Options</b>
         - <b>Trim Length Inputs</b> Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: `0:00 - 0:10` | `1:25 - 2:30` | `2:30:40 - 3:05:15`
-        - <b>gif (web) Options</b> A compressed version of `gif` This is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro
+        - <b>gif (web) Options</b> A compressed version of `gif`. This is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro
             - <b>Resolution</b> `R = X Resolution` (will preserve aspect ratio)
             - <b>Framerate</b> `F = Framerate`
         - <b>Encode Video Options</b>

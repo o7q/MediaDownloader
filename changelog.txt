@@ -1,3 +1,7 @@
+~ v3.8.1.1
+- Fix wording
+- Implement "src_extras" (bundling some of my other media repositories inside MediaDownloader)
+
 ~ v3.8.0
 - Added output log options
 - Improved UI
