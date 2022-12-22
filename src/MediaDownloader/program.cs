@@ -25,7 +25,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v4.0.0";
+        const string ver = "v3.8.2";
 
         // shortcut strings
         const string md = "mediadownloader";

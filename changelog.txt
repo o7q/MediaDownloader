@@ -1,3 +1,6 @@
+~ v3.8.2.0
+- Fix versioning typo
+
 ~ v3.8.1.1
 - Fix wording
 - Implement "src_extras" (bundling some of my other media repositories inside MediaDownloader)

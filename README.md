@@ -1,6 +1,6 @@
 <img src="assets/images/banner.png">
 
-# [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.8.1.1/MediaDownloader.v3.8.1.1.zip)
+# [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.8.2.0/MediaDownloader.v3.8.2.0.zip)
 <h3>Welcome! MediaDownloader is a simple, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.</h3>
 
 ---
