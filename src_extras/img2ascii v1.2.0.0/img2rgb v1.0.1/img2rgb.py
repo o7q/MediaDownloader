@@ -2,7 +2,7 @@ from PIL import Image
 import os
 import sys
 
-version = "v1.0.0"
+version = "v1.0.1"
 
 fileCount = next(os.walk("img2ascii\\convert_temp\\raw"))[2]
 
@@ -12,19 +12,14 @@ for list_item in fileCount:
 
     widthRead = open("img2ascii\\convert_temp\\frame_width", "r")
     frameWidth = widthRead.read()
-    frameWidth_int = int(frameWidth)
     widthRead.close()
 
     heightRead = open("img2ascii\\convert_temp\\frame_height", "r")
     frameHeight = heightRead.read()
-    frameHeight_int = int(frameHeight)
     heightRead.close()
 
-    area = frameWidth_int * frameHeight_int
-
-    x = 0
-    y = 0
-    rgb_str = ""
+    frameWidth_int, frameHeight_int = int(frameWidth), int(frameHeight)
+    area, x, y, rgb_str = frameWidth_int * frameHeight_int, 0, 0, ""
 
     frame = Image.open(framePath).convert('RGB')
     for i in range(area):

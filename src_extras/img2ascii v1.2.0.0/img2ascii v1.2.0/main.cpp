@@ -6,7 +6,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const string version = "v1.1.0";
+const string version = "v1.2.0";
 
 int main()
 {
@@ -36,7 +36,7 @@ int main()
     string size;
     getline(cin, size);
 
-    cout << "\n FRAMERATE (type ! to use original fps or if it is an image)\n -> ";
+    cout << "\n FRAMERATE (type ! to use the original fps or if it is an image)\n -> ";
     string fps;
     getline(cin, fps);
 
@@ -55,7 +55,7 @@ int main()
 
     int area = width * height;
 
-    cout << "\n ASCII CHARACTERS (choose a number or enter your own in brightness levels low to high):\n"
+    cout << "\n ASCII CHARACTERS (choose a number or enter your own):\n"
             "  [1] ascii (standard ascii special characters only)\n"
             "  [2] upper (uppercase letters only)\n"
             "  [3] lower (lowercase letters only)\n"
@@ -68,6 +68,8 @@ int main()
 
     // ascii colorspace based on: https://stackoverflow.com/a/74186686
     //  `.-'":_,^=;><+!rc*\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@
+    string chars_index = " `.-'\":_,^=;><+!rc*\\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
+
     if (!chars.empty() && chars.find_first_not_of("0123456789"))
     {
         switch(stoi(chars))
@@ -77,8 +79,25 @@ int main()
             case 3: chars = "ltjfcizyespvoguakxhrdbmnwq"; break;
             case 4: chars = "rczsLTvJFiCfItluneoZYxjyaESwqkPhdVpOGbUAKXHmRDBgMNWQ"; break;
             case 5: chars = "7315269480"; break;
-            case 6: chars = " `.-'\":_,^=;><+!rc*\\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@"; break;
+            case 6: chars = chars_index; break;
         }
+    }
+    else
+    {
+        // sort custom characters from darkest to brightest
+
+        // create variables
+        vector<char> char_index_vector(chars_index.begin(), chars_index.end());
+        vector<char> chars_vector(chars.begin(), chars.end());
+        string chars_temp;
+
+        // sort characters
+        for (size_t i = 0; i < chars_index.length(); i++)
+            for(size_t t = 0; t < chars.length(); t++)
+                if (chars_vector[t] == chars_index[i])
+                    chars_temp += chars_vector[t];
+
+        chars = chars_temp;
     }
 
     // calculate ascii colorspace
@@ -151,9 +170,7 @@ int main()
             while (getline(rgbData, pixelRead, '|')) pixelRead_list.push_back(pixelRead);
 
             // process rgb
-            int rs[128000];
-            int gs[128000];
-            int bs[128000];
+            int rgb[512000];
             int readRGB_index = 0;
             for (int i = 0; i < area; i++)
             {
@@ -163,17 +180,15 @@ int main()
                 vector<std::string> RGBRead_list;
                 while (getline(rgbData, RGBRead, ',')) RGBRead_list.push_back(RGBRead);
 
-                // import rgb values into isolated arrays
-                rs[readRGB_index] = stoi(RGBRead_list[0]);
-                gs[readRGB_index] = stoi(RGBRead_list[1]);
-                bs[readRGB_index] = stoi(RGBRead_list[2]);
+                // import rgb values into an rgb array
+                for (int i = 0; i < 3; i++) rgb[readRGB_index + i] = stoi(RGBRead_list[i]);
 
                 readRGB_index++;
             }
 
             // convert rgb pixels to ascii characters
             string asciiImage = "";
-            int pixelAverage[128000];
+            int pixelAverage[512000];
             int widthIndex = 0;
             for (int i = 0; i < readRGB_index; i++)
             {
@@ -184,7 +199,7 @@ int main()
                 }
                 widthIndex++;
 
-                pixelAverage[i] = (rs[i] + gs[i] + bs[i]) / 3;
+                pixelAverage[i] = (rgb[i] + rgb[i + 1] + rgb[i + 2]) / 3;
                 string asciiHalfPixel = asciiChars[pixelAverage[i] / asciiQuantize];
                 asciiImage += asciiHalfPixel + asciiHalfPixel;
             }

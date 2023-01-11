@@ -11,7 +11,7 @@ void playFrames();
 void replayPrompt();
 string strRep(string charIn, int amount);
 
-const string version = "v1.1.0";
+const string version = "v1.1.2";
 
 bool persistent = true;
 string path_fix;
@@ -58,7 +58,7 @@ int main()
         }
 
         cout << "\n Project Loaded!"
-            // "\n - Time Taken: " + statsStore[0] + " seconds"
+         // "\n - Time Taken: " + statsStore[0] + " seconds"
             "\n - Total Frames: " + statsStore[1] +
             "\n - Resolution: " + statsStore[2] + "x" + statsStore[3] +
             "\n - Framerate: " + statsStore[4] +
@@ -69,7 +69,7 @@ int main()
         cout << "\n PLAYBACK FRAMERATE\n -> ";
         string framerate_str;
         getline(cin, framerate_str);
-        framerate = !framerate_str.empty() && framerate_str.find_first_not_of("0123456789") ? stoi(framerate_str) : stoi(statsStore[4]);
+        framerate = !framerate_str.empty() && framerate_str.find_first_not_of("0123456789") ? stoi(framerate_str) : !statsStore[4].empty() && statsStore[4].find_first_not_of("0123456789") ? stoi(statsStore[4]) : 15;
         // convert fps to chrono
         tick = float(1) / framerate;
         tick *= CLOCKS_PER_SEC;
@@ -101,7 +101,7 @@ void playFrames()
             // draw current frame
             ifstream frame_read(path_fix + "\\frames\\frame.ascii." + to_string(frameIndex) + ".txt");
             string frame_buffer((istreambuf_iterator<char>(frame_read)), istreambuf_iterator<char>());
-            string displayStats = "FRAMESIZE: " + statsStore[2] + "x" + statsStore[3] + "  |  FRAMERATE: " + to_string(framerate);
+            string displayStats = "FRAMESIZE: " + statsStore[2] + "x" + statsStore[3] + "  |  FRAMERATE: " + to_string(framerate) + " ";
             string frameStats = "[FRAME " + to_string(frameIndex) + " / " + statsStore[1] + "]";
             printf((frame_buffer + "\n" + displayStats + strRep(" ", (stoi(statsStore[2]) * 2) - (displayStats.length() + frameStats.length())) + frameStats).c_str());
 
