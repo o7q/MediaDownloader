@@ -3,6 +3,5 @@ set name=img2ascii
 title Cleaning %name%
 color 7
 del "%name%.exe" /f 2> nul
-rmdir "img2ascii" /s /q 2> nul
 title DONE!
 echo.

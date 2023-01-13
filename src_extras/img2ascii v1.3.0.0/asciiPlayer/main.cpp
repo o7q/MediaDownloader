@@ -1,5 +1,6 @@
 #include <iostream>
 #include <regex>
+#include <sys/stat.h>
 #include <ctime>
 #include <dirent.h>
 #include <windows.h>
@@ -11,7 +12,7 @@ void playFrames();
 void replayPrompt();
 string strRep(string charIn, int amount);
 
-const string version = "v1.1.2";
+const string version = "v1.2.0";
 
 bool persistent = true;
 string path_fix;
@@ -48,6 +49,14 @@ int main()
         getline(cin, path);
         path_fix = regex_replace(path, regex("\\\""), "");
         string path_stats = path_fix + "\\stats\\stat_";
+
+        struct stat scan_lock;
+        if (stat((path_fix + "\\lock").c_str(), &scan_lock) != 0)
+        {
+            cout << "\n Invalid Project!\n ";
+            system("pause");
+            _Exit(1);
+        }
 
         // LOAD STATS
         for(size_t i = 0; i < sizeof(stats) / sizeof(string); i++)

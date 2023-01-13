@@ -6,17 +6,13 @@
 using namespace std;
 using namespace std::chrono;
 
-const string version = "v1.2.0";
+const string version = "v1.3.0";
 
 int main()
 {
-    system(("title img2ascii " + version).c_str());
-
-    cout << "Cleaning previous session...";
-    system("rmdir \"img2ascii\\convert_temp\" /s /q 2> nul");
     system("mkdir \"img2ascii\" 2> nul");
-    system("cls");
 
+    system(("title img2ascii " + version).c_str());
     cout << "  _            ___             _ _ \n"
             " (_)_ __  __ _|_  )__ _ ___ __(_|_)\n"
             " | | '  \\/ _` |/ // _` (_-</ _| | |\n"
@@ -66,6 +62,8 @@ int main()
     string chars;
     getline(cin, chars);
 
+    int chars_length = chars.length();
+
     // ascii colorspace based on: https://stackoverflow.com/a/74186686
     //  `.-'":_,^=;><+!rc*\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@
     string chars_index = " `.-'\":_,^=;><+!rc*\\/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
@@ -86,22 +84,26 @@ int main()
     {
         // sort custom characters from darkest to brightest
 
-        // create variables
+        // create indexes
         vector<char> char_index_vector(chars_index.begin(), chars_index.end());
         vector<char> chars_vector(chars.begin(), chars.end());
         string chars_temp;
-
-        // sort characters
+        // sort characters with jamesort™
         for (size_t i = 0; i < chars_index.length(); i++)
-            for(size_t t = 0; t < chars.length(); t++)
+            for(int t = 0; t < chars_length; t++)
                 if (chars_vector[t] == chars_index[i])
                     chars_temp += chars_vector[t];
-
-        chars = chars_temp;
+        // remove duplicate characters
+        chars = "";
+        vector<char> chars_sorted_vector(chars_temp.begin(), chars_temp.end());
+        for (int i = 0; i < chars_length; i++)
+            if (chars_sorted_vector[i] != chars_sorted_vector[i + 1])
+                chars += chars_sorted_vector[i];
     }
 
+    chars_length = chars.length();
+
     // calculate ascii colorspace
-    int chars_length = chars.length();
     // split characters string into a char array
     char chars_split[chars_length];
     strcpy(chars_split, chars.c_str());
@@ -121,40 +123,36 @@ int main()
     // start execution stopwatch
     auto stopwatch_start = high_resolution_clock::now();   
 
+    string data = name + "|" + to_string(width) + "|" + to_string(height);
+
+    ofstream dataFile;
+    dataFile.open("img2ascii\\_temp");
+    dataFile << data;
+    dataFile.close();
+
     system(("mkdir \"" + name + "\" 2> nul").c_str());
+    system(("mkdir \"" + name + "\\_cache\" 2> nul").c_str());
+    system(("mkdir \"" + name + "\\_cache\\rgb\" 2> nul").c_str());
+
     system(("mkdir \"" + name + "\\frames\" 2> nul").c_str());
     system(("mkdir \"" + name + "\\stats\" 2> nul").c_str());
 
-    system("mkdir \"img2ascii\\convert_temp\" 2> nul");
-    system("mkdir \"img2ascii\\convert_temp\\raw\" 2> nul");
-    system("mkdir \"img2ascii\\convert_temp\\rgb\" 2> nul");
-
-    ofstream widthFile;
-    widthFile.open("img2ascii\\convert_temp\\frame_width");
-    widthFile << width;
-    widthFile.close();
-
-    ofstream heightFile;
-    heightFile.open("img2ascii\\convert_temp\\frame_height");
-    heightFile << height;
-    heightFile.close();
-
     cout << "\nCONVERTING TO RAW SEQUENCE\n";
-    system(("img2ascii\\ffmpeg.exe -loglevel verbose -i \"" + path_fix + "\" -vf scale=" + to_string(width) + ":" + to_string(height) + fps_controller + " \"img2ascii\\convert_temp\\raw\\frame.raw.%d.png\"").c_str());
+    system(("img2ascii\\ffmpeg.exe -loglevel verbose -i \"" + path_fix + "\" -vf scale=" + to_string(width) + ":" + to_string(height) + fps_controller + " \"" + name + "\\_cache\\frame.raw.%d.png\"").c_str());
 
     cout << "\nCONVERTING TO RGB SEQUENCE\n";
     system("img2ascii\\img2rgb.exe");
 
     cout << "\nCONVERTING TO ASCII SEQUENCE\n";
     int imgIndex = 1; 
-    if (auto dir = opendir("img2ascii\\convert_temp\\rgb"))
+    if (auto dir = opendir((name + "\\_cache\\rgb").c_str()))
     {
         while (auto f = readdir(dir))
         {
             if (!f->d_name || f->d_name[0] == '.') continue;
 
             // load rgb frame
-            ifstream imgRGB_path("img2ascii\\convert_temp\\rgb\\frame.rgb." + to_string(imgIndex) + ".txt");
+            ifstream imgRGB_path(name + "\\_cache\\rgb\\frame.rgb." + to_string(imgIndex) + ".txt");
             string line;
             string imgRGB;
             while (getline(imgRGB_path, line))
@@ -178,10 +176,10 @@ int main()
                 stringstream rgbData(pixelRead_list[i]);
                 string RGBRead;
                 vector<std::string> RGBRead_list;
-                while (getline(rgbData, RGBRead, ',')) RGBRead_list.push_back(RGBRead);
+                while (getline(rgbData, RGBRead, '!')) RGBRead_list.push_back(RGBRead);
 
                 // import rgb values into an rgb array
-                for (int i = 0; i < 3; i++) rgb[readRGB_index + i] = stoi(RGBRead_list[i]);
+                for (int t = 0; t < 3; t++) rgb[readRGB_index + t] = stoi(RGBRead_list[t]);
 
                 readRGB_index++;
             }
@@ -256,16 +254,35 @@ int main()
         statsIndex += 2;
     }
 
+    string formattedStats = " - Conversion Time: " + stats[0] + " seconds"
+                            "\n - Total Frames: " + stats[2] +
+                            "\n - Resolution: " + stats[4] + "x" + stats[6] +
+                            "\n - Framerate: " + stats[8] +
+                            "\n - Characters: " + stats[10] +
+                            "\n - Compression: " + stats[12] + " (quantize: " + stats[14] + ", factor: " + stats[16] + ")";
+
+    ofstream lockFile;
+    lockFile.open(name + "\\lock");
+    lockFile.close();
+
+    ofstream readmeFile;
+    readmeFile.open(name + "\\readme.txt");
+    readmeFile << "Hello! Thank you for using my program to make ASCII stuff!\n\n"
+                  "Info for this project:\n" +
+                  formattedStats +
+                  "\n\nWhat each file/folder does:\n"
+                  " - _cache: Stores the temporary conversion files (you can delete this if you want)\n"
+                  " - frames: This is where the ASCII frames are stored, you can play them with \"asciiPlayer.exe\"\n"
+                  " - stats: This stores conversion and config information for the project that is used by \"asciiPlayer.exe\"\n"
+                  " - lock: Verifies that this project is genuine and will function properly with \"asciiPlayer.exe\"\n"
+                  " - readme.txt: This file!";
+    readmeFile.close();
+
     // display stats
-    cout << "\n Conversion Finished!"
-            "\n - Time Taken: " + stats[0] + " seconds"
-            "\n - Total Frames: " + stats[2] +
-            "\n - Resolution: " + stats[4] + "x" + stats[6] +
-            "\n - Framerate: " + stats[8] +
-            "\n - Characters: " + stats[10] +
-            "\n - Compression: " + stats[12] + " (quantize: " + stats[14] + ", factor: " + stats[16] + ")";
-    cout << "\n\n";
+    cout << "\n Conversion Finished!\n" + formattedStats + "\n\n ";
     system("pause");
+
+    system("del \"img2ascii\\_temp\" /f 2> nul");
 
     return 0;
 }
