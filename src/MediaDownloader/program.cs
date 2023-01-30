@@ -25,7 +25,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.8.2";
+        const string ver = "v3.8.3";
 
         // shortcut strings
         const string md = "mediadownloader";
@@ -37,6 +37,7 @@ namespace MediaDownloader
         bool ffmpegCheck;
 
         // batch configuration
+        string filename = "";
         string srtArgs;
         bool useDefLoc;
         string selLoc;
@@ -399,7 +400,11 @@ namespace MediaDownloader
         // open location button
         private void openLocationButton_Click(object sender, EventArgs e)
         {
-            try { Process.Start("explorer.exe", selLoc == "" || useDefLoc ? "Downloads" : selLoc); } catch { }
+            string[] formats = { "", ".mp4", ".webm", ".gif", ".gif", "", "", ".mp3", ".wav", ".ogg" };
+            if (File.Exists((selLoc == "" || useDefLoc ? "Downloads" : selLoc) + "\\" + filename + formats[formatBox.SelectedIndex]))
+                Process.Start("explorer.exe", "/select, " + (selLoc == "" || useDefLoc ? "Downloads" : selLoc) + "\\" + filename + formats[formatBox.SelectedIndex]);
+            else
+                try { Process.Start("explorer.exe", selLoc == "" || useDefLoc ? "Downloads" : selLoc); } catch { }
         }
 
         // clear location button
@@ -516,39 +521,41 @@ namespace MediaDownloader
             string dState5 = "[FINISHED]\n";
             string dID = DateTime.Now.ToString("[Mdy-hms]");
 
+            filename = name + dID;
+
             // mp4
-            string mp4 = srtArgs + "--remux-video mp4 -o \"" + name + dID + ".mp4\" --path \"" + selLoc + "\" " + url;
-            string mp4_useDefLoc = srtArgs + "--remux-video mp4 -o \"" + name + dID + ".mp4\" --path " + "\"..\\Downloads\" " + url;
-            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + bVA + "\"..\\Downloads\\" + name + dID + ".mp4\"\n" + "del /f tmp0.mp4";
-            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState3 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + bVA + "\"..\\Downloads\\" + name + dID + ".mp4\"\n" + "del / f tmp0.mp4";
-            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + bVA + "\"" + selLoc + "\\" + name + dID + ".mp4\"\n" + "del /f tmp0.mp4";
-            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState3 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + bVA + "\"" + selLoc + "\\" + name + dID + ".mp4\"\n" + "del /f tmp0.mp4"; ;
+            string mp4 = srtArgs + "--remux-video mp4 -o \"" + filename + ".mp4\" --path \"" + selLoc + "\" " + url;
+            string mp4_useDefLoc = srtArgs + "--remux-video mp4 -o \"" + filename + ".mp4\" --path " + "\"..\\Downloads\" " + url;
+            string mp4_useDefLoc_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + bVA + "\"..\\Downloads\\" + filename + ".mp4\"\n" + "del /f tmp0.mp4";
+            string mp4_useDefLoc_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState3 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + bVA + "\"..\\Downloads\\" + filename + ".mp4\"\n" + "del / f tmp0.mp4";
+            string mp4_applyCodecs = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v h264 -c:a aac" + bVA + "\"" + selLoc + "\\" + filename + ".mp4\"\n" + "del /f tmp0.mp4";
+            string mp4_useGpu = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState3 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:v " + gEncode + " -c:a aac" + bVA + "\"" + selLoc + "\\" + filename + ".mp4\"\n" + "del /f tmp0.mp4"; ;
 
             // webm
-            string webm = srtArgs + "--remux-video webm -o \"" + name + dID + ".webm\" --path \"" + selLoc + "\" " + url;
-            string webm_useDefLoc = srtArgs + "--remux-video webm -o \"" + name + dID + ".webm\" --path " + "\"..\\Downloads\" " + url;
-            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + bVA + "\"..\\Downloads\\" + name + dID + ".webm\"\n" + "del /f tmp0.webm";
-            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + bVA + "\"" + selLoc + "\\" + name + dID + ".webm\"\n" + "del /f tmp0.webm";
+            string webm = srtArgs + "--remux-video webm -o \"" + filename + ".webm\" --path \"" + selLoc + "\" " + url;
+            string webm_useDefLoc = srtArgs + "--remux-video webm -o \"" + filename + ".webm\" --path " + "\"..\\Downloads\" " + url;
+            string webm_useDefLoc_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + bVA + "\"..\\Downloads\\" + filename + ".webm\"\n" + "del /f tmp0.webm";
+            string webm_applyCodecs = srtArgs + "--remux-video webm -o \"tmp0.webm\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.webm -c:v vp9 -c:a libvorbis" + bVA + "\"" + selLoc + "\\" + filename + ".webm\"\n" + "del /f tmp0.webm";
 
             // gif
-            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 \"" + selLoc + "\\" + name + dID + ".gif\"\n" + "del /f tmp0.mp4";
-            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 " + "\"..\\Downloads\\" + name + dID + ".gif\"\n" + "del /f tmp0.mp4";
+            string gif = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 \"" + selLoc + "\\" + filename + ".gif\"\n" + "del /f tmp0.mp4";
+            string gif_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 " + "\"..\\Downloads\\" + filename + ".gif\"\n" + "del /f tmp0.mp4";
 
             // gif (web)
-            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + "\\" + name + dID + ".gif\"\n" + "del /f tmp0.mp4";
-            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"..\\Downloads\\" + name + dID + ".gif\"\n" + "del /f tmp0.mp4";
+            string gifWeb = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"" + selLoc + "\\" + filename + ".gif\"\n" + "del /f tmp0.mp4";
+            string gifWeb_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -vf scale=" + gifR + ":-1 -r " + gifF + " \"..\\Downloads\\" + filename + ".gif\"\n" + "del /f tmp0.mp4";
 
             // mp3
-            string mp3 = srtArgs + "-x -o \"" + name + dID + ".mp3\" --audio-format mp3 --path \"" + selLoc + "\" " + url;
-            string mp3_useDefLoc = srtArgs + "-x -o \"" + name + dID + ".mp3\" --audio-format mp3 --path " + "\"..\\Downloads\" " + url;
+            string mp3 = srtArgs + "-x -o \"" + filename + ".mp3\" --audio-format mp3 --path \"" + selLoc + "\" " + url;
+            string mp3_useDefLoc = srtArgs + "-x -o \"" + filename + ".mp3\" --audio-format mp3 --path " + "\"..\\Downloads\" " + url;
 
             // wav
-            string wav = srtArgs + "-x -o \"" + name + dID + ".wav\" --audio-format wav --path \"" + selLoc + "\" " + url;
-            string wav_useDefLoc = srtArgs + "-x -o \"" + name + dID + ".wav\" --audio-format wav --path " + "\"..\\Downloads\" " + url;
+            string wav = srtArgs + "-x -o \"" + filename + ".wav\" --audio-format wav --path \"" + selLoc + "\" " + url;
+            string wav_useDefLoc = srtArgs + "-x -o \"" + filename + ".wav\" --audio-format wav --path " + "\"..\\Downloads\" " + url;
 
             // ogg
-            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + dState2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis \"" + selLoc + "\\" + name + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
-            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + dState2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis " + "\"..\\Downloads\\" + name + dID + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + dState2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis \"" + selLoc + "\\" + filename + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
+            string ogg_useDefLoc = srtArgs + "--remux-video mp4 -o \"tmp0.mp4\" " + url + title + dState1 + "ffmpeg.exe -loglevel verbose -i tmp0.mp4 -c:a libmp3lame tmp1.mp3" + title + dState2 + "ffmpeg.exe -loglevel verbose -i tmp1.mp3 -c:a libvorbis " + "\"..\\Downloads\\" + filename + ".ogg\"" + "\ndel /f tmp0.mp4" + "\ndel /f tmp1.mp3";
 
             // (yt-dlp arguments)
             string ytdlpArgs = srtArgs + "--path \"" + selLoc + "\" " + ytArgs + " " + url;
@@ -617,7 +624,8 @@ namespace MediaDownloader
                         if (form == 12) { MessageBox.Show("Trimming cannot be used with with format."); return; }
                         if (fExt == null) return;
 
-                        if (useDefLoc) mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"..\\Downloads\\" + name + dID + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"..\\Downloads\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"..\\Downloads\\" + name + dID + fExt + "\""; else mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"" + selLoc + "\\" + name + dID + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"" + selLoc + "\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"" + selLoc + "\\" + name + dID + fExt + "\"";
+                        if (useDefLoc) mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"..\\Downloads\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"..\\Downloads\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"..\\Downloads\\" + filename + fExt + "\""; else mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"" + selLoc + "\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"" + selLoc + "\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"" + selLoc + "\\" + filename + fExt + "\"";
+                        filename = name + "_trim" + dID;
                     }
 
                     // inject pause
