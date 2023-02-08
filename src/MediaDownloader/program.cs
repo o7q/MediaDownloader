@@ -25,7 +25,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.8.3";
+        const string ver = "v3.8.4";
 
         // shortcut strings
         const string md = "mediadownloader";
@@ -400,7 +400,7 @@ namespace MediaDownloader
         // open location button
         private void openLocationButton_Click(object sender, EventArgs e)
         {
-            string[] formats = { "", ".mp4", ".webm", ".gif", ".gif", "", "", ".mp3", ".wav", ".ogg" };
+            string[] formats = { "", ".mp4", ".webm", ".gif", ".gif", "", "", ".mp3", ".wav", ".ogg", "", "", "" };
             if (File.Exists((selLoc == "" || useDefLoc ? "Downloads" : selLoc) + "\\" + filename + formats[formatBox.SelectedIndex]))
                 Process.Start("explorer.exe", "/select, " + (selLoc == "" || useDefLoc ? "Downloads" : selLoc) + "\\" + filename + formats[formatBox.SelectedIndex]);
             else
