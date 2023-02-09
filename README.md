@@ -11,7 +11,7 @@
 
 # Overview
 MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.\
-FFmpeg is then used for further media processing if specified to do so.
+FFmpeg is then used for further media processing if needed.
 
 ### **Powered by**
 yt-dlp: https://github.com/yt-dlp/yt-dlp \
