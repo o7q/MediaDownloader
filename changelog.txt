@@ -1,3 +1,7 @@
+~ v3.8.5.0
+- Fixed download fails relating to using certain special characters inside non-rich text boxes
+- Improved tooltip system
+
 ~ v3.8.4.0
 - Fix crash when opening folder location
 

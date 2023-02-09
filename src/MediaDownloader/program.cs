@@ -25,7 +25,7 @@ namespace MediaDownloader
 
         // program attributes
         string title;
-        const string ver = "v3.8.4";
+        const string ver = "v3.8.5";
 
         // shortcut strings
         const string md = "mediadownloader";
@@ -120,7 +120,7 @@ namespace MediaDownloader
 
             #region tooltipDictionary
 
-            // configure variables
+            // configure repetitive tooltips
             string urlTT = "URL to be downloaded";
             string nameTT = "File name for the download";
             string formTT = "Media format for download";
@@ -131,94 +131,53 @@ namespace MediaDownloader
             string encodeTT = "Encoder to be used - Examples: Nvidia = \"h264_nvenc\" | AMD = \"h264_amf\")";
             string cstmArgTT = "Custom arguments for yt-dlp (double-click to open the yt-dlp GitHub repository)";
 
-            // components
-            var component = new Control[] {
-                bannerPicture, // 0
-                versionLabel, // 1
-                minimizeButton, // 2
-                exitButton, // 3
-                urlLabel, // 4
-                inputBox, // 5
-                fileNameLabel, // 6
-                fileNameBox, // 7
-                formatLabel, // 8
-                formatBox, // 9
-                viewAvailableFormatsButton, // 10
-                downloadButton, // 11
-                locationButton, // 12
-                openLocationButton, // 13
-                clearLocationButton, // 14
-                directoryLabel, // 15
-                advancedLabel, // 16
-                useConfig, // 17
-                resetConfig, // 18
-                useTimeframe, // 19
-                sLabel, // 20
-                timeframeStart, // 21
-                eLabel, // 22
-                timeframeEnd, // 23
-                gifQualityLabel, // 24
-                rLabel, // 25
-                gifResolution, // 26
-                fLabel, // 27
-                gifFramerate, // 28
-                useGpu, // 29
-                codecLabel, // 30
-                gpuEncoder, // 31
-                ytArgsLabel, // 32
-                ytArgsBox, // 33
-                outputLabel, // 34
-                displayOutput, // 35
-                keepOutput, // 36
-                applyCodecs // 37
-            };
-
-            // tooltips
-            string[] tooltip = {
-                "MediaDownloader by o7q (double-click for info)", // 0
-                "Running " + ver, // 1
-                "Minimize", // 2
-                "Close", // 3
-                urlTT, // 4
-                urlTT, // 5
-                nameTT, // 6
-                nameTT, // 7
-                formTT, // 8
-                formTT, // 9
-                "Display all the available media formats found on the server for the specified URL", // 10
-                "Download from the URL using the configured options", // 11
-                "Change the folder location for download", // 12
-                "Open the selected download location in the file explorer", // 13
-                "Reset the selected download location", // 14
-                "Currently selected download location [" + selLoc + "]", // 15
-                "More extensive options",  // 16
-                "Save all current component states to config files - If enabled, then on program startup all component states will be restored", // 17
-                "Clear all component states", // 18
-                "Trim the download to a specific length with a start and end timestamp - Examples: \"0:00 - 0:10\" | \"1:25 - 2:30\" | \"2:30:40 - 3:05:15\"", // 19
-                timeSTT, // 20
-                timeSTT, // 21
-                timeETT, // 22
-                timeETT, // 23
-                "Quality settings for gif (web)", // 24
-                gifRTT, // 25
-                gifRTT, // 26
-                gifFTT, // 27
-                gifFTT, // 28
-                "Enable GPU accelerated video encoding - This can fix problems with importing or viewing videos in some software (encodes on the GPU using FFmpeg, this feature only supports mp4, does not work while \"Encode Video (CPU)\" is enabled)", // 29
-                encodeTT, // 30
-                encodeTT, // 31
-                cstmArgTT, // 32
-                cstmArgTT, // 33
-                "Output log options", // 34
-                "Display the verbose log while downloading in a separate command prompt window", // 35
-                "Causes the command prompt to stay open after the download finishes (helpful for debugging)", // 36
-                "Enable video encoding - This can fix problems with importing or viewing videos in some software - (encodes on the CPU using FFmpeg, this feature is very slow and it only supports mp4 and webm, does not work while \"Encode Video (GPU)\" is enabled)", // 37
+            // bind tooltips
+            string[] tooltipMap = {
+                "bannerPicture", "MediaDownloader by o7q (double-click for info)",
+                "versionLabel", "Running " + ver,
+                "minimizeButton", "Minimize",
+                "exitButton", "Close",
+                "urlLabel", urlTT,
+                "inputBox", urlTT,
+                "fileNameLabel", nameTT,
+                "fileNameBox", nameTT,
+                "formatLabel", formTT,
+                "formatBox", formTT,
+                "viewAvailableFormatsButton", "Display all the available media formats found on the server for the specified URL",
+                "downloadButton", "Download from the URL using the configured options",
+                "locationButton", "Change the folder location for download",
+                "openLocationButton", "Open the selected download location in the file explorer",
+                "clearLocationButton", "Reset the selected download location",
+                "directoryLabel", "Currently selected download location [" + selLoc + "]",
+                "advancedLabel", "More extensive options",
+                "useConfig", "Save all current component states to config files - If enabled, then on program startup all component states will be restored",
+                "resetConfig", "Clear all component states",
+                "useTimeframe", "Trim the download to a specific length with a start and end timestamp - Examples: \"0:00 - 0:10\" | \"1:25 - 2:30\" | \"2:30:40 - 3:05:15\"",
+                "sLabel", timeSTT,
+                "timeframeStart", timeSTT,
+                "eLabel", timeETT,
+                "timeframeEnd", timeETT,
+                "gifQualityLabel", "Quality settings for gif (web)",
+                "rLabel", gifRTT,
+                "gifResolution", gifRTT,
+                "fLabel", gifFTT,
+                "gifFramerate", gifFTT,
+                "useGpu", "Enable GPU accelerated video encoding - This can fix problems with importing or viewing videos in some software (encodes on the GPU using FFmpeg, this feature only supports mp4, does not work while \"Encode Video (CPU)\" is enabled)",
+                "codecLabel", encodeTT,
+                "gpuEncoder", encodeTT,
+                "ytArgsLabel", cstmArgTT,
+                "ytArgsBox", cstmArgTT,
+                "outputLabel", "Output log options",
+                "displayOutput", "Display the verbose log while downloading in a separate command prompt window",
+                "keepOutput", "Causes the command prompt to stay open after the download finishes (helpful for debugging)",
+                "applyCodecs", "Enable video encoding - This can fix problems with importing or viewing videos in some software - (encodes on the CPU using FFmpeg, this feature is very slow and it only supports mp4 and webm, does not work while \"Encode Video (GPU)\" is enabled)"
             };
 
             #endregion
 
             // configure tooltips
-            for (int i = 0; i <= 37; i++) programToolTip.SetToolTip(component[i], tooltip[i]);
+            for (int i = 0; i < tooltipMap.Length; i += 2)
+                programToolTip.SetToolTip(Controls.Find(tooltipMap[i], true)[0], tooltipMap[i + 1]);
 
             // check if the custom directory is missing
             if (!Directory.Exists(selLoc) && !useDefLoc)
@@ -228,6 +187,8 @@ namespace MediaDownloader
                 directoryLabel.Text = "Directory no longer exists";
                 programToolTip.SetToolTip(directoryLabel, "The previous directory no longer exists");
             }
+
+            versionLabel.Text = ver;
 
             // configure tooltip draw
             programToolTip.AutoPopDelay = 10000;
@@ -273,7 +234,8 @@ namespace MediaDownloader
                     if (File.Exists(asset[20])) File.Delete(asset[20]);
                     File.Copy("..\\..\\yt-dlp\\current\\yt-dlp.exe", asset[20]);
                 }
-                catch (Exception ex) { MessageBox.Show("Error while installing \"yt-dlp\" from scoop!\n\nFull Error:\n" + ex); }
+                catch (Exception ex)
+                    { MessageBox.Show("Error while installing \"yt-dlp\" from scoop!\n\nFull Error:\n" + ex); }
             }
             if (File.Exists("..\\..\\ffmpeg\\current\\bin\\ffmpeg.exe"))
             {
@@ -282,7 +244,8 @@ namespace MediaDownloader
                     if (File.Exists(asset[21])) File.Delete(asset[21]);
                     File.Copy("..\\..\\ffmpeg\\current\\bin\\ffmpeg.exe", asset[21]);
                 }
-                catch (Exception ex) { MessageBox.Show("Error while installing \"ffmpeg\" from scoop!\n\nFull Error:\n" + ex); }
+                catch (Exception ex)
+                    { MessageBox.Show("Error while installing \"ffmpeg\" from scoop!\n\nFull Error:\n" + ex); }
             }
 
             // check if redists exist
@@ -294,10 +257,7 @@ namespace MediaDownloader
                 try { Directory.CreateDirectory("Downloads"); } catch { }
                 try { Directory.CreateDirectory(md2 + "config"); } catch { }
                 if (!File.Exists(asset[15])) displayOutput.Checked = true;
-                if (!File.Exists(asset[16]))
-                {
-                    useConfig.Checked = true;
-                }
+                if (!File.Exists(asset[16])) useConfig.Checked = true;
                 try { File.WriteAllText(asset[16], ""); } catch { }
             }
         }
@@ -329,9 +289,15 @@ namespace MediaDownloader
         private void useConfig_CheckedChanged(object sender, EventArgs e)
         {
             if (!useConfig.Checked) return;
-            try { for (int i = 0; i <= 15; i++) File.WriteAllText(asset[i], ""); } catch { }
+            try
+            {
+                for (int i = 0; i <= 15; i++)
+                    File.WriteAllText(asset[i], "");
+            } catch { }
             string[] configOut = { inputBox.Text /*0 (url)*/, fileNameBox.Text /*1 (filename)*/, formatBox.SelectedIndex.ToString() /*2 (format)*/, selLoc /*3 (location)*/, useTimeframe.Checked ? "1" : "" /*4 (use time frame)*/, timeframeStart.Text /*5 (time start)*/, timeframeEnd.Text /*6 (time end)*/, gifResolution.Text /*7 (gif resolution)*/, gifFramerate.Text /*8 (gif framerate)*/, useGpu.Checked ? "1" : "" /*9 (use gpu)*/, gpuEncoder.Text /*10 (gpu encoder)*/, ytArgsBox.Text /*11 (custom yt-dlp arguments)*/, displayOutput.Checked ? "1" : "" /*12 (display output)*/, keepOutput.Checked ? "1" : "" /*13 (keep output)*/, applyCodecs.Checked ? "1" : "" /*14 (apply codecs)*/ };
-            if (useConfig.Checked) for (int i = 0; i <= 15; i++) try { File.WriteAllText(asset[i], configOut[i]); } catch { }
+            if (useConfig.Checked)
+                for (int i = 0; i <= 15; i++)
+                    try { File.WriteAllText(asset[i], configOut[i]); } catch { }
         }
 
         // reset config button
@@ -357,18 +323,22 @@ namespace MediaDownloader
 
             // store default configs
             string[] configIndex = { "", "", "5", "", "", "0:00", "0:10", "400", "20", "", "h264_nvenc", "", "1", "", "", "" };
-            if (useConfig.Checked) for (int i = 0; i <= 15; i++) try { File.WriteAllText(asset[i], configIndex[i]); } catch { }
+            if (useConfig.Checked)
+                for (int i = 0; i <= 15; i++)
+                    try { File.WriteAllText(asset[i], configIndex[i]); } catch { }
         }
 
         // input textbox
         private void inputBox_TextChanged(object sender, EventArgs e)
         {
+            inputBox.Text = omitChar(inputBox.Text);
             if (useConfig.Checked) try { File.WriteAllText(asset[0], inputBox.Text); } catch { }
         }
 
         // filename textbox
         private void fileNameBox_TextChanged(object sender, EventArgs e)
         {
+            fileNameBox.Text = omitChar(fileNameBox.Text);
             if (useConfig.Checked) try { File.WriteAllText(asset[1], fileNameBox.Text); } catch { }
         }
 
@@ -393,7 +363,8 @@ namespace MediaDownloader
                 programToolTip.SetToolTip(directoryLabel, "Currently selected download location [" + selLoc + "]");
                 directoryLabel.ForeColor = System.Drawing.Color.ForestGreen;
 
-                if (useConfig.Checked) try { File.WriteAllText(asset[3], selLoc); } catch { }
+                if (useConfig.Checked)
+                    try { File.WriteAllText(asset[3], selLoc); } catch { }
             }
         }
 
@@ -568,7 +539,8 @@ namespace MediaDownloader
             else
             {
                 // ensure user cannot select non-formats
-                if (form == 0 || form == 5 || form == 6 || form == 10 || form == 11) MessageBox.Show("No format was specified.");
+                if (form == 0 || form == 5 || form == 6 || form == 10 || form == 11)
+                    MessageBox.Show("No format was specified.");
                 else
                 {
                     if (!applyCodecs.Checked && !useGpu.Checked)
@@ -583,7 +555,9 @@ namespace MediaDownloader
                             // gif
                             case 3: mdScr = useDefLoc ? gif_useDefLoc : gif; break;
                             // gif (web)
-                            case 4: if (gifR == "" || gifF == "") { MessageBox.Show("No valid resolution and framerate values were specified."); return; } else mdScr = useDefLoc ? gifWeb_useDefLoc : gifWeb; break;
+                            case 4: if (gifR == "" || gifF == "")
+                                        { MessageBox.Show("No valid resolution and framerate values were specified."); return; }
+                                    else mdScr = useDefLoc ? gifWeb_useDefLoc : gifWeb; break;
                             // mp3
                             case 7: mdScr = useDefLoc ? mp3_useDefLoc : mp3; break;
                             // wav
@@ -620,11 +594,14 @@ namespace MediaDownloader
                         // process format
                         string fExt = null;
                         string[] fExtIndex = { ".mp4", ".webm", ".gif", ".gif", "", "", ".mp3", ".wav", ".ogg" };
-                        for (int i = 0; i <= 9; i++) if (form == i) fExt = fExtIndex[i - 1];
+                        for (int i = 0; i <= 9; i++)
+                            if (form == i)
+                                fExt = fExtIndex[i - 1];
                         if (form == 12) { MessageBox.Show("Trimming cannot be used with with format."); return; }
                         if (fExt == null) return;
 
-                        if (useDefLoc) mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"..\\Downloads\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"..\\Downloads\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"..\\Downloads\\" + filename + fExt + "\""; else mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"" + selLoc + "\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"" + selLoc + "\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"" + selLoc + "\\" + filename + fExt + "\"";
+                        if (useDefLoc)
+                            mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"..\\Downloads\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"..\\Downloads\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"..\\Downloads\\" + filename + fExt + "\""; else mdScr += title + dState4 + "ffmpeg.exe -loglevel verbose -i \"" + selLoc + "\\" + filename + fExt + "\" -ss " + timeS + " -to " + timeE + bVA + "\"" + selLoc + "\\" + name + "_trim" + dID + fExt + "\"\ndel /f \"" + selLoc + "\\" + filename + fExt + "\"";
                         filename = name + "_trim" + dID;
                     }
 
@@ -694,14 +671,24 @@ namespace MediaDownloader
                 {
                     var f = new FileInfo(file).Name;
                     bool fIndex = true;
-                    for (int i = 0; i <= 16; i++) if (f == asset_fix[i]) { fIndex = false; break; }
-                    for (int i = 19; i <= 21; i++) if (f == asset_fix[i]) { fIndex = false; break; }
-                    if (fIndex) try { File.Delete(file); } catch { }
+                    for (int i = 0; i <= 16; i++)
+                            if (f == asset_fix[i])
+                                { fIndex = false; break; }
+                    for (int i = 19; i <= 21; i++)
+                        if (f == asset_fix[i])
+                            { fIndex = false; break; }
+                    if (fIndex)
+                        try { File.Delete(file); } catch { }
                 }
             }
 
             // delete configs if use config is disabled
-            try { if (!useConfig.Checked) for (int i = 0; i <= 15; i++) File.Delete(asset[i]); } catch { }
+            try
+            {
+                if (!useConfig.Checked)
+                    for (int i = 0; i <= 15; i++)
+                        File.Delete(asset[i]);
+            } catch { }
         }
 
         // clear location function
@@ -711,7 +698,8 @@ namespace MediaDownloader
             useDefLoc = true;
             selLoc = ""; directoryLabel.Text = "";
 
-            if (useConfig.Checked) File.WriteAllText(asset[3], selLoc);
+            if (useConfig.Checked)
+                File.WriteAllText(asset[3], selLoc);
         }
 
         // program check fail function
@@ -719,6 +707,20 @@ namespace MediaDownloader
         {
             MessageBox.Show("\"" + errMsg + "\" was not found! Exiting MediaDownloader.\n\nMake sure you have \"yt-dlp.exe\" and \"ffmpeg.exe\" in a folder named \"mediadownloader\" next to \"MediaDownloader.exe\".\nIf you are using scoop please make sure you have installed everything correctly.");
             Environment.Exit(1);
+        }
+
+        // omit bad characters function
+        string omitChar(string input)
+        {
+            string[] invalidChars = { "0x7f" };
+            for (int i = 0; i < invalidChars.Length; i++)
+            {
+                char badChar = (char)Convert.ToUInt32(invalidChars[i], 16);
+                if (input.Contains(badChar))
+                    input = input.Replace(badChar.ToString(), "");
+            }
+
+            return input;
         }
 
         // string repeater function
@@ -747,7 +749,10 @@ namespace MediaDownloader
         // banner picture sender
         private void bannerPicture_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 0) { MessageBox.Show(Properties.Resources.infoText); toggle = 1; } else if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 1) { Process.Start("https://github.com/o7q/MediaDownloader"); toggle = 0; }
+            if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 0)
+                { MessageBox.Show(Properties.Resources.infoText); toggle = 1; }
+            else if (e.Button == MouseButtons.Left && e.Clicks == 2 && toggle == 1)
+                { Process.Start("https://github.com/o7q/MediaDownloader"); toggle = 0; }
             mvFrm(e);
         }
 
