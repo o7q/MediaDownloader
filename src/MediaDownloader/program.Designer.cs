@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(program));
-            this.inputBox = new System.Windows.Forms.TextBox();
+            this.urlBox = new System.Windows.Forms.TextBox();
             this.urlLabel = new System.Windows.Forms.Label();
             this.titlebarPanel = new System.Windows.Forms.Panel();
             this.bannerPicture = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@
             this.sLabel = new System.Windows.Forms.Label();
             this.eLabel = new System.Windows.Forms.Label();
             this.ytArgsBox = new System.Windows.Forms.RichTextBox();
-            this.fileNameBox = new System.Windows.Forms.TextBox();
+            this.nameBox = new System.Windows.Forms.TextBox();
             this.ytArgsLabel = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.displayOutput = new System.Windows.Forms.CheckBox();
@@ -74,16 +74,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
             // 
-            // inputBox
+            // urlBox
             // 
-            this.inputBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.inputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inputBox.ForeColor = System.Drawing.Color.Silver;
-            this.inputBox.Location = new System.Drawing.Point(7, 55);
-            this.inputBox.Name = "inputBox";
-            this.inputBox.Size = new System.Drawing.Size(228, 20);
-            this.inputBox.TabIndex = 2;
-            this.inputBox.TextChanged += new System.EventHandler(this.inputBox_TextChanged);
+            this.urlBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.urlBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.urlBox.ForeColor = System.Drawing.Color.Silver;
+            this.urlBox.Location = new System.Drawing.Point(7, 55);
+            this.urlBox.Name = "urlBox";
+            this.urlBox.Size = new System.Drawing.Size(228, 20);
+            this.urlBox.TabIndex = 2;
+            this.urlBox.TextChanged += new System.EventHandler(this.urlBox_TextChanged);
             // 
             // urlLabel
             // 
@@ -504,16 +504,16 @@
             this.ytArgsBox.TextChanged += new System.EventHandler(this.ytArgsBox_TextChanged);
             this.ytArgsBox.DoubleClick += new System.EventHandler(this.ytArgsBox_DoubleClick);
             // 
-            // fileNameBox
+            // nameBox
             // 
-            this.fileNameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.fileNameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fileNameBox.ForeColor = System.Drawing.Color.Silver;
-            this.fileNameBox.Location = new System.Drawing.Point(238, 55);
-            this.fileNameBox.Name = "fileNameBox";
-            this.fileNameBox.Size = new System.Drawing.Size(103, 20);
-            this.fileNameBox.TabIndex = 3;
-            this.fileNameBox.TextChanged += new System.EventHandler(this.fileNameBox_TextChanged);
+            this.nameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nameBox.ForeColor = System.Drawing.Color.Silver;
+            this.nameBox.Location = new System.Drawing.Point(238, 55);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(103, 20);
+            this.nameBox.TabIndex = 3;
+            this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
             // 
             // ytArgsLabel
             // 
@@ -606,7 +606,7 @@
             this.Controls.Add(this.displayOutput);
             this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.ytArgsLabel);
-            this.Controls.Add(this.fileNameBox);
+            this.Controls.Add(this.nameBox);
             this.Controls.Add(this.resetConfig);
             this.Controls.Add(this.useConfig);
             this.Controls.Add(this.ytArgsBox);
@@ -635,7 +635,7 @@
             this.Controls.Add(this.formatBox);
             this.Controls.Add(this.titlebarPanel);
             this.Controls.Add(this.urlLabel);
-            this.Controls.Add(this.inputBox);
+            this.Controls.Add(this.urlBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -653,7 +653,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox inputBox;
+        private System.Windows.Forms.TextBox urlBox;
         private System.Windows.Forms.Label urlLabel;
         private System.Windows.Forms.Panel titlebarPanel;
         private System.Windows.Forms.Button exitButton;
@@ -686,7 +686,7 @@
         private System.Windows.Forms.Label sLabel;
         private System.Windows.Forms.Label eLabel;
         private System.Windows.Forms.RichTextBox ytArgsBox;
-        private System.Windows.Forms.TextBox fileNameBox;
+        private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Label ytArgsLabel;
         private System.Windows.Forms.Label fileNameLabel;
         private System.Windows.Forms.CheckBox displayOutput;
