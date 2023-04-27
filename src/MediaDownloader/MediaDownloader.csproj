@@ -52,6 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="includes\data\storage.cs" />
+    <Compile Include="includes\data\structure.cs" />
+    <Compile Include="includes\data\variables.cs" />
+    <Compile Include="includes\tools\error.cs" />
+    <Compile Include="includes\tools\text.cs" />
     <Compile Include="program.cs">
       <SubType>Form</SubType>
     </Compile>

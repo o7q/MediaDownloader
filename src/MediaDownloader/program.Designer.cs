@@ -30,60 +30,60 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(program));
-            this.urlBox = new System.Windows.Forms.TextBox();
+            this.urlTextbox = new System.Windows.Forms.TextBox();
             this.urlLabel = new System.Windows.Forms.Label();
             this.titlebarPanel = new System.Windows.Forms.Panel();
             this.bannerPicture = new System.Windows.Forms.PictureBox();
             this.versionLabel = new System.Windows.Forms.Label();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.formatBox = new System.Windows.Forms.ComboBox();
+            this.formatCombobox = new System.Windows.Forms.ComboBox();
             this.formatLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.viewAvailableFormatsButton = new System.Windows.Forms.Button();
             this.locationButton = new System.Windows.Forms.Button();
             this.directoryLabel = new System.Windows.Forms.Label();
             this.clearLocationButton = new System.Windows.Forms.Button();
-            this.applyCodecs = new System.Windows.Forms.CheckBox();
+            this.useCpuCheckbox = new System.Windows.Forms.CheckBox();
             this.useConfig = new System.Windows.Forms.CheckBox();
             this.resetConfig = new System.Windows.Forms.Button();
             this.gifQualityLabel = new System.Windows.Forms.Label();
-            this.gifResolution = new System.Windows.Forms.TextBox();
-            this.gifFramerate = new System.Windows.Forms.TextBox();
-            this.rLabel = new System.Windows.Forms.Label();
-            this.fLabel = new System.Windows.Forms.Label();
+            this.gifResolutionTextbox = new System.Windows.Forms.TextBox();
+            this.gifFramerateTextbox = new System.Windows.Forms.TextBox();
+            this.gifResolutionLabel = new System.Windows.Forms.Label();
+            this.gifFramerateLabel = new System.Windows.Forms.Label();
             this.programToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.openLocationButton = new System.Windows.Forms.Button();
-            this.useGpu = new System.Windows.Forms.CheckBox();
+            this.useGpuCheckbox = new System.Windows.Forms.CheckBox();
             this.codecLabel = new System.Windows.Forms.Label();
-            this.gpuEncoder = new System.Windows.Forms.TextBox();
-            this.timeframeStart = new System.Windows.Forms.TextBox();
-            this.timeframeEnd = new System.Windows.Forms.TextBox();
-            this.useTimeframe = new System.Windows.Forms.CheckBox();
-            this.sLabel = new System.Windows.Forms.Label();
-            this.eLabel = new System.Windows.Forms.Label();
-            this.ytArgsBox = new System.Windows.Forms.RichTextBox();
-            this.nameBox = new System.Windows.Forms.TextBox();
-            this.ytArgsLabel = new System.Windows.Forms.Label();
+            this.gpuEncoderTextbox = new System.Windows.Forms.TextBox();
+            this.timeframeStartTextbox = new System.Windows.Forms.TextBox();
+            this.timeframeEndTextbox = new System.Windows.Forms.TextBox();
+            this.useTimeframeCheckbox = new System.Windows.Forms.CheckBox();
+            this.timeframeStartLabel = new System.Windows.Forms.Label();
+            this.timeframeEndLabel = new System.Windows.Forms.Label();
+            this.ytdlpArgumentsTextbox = new System.Windows.Forms.RichTextBox();
+            this.nameTextbox = new System.Windows.Forms.TextBox();
+            this.ytdlpArgumentsLabel = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
-            this.displayOutput = new System.Windows.Forms.CheckBox();
+            this.displayOutputCheckbox = new System.Windows.Forms.CheckBox();
             this.advancedLabel = new System.Windows.Forms.Label();
-            this.keepOutput = new System.Windows.Forms.CheckBox();
+            this.keepOutputCheckbox = new System.Windows.Forms.CheckBox();
             this.outputLabel = new System.Windows.Forms.Label();
             this.titlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bannerPicture)).BeginInit();
             this.SuspendLayout();
             // 
-            // urlBox
+            // urlTextbox
             // 
-            this.urlBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.urlBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.urlBox.ForeColor = System.Drawing.Color.Silver;
-            this.urlBox.Location = new System.Drawing.Point(7, 55);
-            this.urlBox.Name = "urlBox";
-            this.urlBox.Size = new System.Drawing.Size(228, 20);
-            this.urlBox.TabIndex = 2;
-            this.urlBox.TextChanged += new System.EventHandler(this.urlBox_TextChanged);
+            this.urlTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.urlTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.urlTextbox.ForeColor = System.Drawing.Color.Silver;
+            this.urlTextbox.Location = new System.Drawing.Point(7, 55);
+            this.urlTextbox.Name = "urlTextbox";
+            this.urlTextbox.Size = new System.Drawing.Size(228, 20);
+            this.urlTextbox.TabIndex = 2;
+            this.urlTextbox.TextChanged += new System.EventHandler(this.urlTextbox_TextChanged);
             // 
             // urlLabel
             // 
@@ -159,32 +159,30 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // formatBox
+            // formatCombobox
             // 
-            this.formatBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.formatBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.formatBox.ForeColor = System.Drawing.Color.Silver;
-            this.formatBox.FormattingEnabled = true;
-            this.formatBox.ItemHeight = 13;
-            this.formatBox.Items.AddRange(new object[] {
+            this.formatCombobox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.formatCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.formatCombobox.ForeColor = System.Drawing.Color.Silver;
+            this.formatCombobox.FormattingEnabled = true;
+            this.formatCombobox.ItemHeight = 13;
+            this.formatCombobox.Items.AddRange(new object[] {
             "[Video]",
             "mp4",
-            "webm",
-            "gif [FFmpeg]",
-            "gif (web) [FFmpeg]",
+            "gif",
             "",
             "[Audio]",
             "mp3",
             "wav",
-            "ogg [FFmpeg]",
+            "ogg",
             "",
             "[Custom]",
             "(yt-dlp arguments)"});
-            this.formatBox.Location = new System.Drawing.Point(7, 93);
-            this.formatBox.Name = "formatBox";
-            this.formatBox.Size = new System.Drawing.Size(99, 21);
-            this.formatBox.TabIndex = 4;
-            this.formatBox.SelectedIndexChanged += new System.EventHandler(this.formatBox_SelectedIndexChanged);
+            this.formatCombobox.Location = new System.Drawing.Point(7, 93);
+            this.formatCombobox.Name = "formatCombobox";
+            this.formatCombobox.Size = new System.Drawing.Size(99, 21);
+            this.formatCombobox.TabIndex = 4;
+            this.formatCombobox.SelectedIndexChanged += new System.EventHandler(this.formatCombobox_SelectedIndexChanged);
             // 
             // formatLabel
             // 
@@ -266,20 +264,20 @@
             this.clearLocationButton.UseVisualStyleBackColor = false;
             this.clearLocationButton.Click += new System.EventHandler(this.clearLocationButton_Click);
             // 
-            // applyCodecs
+            // useCpuCheckbox
             // 
-            this.applyCodecs.AutoSize = true;
-            this.applyCodecs.BackColor = System.Drawing.Color.Transparent;
-            this.applyCodecs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.applyCodecs.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyCodecs.ForeColor = System.Drawing.Color.MediumPurple;
-            this.applyCodecs.Location = new System.Drawing.Point(239, 168);
-            this.applyCodecs.Name = "applyCodecs";
-            this.applyCodecs.Size = new System.Drawing.Size(106, 16);
-            this.applyCodecs.TabIndex = 20;
-            this.applyCodecs.Text = "Encode Video (CPU)";
-            this.applyCodecs.UseVisualStyleBackColor = false;
-            this.applyCodecs.CheckedChanged += new System.EventHandler(this.applyCodecs_CheckedChanged);
+            this.useCpuCheckbox.AutoSize = true;
+            this.useCpuCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.useCpuCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useCpuCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useCpuCheckbox.ForeColor = System.Drawing.Color.MediumPurple;
+            this.useCpuCheckbox.Location = new System.Drawing.Point(239, 168);
+            this.useCpuCheckbox.Name = "useCpuCheckbox";
+            this.useCpuCheckbox.Size = new System.Drawing.Size(106, 16);
+            this.useCpuCheckbox.TabIndex = 20;
+            this.useCpuCheckbox.Text = "Encode Video (CPU)";
+            this.useCpuCheckbox.UseVisualStyleBackColor = false;
+            this.useCpuCheckbox.CheckedChanged += new System.EventHandler(this.useCpuCheckbox_CheckedChanged);
             // 
             // useConfig
             // 
@@ -318,57 +316,57 @@
             this.gifQualityLabel.ForeColor = System.Drawing.Color.Gold;
             this.gifQualityLabel.Location = new System.Drawing.Point(128, 125);
             this.gifQualityLabel.Name = "gifQualityLabel";
-            this.gifQualityLabel.Size = new System.Drawing.Size(75, 12);
+            this.gifQualityLabel.Size = new System.Drawing.Size(49, 12);
             this.gifQualityLabel.TabIndex = 0;
-            this.gifQualityLabel.Text = "gif (web) Options";
+            this.gifQualityLabel.Text = "gif Options";
             // 
-            // gifResolution
+            // gifResolutionTextbox
             // 
-            this.gifResolution.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gifResolution.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gifResolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gifResolution.ForeColor = System.Drawing.Color.Khaki;
-            this.gifResolution.Location = new System.Drawing.Point(145, 139);
-            this.gifResolution.Name = "gifResolution";
-            this.gifResolution.Size = new System.Drawing.Size(35, 13);
-            this.gifResolution.TabIndex = 13;
-            this.gifResolution.TextChanged += new System.EventHandler(this.gifResolution_TextChanged);
+            this.gifResolutionTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gifResolutionTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gifResolutionTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gifResolutionTextbox.ForeColor = System.Drawing.Color.Khaki;
+            this.gifResolutionTextbox.Location = new System.Drawing.Point(145, 139);
+            this.gifResolutionTextbox.Name = "gifResolutionTextbox";
+            this.gifResolutionTextbox.Size = new System.Drawing.Size(35, 13);
+            this.gifResolutionTextbox.TabIndex = 13;
+            this.gifResolutionTextbox.TextChanged += new System.EventHandler(this.gifResolutionTextbox_TextChanged);
             // 
-            // gifFramerate
+            // gifFramerateTextbox
             // 
-            this.gifFramerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gifFramerate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gifFramerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gifFramerate.ForeColor = System.Drawing.Color.Khaki;
-            this.gifFramerate.Location = new System.Drawing.Point(199, 139);
-            this.gifFramerate.Name = "gifFramerate";
-            this.gifFramerate.Size = new System.Drawing.Size(35, 13);
-            this.gifFramerate.TabIndex = 14;
-            this.gifFramerate.TextChanged += new System.EventHandler(this.gifFramerate_TextChanged);
+            this.gifFramerateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gifFramerateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gifFramerateTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gifFramerateTextbox.ForeColor = System.Drawing.Color.Khaki;
+            this.gifFramerateTextbox.Location = new System.Drawing.Point(199, 139);
+            this.gifFramerateTextbox.Name = "gifFramerateTextbox";
+            this.gifFramerateTextbox.Size = new System.Drawing.Size(35, 13);
+            this.gifFramerateTextbox.TabIndex = 14;
+            this.gifFramerateTextbox.TextChanged += new System.EventHandler(this.gifFramerateTextbox_TextChanged);
             // 
-            // rLabel
+            // gifResolutionLabel
             // 
-            this.rLabel.AutoSize = true;
-            this.rLabel.BackColor = System.Drawing.Color.Transparent;
-            this.rLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rLabel.ForeColor = System.Drawing.Color.Khaki;
-            this.rLabel.Location = new System.Drawing.Point(129, 139);
-            this.rLabel.Name = "rLabel";
-            this.rLabel.Size = new System.Drawing.Size(15, 12);
-            this.rLabel.TabIndex = 0;
-            this.rLabel.Text = "R:";
+            this.gifResolutionLabel.AutoSize = true;
+            this.gifResolutionLabel.BackColor = System.Drawing.Color.Transparent;
+            this.gifResolutionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gifResolutionLabel.ForeColor = System.Drawing.Color.Khaki;
+            this.gifResolutionLabel.Location = new System.Drawing.Point(129, 139);
+            this.gifResolutionLabel.Name = "gifResolutionLabel";
+            this.gifResolutionLabel.Size = new System.Drawing.Size(15, 12);
+            this.gifResolutionLabel.TabIndex = 0;
+            this.gifResolutionLabel.Text = "R:";
             // 
-            // fLabel
+            // gifFramerateLabel
             // 
-            this.fLabel.AutoSize = true;
-            this.fLabel.BackColor = System.Drawing.Color.Transparent;
-            this.fLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fLabel.ForeColor = System.Drawing.Color.Khaki;
-            this.fLabel.Location = new System.Drawing.Point(184, 139);
-            this.fLabel.Name = "fLabel";
-            this.fLabel.Size = new System.Drawing.Size(14, 12);
-            this.fLabel.TabIndex = 0;
-            this.fLabel.Text = "F:";
+            this.gifFramerateLabel.AutoSize = true;
+            this.gifFramerateLabel.BackColor = System.Drawing.Color.Transparent;
+            this.gifFramerateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gifFramerateLabel.ForeColor = System.Drawing.Color.Khaki;
+            this.gifFramerateLabel.Location = new System.Drawing.Point(184, 139);
+            this.gifFramerateLabel.Name = "gifFramerateLabel";
+            this.gifFramerateLabel.Size = new System.Drawing.Size(14, 12);
+            this.gifFramerateLabel.TabIndex = 0;
+            this.gifFramerateLabel.Text = "F:";
             // 
             // programToolTip
             // 
@@ -390,20 +388,20 @@
             this.openLocationButton.UseVisualStyleBackColor = false;
             this.openLocationButton.Click += new System.EventHandler(this.openLocationButton_Click);
             // 
-            // useGpu
+            // useGpuCheckbox
             // 
-            this.useGpu.AutoSize = true;
-            this.useGpu.BackColor = System.Drawing.Color.Transparent;
-            this.useGpu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.useGpu.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useGpu.ForeColor = System.Drawing.Color.YellowGreen;
-            this.useGpu.Location = new System.Drawing.Point(130, 153);
-            this.useGpu.Name = "useGpu";
-            this.useGpu.Size = new System.Drawing.Size(106, 16);
-            this.useGpu.TabIndex = 15;
-            this.useGpu.Text = "Encode Video (GPU)";
-            this.useGpu.UseVisualStyleBackColor = false;
-            this.useGpu.CheckedChanged += new System.EventHandler(this.useGpu_CheckedChanged);
+            this.useGpuCheckbox.AutoSize = true;
+            this.useGpuCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.useGpuCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useGpuCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useGpuCheckbox.ForeColor = System.Drawing.Color.YellowGreen;
+            this.useGpuCheckbox.Location = new System.Drawing.Point(130, 153);
+            this.useGpuCheckbox.Name = "useGpuCheckbox";
+            this.useGpuCheckbox.Size = new System.Drawing.Size(106, 16);
+            this.useGpuCheckbox.TabIndex = 15;
+            this.useGpuCheckbox.Text = "Encode Video (GPU)";
+            this.useGpuCheckbox.UseVisualStyleBackColor = false;
+            this.useGpuCheckbox.CheckedChanged += new System.EventHandler(this.useGpuCheckbox_CheckedChanged);
             // 
             // codecLabel
             // 
@@ -417,116 +415,116 @@
             this.codecLabel.TabIndex = 0;
             this.codecLabel.Text = "Encoder:";
             // 
-            // gpuEncoder
+            // gpuEncoderTextbox
             // 
-            this.gpuEncoder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gpuEncoder.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gpuEncoder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpuEncoder.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.gpuEncoder.Location = new System.Drawing.Point(170, 168);
-            this.gpuEncoder.Name = "gpuEncoder";
-            this.gpuEncoder.Size = new System.Drawing.Size(64, 13);
-            this.gpuEncoder.TabIndex = 16;
-            this.gpuEncoder.TextChanged += new System.EventHandler(this.gpuEncoder_TextChanged);
+            this.gpuEncoderTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gpuEncoderTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gpuEncoderTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpuEncoderTextbox.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.gpuEncoderTextbox.Location = new System.Drawing.Point(170, 168);
+            this.gpuEncoderTextbox.Name = "gpuEncoderTextbox";
+            this.gpuEncoderTextbox.Size = new System.Drawing.Size(64, 13);
+            this.gpuEncoderTextbox.TabIndex = 16;
+            this.gpuEncoderTextbox.TextChanged += new System.EventHandler(this.gpuEncoderTextbox_TextChanged);
             // 
-            // timeframeStart
+            // timeframeStartTextbox
             // 
-            this.timeframeStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.timeframeStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeframeStart.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.timeframeStart.Location = new System.Drawing.Point(145, 107);
-            this.timeframeStart.Name = "timeframeStart";
-            this.timeframeStart.Size = new System.Drawing.Size(35, 13);
-            this.timeframeStart.TabIndex = 11;
-            this.timeframeStart.TextChanged += new System.EventHandler(this.timeframeStart_TextChanged);
+            this.timeframeStartTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeframeStartTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeframeStartTextbox.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeStartTextbox.Location = new System.Drawing.Point(145, 107);
+            this.timeframeStartTextbox.Name = "timeframeStartTextbox";
+            this.timeframeStartTextbox.Size = new System.Drawing.Size(35, 13);
+            this.timeframeStartTextbox.TabIndex = 11;
+            this.timeframeStartTextbox.TextChanged += new System.EventHandler(this.timeframeStartTextbox_TextChanged);
             // 
-            // timeframeEnd
+            // timeframeEndTextbox
             // 
-            this.timeframeEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.timeframeEnd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeframeEnd.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.timeframeEnd.Location = new System.Drawing.Point(199, 107);
-            this.timeframeEnd.Name = "timeframeEnd";
-            this.timeframeEnd.Size = new System.Drawing.Size(35, 13);
-            this.timeframeEnd.TabIndex = 12;
-            this.timeframeEnd.TextChanged += new System.EventHandler(this.timeframeEnd_TextChanged);
+            this.timeframeEndTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.timeframeEndTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeframeEndTextbox.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeEndTextbox.Location = new System.Drawing.Point(199, 107);
+            this.timeframeEndTextbox.Name = "timeframeEndTextbox";
+            this.timeframeEndTextbox.Size = new System.Drawing.Size(35, 13);
+            this.timeframeEndTextbox.TabIndex = 12;
+            this.timeframeEndTextbox.TextChanged += new System.EventHandler(this.timeframeEndTextbox_TextChanged);
             // 
-            // useTimeframe
+            // useTimeframeCheckbox
             // 
-            this.useTimeframe.AutoSize = true;
-            this.useTimeframe.BackColor = System.Drawing.Color.Transparent;
-            this.useTimeframe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.useTimeframe.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useTimeframe.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.useTimeframe.Location = new System.Drawing.Point(130, 91);
-            this.useTimeframe.Name = "useTimeframe";
-            this.useTimeframe.Size = new System.Drawing.Size(111, 16);
-            this.useTimeframe.TabIndex = 10;
-            this.useTimeframe.Text = "Trim Length Between:";
-            this.useTimeframe.UseVisualStyleBackColor = false;
-            this.useTimeframe.CheckedChanged += new System.EventHandler(this.useTimeframe_CheckedChanged);
+            this.useTimeframeCheckbox.AutoSize = true;
+            this.useTimeframeCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.useTimeframeCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.useTimeframeCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useTimeframeCheckbox.ForeColor = System.Drawing.Color.MediumSeaGreen;
+            this.useTimeframeCheckbox.Location = new System.Drawing.Point(130, 91);
+            this.useTimeframeCheckbox.Name = "useTimeframeCheckbox";
+            this.useTimeframeCheckbox.Size = new System.Drawing.Size(111, 16);
+            this.useTimeframeCheckbox.TabIndex = 10;
+            this.useTimeframeCheckbox.Text = "Trim Length Between:";
+            this.useTimeframeCheckbox.UseVisualStyleBackColor = false;
+            this.useTimeframeCheckbox.CheckedChanged += new System.EventHandler(this.useTimeframeCheckbox_CheckedChanged);
             // 
-            // sLabel
+            // timeframeStartLabel
             // 
-            this.sLabel.AutoSize = true;
-            this.sLabel.BackColor = System.Drawing.Color.Transparent;
-            this.sLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.sLabel.Location = new System.Drawing.Point(129, 107);
-            this.sLabel.Name = "sLabel";
-            this.sLabel.Size = new System.Drawing.Size(14, 12);
-            this.sLabel.TabIndex = 0;
-            this.sLabel.Text = "S:";
+            this.timeframeStartLabel.AutoSize = true;
+            this.timeframeStartLabel.BackColor = System.Drawing.Color.Transparent;
+            this.timeframeStartLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeframeStartLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeStartLabel.Location = new System.Drawing.Point(129, 107);
+            this.timeframeStartLabel.Name = "timeframeStartLabel";
+            this.timeframeStartLabel.Size = new System.Drawing.Size(14, 12);
+            this.timeframeStartLabel.TabIndex = 0;
+            this.timeframeStartLabel.Text = "S:";
             // 
-            // eLabel
+            // timeframeEndLabel
             // 
-            this.eLabel.AutoSize = true;
-            this.eLabel.BackColor = System.Drawing.Color.Transparent;
-            this.eLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
-            this.eLabel.Location = new System.Drawing.Point(183, 107);
-            this.eLabel.Name = "eLabel";
-            this.eLabel.Size = new System.Drawing.Size(14, 12);
-            this.eLabel.TabIndex = 0;
-            this.eLabel.Text = "E:";
+            this.timeframeEndLabel.AutoSize = true;
+            this.timeframeEndLabel.BackColor = System.Drawing.Color.Transparent;
+            this.timeframeEndLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeframeEndLabel.ForeColor = System.Drawing.Color.MediumAquamarine;
+            this.timeframeEndLabel.Location = new System.Drawing.Point(183, 107);
+            this.timeframeEndLabel.Name = "timeframeEndLabel";
+            this.timeframeEndLabel.Size = new System.Drawing.Size(14, 12);
+            this.timeframeEndLabel.TabIndex = 0;
+            this.timeframeEndLabel.Text = "E:";
             // 
-            // ytArgsBox
+            // ytdlpArgumentsTextbox
             // 
-            this.ytArgsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ytArgsBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ytArgsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ytArgsBox.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ytArgsBox.Location = new System.Drawing.Point(239, 107);
-            this.ytArgsBox.Name = "ytArgsBox";
-            this.ytArgsBox.Size = new System.Drawing.Size(101, 34);
-            this.ytArgsBox.TabIndex = 17;
-            this.ytArgsBox.Text = "";
-            this.ytArgsBox.TextChanged += new System.EventHandler(this.ytArgsBox_TextChanged);
-            this.ytArgsBox.DoubleClick += new System.EventHandler(this.ytArgsBox_DoubleClick);
+            this.ytdlpArgumentsTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ytdlpArgumentsTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ytdlpArgumentsTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ytdlpArgumentsTextbox.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.ytdlpArgumentsTextbox.Location = new System.Drawing.Point(239, 107);
+            this.ytdlpArgumentsTextbox.Name = "ytdlpArgumentsTextbox";
+            this.ytdlpArgumentsTextbox.Size = new System.Drawing.Size(101, 34);
+            this.ytdlpArgumentsTextbox.TabIndex = 17;
+            this.ytdlpArgumentsTextbox.Text = "";
+            this.ytdlpArgumentsTextbox.TextChanged += new System.EventHandler(this.ytdlpArgumentsTextbox_TextChanged);
+            this.ytdlpArgumentsTextbox.DoubleClick += new System.EventHandler(this.ytArgsBox_DoubleClick);
             // 
-            // nameBox
+            // nameTextbox
             // 
-            this.nameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameBox.ForeColor = System.Drawing.Color.Silver;
-            this.nameBox.Location = new System.Drawing.Point(238, 55);
-            this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(103, 20);
-            this.nameBox.TabIndex = 3;
-            this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
+            this.nameTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nameTextbox.ForeColor = System.Drawing.Color.Silver;
+            this.nameTextbox.Location = new System.Drawing.Point(238, 55);
+            this.nameTextbox.Name = "nameTextbox";
+            this.nameTextbox.Size = new System.Drawing.Size(103, 20);
+            this.nameTextbox.TabIndex = 3;
+            this.nameTextbox.TextChanged += new System.EventHandler(this.nameTextbox_TextChanged);
             // 
-            // ytArgsLabel
+            // ytdlpArgumentsLabel
             // 
-            this.ytArgsLabel.AutoSize = true;
-            this.ytArgsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ytArgsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ytArgsLabel.ForeColor = System.Drawing.Color.SteelBlue;
-            this.ytArgsLabel.Location = new System.Drawing.Point(237, 93);
-            this.ytArgsLabel.Name = "ytArgsLabel";
-            this.ytArgsLabel.Size = new System.Drawing.Size(76, 12);
-            this.ytArgsLabel.TabIndex = 0;
-            this.ytArgsLabel.Text = "yt-dlp Arguments";
-            this.ytArgsLabel.DoubleClick += new System.EventHandler(this.ytArgsLabel_DoubleClick);
+            this.ytdlpArgumentsLabel.AutoSize = true;
+            this.ytdlpArgumentsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ytdlpArgumentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ytdlpArgumentsLabel.ForeColor = System.Drawing.Color.SteelBlue;
+            this.ytdlpArgumentsLabel.Location = new System.Drawing.Point(237, 93);
+            this.ytdlpArgumentsLabel.Name = "ytdlpArgumentsLabel";
+            this.ytdlpArgumentsLabel.Size = new System.Drawing.Size(76, 12);
+            this.ytdlpArgumentsLabel.TabIndex = 0;
+            this.ytdlpArgumentsLabel.Text = "yt-dlp Arguments";
+            this.ytdlpArgumentsLabel.DoubleClick += new System.EventHandler(this.ytArgsLabel_DoubleClick);
             // 
             // fileNameLabel
             // 
@@ -539,20 +537,20 @@
             this.fileNameLabel.TabIndex = 0;
             this.fileNameLabel.Text = "Name";
             // 
-            // displayOutput
+            // displayOutputCheckbox
             // 
-            this.displayOutput.AutoSize = true;
-            this.displayOutput.BackColor = System.Drawing.Color.Transparent;
-            this.displayOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.displayOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayOutput.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.displayOutput.Location = new System.Drawing.Point(239, 153);
-            this.displayOutput.Name = "displayOutput";
-            this.displayOutput.Size = new System.Drawing.Size(52, 16);
-            this.displayOutput.TabIndex = 18;
-            this.displayOutput.Text = "Display";
-            this.displayOutput.UseVisualStyleBackColor = false;
-            this.displayOutput.CheckedChanged += new System.EventHandler(this.displayOutput_CheckedChanged);
+            this.displayOutputCheckbox.AutoSize = true;
+            this.displayOutputCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.displayOutputCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.displayOutputCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayOutputCheckbox.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.displayOutputCheckbox.Location = new System.Drawing.Point(239, 153);
+            this.displayOutputCheckbox.Name = "displayOutputCheckbox";
+            this.displayOutputCheckbox.Size = new System.Drawing.Size(52, 16);
+            this.displayOutputCheckbox.TabIndex = 18;
+            this.displayOutputCheckbox.Text = "Display";
+            this.displayOutputCheckbox.UseVisualStyleBackColor = false;
+            this.displayOutputCheckbox.CheckedChanged += new System.EventHandler(this.displayOutputCheckbox_CheckedChanged);
             // 
             // advancedLabel
             // 
@@ -566,20 +564,20 @@
             this.advancedLabel.TabIndex = 0;
             this.advancedLabel.Text = "More Options";
             // 
-            // keepOutput
+            // keepOutputCheckbox
             // 
-            this.keepOutput.AutoSize = true;
-            this.keepOutput.BackColor = System.Drawing.Color.Transparent;
-            this.keepOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.keepOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keepOutput.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.keepOutput.Location = new System.Drawing.Point(293, 153);
-            this.keepOutput.Name = "keepOutput";
-            this.keepOutput.Size = new System.Drawing.Size(42, 16);
-            this.keepOutput.TabIndex = 19;
-            this.keepOutput.Text = "Keep";
-            this.keepOutput.UseVisualStyleBackColor = false;
-            this.keepOutput.CheckedChanged += new System.EventHandler(this.keepOutput_CheckedChanged);
+            this.keepOutputCheckbox.AutoSize = true;
+            this.keepOutputCheckbox.BackColor = System.Drawing.Color.Transparent;
+            this.keepOutputCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.keepOutputCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keepOutputCheckbox.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.keepOutputCheckbox.Location = new System.Drawing.Point(293, 153);
+            this.keepOutputCheckbox.Name = "keepOutputCheckbox";
+            this.keepOutputCheckbox.Size = new System.Drawing.Size(42, 16);
+            this.keepOutputCheckbox.TabIndex = 19;
+            this.keepOutputCheckbox.Text = "Keep";
+            this.keepOutputCheckbox.UseVisualStyleBackColor = false;
+            this.keepOutputCheckbox.CheckedChanged += new System.EventHandler(this.keepOutputCheckbox_CheckedChanged);
             // 
             // outputLabel
             // 
@@ -602,29 +600,29 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(349, 197);
             this.Controls.Add(this.outputLabel);
-            this.Controls.Add(this.keepOutput);
-            this.Controls.Add(this.displayOutput);
+            this.Controls.Add(this.keepOutputCheckbox);
+            this.Controls.Add(this.displayOutputCheckbox);
             this.Controls.Add(this.fileNameLabel);
-            this.Controls.Add(this.ytArgsLabel);
-            this.Controls.Add(this.nameBox);
+            this.Controls.Add(this.ytdlpArgumentsLabel);
+            this.Controls.Add(this.nameTextbox);
             this.Controls.Add(this.resetConfig);
             this.Controls.Add(this.useConfig);
-            this.Controls.Add(this.ytArgsBox);
-            this.Controls.Add(this.eLabel);
-            this.Controls.Add(this.sLabel);
-            this.Controls.Add(this.useTimeframe);
-            this.Controls.Add(this.timeframeEnd);
-            this.Controls.Add(this.timeframeStart);
-            this.Controls.Add(this.gpuEncoder);
+            this.Controls.Add(this.ytdlpArgumentsTextbox);
+            this.Controls.Add(this.timeframeEndLabel);
+            this.Controls.Add(this.timeframeStartLabel);
+            this.Controls.Add(this.useTimeframeCheckbox);
+            this.Controls.Add(this.timeframeEndTextbox);
+            this.Controls.Add(this.timeframeStartTextbox);
+            this.Controls.Add(this.gpuEncoderTextbox);
             this.Controls.Add(this.codecLabel);
-            this.Controls.Add(this.useGpu);
+            this.Controls.Add(this.useGpuCheckbox);
             this.Controls.Add(this.openLocationButton);
-            this.Controls.Add(this.fLabel);
-            this.Controls.Add(this.rLabel);
-            this.Controls.Add(this.gifFramerate);
-            this.Controls.Add(this.gifResolution);
+            this.Controls.Add(this.gifFramerateLabel);
+            this.Controls.Add(this.gifResolutionLabel);
+            this.Controls.Add(this.gifFramerateTextbox);
+            this.Controls.Add(this.gifResolutionTextbox);
             this.Controls.Add(this.gifQualityLabel);
-            this.Controls.Add(this.applyCodecs);
+            this.Controls.Add(this.useCpuCheckbox);
             this.Controls.Add(this.clearLocationButton);
             this.Controls.Add(this.directoryLabel);
             this.Controls.Add(this.locationButton);
@@ -632,10 +630,10 @@
             this.Controls.Add(this.advancedLabel);
             this.Controls.Add(this.downloadButton);
             this.Controls.Add(this.formatLabel);
-            this.Controls.Add(this.formatBox);
+            this.Controls.Add(this.formatCombobox);
             this.Controls.Add(this.titlebarPanel);
             this.Controls.Add(this.urlLabel);
-            this.Controls.Add(this.urlBox);
+            this.Controls.Add(this.urlTextbox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -653,45 +651,45 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox urlBox;
+        private System.Windows.Forms.TextBox urlTextbox;
         private System.Windows.Forms.Label urlLabel;
         private System.Windows.Forms.Panel titlebarPanel;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Label versionLabel;
-        private System.Windows.Forms.ComboBox formatBox;
+        private System.Windows.Forms.ComboBox formatCombobox;
         private System.Windows.Forms.Label formatLabel;
         private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.Button viewAvailableFormatsButton;
         private System.Windows.Forms.Button locationButton;
         private System.Windows.Forms.Label directoryLabel;
         private System.Windows.Forms.Button clearLocationButton;
-        private System.Windows.Forms.CheckBox applyCodecs;
+        private System.Windows.Forms.CheckBox useCpuCheckbox;
         private System.Windows.Forms.CheckBox useConfig;
         private System.Windows.Forms.Button resetConfig;
         private System.Windows.Forms.Label gifQualityLabel;
-        private System.Windows.Forms.TextBox gifResolution;
-        private System.Windows.Forms.TextBox gifFramerate;
-        private System.Windows.Forms.Label rLabel;
-        private System.Windows.Forms.Label fLabel;
+        private System.Windows.Forms.TextBox gifResolutionTextbox;
+        private System.Windows.Forms.TextBox gifFramerateTextbox;
+        private System.Windows.Forms.Label gifResolutionLabel;
+        private System.Windows.Forms.Label gifFramerateLabel;
         private System.Windows.Forms.PictureBox bannerPicture;
         private System.Windows.Forms.ToolTip programToolTip;
         private System.Windows.Forms.Button openLocationButton;
-        private System.Windows.Forms.CheckBox useGpu;
+        private System.Windows.Forms.CheckBox useGpuCheckbox;
         private System.Windows.Forms.Label codecLabel;
-        private System.Windows.Forms.TextBox gpuEncoder;
-        private System.Windows.Forms.TextBox timeframeStart;
-        private System.Windows.Forms.TextBox timeframeEnd;
-        private System.Windows.Forms.CheckBox useTimeframe;
-        private System.Windows.Forms.Label sLabel;
-        private System.Windows.Forms.Label eLabel;
-        private System.Windows.Forms.RichTextBox ytArgsBox;
-        private System.Windows.Forms.TextBox nameBox;
-        private System.Windows.Forms.Label ytArgsLabel;
+        private System.Windows.Forms.TextBox gpuEncoderTextbox;
+        private System.Windows.Forms.TextBox timeframeStartTextbox;
+        private System.Windows.Forms.TextBox timeframeEndTextbox;
+        private System.Windows.Forms.CheckBox useTimeframeCheckbox;
+        private System.Windows.Forms.Label timeframeStartLabel;
+        private System.Windows.Forms.Label timeframeEndLabel;
+        private System.Windows.Forms.RichTextBox ytdlpArgumentsTextbox;
+        private System.Windows.Forms.TextBox nameTextbox;
+        private System.Windows.Forms.Label ytdlpArgumentsLabel;
         private System.Windows.Forms.Label fileNameLabel;
-        private System.Windows.Forms.CheckBox displayOutput;
+        private System.Windows.Forms.CheckBox displayOutputCheckbox;
         private System.Windows.Forms.Label advancedLabel;
-        private System.Windows.Forms.CheckBox keepOutput;
+        private System.Windows.Forms.CheckBox keepOutputCheckbox;
         private System.Windows.Forms.Label outputLabel;
     }
 }

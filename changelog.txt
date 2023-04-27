@@ -1,3 +1,12 @@
+~ v3.9.0.0
+- Greatly optimized the trimming feature (it was extremely inefficient before, it now trims before doing any other media processing)
+- Greatly improved the gif quality
+- Improved the file selection dialog (it's now less annoying to use)
+- Improved the config system (it's now contained in a single file)
+- Removed the webm format (the format is extremely slow to process with ffmpeg, if you need a webm, there are lots of converters that are faster)
+- Optimized code
+- Updated to yt-dlp 2023.03.04
+
 ~ v3.8.5.0
 - Fixed download fails relating to using certain special characters inside non-rich text boxes
 - Improved tooltip system
