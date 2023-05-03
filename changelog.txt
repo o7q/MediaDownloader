@@ -1,4 +1,4 @@
-~ v3.10.0
+~ v3.10.0.0
 - Added more format options (mkv, flac, opus, png/jpg sequences, and audio visualizers. also decided to re-add webm c:)
 - Added an option to customize bitrate settings
 - Fixed a bug that made the path text stay after clearing settings
