@@ -19,7 +19,7 @@ FFmpeg: https://ffmpeg.org
 
 ---
 
-# Usage
+<!-- # Usage
 
 ## **Installation**
 To install MediaDownloader and its dependencies you can either do it manually or you can use scoop.
@@ -39,7 +39,7 @@ powershell -noe "iex(irm tl.ctt.cx);Get utils/mediadownloader"
 scoop.cmd update *
 ```
 
-<br>
+<br> -->
 
 ## **Interface**
 

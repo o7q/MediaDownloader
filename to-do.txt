@@ -1,1 +1,3 @@
+- Add support for GPU acceleration on the trimmer
+- Change the way the open directory feature works for image sequences
 - Make the form either resizeable or bigger
