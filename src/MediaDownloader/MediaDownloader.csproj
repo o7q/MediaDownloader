@@ -100,7 +100,6 @@
     <Content Include="icon.ico" />
     <None Include="Resources\background.png" />
     <None Include="Resources\x.png" />
-    <None Include="Resources\gradient_1280x.png" />
     <None Include="Resources\banner.png" />
     <None Include="Resources\download_gradient.png" />
   </ItemGroup>

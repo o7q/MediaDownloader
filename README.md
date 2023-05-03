@@ -28,7 +28,7 @@ To install MediaDownloader and its dependencies you can either do it manually or
 **1.** Go to https://o7q.github.io/MediaDownloader \
 **2.** Click `Download <version>`
 
-- **Scoop Installation**
+- **Scoop Installation (currently outdated)**
 
 **1.** Open `cmd.exe` and run this command:
 ```powershell
@@ -42,43 +42,93 @@ scoop.cmd update *
 <br>
 
 ## **Interface**
-- **File Output**
-    - **Name Input** Specify a name for the output file
-    - **Change Path Button** Change the location the media file is downloaded to
-    - **Open Path Button** Opens the selected download location in Windows Explorer
-    - **Clear Path Button** Clears the selected path
-- **Download Options**
-    - **Download Button** Downloads the URL with the specified arguments
-    - **Basic Options**
-        - **URL Input** Specify the URL of website for MediaDownloader to download
-        - **Format Dropdown** Specify the format for downloaded media to be converted to
-        - **Format Info Button** Displays all media types found on the specified URL's web server
-        - **Save Options Checkbox** Saves all options to config files stored in the `mediadownloader\config` directory
-    - **Advanced Options**
-        - **Trim Length Inputs** Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: `0:00 - 0:10` | `1:25 - 2:30` | `2:30:40 - 3:05:15`
-        - **gif (web) Options** A compressed version of `gif`. This is helpful for uploading gifs to something such as Discord if you do not have Discord Nitro
-            - **Resolution** `R = X Resolution` (will preserve aspect ratio)
-            - **Framerate** `F = Framerate`
-        - **Encode Video Options**
-            - **Encode Video (GPU) Checkbox** Uses the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
-            - **Encode Video (CPU) Checkbox** Uses the CPU to encode videos (this can fix issues when importing into some video editors. **warning:** this option can be very slow depending on your hardware)
-        - **yt-dlp Arguments Input** Specify arguments to send to yt-dlp (double-click on the textbox to open the yt-dlp GitHub repository page)
-        - **Log Output Options** Controls how MediaDownloader displays the download process
-            - **Display Checkbox** Displays the ongoing download log
-            - **Keep Checkbox** Keeps the log open even after MediaDownloader finishes downloading
+
+<details>
+<summary><b>File Output</b></summary>
+
+- **Name Input** Specify a name for the output file
+- **Change Path Button** Change the location the media file is downloaded to
+- **Open Path Button** Opens the selected download location in Windows Explorer
+- **Clear Path Button** Clears the selected path
+
+</details>
+
+<details>
+<summary><b>Download Options</b></summary>
+
+- **Download Button** Downloads the URL with the specified arguments
+- **Basic Options**
+- **URL Input** Specify the URL of website for MediaDownloader to download
+- **Format Dropdown** Specify the format for downloaded media to be converted to
+- **Format Info Button** Displays all media types found on the specified URL's web server
+- **Trim Length Inputs** Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: `0:00 - 0:10` | `1:25 - 2:30` | `2:30:40 - 3:05:15`
+- **Save Options Checkbox** Saves all options to config files stored in the `mediadownloader\config` directory
+
+</details>
+
+<details>
+<summary><b>Advanced Download Options</b></summary>
+
+- **Encoder Bitrate Options** Bitrate settings for the encoder - (affects downloads only when ffmpeg is used in the process! - for example, when using either timeframe, CPU, or GPU options, these bitrate settings will apply)
+    - **Video Bitrate** Bitrate for video - Examples: "100M" | "900K" (M = MB/s, K = KB/s)
+    - **Audio Bitrate** Bitrate for audio - Examples: "320K" | "10K" (M = MB/s, K = KB/s)
+- **gif Options**
+    - **Resolution** `R = X Resolution` (will preserve aspect ratio)
+    - **Framerate** `F = Framerate`
+- **Encode Video Options**
+    - **Encode Video (GPU) Checkbox** Uses the supported GPU to encode videos (configured for Nvidia by default) Examples for encoders would be: Nvidia = `h264_nvenc` | AMD = `h264_amf`
+    - **Encode Video (CPU) Checkbox** Uses the CPU to encode videos (this can fix issues when importing into some video editors. **warning:** this option can be very slow depending on your hardware)
+- **yt-dlp Arguments Input** Specify arguments to send to yt-dlp (double-click on the textbox to open the yt-dlp GitHub repository page)
+    - **Log Output Options** Controls how MediaDownloader displays the download process
+        - **Display Checkbox** Displays the ongoing download log
+        - **Keep Checkbox** Keeps the log open even after MediaDownloader finishes downloading
+
+</details>
 
 <br>
 
 ## **Formats**
-- **Video**
-    - **mp4** Downloads in the mp4 video format. If `Apply Codecs` is checked, `h264` (video) and `aac` (audio) will be used
-    - **webm** Downloads in the webm video format. If `Apply Codecs` is checked, `vp9` (video) and `vorbis` (audio) will be used
-    - **gif [FFmpeg]** Downloads in the uncompressed gif video format (uses FFmpeg)
-    - **gif (web) [FFmpeg]** Downloads in the gif format with a modifiable framerate and resolution (uses FFmpeg, see **Interface** for info)
-- **Audio**
-    - **mp3** Downloads in the mp3 format
-    - **wav** Downloads in the wav format
-    - **ogg [FFmpeg]** Downloads in the ogg format (uses FFmpeg)
+
+<details>
+<summary><b>Video</b></summary>
+
+- **mp4**
+- **mkv**
+- **webm**
+
+</details>
+
+<details>
+<summary><b>Audio</b></summary>
+
+- **mp3**
+- **wav**
+- **ogg**
+- **flac**
+- **opus**
+
+</details>
+
+<details>
+<summary><b>Image</b></summary>
+
+- **gif**
+- **png sequence**
+- **jpg sequence**
+
+</details>
+
+<details>
+<summary><b>Audio Visualizers</b></summary>
+
+- **vectorscope**
+- **spectogram**
+- **histogram**
+- **showcqt**
+- **showfreqs**
+- **waves**
+
+</details>
 
 ---
 

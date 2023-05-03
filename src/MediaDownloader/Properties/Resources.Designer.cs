@@ -61,10 +61,11 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to    __  ___       ___      ___                  __             __
-        ///  /  |/  /__ ___/ (_)__ _/ _ \___ _    _____  / /__  ___ ____/ /__ ____
-        /// / /|_/ / -_) _  / / _ `/ // / _ \ |/|/ / _ \/ / _ \/ _ `/ _  / -_) __/
-        ////_/  /_/\__/\_,_/_/\_,_/____/\___/__,__/_//_/_/\___/\_,_/\_,_/\__/_/.
+        ///   Looks up a localized string similar to     __  ___       ___      ___                  __             __
+        ///   /  |/  /__ ___/ (_)__ _/ _ \___ _    _____  / /__  ___ ____/ /__ ____
+        ///  / /|_/ / -_) _  / / _ `/ // / _ \ |/|/ / _ \/ / _ \/ _ `/ _  / -_) __/
+        /// /_/  /_/\__/\_,_/_/\_,_/____/\___/__,__/_//_/_/\___/\_,_/\_,_/\__/_/   __VERSION__
+        ///                                                                        by o7q.
         /// </summary>
         internal static string asciiBanner {
             get {
@@ -113,19 +114,9 @@ namespace MediaDownloader.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap gradient_1280x {
-            get {
-                object obj = ResourceManager.GetObject("gradient_1280x", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MediaDownloader is a simple, lightning-fast, GUI-based tool that removes the hassle of using yt-dlp through a command-line.
+        ///   Looks up a localized string similar to MediaDownloader is a simple, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.
         ///
-        ///OVERVIEW
+        ///Overview
         ///MediaDownloader takes in arguments and auto-configures a batch script for yt-dlp.
         ///FFmpeg is then used for further media processing if specified to do so.
         ///
@@ -133,13 +124,12 @@ namespace MediaDownloader.Properties {
         ///yt-dlp: https://github.com/yt-dlp/yt-dlp
         ///FFmpeg: https://ffmpeg.org
         ///
-        ///USAGE
+        ///Usage
         ///
         ///Interface
-        ///
-        ///File Output
-        ///Name Input | Specify a name for the output file
-        ///Change Path Button | Change the location the medi [rest of string was truncated]&quot;;.
+        ///    File Output
+        ///        Name Input | Specify a name for the output file
+        ///        Change Path Button | Change the [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string infoText {
             get {

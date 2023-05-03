@@ -18,10 +18,11 @@ namespace MediaDownloader.Tools
             return input;
         }
 
-        public static string repeatString(string charIn, int amount)
+        public static string repeatString(string inputString, int amount)
         {
             string output = "";
-            for (int i = 0; i <= amount; i++) output += charIn;
+            for (int i = 0; i <= amount; i++)
+                output += inputString;
             return output;
         }
     }

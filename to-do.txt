@@ -1,3 +1,1 @@
-- Fix bug with path text staying
-- Add option to customize bitrate settings
 - Make the form either resizeable or bigger
