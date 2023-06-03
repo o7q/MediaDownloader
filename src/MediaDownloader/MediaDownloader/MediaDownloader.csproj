@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>build\MediaDownloader\</OutputPath>
+    <OutputPath>Build\MediaDownloader\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -52,11 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="includes\data\Storage.cs" />
-    <Compile Include="includes\data\Structure.cs" />
-    <Compile Include="includes\data\Variables.cs" />
-    <Compile Include="includes\tools\Error.cs" />
-    <Compile Include="includes\tools\Text.cs" />
+    <Compile Include="Includes\Data\Storage.cs" />
+    <Compile Include="Includes\Data\Structure.cs" />
+    <Compile Include="Includes\Data\Variables.cs" />
+    <Compile Include="Includes\Tools\Error.cs" />
+    <Compile Include="Includes\Tools\Text.cs" />
     <Compile Include="Program.cs">
       <SubType>Form</SubType>
     </Compile>

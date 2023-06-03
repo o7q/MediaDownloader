@@ -194,7 +194,7 @@ namespace MediaDownloader
             // check if the custom directory is missing
             if (Directory.Exists(config.DOWNLOAD_LOCATION) == false && useDefaultLocation == false)
             {
-                clearLocation();
+                ClearLocation();
                 DirectoryLabel.ForeColor = Color.Brown;
                 DirectoryLabel.Text = "Directory no longer exists";
                 ProgramToolTip.SetToolTip(DirectoryLabel, "The previous directory no longer exists");
@@ -704,7 +704,7 @@ namespace MediaDownloader
 
         private void ClearLocationButton_Click(object sender, EventArgs e)
         {
-            clearLocation();
+            ClearLocation();
         }
 
         private void YtdlpArgumentsLabel_MouseDoubleClick(object sender, EventArgs e)
@@ -779,7 +779,7 @@ namespace MediaDownloader
             }
         }
 
-        private void clearLocation()
+        private void ClearLocation()
         {
             // clear selected location
             useDefaultLocation = true;
