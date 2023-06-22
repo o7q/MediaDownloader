@@ -1,5 +1,9 @@
 <img src="assets/images/banner.png">
 
+![Total Downloads](https://img.shields.io/github/downloads/o7q/MediaDownloader/total?logo=github&label=Total%20Downloads&color=%232fd653)
+![Code Quality](https://img.shields.io/codefactor/grade/github/o7q/MediaDownloader/main?logo=github&label=Code%20Quality&color=%2315bf87)
+![Code Size](https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff)
+
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/download/v3.10.0.0/MediaDownloader.v3.10.0.0.zip)
 ### Welcome! MediaDownloader is a simple, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.
 
