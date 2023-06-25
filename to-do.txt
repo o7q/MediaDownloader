@@ -3,3 +3,4 @@
 - Improve the UI layout
 - Fix the downloader for some sites
 - Add support for GPU acceleration on the trimmer
+- Remove the date from the download names
