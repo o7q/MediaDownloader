@@ -14,7 +14,7 @@
 ---
 
 # Overview
-MediaDownloader is a GUI-wrapper for yt-dlp that autoconfigures scripts for it based on user settings.\
+MediaDownloader is a GUI-wrapper for yt-dlp that auto-configures scripts based on user settings.\
 FFmpeg is then used for further media processing if needed.
 
 ### **Powered by**
