@@ -1,3 +1,0 @@
-### NOTICE
-- `MediaDownloader.0.0.0.0.zip` is the standard download.
-- `MediaDownloader_STANDALONE.exe` is only for if you are using scoop or something similar! If you are downloading the program directly and normally please download `MediaDownloader.0.0.0.0.zip`.

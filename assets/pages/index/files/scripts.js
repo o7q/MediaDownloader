@@ -1,7 +1,5 @@
-function bodyInit()
+function BodyInit()
 {
-    var ver = "v3.10.0.0";
-
-    document.getElementById("dlID").href = "https://github.com/o7q/MediaDownloader/releases/download/" + ver + "/MediaDownloader." + ver + ".zip";
-    document.getElementById("dlID").innerHTML = "Download " + ver;
+    var VERSION = "v3.10.0.0";
+	document.getElementById("dlID").innerHTML = "Download " + VERSION;
 }

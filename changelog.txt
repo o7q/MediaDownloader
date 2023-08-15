@@ -1,3 +1,17 @@
+~ v4.0.0.0
+- I completely re-wrote MediaDownloader from the ground-up, I fixed several major issues and greatly optimized parts of the code
+- Added a feature to queue multiple downloads
+- Added a feature that displays previous downloads
+- Added a feature to change the resolution of video downloads
+- Added a feature to change the framerate of video downloads
+- Added a feature to specify custom FFmpeg arguments
+- Added a bootstrapper for downloading yt-dlp/ffmpeg
+- Fixed a bug with downloading from sites that don't have mp4 as their primary codec (you will no longer get errors when downloading from non-YouTube sites)
+- Download names no longer contain numbers in them (they only will if the name is left blank)
+- Fixed the open directory button to work with image sequences
+- Updated the UI
+- New logo/banner
+
 ~ v3.10.0.0
 - Added more format options (mkv, flac, opus, png/jpg sequences, and audio visualizers. also decided to re-add webm c:)
 - Added an option to customize bitrate settings

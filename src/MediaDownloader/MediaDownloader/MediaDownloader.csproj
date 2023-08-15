@@ -36,11 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,26 +53,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Includes\Data\Storage.cs" />
-    <Compile Include="Includes\Data\Structure.cs" />
-    <Compile Include="Includes\Data\Variables.cs" />
-    <Compile Include="Includes\Tools\Error.cs" />
-    <Compile Include="Includes\Tools\Text.cs" />
-    <Compile Include="Program.cs">
+    <Compile Include="Scripts\Data\Storage.cs" />
+    <Compile Include="Scripts\Data\Structure\ConfigStructure.cs" />
+    <Compile Include="Scripts\Data\Structure\QueueItemStructure.cs" />
+    <Compile Include="Scripts\Managers\ConfigManager.cs" />
+    <Compile Include="Scripts\Managers\Media\ConvertManager.cs" />
+    <Compile Include="Scripts\Managers\Media\DownloadManager.cs" />
+    <Compile Include="Scripts\Managers\QueueItemManager.cs" />
+    <Compile Include="Scripts\Setup\Bootstrap.cs" />
+    <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program.Designer.cs">
-      <DependentUpon>Program.cs</DependentUpon>
+    <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Tools\Files.cs" />
+    <Compile Include="Scripts\Tools\Forms.cs" />
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Program.resx">
-      <DependentUpon>Program.cs</DependentUpon>
+    <Compile Include="Scripts\Tools\Shell.cs" />
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,16 +108,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\asciiBanner.txt" />
-    <None Include="Resources\infoText.txt" />
     <None Include="Resources\folder.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
-    <None Include="Resources\background.png" />
     <None Include="Resources\x.png" />
-    <None Include="Resources\banner.png" />
-    <None Include="Resources\download_gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\banner_hq.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
