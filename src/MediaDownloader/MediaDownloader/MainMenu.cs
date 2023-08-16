@@ -123,9 +123,9 @@ namespace MediaDownloader
                 "QueueProgressBar", "Queue progress bar",
 
                 "HistoryListBox", "List of previous downloads",
-                "HistoryLoadButton", "Loads the config from the selected item",
-                "HistoryRefreshButton", "Refreshes the history list",
-                "HistoryRemoveButton", "Removes the selected item from history",
+                "HistoryLoadButton", "Load the config from the selected item",
+                "HistoryRefreshButton", "Refresh the history list",
+                "HistoryRemoveButton", "Remove the selected item from history",
                 "HistoryCheckBox", "Enable and disable the saving of history"
             };
 
