@@ -1,3 +1,8 @@
+~ v4.0.1.0
+- Fixed a bug where downloads could not be started again if the previous one failed
+- Double-clicking on custom argument text boxes now opens the documentation pages for each redist (forgot to add this)
+- History now sorts in descending order
+
 ~ v4.0.0.0
 - I completely re-wrote MediaDownloader from the ground-up, I fixed several major issues and greatly optimized parts of the code
 - Added a feature to queue multiple downloads

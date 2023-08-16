@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Drawing;
 using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace MediaDownloader.Tools
 {
@@ -80,15 +81,24 @@ namespace MediaDownloader.Tools
             }
         }
 
-        public static void UpdateListBox(ListBox listBox, string source)
+        public static void UpdateListBox(ListBox listBox, string source, bool descendingOrder)
         {
-            listBox.Items.Clear();
+            List<string> itemList = new List<string>();
 
             foreach (string file in Directory.GetFiles(source))
             {
                 string item = Path.GetFileNameWithoutExtension(file);
-                listBox.Items.Add(item);
+                itemList.Add(item);
             }
+
+            if (descendingOrder == true)
+                itemList.Sort((a, b) => b.CompareTo(a));
+            else
+                itemList.Sort();
+
+            listBox.Items.Clear();
+            foreach (var item in itemList)
+                listBox.Items.Add(item);
         }
 
         public static void DrawListBox(ListBox listbox, DrawItemEventArgs e, Color color)

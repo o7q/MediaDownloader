@@ -422,6 +422,7 @@
             this.OutputYtdlpArgumentsTextBox.TabIndex = 21;
             this.OutputYtdlpArgumentsTextBox.Text = "";
             this.OutputYtdlpArgumentsTextBox.TextChanged += new System.EventHandler(this.OutputYtdlpArgumentsTextBox_TextChanged);
+            this.OutputYtdlpArgumentsTextBox.DoubleClick += new System.EventHandler(this.OutputYtdlpArgumentsTextBox_DoubleClick);
             // 
             // OutputNameTextBox
             // 
@@ -678,6 +679,7 @@
             this.OutputFfmpegArgumentsTextBox.TabIndex = 22;
             this.OutputFfmpegArgumentsTextBox.Text = "";
             this.OutputFfmpegArgumentsTextBox.TextChanged += new System.EventHandler(this.OutputFfmpegArgumentsTextBox_TextChanged);
+            this.OutputFfmpegArgumentsTextBox.DoubleClick += new System.EventHandler(this.OutputFfmpegArgumentsTextBox_DoubleClick);
             // 
             // OutputFfmpegArgumentsLabel
             // 

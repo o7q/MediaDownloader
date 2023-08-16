@@ -16,8 +16,6 @@ namespace MediaDownloader
 {
     public partial class MainMenu : Form
     {
-        // program events
-
         public MainMenu()
         {
             InitializeComponent();
@@ -27,8 +25,8 @@ namespace MediaDownloader
 
         private void Program_Load(object sender, EventArgs e)
         {
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue");
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
+            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
 
             UpdateVersionLabel();
 
@@ -194,16 +192,57 @@ namespace MediaDownloader
                 return;
 
             File.Delete("MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
 
             if (QueueListBox.Items.Count >= 1)
                 QueueListBox.SelectedIndex = 0;
         }
 
+        private void HistoryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (HistoryListBox.Items.Count == 0)
+                return;
+
+            CONFIG.HISTORY_SELECTED_INDEX = HistoryListBox.SelectedIndex;
+        }
+
+        private void HistoryLoadButton_Click(object sender, EventArgs e)
+        {
+            if (HistoryListBox.SelectedItems.Count == 0)
+                return;
+
+            LoadQueueItem("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
+        }
+
+        private void HistoryRefreshButton_Click(object sender, EventArgs e)
+        {
+            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
+        }
+
+        private void HistoryRemoveButton_Click(object sender, EventArgs e)
+        {
+            if (HistoryListBox.SelectedItems.Count == 0)
+                return;
+
+            File.Delete("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
+            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
+
+            if (HistoryListBox.Items.Count == 0)
+                CONFIG.HISTORY_SAVE_INDEX = 0;
+
+            if (HistoryListBox.Items.Count >= 1)
+                HistoryListBox.SelectedIndex = 0;
+        }
+
+        private void HistoryListBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            DrawListBox(HistoryListBox, e, Color.FromArgb(218, 112, 214));
+        }
+
         private void SaveQueueItem()
         {
             WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
         }
 
         private void LoadQueueItem(string queueItemFile)
@@ -236,11 +275,6 @@ namespace MediaDownloader
 
             OutputDisplayCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_DISPLAY;
             OutputPauseCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_PAUSE;
-        }
-
-        private void ViewAvailableFormatsButton_Click(object sender, EventArgs e)
-        {
-            Task.Run(() => StartProcess("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe", "-q --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" --list-formats " + currentQueueItem.URL, "MediaDownloader " + VERSION + "   [DEBUG  :  FORMAT LIST]", true, true));
         }
 
         private void OutputChangeLocationButton_Click(object sender, EventArgs e)
@@ -329,6 +363,11 @@ namespace MediaDownloader
         private void OutputClearLocationButton_Click(object sender, EventArgs e)
         {
             OutputLocationTextBox.Text = "";
+        }
+
+        private void ViewAvailableFormatsButton_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => StartProcess("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe", "-q --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" --list-formats " + currentQueueItem.URL, "MediaDownloader " + VERSION + "   [DEBUG  :  FORMAT LIST]", true, true));
         }
 
         #region ConfigUpdate
@@ -627,6 +666,11 @@ namespace MediaDownloader
         {
             currentQueueItem.OUTPUT_ENABLE_PAUSE = OutputPauseCheckBox.Checked;
         }
+
+        private void HistoryCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CONFIG.HISTORY_ENABLE = HistoryCheckBox.Checked;
+        }
         #endregion
 
         private void MenuExpandButton_Click(object sender, EventArgs e)
@@ -752,6 +796,15 @@ namespace MediaDownloader
             DrawListBox(QueueListBox, e, Color.FromArgb(147, 112, 219));
         }
 
+        private void OutputYtdlpArgumentsTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/yt-dlp/yt-dlp#usage-and-options");
+        }
+
+        private void OutputFfmpegArgumentsTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start("https://ffmpeg.org/ffmpeg.html");
+        }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -769,7 +822,6 @@ namespace MediaDownloader
             WindowState = FormWindowState.Minimized;
         }
 
-
         private void TitlebarPanel_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(Handle, e);
@@ -785,52 +837,6 @@ namespace MediaDownloader
         private void VersionLabel_MouseDown(object sender, MouseEventArgs e)
         {
             MoveForm(Handle, e);
-        }
-
-        private void HistoryRefreshButton_Click(object sender, EventArgs e)
-        {
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history");
-        }
-
-        private void HistoryListBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            DrawListBox(HistoryListBox, e, Color.FromArgb(218, 112, 214));
-        }
-
-        private void HistoryRemoveButton_Click(object sender, EventArgs e)
-        {
-            if (HistoryListBox.SelectedItems.Count == 0)
-                return;
-
-            File.Delete("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history");
-
-            if (HistoryListBox.Items.Count == 0)
-                CONFIG.HISTORY_SAVE_INDEX = 0;
-
-            if (HistoryListBox.Items.Count >= 1)
-                HistoryListBox.SelectedIndex = 0;
-        }
-
-        private void HistoryListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (HistoryListBox.Items.Count == 0)
-                return;
-
-            CONFIG.HISTORY_SELECTED_INDEX = HistoryListBox.SelectedIndex;
-        }
-
-        private void HistoryLoadButton_Click(object sender, EventArgs e)
-        {
-            if (HistoryListBox.SelectedItems.Count == 0)
-                return;
-
-            LoadQueueItem("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
-        }
-
-        private void HistoryCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            CONFIG.HISTORY_ENABLE = HistoryCheckBox.Checked;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MediaDownloader
 
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("An instance of MediaDownloader is already running.\nHaving two or more instances of MediaDownloader running simultaneously can cause issues (file corruption, malfunctioning).\n\nAre you sure you want to continue?\n\nPress OK to continue\nPress X to cancel", true);
+                CustomMessageBox customMessageBox = new CustomMessageBox("An instance of MediaDownloader is already running.\n\nHaving two or more instances of MediaDownloader running simultaneously\ncan cause issues (file corruption, malfunctioning).\n\nAre you sure you want to continue?\n\nPress OK to continue\nPress CLOSE to cancel", true);
                 customMessageBox.ShowDialog();
                 if (customMessageBox.Result == DialogResult.Cancel)
                     return;
@@ -32,7 +32,7 @@ namespace MediaDownloader
 
             if (!ytdlpCheck || !ffmpegCheck)
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("One or more redist files are missing.\nMediaDownloader will download and install them automatically.\n\nPress OK to continue\nPress X to cancel", true);
+                CustomMessageBox customMessageBox = new CustomMessageBox("One or more redist files are missing.\nMediaDownloader will download and install them automatically.\n\nPress OK to continue\nPress CLOSE to cancel", true);
                 customMessageBox.ShowDialog();
 
                 if (customMessageBox.Result == DialogResult.Cancel)

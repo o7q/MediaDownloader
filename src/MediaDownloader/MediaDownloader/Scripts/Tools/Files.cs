@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
+﻿using System.IO;
 
 namespace MediaDownloader.Tools
 {
