@@ -1,5 +1,5 @@
 ~ v4.1.0.0
-- Added a new format option named mp4 (fast), this option will download videos as fast as possible and disregard all codec problems (this is extremely useful for downloading long videos if you plan on just viewing them, some video editors may not accept this format)
+- Added a new format option named mp4 (fast), this option will download videos as fast as possible and disregard all codecs (this is extremely useful for downloading long videos if you plan on just viewing them, some video editors may not accept this format)
 - Minor spelling changes
 
 ~ v4.0.1.0
