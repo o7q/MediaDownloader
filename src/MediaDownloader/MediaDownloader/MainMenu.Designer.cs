@@ -219,6 +219,7 @@
             this.OutputFormatComboBox.ItemHeight = 13;
             this.OutputFormatComboBox.Items.AddRange(new object[] {
             "[Video]",
+            "mp4 (fast)",
             "mp4",
             "mp4 (nvidia)",
             "mp4 (amd)",

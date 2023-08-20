@@ -25,14 +25,21 @@ namespace MediaDownloader
 
             bool ytdlpCheck = true;
             bool ffmpegCheck = true;
+            string redistText = "";
             if (!File.Exists("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe"))
+            {
                 ytdlpCheck = false;
+                redistText += "\n- yt-dlp";
+            }
             if (!File.Exists("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe") || !File.Exists("MediaDownloader\\redist\\ffmpeg\\ffprobe.exe"))
+            {
                 ffmpegCheck = false;
+                redistText += "\n- ffmpeg";
+            }
 
             if (!ytdlpCheck || !ffmpegCheck)
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("One or more redist files are missing.\nMediaDownloader will download and install them automatically.\n\nPress OK to continue\nPress CLOSE to cancel", true);
+                CustomMessageBox customMessageBox = new CustomMessageBox("MediaDownloader will download the following redist files." + redistText + "\n\nPress OK to continue\nPress CLOSE to cancel", true);
                 customMessageBox.ShowDialog();
 
                 if (customMessageBox.Result == DialogResult.Cancel)

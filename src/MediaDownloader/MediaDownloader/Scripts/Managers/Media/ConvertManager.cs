@@ -16,6 +16,12 @@ namespace MediaDownloader.Managers.Media
 
             switch (queueItem.OUTPUT_FORMAT)
             {
+                case "mp4 (fast)":
+                    videoCodec = "-c:v copy ";
+                    audioCodec = "-c:a copy ";
+                    mediaExtension = "mp4";
+                    mediaType = "video";
+                    break;
                 case "mp4":
                     videoCodec = "-c:v libx264 ";
                     audioCodec = "-c:a aac ";

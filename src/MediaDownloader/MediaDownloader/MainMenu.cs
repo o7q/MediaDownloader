@@ -417,6 +417,7 @@ namespace MediaDownloader
                     OutputPauseCheckBox.Enabled = false;
                     break;
 
+                case "mp4 (fast)":
                 case "mp4":
                 case "mp4 (nvidia)":
                 case "mp4 (amd)":

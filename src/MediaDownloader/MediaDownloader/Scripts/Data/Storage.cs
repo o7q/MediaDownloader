@@ -4,7 +4,7 @@ namespace MediaDownloader.Data
 {
     public static class Storage
     {
-        public const string VERSION = "v4.0.1";
+        public const string VERSION = "v4.1.0";
         public static ConfigBase CONFIG = new ConfigBase();
         public static bool IS_DOWNLOADING = false;
     }
