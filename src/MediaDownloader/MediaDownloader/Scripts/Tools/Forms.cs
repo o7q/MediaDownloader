@@ -101,6 +101,26 @@ namespace MediaDownloader.Tools
                 listBox.Items.Add(item);
         }
 
+        public static void UpdateNumericalListBox(ListBox listBox, string source)
+        {
+            List<string> items = new List<string>();
+            foreach (string file in Directory.GetFiles(source))
+            {
+                string item = Path.GetFileNameWithoutExtension(file);
+                items.Add(item);
+            }
+
+            items.Sort((a, b) =>
+            {
+                int numA = int.Parse(a.Substring(a.IndexOf("(") + 1, a.IndexOf(")") - a.IndexOf("(") - 1));
+                int numB = int.Parse(b.Substring(b.IndexOf("(") + 1, b.IndexOf(")") - b.IndexOf("(") - 1));
+                return numB.CompareTo(numA);
+            });
+
+            listBox.Items.Clear();
+            listBox.Items.AddRange(items.ToArray());
+        }
+
         public static void DrawListBox(ListBox listbox, DrawItemEventArgs e, Color color)
         {
             // code forked from: https://stackoverflow.com/a/3709452

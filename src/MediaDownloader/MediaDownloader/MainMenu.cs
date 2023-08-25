@@ -26,7 +26,7 @@ namespace MediaDownloader
         private void Program_Load(object sender, EventArgs e)
         {
             UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
 
             UpdateVersionLabel();
 
@@ -216,7 +216,7 @@ namespace MediaDownloader
 
         private void HistoryRefreshButton_Click(object sender, EventArgs e)
         {
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
         }
 
         private void HistoryRemoveButton_Click(object sender, EventArgs e)
@@ -225,7 +225,7 @@ namespace MediaDownloader
                 return;
 
             File.Delete("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
-            UpdateListBox(HistoryListBox, "MediaDownloader\\config\\history", true);
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
 
             if (HistoryListBox.Items.Count == 0)
                 CONFIG.HISTORY_SAVE_INDEX = 0;

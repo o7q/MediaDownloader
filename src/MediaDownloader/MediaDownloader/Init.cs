@@ -39,7 +39,7 @@ namespace MediaDownloader
 
             if (!ytdlpCheck || !ffmpegCheck)
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("MediaDownloader will download the following redist files." + redistText + "\n\nPress OK to continue\nPress CLOSE to cancel", true);
+                CustomMessageBox customMessageBox = new CustomMessageBox("MediaDownloader will download the following redist files:" + redistText + "\n\nPress OK to continue\nPress CLOSE to cancel", true);
                 customMessageBox.ShowDialog();
 
                 if (customMessageBox.Result == DialogResult.Cancel)
