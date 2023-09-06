@@ -1,0 +1,2 @@
+- Option to auto select the download name
+- Option to auto trim length
