@@ -47,6 +47,7 @@ FFmpeg: https://ffmpeg.org
         -    **Format Dropdown** Specify the format for downloaded media to be converted to
         - **Format Info Button** Displays all media types found on the specified URL's web server
         - **Trim Length Inputs** Trims the download to a specific length with a start and end timestamp. Examples of valid times would be: `0:00 - 0:10` | `1:25 - 2:30` | `2:30:40 - 3:05:15`
+            - **Start and end trimming** You can specify to trim from the start time of the video or until the end time of the video with the checkboxes next to the textboxes
 
 <details>
 <summary><b>Extra Download Options</b></summary>
@@ -81,7 +82,7 @@ FFmpeg: https://ffmpeg.org
     - **Load Button** Loads the selected item and its settings
     - **Refresh Button** Refreshes the history list
     - **Remove Button** Removes the selected history item
-    - **Enable History CheckBox** Enable/Disable saving of history
+    - **Enable History Checkbox** Enable/Disable saving of history
 
 </details>
 
