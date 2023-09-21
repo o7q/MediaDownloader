@@ -1,0 +1,2 @@
+- Fix download button softlock
+- Fix issue with the folder name clearing when using a playlist in combination with the queue system
