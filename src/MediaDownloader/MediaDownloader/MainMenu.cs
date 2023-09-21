@@ -973,5 +973,10 @@ namespace MediaDownloader
         {
             MoveForm(Handle, e);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Process.Start("MediaDownloader");
+        }
     }
 }

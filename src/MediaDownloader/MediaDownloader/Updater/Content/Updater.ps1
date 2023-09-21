@@ -8,7 +8,8 @@ function Remove-File
     }
 }
 
-#Set-Location -Path "..\..\"
+# uncomment if running directly
+# Set-Location -Path "..\..\"
 
 # find and close mediadownloader
 $process = Get-Process -Name "MediaDownloader" -ErrorAction SilentlyContinue

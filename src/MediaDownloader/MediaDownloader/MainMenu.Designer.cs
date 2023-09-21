@@ -115,6 +115,7 @@
             this.OutputPlaylistCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.TitlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
             this.BitratePanel.SuspendLayout();
@@ -161,6 +162,7 @@
             // TitlebarPanel
             // 
             this.TitlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TitlebarPanel.Controls.Add(this.button1);
             this.TitlebarPanel.Controls.Add(this.BannerPicture);
             this.TitlebarPanel.Controls.Add(this.VersionLabel);
             this.TitlebarPanel.Controls.Add(this.MinimizeButton);
@@ -1188,6 +1190,16 @@
             this.panel2.Size = new System.Drawing.Size(51, 18);
             this.panel2.TabIndex = 4;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(231, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1362,5 +1374,6 @@
         private System.Windows.Forms.CheckBox OutputPlaylistCheckBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
     }
 }

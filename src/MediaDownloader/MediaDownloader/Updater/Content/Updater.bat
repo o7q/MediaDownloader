@@ -2,4 +2,4 @@
 
 @echo off
 title MediaDownloader Updater
-powershell.exe -File "updater.ps1"
+powershell.exe -File "Updater.ps1"
