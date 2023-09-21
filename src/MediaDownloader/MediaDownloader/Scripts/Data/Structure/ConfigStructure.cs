@@ -12,7 +12,8 @@
             public int HISTORY_SELECTED_INDEX;
             public int HISTORY_SAVE_INDEX;
 
-            public bool DATA_ENABLE_PACKING;
+            public bool DATA_PACKING_ENABLE;
+            public bool NOTIFICATIONS_ENABLE;
         }
     }
 }

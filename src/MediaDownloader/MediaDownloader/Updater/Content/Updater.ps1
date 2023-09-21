@@ -1,3 +1,5 @@
+# MediaDownloader Updater v1.0.0
+
 function Remove-File
 {
     param([string]$File)
@@ -7,9 +9,6 @@ function Remove-File
         Remove-Item -Path $File -Force
     }
 }
-
-# uncomment if running directly
-# Set-Location -Path "..\..\"
 
 # find and close mediadownloader
 $process = Get-Process -Name "MediaDownloader" -ErrorAction SilentlyContinue

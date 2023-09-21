@@ -41,7 +41,8 @@ namespace MediaDownloader.Managers.FileManagers
                     case "HISTORY_SELECTED_INDEX": config.HISTORY_SELECTED_INDEX = int.Parse(configSettingPair[1]); break;
                     case "HISTORY_SAVE_INDEX": config.HISTORY_SAVE_INDEX = int.Parse(configSettingPair[1]); break;
 
-                    case "DATA_ENABLE_PACKING": config.DATA_ENABLE_PACKING = bool.Parse(configSettingPair[1]); break;
+                    case "DATA_PACKING_ENABLE": config.DATA_PACKING_ENABLE = bool.Parse(configSettingPair[1]); break;
+                    case "NOTIFICATIONS_ENABLE": config.NOTIFICATIONS_ENABLE = bool.Parse(configSettingPair[1]); break;
                 }
             }
 

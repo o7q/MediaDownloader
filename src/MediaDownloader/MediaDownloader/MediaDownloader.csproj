@@ -106,7 +106,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Updater\Content\Updater.bat" />
     <EmbeddedResource Include="Updater\Content\Updater.ps1" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\notification.png" />
     <None Include="Resources\background.png" />
     <None Include="Resources\banner_hq.png" />
   </ItemGroup>

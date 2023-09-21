@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Drawing;
-using System.Diagnostics;
+using System.Net;
 using System.Windows.Forms;
+using System.Drawing;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using MediaDownloader.Tools.CustomMessageBox;
 using static MediaDownloader.Data.Global;
 using static MediaDownloader.Data.Structure.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
@@ -72,10 +74,19 @@ namespace MediaDownloader
                 CollapseMenu();
             }
 
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead("https://raw.githubusercontent.com/o7q/MediaDownloader/main/version");
+            StreamReader reader = new StreamReader(stream);
+            VERSION_REMOTE = reader.ReadToEnd();
+
+            if (VERSION_REMOTE != VERSION_INTERNAL && CONFIG.NOTIFICATIONS_ENABLE)
+                NotificationPictureBox.Visible = true;
+
             #region loadTooltips
             // bind tooltips
             string[] tooltipMap = {
                 "BannerPicture", "MediaDownloader by o7q",
+                "NotificationPictureBox", "Update available",
                 "VersionLabel", "Version " + VERSION,
 
                 "MinimizeButton", "Minimize",
@@ -940,6 +951,11 @@ namespace MediaDownloader
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            CloseProgram();
+        }
+
+        private void CloseProgram()
+        {
             if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
                 WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
 
@@ -974,9 +990,16 @@ namespace MediaDownloader
             MoveForm(Handle, e);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void NotificationPictureBox_Click(object sender, EventArgs e)
         {
-            Process.Start("MediaDownloader");
+            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_REMOTE + ")\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
+            customMessageBox.ShowDialog();
+
+            if (customMessageBox.Result == DialogResult.OK)
+            {
+                Process.Start("powershell.exe", "-ExecutionPolicy Bypass -File \"MediaDownloader\\updater\\Updater.ps1\"");
+                CloseProgram();
+            }
         }
     }
 }

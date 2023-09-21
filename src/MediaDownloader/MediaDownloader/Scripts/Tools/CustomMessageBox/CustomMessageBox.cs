@@ -7,21 +7,24 @@ namespace MediaDownloader.Tools.CustomMessageBox
     public partial class CustomMessageBox : Form
     {
         string messageText;
+        string buttonText;
         bool enableUserControl;
 
         public DialogResult Result { get; private set; }
 
-        public CustomMessageBox(string messageText_, bool enableUserControl_)
+        public CustomMessageBox(string messageText_, string buttonText_, bool enableUserControl_)
         {
             InitializeComponent();
 
             messageText = messageText_;
+            buttonText = buttonText_;
             enableUserControl = enableUserControl_;
         }
 
         private void CustomMessageBox_Load(object sender, System.EventArgs e)
         {
             MessageLabel.Text = messageText;
+            OkButton.Text = buttonText;
 
             if (!enableUserControl)
             {

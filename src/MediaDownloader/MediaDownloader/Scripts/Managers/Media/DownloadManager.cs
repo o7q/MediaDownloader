@@ -48,7 +48,7 @@ namespace MediaDownloader.Managers.Media
             string[] downloadFiles = DownloadMedia(queueItem);
             if (downloadFiles == null)
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("Error: Download Failed!", true);
+                CustomMessageBox customMessageBox = new CustomMessageBox("Error: Download Failed!", "OK", true);
                 customMessageBox.ShowDialog();
 
                 ChangeDownloadButtonColors(false, downloadButton, downloadAllButton);
