@@ -1,10 +1,10 @@
 ﻿using System.IO;
-using System.Net;
 using System.IO.Compression;
+using System.Net;
 
 namespace MediaDownloader.Setup
 {
-    public static class Bootstrap
+    public static class Bootstrapper
     {
 
         public static void InstallYtdlp()

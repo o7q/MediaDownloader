@@ -1,3 +1,13 @@
+~ v4.2.0.0
+- Added a feature to automatically choose the output name
+- Improved the trimming system, you can now choose a start timestamp and automatically cut until the end, or vise-versa
+- Added an option to download thumbnails
+- Added a feature to download playlists (just paste a playlist link and it will auto-detect)
+- Added a button to reset settings to default
+- Updated the config system
+- Minor visual changes
+- Fixed minor bugs
+
 ~ v4.1.1.0
 - Fixed history not sorting correctly
 

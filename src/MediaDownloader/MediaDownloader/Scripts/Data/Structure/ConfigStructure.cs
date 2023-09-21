@@ -4,13 +4,15 @@
     {
         public struct ConfigBase
         {
+            public bool MENU_EXPANDED_ENABLE;
+
             public int QUEUE_SELECTED_INDEX;
 
+            public bool HISTORY_ENABLE;
             public int HISTORY_SELECTED_INDEX;
             public int HISTORY_SAVE_INDEX;
-            public bool HISTORY_ENABLE;
 
-            public bool MENU_ENABLE_EXPANDED;
+            public bool DATA_ENABLE_PACKING;
         }
     }
 }

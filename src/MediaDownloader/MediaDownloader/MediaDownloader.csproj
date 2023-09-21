@@ -53,14 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scripts\Data\Storage.cs" />
+    <Compile Include="Scripts\Data\Global.cs" />
     <Compile Include="Scripts\Data\Structure\ConfigStructure.cs" />
     <Compile Include="Scripts\Data\Structure\QueueItemStructure.cs" />
-    <Compile Include="Scripts\Managers\ConfigManager.cs" />
+    <Compile Include="Scripts\Managers\FileManagers\CompressionManager.cs" />
+    <Compile Include="Scripts\Managers\FileManagers\ConfigManager.cs" />
     <Compile Include="Scripts\Managers\Media\ConvertManager.cs" />
     <Compile Include="Scripts\Managers\Media\DownloadManager.cs" />
-    <Compile Include="Scripts\Managers\QueueItemManager.cs" />
-    <Compile Include="Scripts\Setup\Bootstrap.cs" />
+    <Compile Include="Scripts\Managers\FileManagers\QueueItemManager.cs" />
+    <Compile Include="Scripts\Setup\Bootstrapper.cs" />
     <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +79,8 @@
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Tools\Shell.cs" />
+    <Compile Include="Updater\ResourceReader.cs" />
+    <Compile Include="Updater\UpdaterSetup.cs" />
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +106,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Updater\Content\Updater.bat" />
+    <EmbeddedResource Include="Updater\Content\Updater.ps1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -118,5 +123,6 @@
     <None Include="Resources\background.png" />
     <None Include="Resources\banner_hq.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

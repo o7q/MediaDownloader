@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading.Tasks;
-using static MediaDownloader.Data.Storage;
+using static MediaDownloader.Data.Global;
 using static MediaDownloader.Data.Structure.QueueItemStructure;
-using static MediaDownloader.Tools.Forms;
 using static MediaDownloader.Tools.Shell;
-using static MediaDownloader.Managers.ConfigManager;
-using static MediaDownloader.Managers.QueueItemManager;
+using static MediaDownloader.Tools.Forms;
 using static MediaDownloader.Managers.Media.DownloadManager;
+using static MediaDownloader.Managers.FileManagers.ConfigManager;
+using static MediaDownloader.Managers.FileManagers.QueueItemManager;
+using static MediaDownloader.Managers.FileManagers.CompressionManager;
 
 namespace MediaDownloader
 {
@@ -25,14 +26,13 @@ namespace MediaDownloader
 
         private void Program_Load(object sender, EventArgs e)
         {
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
 
             UpdateVersionLabel();
 
-            if (File.Exists("MediaDownloader\\config\\config.md"))
+            if (File.Exists("MediaDownloader\\config\\config.cfg"))
             {
-                CONFIG = ReadConfig();
                 if (QueueListBox.Items.Count == 0)
                 {
                     if (File.Exists("MediaDownloader\\config\\latest.mdq"))
@@ -41,18 +41,19 @@ namespace MediaDownloader
                 else
                     QueueListBox.SelectedIndex = CONFIG.QUEUE_SELECTED_INDEX;
 
+                HistoryCheckBox.Checked = CONFIG.HISTORY_ENABLE;
                 if (HistoryListBox.Items.Count != 0)
                     HistoryListBox.SelectedIndex = CONFIG.HISTORY_SELECTED_INDEX;
 
-                HistoryCheckBox.Checked = CONFIG.HISTORY_ENABLE;
-
-                if (CONFIG.MENU_ENABLE_EXPANDED)
+                if (CONFIG.MENU_EXPANDED_ENABLE)
                     ExpandMenu();
                 else
                     CollapseMenu();
             }
             else
             {
+                OutputNameAutoCheckBox.Checked = true;
+
                 OutputTimeframeStartTextBox.Text = "0:00";
                 OutputTimeframeEndTextBox.Text = "0:10";
 
@@ -64,10 +65,10 @@ namespace MediaDownloader
                 OutputVideoBitrateTextBox.Text = "100M";
                 OutputAudioBitrateTextBox.Text = "320K";
 
+                OutputFormatComboBox.SelectedIndex = 2;
+
                 OutputDisplayCheckBox.Checked = true;
-
                 HistoryCheckBox.Checked = true;
-
                 CollapseMenu();
             }
 
@@ -81,15 +82,20 @@ namespace MediaDownloader
                 "CloseButton", "Close",
 
                 "UrlTextBox", "URL to be downloaded",
-                "OutputNameTextBox", "File name for the download",
+                "OutputPlaylistCheckBox", "Enable playlist mode",
+
+                "OutputNameTextBox", "Name for the download",
+                "OutputNameAutoCheckBox", "Enable auto naming",
 
                 "OutputFormatComboBox", "Media format for download",
 
                 "ViewAvailableFormatsButton", "Display all the available media formats found on the server for the specified URL",
 
                 "OutputTimeframeCheckBox", "Trim the download to a specific length with a start and end timestamp - Examples: \"0:00 - 0:10\" | \"1:25 - 2:30\" | \"2:30:40 - 3:05:15\"",
-                "OutputTimeframeStartTextBox", "Trim start time",
-                "OutputTimeframeEndTextBox", "Trim end time",
+                "OutputTimeframeStartTextBox", "Trim start time (leave blank to trim from the start)",
+                "OutputTimeframeEndTextBox", "Trim end time (leave blank to trim until the end)",
+                "OutputTimeframeTrimFromStart", "Trim from the start",
+                "OutputTimeframeTrimToEnd", "Trim to the end",
 
                 "DownloadButton", "Download from the URL using the configured options",
 
@@ -155,10 +161,7 @@ namespace MediaDownloader
             if (IS_DOWNLOADING)
                 return;
 
-            if (currentQueueItem.OUTPUT_NAME == "" || currentQueueItem.OUTPUT_NAME == null)
-                OutputNameTextBox.Text = "download " + DateTime.Now.ToString("[M-d-y_hms]");
-
-            Task.Run(() => StartDownload(currentQueueItem, DownloadButton, DownloadAllButton));
+            Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton));
         }
 
         private void DownloadAllButton_Click(object sender, EventArgs e)
@@ -191,8 +194,8 @@ namespace MediaDownloader
             if (QueueListBox.SelectedItems.Count == 0)
                 return;
 
-            File.Delete("MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
+            File.Delete("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
 
             if (QueueListBox.Items.Count >= 1)
                 QueueListBox.SelectedIndex = 0;
@@ -211,12 +214,12 @@ namespace MediaDownloader
             if (HistoryListBox.SelectedItems.Count == 0)
                 return;
 
-            LoadQueueItem("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
+            LoadQueueItem("MediaDownloader\\config\\history_temp\\" + HistoryListBox.SelectedItem + ".mdq");
         }
 
         private void HistoryRefreshButton_Click(object sender, EventArgs e)
         {
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
         }
 
         private void HistoryRemoveButton_Click(object sender, EventArgs e)
@@ -224,11 +227,11 @@ namespace MediaDownloader
             if (HistoryListBox.SelectedItems.Count == 0)
                 return;
 
-            File.Delete("MediaDownloader\\config\\history\\" + HistoryListBox.SelectedItem + ".mdq");
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history");
+            File.Delete("MediaDownloader\\config\\history_temp\\" + HistoryListBox.SelectedItem + ".mdq");
+            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
 
             if (HistoryListBox.Items.Count == 0)
-                CONFIG.HISTORY_SAVE_INDEX = 0;
+                CONFIG.HISTORY_SAVE_INDEX = 1;
 
             if (HistoryListBox.Items.Count >= 1)
                 HistoryListBox.SelectedIndex = 0;
@@ -241,8 +244,8 @@ namespace MediaDownloader
 
         private void SaveQueueItem()
         {
-            WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue", false);
+            WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
         }
 
         private void LoadQueueItem(string queueItemFile)
@@ -250,31 +253,36 @@ namespace MediaDownloader
             currentQueueItem = ReadQueueItem(queueItemFile);
 
             UrlTextBox.Text = currentQueueItem.URL;
+            OutputPlaylistCheckBox.Checked = currentQueueItem.OUTPUT_PLAYLIST_ENABLE;
 
             OutputNameTextBox.Text = currentQueueItem.OUTPUT_NAME;
+            OutputNameAutoCheckBox.Checked = currentQueueItem.OUTPUT_NAME_AUTO_ENABLE;
+
             OutputLocationTextBox.Text = currentQueueItem.OUTPUT_LOCATION;
 
             OutputFormatComboBox.Text = currentQueueItem.OUTPUT_FORMAT;
 
+            OutputTimeframeCheckBox.Checked = currentQueueItem.OUTPUT_CHANGE_TIMEFRAME_ENABLE;
+            OutputTimeframeStartTextBox.Text = currentQueueItem.OUTPUT_TIMEFRAME_START;
+            OutputTimeframeEndTextBox.Text = currentQueueItem.OUTPUT_TIMEFRAME_END;
+            OutputTimeframeTrimFromStart.Checked = currentQueueItem.OUTPUT_TIMEFRAME_TRIM_FROM_START_ENABLE;
+            OutputTimeframeTrimToEnd.Checked = currentQueueItem.OUTPUT_TIMEFRAME_TRIM_TO_END_ENABLE;
+
             OutputVideoBitrateTextBox.Text = currentQueueItem.OUTPUT_BITRATE_VIDEO;
             OutputAudioBitrateTextBox.Text = currentQueueItem.OUTPUT_BITRATE_AUDIO;
 
-            OutputResizeCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_CHANGE_RESOLUTION;
+            OutputResizeCheckBox.Checked = currentQueueItem.OUTPUT_CHANGE_RESOLUTION_ENABLE;
             OutputResizeWidthTextBox.Text = currentQueueItem.OUTPUT_RESOLUTION_WIDTH;
             OutputResizeHeightTextBox.Text = currentQueueItem.OUTPUT_RESOLUTION_HEIGHT;
 
-            OutputFramerateCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_CHANGE_FRAMERATE;
+            OutputFramerateCheckBox.Checked = currentQueueItem.OUTPUT_CHANGE_FRAMERATE_ENABLE;
             OutputFramerateTextBox.Text = currentQueueItem.OUTPUT_FRAMERATE;
-
-            OutputTimeframeCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_CHANGE_TIMEFRAME;
-            OutputTimeframeStartTextBox.Text = currentQueueItem.OUTPUT_TIMEFRAME_START;
-            OutputTimeframeEndTextBox.Text = currentQueueItem.OUTPUT_TIMEFRAME_END;
 
             OutputYtdlpArgumentsTextBox.Text = currentQueueItem.OUTPUT_YTDLP_ARGUMENTS;
             OutputFfmpegArgumentsTextBox.Text = currentQueueItem.OUTPUT_FFMPEG_ARGUMENTS;
 
-            OutputDisplayCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_DISPLAY;
-            OutputPauseCheckBox.Checked = currentQueueItem.OUTPUT_ENABLE_PAUSE;
+            OutputDisplayCheckBox.Checked = currentQueueItem.OUTPUT_DISPLAY_ENABLE;
+            OutputPauseCheckBox.Checked = currentQueueItem.OUTPUT_PAUSE_ENABLE;
         }
 
         private void OutputChangeLocationButton_Click(object sender, EventArgs e)
@@ -301,6 +309,9 @@ namespace MediaDownloader
             string downloadExtension = "";
             switch (currentQueueItem.OUTPUT_FORMAT)
             {
+                case "mp4 (fast)":
+                    downloadExtension = ".mp4";
+                    break;
                 case "mp4":
                     downloadExtension = ".mp4";
                     break;
@@ -373,37 +384,103 @@ namespace MediaDownloader
         #region ConfigUpdate
         private void UrlTextBox_TextChanged(object sender, EventArgs e)
         {
+            string[] playlistKeywords =
+            {
+                "playlist",
+                "album"
+            };
+
+            bool containsKeyword = false;
+
+            for (int i = 0; i < playlistKeywords.Length; i++)
+            {
+                if (UrlTextBox.Text.IndexOf(playlistKeywords[i], StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    containsKeyword = true;
+
+                    OutputPlaylistCheckBox.Checked = true;
+
+                    UrlLabel.Text = "URL (playlist detected)";
+                    UrlLabel.Refresh();
+                }
+            }
+
+            if (containsKeyword == false)
+            {
+                OutputPlaylistCheckBox.Checked = false;
+
+                UrlLabel.Text = "URL";
+                UrlLabel.Refresh();
+            }
+
             currentQueueItem.URL = UrlTextBox.Text;
         }
 
         private void OutputNameTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (OutputNameTextBox.Text == "")
+                OutputNameAutoCheckBox.Checked = true;
+            else
+                if (OutputPlaylistCheckBox.Checked == false)
+                    OutputNameAutoCheckBox.Checked = false;
+
             currentQueueItem.OUTPUT_NAME = OutputNameTextBox.Text;
         }
 
+        private void OutputPlaylistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (OutputPlaylistCheckBox.Checked == true)
+            {
+                OutputNameAutoCheckBox.Checked = true;
+                OutputNameAutoCheckBox.Enabled = false;
+
+                OutputNameLabel.Text = "Folder Name";
+            }
+            else
+            {
+                OutputNameAutoCheckBox.Enabled = true;
+
+                if (OutputNameTextBox.Text == "")
+                    OutputNameAutoCheckBox.Checked = true;
+
+                OutputNameLabel.Text = "Name";
+            }
+
+            currentQueueItem.OUTPUT_PLAYLIST_ENABLE = OutputPlaylistCheckBox.Checked;
+        }
+
+        string previousName = "";
+        private void OutputNameAutoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (OutputNameAutoCheckBox.Checked == true)
+            {
+                previousName = OutputNameTextBox.Text;
+                OutputNameTextBox.Text = "";
+            }
+            else
+                if (OutputNameTextBox.Text == "")
+                OutputNameTextBox.Text = previousName;
+
+            if (OutputNameAutoCheckBox.Checked == false && OutputNameTextBox.Text == "" && OutputPlaylistCheckBox.Checked == false)
+                OutputNameAutoCheckBox.Checked = true;
+
+            currentQueueItem.OUTPUT_NAME_AUTO_ENABLE = OutputNameAutoCheckBox.Checked;
+        }
+
+        int previousFormatSelectedIndex = 1;
         private void OutputFormatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (OutputFormatComboBox.Text)
             {
-                case "":
-                case "[Video]":
-                case "[Audio]":
-                case "[Image]":
-                case "[Custom]":
-                    DownloadButton.Enabled = false;
-                    DownloadAllButton.Enabled = false;
+                case "mp4 (fast)":
+                    OutputTimeframeCheckBox.Enabled = true;
 
-                    OutputLocationTextBox.Enabled = false;
-                    OutputLocationTextBox.Text = previousPathValue != "" ? previousPathValue : OutputLocationTextBox.Text;
-
-                    OutputTimeframeCheckBox.Enabled = false;
-                    OutputTimeframeStartTextBox.Enabled = false;
-                    OutputTimeframeEndTextBox.Enabled = false;
-
+                    OutputResizeCheckBox.Checked = false;
                     OutputResizeCheckBox.Enabled = false;
                     OutputResizeWidthTextBox.Enabled = false;
                     OutputResizeHeightTextBox.Enabled = false;
 
+                    OutputFramerateCheckBox.Checked = false;
                     OutputFramerateCheckBox.Enabled = false;
                     OutputFramerateTextBox.Enabled = false;
 
@@ -412,20 +489,13 @@ namespace MediaDownloader
 
                     OutputYtdlpArgumentsTextBox.Enabled = false;
                     OutputFfmpegArgumentsTextBox.Enabled = false;
-
-                    OutputDisplayCheckBox.Enabled = false;
-                    OutputPauseCheckBox.Enabled = false;
                     break;
 
-                case "mp4 (fast)":
                 case "mp4":
                 case "mp4 (nvidia)":
                 case "mp4 (amd)":
                 case "webm":
                 case "avi (uncompressed)":
-                    DownloadButton.Enabled = true;
-                    DownloadAllButton.Enabled = true;
-
                     OutputLocationTextBox.Enabled = true;
                     OutputLocationTextBox.Text = previousPathValue != "" ? previousPathValue : OutputLocationTextBox.Text;
 
@@ -440,9 +510,6 @@ namespace MediaDownloader
 
                     OutputYtdlpArgumentsTextBox.Enabled = false;
                     OutputFfmpegArgumentsTextBox.Enabled = false;
-
-                    OutputDisplayCheckBox.Enabled = true;
-                    OutputPauseCheckBox.Enabled = true;
                     break;
 
                 case "mp3":
@@ -453,9 +520,6 @@ namespace MediaDownloader
                 case "wma":
                 case "flac (lossless)":
                 case "m4a (lossless)":
-                    DownloadButton.Enabled = true;
-                    DownloadAllButton.Enabled = true;
-
                     OutputLocationTextBox.Enabled = true;
                     OutputLocationTextBox.Text = previousPathValue != "" ? previousPathValue : OutputLocationTextBox.Text;
 
@@ -475,17 +539,11 @@ namespace MediaDownloader
 
                     OutputYtdlpArgumentsTextBox.Enabled = false;
                     OutputFfmpegArgumentsTextBox.Enabled = false;
-
-                    OutputDisplayCheckBox.Enabled = true;
-                    OutputPauseCheckBox.Enabled = true;
                     break;
 
                 case "gif":
                 case "png (sequence)":
                 case "jpg (sequence)":
-                    DownloadButton.Enabled = true;
-                    DownloadAllButton.Enabled = true;
-
                     OutputLocationTextBox.Enabled = true;
                     OutputLocationTextBox.Text = previousPathValue;
 
@@ -500,19 +558,41 @@ namespace MediaDownloader
 
                     OutputYtdlpArgumentsTextBox.Enabled = false;
                     OutputFfmpegArgumentsTextBox.Enabled = false;
-
-                    OutputDisplayCheckBox.Enabled = true;
-                    OutputPauseCheckBox.Enabled = true;
                     break;
 
-                case "(custom arguments)":
-                    DownloadButton.Enabled = true;
-                    DownloadAllButton.Enabled = true;
-
+                case "png (thumbnail)":
+                case "jpg (thumbnail)":
                     OutputTimeframeCheckBox.Checked = false;
                     OutputTimeframeCheckBox.Enabled = false;
                     OutputTimeframeStartTextBox.Enabled = false;
                     OutputTimeframeEndTextBox.Enabled = false;
+                    OutputTimeframeTrimFromStart.Checked = false;
+                    OutputTimeframeTrimFromStart.Enabled = false;
+                    OutputTimeframeTrimToEnd.Checked = false;
+                    OutputTimeframeTrimToEnd.Enabled = false;
+
+                    OutputResizeCheckBox.Enabled = true;
+
+                    OutputFramerateCheckBox.Checked = false;
+                    OutputFramerateCheckBox.Enabled = false;
+                    OutputFramerateTextBox.Enabled = false;
+
+                    OutputVideoBitrateTextBox.Enabled = false;
+                    OutputAudioBitrateTextBox.Enabled = false;
+
+                    OutputYtdlpArgumentsTextBox.Enabled = false;
+                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    break;
+
+                case "(custom arguments)":
+                    OutputTimeframeCheckBox.Checked = false;
+                    OutputTimeframeCheckBox.Enabled = false;
+                    OutputTimeframeStartTextBox.Enabled = false;
+                    OutputTimeframeEndTextBox.Enabled = false;
+                    OutputTimeframeTrimFromStart.Checked = false;
+                    OutputTimeframeTrimFromStart.Enabled = false;
+                    OutputTimeframeTrimToEnd.Checked = false;
+                    OutputTimeframeTrimToEnd.Enabled = false;
 
                     OutputResizeCheckBox.Checked = false;
                     OutputResizeCheckBox.Enabled = false;
@@ -528,13 +608,61 @@ namespace MediaDownloader
 
                     OutputYtdlpArgumentsTextBox.Enabled = true;
                     OutputFfmpegArgumentsTextBox.Enabled = true;
+                    break;
 
-                    OutputDisplayCheckBox.Enabled = true;
-                    OutputPauseCheckBox.Enabled = true;
+                default:
+                    OutputFormatComboBox.SelectedIndex = previousFormatSelectedIndex;
                     break;
             }
+            previousFormatSelectedIndex = OutputFormatComboBox.SelectedIndex;
 
             currentQueueItem.OUTPUT_FORMAT = OutputFormatComboBox.Text;
+        }
+
+        private void OutputTimeframeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (OutputTimeframeCheckBox.Checked == true)
+            {
+                if (OutputTimeframeTrimFromStart.Checked == false)
+                    OutputTimeframeStartTextBox.Enabled = true;
+                if (OutputTimeframeTrimToEnd.Checked == false)
+                    OutputTimeframeEndTextBox.Enabled = true;
+                OutputTimeframeTrimFromStart.Enabled = true;
+                OutputTimeframeTrimToEnd.Enabled = true;
+            }
+            else
+            {
+                OutputTimeframeStartTextBox.Enabled = false;
+                OutputTimeframeEndTextBox.Enabled = false;
+                OutputTimeframeTrimFromStart.Enabled = false;
+                OutputTimeframeTrimToEnd.Enabled = false;
+            }
+
+            currentQueueItem.OUTPUT_CHANGE_TIMEFRAME_ENABLE = OutputTimeframeCheckBox.Checked;
+        }
+
+        private void OutputTimeframeStartTextBox_TextChanged(object sender, EventArgs e)
+        {
+            currentQueueItem.OUTPUT_TIMEFRAME_START = OutputTimeframeStartTextBox.Text;
+        }
+
+        private void OutputTimeframeEndTextBox_TextChanged(object sender, EventArgs e)
+        {
+            currentQueueItem.OUTPUT_TIMEFRAME_END = OutputTimeframeEndTextBox.Text;
+        }
+
+        private void OutputTimeframeTrimFromStart_CheckedChanged(object sender, EventArgs e)
+        {
+            OutputTimeframeStartTextBox.Enabled = !OutputTimeframeTrimFromStart.Checked;
+
+            currentQueueItem.OUTPUT_TIMEFRAME_TRIM_FROM_START_ENABLE = OutputTimeframeTrimFromStart.Checked;
+        }
+
+        private void OutputTimeframeTrimToEnd_CheckedChanged(object sender, EventArgs e)
+        {
+            OutputTimeframeEndTextBox.Enabled = !OutputTimeframeTrimToEnd.Checked;
+
+            currentQueueItem.OUTPUT_TIMEFRAME_TRIM_TO_END_ENABLE = OutputTimeframeTrimToEnd.Checked;
         }
 
         private void OutputLocationTextBox_TextChanged(object sender, EventArgs e)
@@ -565,7 +693,7 @@ namespace MediaDownloader
                 OutputResizeHeightTextBox.Enabled = false;
             }
 
-            currentQueueItem.OUTPUT_ENABLE_CHANGE_RESOLUTION = OutputResizeCheckBox.Checked;
+            currentQueueItem.OUTPUT_CHANGE_RESOLUTION_ENABLE = OutputResizeCheckBox.Checked;
         }
 
         private void OutputResizeWidthTextBox_TextChanged(object sender, EventArgs e)
@@ -585,38 +713,12 @@ namespace MediaDownloader
             else
                 OutputFramerateTextBox.Enabled = false;
 
-            currentQueueItem.OUTPUT_ENABLE_CHANGE_FRAMERATE = OutputFramerateCheckBox.Checked;
+            currentQueueItem.OUTPUT_CHANGE_FRAMERATE_ENABLE = OutputFramerateCheckBox.Checked;
         }
 
         private void OutputFramerateTextBox_TextChanged(object sender, EventArgs e)
         {
             currentQueueItem.OUTPUT_FRAMERATE = OutputFramerateTextBox.Text;
-        }
-
-        private void OutputTimeframeCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (OutputTimeframeCheckBox.Checked == true)
-            {
-                OutputTimeframeStartTextBox.Enabled = true;
-                OutputTimeframeEndTextBox.Enabled = true;
-            }
-            else
-            {
-                OutputTimeframeStartTextBox.Enabled = false;
-                OutputTimeframeEndTextBox.Enabled = false;
-            }
-
-            currentQueueItem.OUTPUT_ENABLE_CHANGE_TIMEFRAME = OutputTimeframeCheckBox.Checked;
-        }
-
-        private void OutputTimeframeStartTextBox_TextChanged(object sender, EventArgs e)
-        {
-            currentQueueItem.OUTPUT_TIMEFRAME_START = OutputTimeframeStartTextBox.Text;
-        }
-
-        private void OutputTimeframeEndTextBox_TextChanged(object sender, EventArgs e)
-        {
-            currentQueueItem.OUTPUT_TIMEFRAME_END = OutputTimeframeEndTextBox.Text;
         }
 
         private void OutputYtdlpArgumentsTextBox_TextChanged(object sender, EventArgs e)
@@ -647,6 +749,9 @@ namespace MediaDownloader
                 }
             }
 
+            if (OutputLocationTextBox.Text == "CONTROLLED BY FFMPEG ARGUMENTS" && OutputLocationTextBox.Enabled == true)
+                OutputLocationTextBox.Text = "";
+
             currentQueueItem.OUTPUT_FFMPEG_ARGUMENTS = OutputFfmpegArgumentsTextBox.Text;
         }
 
@@ -660,12 +765,38 @@ namespace MediaDownloader
             else
                 OutputPauseCheckBox.Enabled = true;
 
-            currentQueueItem.OUTPUT_ENABLE_DISPLAY = OutputDisplayCheckBox.Checked;
+            currentQueueItem.OUTPUT_DISPLAY_ENABLE = OutputDisplayCheckBox.Checked;
         }
 
         private void OutputPauseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            currentQueueItem.OUTPUT_ENABLE_PAUSE = OutputPauseCheckBox.Checked;
+            currentQueueItem.OUTPUT_PAUSE_ENABLE = OutputPauseCheckBox.Checked;
+        }
+
+        private void ResetSettingsButton_Click(object sender, EventArgs e)
+        {
+            UrlTextBox.Text = "";
+            OutputNameTextBox.Text = "";
+            OutputLocationTextBox.Text = "";
+            OutputFormatComboBox.Text = "mp4";
+            OutputTimeframeCheckBox.Checked = false;
+            OutputTimeframeStartTextBox.Text = "0:00";
+            OutputTimeframeEndTextBox.Text = "0:10";
+            OutputTimeframeTrimFromStart.Checked = false;
+            OutputTimeframeTrimFromStart.Enabled = false;
+            OutputTimeframeTrimToEnd.Checked = false;
+            OutputTimeframeTrimToEnd.Enabled = false;
+            OutputResizeCheckBox.Checked = false;
+            OutputResizeWidthTextBox.Text = "1920";
+            OutputResizeHeightTextBox.Text = "1080";
+            OutputFramerateCheckBox.Checked = false;
+            OutputFramerateTextBox.Text = "60";
+            OutputVideoBitrateTextBox.Text = "100M";
+            OutputAudioBitrateTextBox.Text = "320K";
+            OutputYtdlpArgumentsTextBox.Text = "";
+            OutputFfmpegArgumentsTextBox.Text = "";
+            OutputDisplayCheckBox.Checked = true;
+            OutputPauseCheckBox.Checked = false;
         }
 
         private void HistoryCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -676,7 +807,7 @@ namespace MediaDownloader
 
         private void MenuExpandButton_Click(object sender, EventArgs e)
         {
-            if (!CONFIG.MENU_ENABLE_EXPANDED)
+            if (!CONFIG.MENU_EXPANDED_ENABLE)
                 ExpandMenu();
             else
                 CollapseMenu();
@@ -684,7 +815,7 @@ namespace MediaDownloader
 
         private void ExpandMenu()
         {
-            CONFIG.MENU_ENABLE_EXPANDED = true;
+            CONFIG.MENU_EXPANDED_ENABLE = true;
 
             MenuExpandButton.Location = new Point(662, 142);
             MenuExpandButton.Size = new Size(29, 102);
@@ -726,7 +857,7 @@ namespace MediaDownloader
 
         private void CollapseMenu()
         {
-            CONFIG.MENU_ENABLE_EXPANDED = false;
+            CONFIG.MENU_EXPANDED_ENABLE = false;
 
             MenuExpandButton.Location = new Point(379, 37);
             MenuExpandButton.Size = new Size(29, 207);
@@ -777,8 +908,8 @@ namespace MediaDownloader
             if (QueueListBox.SelectedItems.Count == 0)
                 return;
 
-            if (File.Exists("MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
-                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
+                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
         }
 
         private void QueueListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -789,7 +920,7 @@ namespace MediaDownloader
             previousPathValue = "";
             CONFIG.QUEUE_SELECTED_INDEX = QueueListBox.SelectedIndex;
 
-            LoadQueueItem("MediaDownloader\\config\\queue\\" + QueueListBox.SelectedItem + ".mdq");
+            LoadQueueItem("MediaDownloader\\config\\queue_temp\\" + QueueListBox.SelectedItem + ".mdq");
         }
 
         private void QueueListBox_DrawItem(object sender, DrawItemEventArgs e)
@@ -809,11 +940,14 @@ namespace MediaDownloader
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists("MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
-                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
+                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
 
             WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\latest.mdq");
-            WriteConfig(CONFIG);
+            WriteConfig(CONFIG, "MediaDownloader\\config\\config.cfg");
+
+            CompressFolder("MediaDownloader\\config\\queue_temp", "MediaDownloader\\config\\queue.pack");
+            CompressFolder("MediaDownloader\\config\\history_temp", "MediaDownloader\\config\\history.pack");
 
             Close();
         }
@@ -823,15 +957,15 @@ namespace MediaDownloader
             WindowState = FormWindowState.Minimized;
         }
 
-        private void TitlebarPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            MoveForm(Handle, e);
-        }
-
         private void BannerPicture_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && e.Clicks == 2)
                 Process.Start("https://github.com/o7q/MediaDownloader");
+            MoveForm(Handle, e);
+        }
+
+        private void TitlebarPanel_MouseDown(object sender, MouseEventArgs e)
+        {
             MoveForm(Handle, e);
         }
 

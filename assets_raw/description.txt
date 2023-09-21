@@ -1,1 +1,1 @@
-A GUI wrapper for yt-dlp that allows you to quickly download video and audio from a wide variety of websites.
+A GUI wrapper for yt-dlp that allows you to quickly download media from a wide variety of websites.
