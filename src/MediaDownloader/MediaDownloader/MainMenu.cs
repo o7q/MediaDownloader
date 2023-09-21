@@ -1,19 +1,20 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using MediaDownloader.Tools.CustomMessageBox;
-using static MediaDownloader.Data.Global;
-using static MediaDownloader.Data.Structure.QueueItemStructure;
+using static MediaDownloader.Global;
+using static MediaDownloader.Data.Config.ConfigManager;
+using static MediaDownloader.Data.QueueItem.QueueItemManager;
+using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
 using static MediaDownloader.Tools.Forms;
-using static MediaDownloader.Managers.Media.DownloadManager;
-using static MediaDownloader.Managers.FileManagers.ConfigManager;
-using static MediaDownloader.Managers.FileManagers.QueueItemManager;
-using static MediaDownloader.Managers.FileManagers.CompressionManager;
+using static MediaDownloader.Tools.FolderCompressor;
+using static MediaDownloader.Media.Downloaders.Queuer;
+using static MediaDownloader.Media.Downloaders.BulkQueuer;
+using static MediaDownloader.Updater.UpdateChecker;
 
 namespace MediaDownloader
 {
@@ -74,13 +75,13 @@ namespace MediaDownloader
                 CollapseMenu();
             }
 
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead("https://raw.githubusercontent.com/o7q/MediaDownloader/main/version");
-            StreamReader reader = new StreamReader(stream);
-            VERSION_REMOTE = reader.ReadToEnd();
-
-            if (VERSION_REMOTE != VERSION_INTERNAL && CONFIG.NOTIFICATIONS_ENABLE)
+            // update check
+            var newVersionAvailable = CheckForNewUpdate(VERSION_INTERNAL);
+            if (newVersionAvailable.Item1 && CONFIG.NOTIFICATIONS_ENABLE)
+            {
+                VERSION_REMOTE = newVersionAvailable.Item2;
                 NotificationPictureBox.Visible = true;
+            }
 
             #region loadTooltips
             // bind tooltips
@@ -131,6 +132,8 @@ namespace MediaDownloader
                 "OutputDisplayCheckBox", "Display the verbose log while downloading in a separate command prompt window",
                 "OutputPauseCheckBox", "Cause the command prompt to stay open after each stage finishes (helpful for debugging)",
 
+                "ResetSettingsButton", "Reset each setting to their default values on the current window",
+
                 "MenuExpandButton", "Expand/Collapse Menu",
 
                 "QueueListBox", "List of queued downloads",
@@ -169,7 +172,7 @@ namespace MediaDownloader
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if (IS_DOWNLOADING)
+            if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null)
                 return;
 
             Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton));

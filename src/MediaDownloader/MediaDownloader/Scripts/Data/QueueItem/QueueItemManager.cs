@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Text;
-using static MediaDownloader.Data.Structure.QueueItemStructure;
+using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 
-namespace MediaDownloader.Managers.FileManagers
+namespace MediaDownloader.Data.QueueItem
 {
     public static class QueueItemManager
     {

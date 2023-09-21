@@ -1,4 +1,4 @@
-﻿namespace MediaDownloader.Data.Structure
+﻿namespace MediaDownloader.Data.Config
 {
     public class ConfigStructure
     {

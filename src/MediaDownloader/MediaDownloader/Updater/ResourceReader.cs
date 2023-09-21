@@ -16,8 +16,8 @@ namespace MediaDownloader.Updater
 
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                    string fileContent = reader.ReadToEnd();
-                    return fileContent;
+                    string resourceContent = reader.ReadToEnd();
+                    return resourceContent;
                 }
             }
         }

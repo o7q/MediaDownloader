@@ -3,11 +3,11 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using MediaDownloader.Tools.CustomMessageBox;
-using static MediaDownloader.Data.Global;
+using static MediaDownloader.Global;
 using static MediaDownloader.Setup.Bootstrapper;
+using static MediaDownloader.Tools.FolderCompressor;
 using static MediaDownloader.Updater.UpdaterSetup;
-using static MediaDownloader.Managers.FileManagers.ConfigManager;
-using static MediaDownloader.Managers.FileManagers.CompressionManager;
+using static MediaDownloader.Data.Config.ConfigManager;
 
 namespace MediaDownloader
 {

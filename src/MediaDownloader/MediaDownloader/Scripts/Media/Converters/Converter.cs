@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using static MediaDownloader.Data.Global;
-using static MediaDownloader.Data.Structure.QueueItemStructure;
+using static MediaDownloader.Global;
+using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
 
-namespace MediaDownloader.Managers.Media
+namespace MediaDownloader.Media.Converters
 {
-    public static class ConvertManager
+    public static class Converter
     {
         public static void ConvertMedia(QueueItemBase queueItem, string downloadFile, string outputFile)
         {

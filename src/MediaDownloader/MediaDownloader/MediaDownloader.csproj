@@ -53,14 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scripts\Data\Global.cs" />
-    <Compile Include="Scripts\Data\Structure\ConfigStructure.cs" />
-    <Compile Include="Scripts\Data\Structure\QueueItemStructure.cs" />
-    <Compile Include="Scripts\Managers\FileManagers\CompressionManager.cs" />
-    <Compile Include="Scripts\Managers\FileManagers\ConfigManager.cs" />
-    <Compile Include="Scripts\Managers\Media\ConvertManager.cs" />
-    <Compile Include="Scripts\Managers\Media\DownloadManager.cs" />
-    <Compile Include="Scripts\Managers\FileManagers\QueueItemManager.cs" />
+    <Compile Include="Scripts\Global.cs" />
+    <Compile Include="Scripts\Data\Config\ConfigStructure.cs" />
+    <Compile Include="Scripts\Data\QueueItem\QueueItemStructure.cs" />
+    <Compile Include="Scripts\Media\Downloaders\BulkQueuer.cs" />
+    <Compile Include="Scripts\Media\Downloaders\Queuer.cs" />
+    <Compile Include="Scripts\Tools\FolderCompressor.cs" />
+    <Compile Include="Scripts\Data\Config\ConfigManager.cs" />
+    <Compile Include="Scripts\Media\Converters\Converter.cs" />
+    <Compile Include="Scripts\Media\Downloaders\Downloader.cs" />
+    <Compile Include="Scripts\Data\QueueItem\QueueItemManager.cs" />
     <Compile Include="Scripts\Setup\Bootstrapper.cs" />
     <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.cs">
       <SubType>Form</SubType>
@@ -79,6 +81,7 @@
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Tools\Shell.cs" />
+    <Compile Include="Updater\UpdateChecker.cs" />
     <Compile Include="Updater\ResourceReader.cs" />
     <Compile Include="Updater\UpdaterSetup.cs" />
     <EmbeddedResource Include="MainMenu.resx">

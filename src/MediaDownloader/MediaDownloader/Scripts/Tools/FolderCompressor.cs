@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.IO.Compression;
-using static MediaDownloader.Data.Global;
+using static MediaDownloader.Global;
 
-namespace MediaDownloader.Managers.FileManagers
+namespace MediaDownloader.Tools
 {
-    public static class CompressionManager
+    public static class FolderCompressor
     {
         public static void CompressFolder(string folder, string path)
         {

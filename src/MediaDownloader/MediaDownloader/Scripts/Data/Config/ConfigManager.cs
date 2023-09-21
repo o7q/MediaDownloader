@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Text;
-using static MediaDownloader.Data.Structure.ConfigStructure;
+using static MediaDownloader.Data.Config.ConfigStructure;
 
-namespace MediaDownloader.Managers.FileManagers
+namespace MediaDownloader.Data.Config
 {
     public static class ConfigManager
     {

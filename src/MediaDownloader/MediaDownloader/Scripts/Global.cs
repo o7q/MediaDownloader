@@ -1,6 +1,6 @@
-﻿using static MediaDownloader.Data.Structure.ConfigStructure;
+﻿using static MediaDownloader.Data.Config.ConfigStructure;
 
-namespace MediaDownloader.Data
+namespace MediaDownloader
 {
     public static class Global
     {
