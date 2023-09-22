@@ -14,7 +14,7 @@ namespace MediaDownloader.Media.Downloaders
             Directory.CreateDirectory("MediaDownloader\\temp\\download");
 
             string downloadName;
-            if (queueItem.OUTPUT_NAME_AUTO_ENABLE || queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null)
+            if (queueItem.OUTPUT_NAME_AUTO_ENABLE || queueItem.OUTPUT_PLAYLIST_ENABLE || queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null)
                 downloadName = "%(title)s";
             else
                 downloadName = queueItem.OUTPUT_NAME;
