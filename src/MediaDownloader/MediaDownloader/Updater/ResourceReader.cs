@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Net;
 using System.Reflection;
 
 namespace MediaDownloader.Updater
@@ -20,6 +21,21 @@ namespace MediaDownloader.Updater
                     return resourceContent;
                 }
             }
+        }
+
+        public static string ReadRemoteResource(string url)
+        {
+            string remote_content = "";
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead(url);
+                StreamReader reader = new StreamReader(stream);
+                remote_content = reader.ReadToEnd();
+            }
+            catch { }
+
+            return remote_content;
         }
     }
 }

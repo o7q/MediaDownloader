@@ -15,6 +15,7 @@ using static MediaDownloader.Tools.FolderCompressor;
 using static MediaDownloader.Media.Downloaders.Queuer;
 using static MediaDownloader.Media.Downloaders.BulkQueuer;
 using static MediaDownloader.Updater.UpdateChecker;
+using static MediaDownloader.Updater.ResourceReader;
 
 namespace MediaDownloader
 {
@@ -1002,7 +1003,9 @@ namespace MediaDownloader
 
         private void NotificationPictureBox_Click(object sender, EventArgs e)
         {
-            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_REMOTE + ")\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
+            string changelog = ReadRemoteResource("https://raw.githubusercontent.com/o7q/MediaDownloader/main/remote/changelog");
+
+            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_REMOTE + ")\n\nChangelog:\n" + changelog + "\n\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
             customMessageBox.ShowDialog();
 
             if (customMessageBox.Result == DialogResult.OK)
