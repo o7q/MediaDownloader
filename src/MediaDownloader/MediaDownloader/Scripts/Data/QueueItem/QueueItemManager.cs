@@ -14,7 +14,7 @@ namespace MediaDownloader.Data.QueueItem
                 object value = field.GetValue(queueItem);
                 if (value != null)
                     sb.Append(field.Name + '¶' + value.ToString());
-                sb.Append('ʃ');
+                sb.Append('\n');
             }
             sb.Length--;
 
@@ -24,7 +24,7 @@ namespace MediaDownloader.Data.QueueItem
         public static QueueItemBase ReadQueueItem(string queueFile)
         {
             string queueItemRaw = File.ReadAllText(queueFile);
-            string[] queueItemSetting = queueItemRaw.Split('ʃ');
+            string[] queueItemSetting = queueItemRaw.Split('\n');
 
             QueueItemBase queueItem = new QueueItemBase();
 

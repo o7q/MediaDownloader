@@ -1,3 +1,8 @@
+~ v4.2.1.0
+- Added a feature to refresh the download if it gets stuck (control or shift-click the download button)
+- Fixed bug with the playlist folder name resetting when used in-tangent with the queue system
+- Made QueueItem files more human readable
+
 ~ v4.2.0.0
 - Added a feature to download playlists (just paste a playlist link and it will auto-detect, or you can specify it manually)
 - Added a feature to automatically choose the output name

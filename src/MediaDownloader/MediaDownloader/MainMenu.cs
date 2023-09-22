@@ -172,6 +172,13 @@ namespace MediaDownloader
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
+            if (ModifierKeys == Keys.Control || ModifierKeys == Keys.Shift)
+            {
+                IS_DOWNLOADING = false;
+                ChangeDownloadButtonColors(false, DownloadButton, DownloadAllButton);
+                return;
+            }
+
             if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null)
                 return;
 
@@ -432,7 +439,7 @@ namespace MediaDownloader
 
         private void OutputNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (OutputNameTextBox.Text == "")
+            if (OutputNameTextBox.Text == "" && OutputPlaylistCheckBox.Checked == false)
                 OutputNameAutoCheckBox.Checked = true;
             else
                 if (OutputPlaylistCheckBox.Checked == false)
@@ -445,7 +452,7 @@ namespace MediaDownloader
         {
             if (OutputPlaylistCheckBox.Checked == true)
             {
-                OutputNameAutoCheckBox.Checked = true;
+                OutputNameAutoCheckBox.Checked = false;
                 OutputNameAutoCheckBox.Enabled = false;
 
                 OutputNameLabel.Text = "Folder Name";
