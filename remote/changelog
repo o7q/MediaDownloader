@@ -1,0 +1,3 @@
+- Added a feature to refresh the download if it gets stuck (control or shift-click the download button)
+- Fixed bug with the playlist folder name resetting when used in-tangent with the queue system
+- Made QueueItem files more human readable
