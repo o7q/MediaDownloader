@@ -1,3 +1,6 @@
+~ v4.2.3.0
+- Fixed playlist downloader not working with named folders (I broke it for the 2nd time, I swear it's fixed now :) )
+
 ~ v4.2.2.0
 - I accidentally broke the playlist downloader in the last update (it is now fixed, sorry!)
 - The updater now displays a changelog for the new update
