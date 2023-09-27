@@ -109,7 +109,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Updater\Content\Updater.ps1" />
+    <EmbeddedResource Include="Updater\Content\update.ps1" />
+    <EmbeddedResource Include="Updater\Content\Updater.bat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

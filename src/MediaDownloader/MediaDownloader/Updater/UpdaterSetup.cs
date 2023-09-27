@@ -8,7 +8,8 @@ namespace MediaDownloader.Updater
         public static void InstallUpdater()
         {
             Directory.CreateDirectory("MediaDownloader\\updater");
-            File.WriteAllText("MediaDownloader\\updater\\Updater.ps1", ReadLocalResource("MediaDownloader.Updater.Content.Updater.ps1"));
+            File.WriteAllText("MediaDownloader\\updater\\Updater.bat", ReadLocalResource("MediaDownloader.Updater.Content.Updater.bat"));
+            File.WriteAllText("MediaDownloader\\updater\\update.ps1", ReadLocalResource("MediaDownloader.Updater.Content.update.ps1"));
         }
     }
 }

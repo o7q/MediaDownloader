@@ -147,6 +147,7 @@
             this.UrlTextBox.Size = new System.Drawing.Size(204, 20);
             this.UrlTextBox.TabIndex = 2;
             this.UrlTextBox.TextChanged += new System.EventHandler(this.UrlTextBox_TextChanged);
+            this.UrlTextBox.DoubleClick += new System.EventHandler(this.UrlTextBox_DoubleClick);
             // 
             // UrlLabel
             // 

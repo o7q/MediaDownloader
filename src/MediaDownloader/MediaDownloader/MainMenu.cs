@@ -382,6 +382,12 @@ namespace MediaDownloader
                 case "jpg (sequence)":
                     downloadExtension = "";
                     break;
+                case "png (thumbnail)":
+                    downloadExtension = ".png";
+                    break;
+                case "jpg (thumbnail)":
+                    downloadExtension = ".jpg";
+                    break;
             }
 
             string downloadLocation = currentQueueItem.OUTPUT_LOCATION == "" || currentQueueItem.OUTPUT_LOCATION == null ? "Downloads" : currentQueueItem.OUTPUT_LOCATION;
@@ -401,6 +407,12 @@ namespace MediaDownloader
         private void ViewAvailableFormatsButton_Click(object sender, EventArgs e)
         {
             Task.Run(() => StartProcess("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe", "-q --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" --list-formats " + currentQueueItem.URL, "MediaDownloader " + VERSION + "   [DEBUG  :  FORMAT LIST]", true, true));
+        }
+
+        private void UrlTextBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (UrlTextBox.Text != "")
+                Process.Start(UrlTextBox.Text);
         }
 
         #region ConfigUpdate
@@ -1010,7 +1022,7 @@ namespace MediaDownloader
 
             if (customMessageBox.Result == DialogResult.OK)
             {
-                Process.Start("powershell.exe", "-ExecutionPolicy Bypass -File \"MediaDownloader\\updater\\Updater.ps1\"");
+                Process.Start("MediaDownloader\\updater\\Updater.bat");
                 CloseProgram();
             }
         }

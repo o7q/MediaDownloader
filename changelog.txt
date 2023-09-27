@@ -1,3 +1,7 @@
+~
+- Double-clicking the url textbox now navigates to the current url in a browser
+- Improved the updater
+
 ~ v4.2.3.0
 - Fixed playlist downloader not working with named folders (I broke it for the 2nd time, I swear it's fixed now :) )
 
