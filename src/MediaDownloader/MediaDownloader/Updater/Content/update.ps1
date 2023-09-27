@@ -27,7 +27,7 @@ if ((Test-File -File "..\..\MediaDownloader.exe") -and -not (Test-File -File "Me
 {
     $PATH = "..\..\MediaDownloader.exe"
 }
-Write-Output "Found: `"$PATH`"`n"
+Write-Output "Working Directory: `"$PATH`"`n"
 
 # find and close mediadownloader
 $Process = Get-Process -Name "MediaDownloader" -ErrorAction SilentlyContinue
@@ -48,4 +48,7 @@ Remove-File -File $PATH
 Write-Output "Downloading `"$PATH`""
 Invoke-WebRequest -Uri "https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader.exe" -OutFile $PATH
 
-Start-Process -FilePath $PATH
+if ($PATH -eq "MediaDownloader.exe")
+{
+    Start-Process -FilePath $PATH
+}
