@@ -78,10 +78,11 @@ namespace MediaDownloader
 
             // update check
             var newVersionAvailable = CheckForNewUpdate(VERSION_INTERNAL);
-            if (newVersionAvailable.Item1 && CONFIG.NOTIFICATIONS_ENABLE)
+            if (newVersionAvailable.Item1 && CONFIG.NOTIFICATIONS_ENABLE && !VERSION_INTERNAL.Contains("dev"))
             {
                 VERSION_REMOTE = newVersionAvailable.Item2;
                 NotificationPictureBox.Visible = true;
+                NotificationLabel.Visible = true;
             }
 
             #region loadTooltips
@@ -89,6 +90,7 @@ namespace MediaDownloader
             string[] tooltipMap = {
                 "BannerPicture", "MediaDownloader by o7q",
                 "NotificationPictureBox", "Update available",
+                "NotificationLabel", "Update available",
                 "VersionLabel", "Version " + VERSION,
 
                 "MinimizeButton", "Minimize",
@@ -141,7 +143,6 @@ namespace MediaDownloader
                 "QueueAddButton", "Add an item to the queue",
                 "QueueRemoveButton", "Remove the selected item from the queue",
                 "DownloadAllButton", "Download all items in the queue",
-                "QueueProgressBar", "Queue progress bar",
 
                 "HistoryListBox", "List of previous downloads",
                 "HistoryLoadButton", "Load the config from the selected item",
@@ -180,7 +181,18 @@ namespace MediaDownloader
                 return;
             }
 
-            if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null)
+            bool containsTrustedUrl = CONFIG.TRUSTED_URLS_ENABLE ? false : true;
+            if (currentQueueItem.URL != null && CONFIG.TRUSTED_URLS_ENABLE)
+            {
+                string[] trustedUrls = CONFIG.TRUSTED_URLS.Split(',');
+                for (int i = 0; i < trustedUrls.Length; i++)
+                {
+                    if (currentQueueItem.URL.IndexOf(trustedUrls[i], StringComparison.OrdinalIgnoreCase) >= 0)
+                        containsTrustedUrl = true;
+                }
+            }
+
+            if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null || !containsTrustedUrl)
                 return;
 
             Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton));
@@ -188,10 +200,15 @@ namespace MediaDownloader
 
         private void DownloadAllButton_Click(object sender, EventArgs e)
         {
-            if (IS_DOWNLOADING)
+            if (ModifierKeys == Keys.Control || ModifierKeys == Keys.Shift)
+            {
+                IS_DOWNLOADING = false;
+                ChangeDownloadButtonColors(false, DownloadButton, DownloadAllButton);
                 return;
+            }
 
-            QueueProgressBar.Value = 0;
+            if (IS_DOWNLOADING || QueueListBox.Items.Count == 0)
+                return;
 
             string[] queueList = new string[QueueListBox.Items.Count];
             int queueIndex = 0;
@@ -201,7 +218,7 @@ namespace MediaDownloader
                 queueIndex++;
             }
 
-            Task.Run(() => StartDownloadQueue(queueList, DownloadButton, DownloadAllButton, QueueProgressBar));
+            Task.Run(() => StartDownloadQueue(queueList, DownloadButton, DownloadAllButton, QueueProgressBarPanel, QueueProgressLabel));
         }
 
         private void QueueAddButton_Click(object sender, EventArgs e)
@@ -855,16 +872,23 @@ namespace MediaDownloader
             MenuExpandButton.Size = new Size(29, 102);
             MenuExpandButton.Text = "<<";
 
+            QueueLabel.Visible = true;
+            QueueDecorationPanel.Visible = true;
+
             QueueListBox.Visible = true;
-            QueueProgressBar.Visible = true;
 
             DownloadAllButton.Visible = true;
+
+            QueueProgressLabel.Visible = true;
+            QueueProgressBarPanel.Visible = true;
+            QueueProgressPanel.Visible = true;
+            QueueProgressDecorationPanel.Visible = true;
 
             QueueAddButton.Visible = true;
             QueueRemoveButton.Visible = true;
 
-            QueueLabel.Visible = true;
-            QueueDecorationPanel.Visible = true;
+            HistoryLabel.Visible = true;
+            HistoryDecorationPanel.Visible = true;
 
             HistoryListBox.Visible = true;
 
@@ -875,9 +899,6 @@ namespace MediaDownloader
             HistoryLoadButton.Visible = true;
             HistoryRefreshButton.Visible = true;
             HistoryRemoveButton.Visible = true;
-
-            HistoryLabel.Visible = true;
-            HistoryDecorationPanel.Visible = true;
 
             Size = new Size(691, 244);
 
@@ -897,16 +918,23 @@ namespace MediaDownloader
             MenuExpandButton.Size = new Size(29, 207);
             MenuExpandButton.Text = ">>";
 
-            QueueListBox.Visible = false;
-            QueueProgressBar.Visible = false;
+            QueueLabel.Visible = false;
+            QueueDecorationPanel.Visible = false;
+
+            QueueListBox.Visible = true;
 
             DownloadAllButton.Visible = false;
+
+            QueueProgressLabel.Visible = false;
+            QueueProgressBarPanel.Visible = false;
+            QueueProgressPanel.Visible = false;
+            QueueProgressDecorationPanel.Visible = false;
 
             QueueAddButton.Visible = false;
             QueueRemoveButton.Visible = false;
 
-            QueueLabel.Visible = false;
-            QueueDecorationPanel.Visible = false;
+            HistoryLabel.Visible = false;
+            HistoryDecorationPanel.Visible = false;
 
             HistoryListBox.Visible = false;
 
@@ -917,9 +945,6 @@ namespace MediaDownloader
             HistoryLoadButton.Visible = false;
             HistoryRefreshButton.Visible = false;
             HistoryRemoveButton.Visible = false;
-
-            HistoryLabel.Visible = false;
-            HistoryDecorationPanel.Visible = false;
 
             Size = new Size(408, 244);
 
@@ -1014,6 +1039,16 @@ namespace MediaDownloader
         }
 
         private void NotificationPictureBox_Click(object sender, EventArgs e)
+        {
+            RunUpdateDialog();
+        }
+
+        private void NotificationLabel_Click(object sender, EventArgs e)
+        {
+            RunUpdateDialog();
+        }
+
+        private void RunUpdateDialog()
         {
             string changelog = ReadRemoteResource("https://raw.githubusercontent.com/o7q/MediaDownloader/main/remote/changelog");
 

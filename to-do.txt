@@ -1,2 +1,1 @@
-- Add a menu to customize the config
-- Improve the progress display
+- Add a settings menu

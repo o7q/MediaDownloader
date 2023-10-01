@@ -34,8 +34,10 @@
             this.CloseButton = new System.Windows.Forms.Button();
             this.BottomBarPanel = new System.Windows.Forms.Panel();
             this.OkButton = new System.Windows.Forms.Button();
+            this.BannerPicture = new System.Windows.Forms.PictureBox();
             this.TitlebarPanel.SuspendLayout();
             this.BottomBarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // MessageLabel
@@ -52,6 +54,7 @@
             // TitlebarPanel
             // 
             this.TitlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.TitlebarPanel.Controls.Add(this.BannerPicture);
             this.TitlebarPanel.Controls.Add(this.CloseButton);
             this.TitlebarPanel.Location = new System.Drawing.Point(0, 0);
             this.TitlebarPanel.Name = "TitlebarPanel";
@@ -98,6 +101,18 @@
             this.OkButton.UseVisualStyleBackColor = false;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
+            // BannerPicture
+            // 
+            this.BannerPicture.BackColor = System.Drawing.Color.Transparent;
+            this.BannerPicture.Image = global::MediaDownloader.Properties.Resources.banner_hq;
+            this.BannerPicture.Location = new System.Drawing.Point(0, 0);
+            this.BannerPicture.Name = "BannerPicture";
+            this.BannerPicture.Size = new System.Drawing.Size(112, 22);
+            this.BannerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BannerPicture.TabIndex = 1;
+            this.BannerPicture.TabStop = false;
+            this.BannerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BannerPicture_MouseDown);
+            // 
             // CustomMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,6 +128,7 @@
             this.Load += new System.EventHandler(this.CustomMessageBox_Load);
             this.TitlebarPanel.ResumeLayout(false);
             this.BottomBarPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +141,6 @@
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Panel BottomBarPanel;
         private System.Windows.Forms.Button OkButton;
+        private System.Windows.Forms.PictureBox BannerPicture;
     }
 }

@@ -62,8 +62,9 @@ namespace MediaDownloader
                 CONFIG = ReadConfig("MediaDownloader\\config\\config.cfg");
             else
             {
-                CONFIG.DATA_PACKING_ENABLE = true;
                 CONFIG.NOTIFICATIONS_ENABLE = true;
+                CONFIG.DATA_PACKING_ENABLE = true;
+                CONFIG.TRUSTED_URLS = "youtube.com,youtu.be,twitter.com,instagram.com";
             }
 
             if (File.Exists("MediaDownloader\\config\\queue.pack") || Directory.Exists("MediaDownloader\\config\\queue"))

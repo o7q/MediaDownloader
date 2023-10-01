@@ -33,11 +33,13 @@
             this.UrlTextBox = new System.Windows.Forms.TextBox();
             this.UrlLabel = new System.Windows.Forms.Label();
             this.TitlebarPanel = new System.Windows.Forms.Panel();
+            this.NotificationLabel = new System.Windows.Forms.Label();
             this.NotificationPictureBox = new System.Windows.Forms.PictureBox();
             this.BannerPicture = new System.Windows.Forms.PictureBox();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.MinimizeButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.QueueProgressLabel = new System.Windows.Forms.Label();
             this.OutputFormatComboBox = new System.Windows.Forms.ComboBox();
             this.OutputFormatLabel = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
@@ -93,7 +95,6 @@
             this.CustomArgumentsPanel = new System.Windows.Forms.Panel();
             this.MenuExpandButton = new System.Windows.Forms.Button();
             this.QueueLabel = new System.Windows.Forms.Label();
-            this.QueueProgressBar = new System.Windows.Forms.ProgressBar();
             this.UrlDecorationPanel = new System.Windows.Forms.Panel();
             this.NameDecorationPanel = new System.Windows.Forms.Panel();
             this.FormatDecorationPanel = new System.Windows.Forms.Panel();
@@ -104,10 +105,7 @@
             this.HistoryRefreshButton = new System.Windows.Forms.Button();
             this.HistoryLabel = new System.Windows.Forms.Label();
             this.HistoryDecorationPanel = new System.Windows.Forms.Panel();
-            this.HistoryPanel = new System.Windows.Forms.Panel();
-            this.HistoryCheckBox = new System.Windows.Forms.CheckBox();
             this.HistoryLoadButton = new System.Windows.Forms.Button();
-            this.HistoryDecoration2Panel = new System.Windows.Forms.Panel();
             this.OutputOpenLocationButton = new System.Windows.Forms.Button();
             this.OutputNameAutoCheckBox = new System.Windows.Forms.CheckBox();
             this.NameOptionsDecorationPanel = new System.Windows.Forms.Panel();
@@ -116,6 +114,12 @@
             this.OutputPlaylistCheckBox = new System.Windows.Forms.CheckBox();
             this.PlaylistDecorationPanel = new System.Windows.Forms.Panel();
             this.PlaylistPanel = new System.Windows.Forms.Panel();
+            this.QueueProgressBarPanel = new System.Windows.Forms.Panel();
+            this.QueueProgressDecorationPanel = new System.Windows.Forms.Panel();
+            this.QueueProgressPanel = new System.Windows.Forms.Panel();
+            this.HistoryPanel = new System.Windows.Forms.Panel();
+            this.HistoryCheckBox = new System.Windows.Forms.CheckBox();
+            this.HistoryDecoration2Panel = new System.Windows.Forms.Panel();
             this.TitlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
@@ -129,12 +133,14 @@
             this.OutputOptionsDecorationPanel.SuspendLayout();
             this.CustomArgumentsDecorationPanel.SuspendLayout();
             this.CustomArgumentsPanel.SuspendLayout();
-            this.HistoryPanel.SuspendLayout();
-            this.HistoryDecoration2Panel.SuspendLayout();
             this.NameOptionsDecorationPanel.SuspendLayout();
             this.NameOptionsPanel.SuspendLayout();
             this.PlaylistDecorationPanel.SuspendLayout();
             this.PlaylistPanel.SuspendLayout();
+            this.QueueProgressDecorationPanel.SuspendLayout();
+            this.QueueProgressPanel.SuspendLayout();
+            this.HistoryPanel.SuspendLayout();
+            this.HistoryDecoration2Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // UrlTextBox
@@ -164,6 +170,7 @@
             // TitlebarPanel
             // 
             this.TitlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TitlebarPanel.Controls.Add(this.NotificationLabel);
             this.TitlebarPanel.Controls.Add(this.NotificationPictureBox);
             this.TitlebarPanel.Controls.Add(this.BannerPicture);
             this.TitlebarPanel.Controls.Add(this.VersionLabel);
@@ -175,13 +182,27 @@
             this.TitlebarPanel.TabIndex = 0;
             this.TitlebarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitlebarPanel_MouseDown);
             // 
+            // NotificationLabel
+            // 
+            this.NotificationLabel.AutoSize = true;
+            this.NotificationLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NotificationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NotificationLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(173)))), ((int)(((byte)(0)))));
+            this.NotificationLabel.Location = new System.Drawing.Point(179, 12);
+            this.NotificationLabel.Name = "NotificationLabel";
+            this.NotificationLabel.Size = new System.Drawing.Size(76, 12);
+            this.NotificationLabel.TabIndex = 0;
+            this.NotificationLabel.Text = "Update Available";
+            this.NotificationLabel.Visible = false;
+            this.NotificationLabel.Click += new System.EventHandler(this.NotificationLabel_Click);
+            // 
             // NotificationPictureBox
             // 
             this.NotificationPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NotificationPictureBox.Image = global::MediaDownloader.Properties.Resources.notification;
             this.NotificationPictureBox.Location = new System.Drawing.Point(162, 9);
             this.NotificationPictureBox.Name = "NotificationPictureBox";
-            this.NotificationPictureBox.Size = new System.Drawing.Size(18, 18);
+            this.NotificationPictureBox.Size = new System.Drawing.Size(17, 17);
             this.NotificationPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NotificationPictureBox.TabIndex = 2;
             this.NotificationPictureBox.TabStop = false;
@@ -240,6 +261,18 @@
             this.CloseButton.Text = "❌";
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // QueueProgressLabel
+            // 
+            this.QueueProgressLabel.AutoSize = true;
+            this.QueueProgressLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.QueueProgressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QueueProgressLabel.ForeColor = System.Drawing.Color.MediumPurple;
+            this.QueueProgressLabel.Location = new System.Drawing.Point(0, 0);
+            this.QueueProgressLabel.Name = "QueueProgressLabel";
+            this.QueueProgressLabel.Size = new System.Drawing.Size(100, 12);
+            this.QueueProgressLabel.TabIndex = 0;
+            this.QueueProgressLabel.Text = "0/0  |  0.00%  |  00:00:00";
             // 
             // OutputFormatComboBox
             // 
@@ -955,15 +988,6 @@
             this.QueueLabel.TabIndex = 0;
             this.QueueLabel.Text = "Queue";
             // 
-            // QueueProgressBar
-            // 
-            this.QueueProgressBar.Location = new System.Drawing.Point(379, 219);
-            this.QueueProgressBar.Maximum = 1;
-            this.QueueProgressBar.Name = "QueueProgressBar";
-            this.QueueProgressBar.Size = new System.Drawing.Size(127, 18);
-            this.QueueProgressBar.Step = 0;
-            this.QueueProgressBar.TabIndex = 0;
-            // 
             // UrlDecorationPanel
             // 
             this.UrlDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
@@ -1068,27 +1092,6 @@
             this.HistoryDecorationPanel.Size = new System.Drawing.Size(156, 2);
             this.HistoryDecorationPanel.TabIndex = 0;
             // 
-            // HistoryPanel
-            // 
-            this.HistoryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.HistoryPanel.Controls.Add(this.HistoryCheckBox);
-            this.HistoryPanel.Location = new System.Drawing.Point(1, 1);
-            this.HistoryPanel.Name = "HistoryPanel";
-            this.HistoryPanel.Size = new System.Drawing.Size(125, 20);
-            this.HistoryPanel.TabIndex = 38;
-            // 
-            // HistoryCheckBox
-            // 
-            this.HistoryCheckBox.AutoSize = true;
-            this.HistoryCheckBox.ForeColor = System.Drawing.Color.Orchid;
-            this.HistoryCheckBox.Location = new System.Drawing.Point(4, 2);
-            this.HistoryCheckBox.Name = "HistoryCheckBox";
-            this.HistoryCheckBox.Size = new System.Drawing.Size(94, 17);
-            this.HistoryCheckBox.TabIndex = 38;
-            this.HistoryCheckBox.Text = "Enable History";
-            this.HistoryCheckBox.UseVisualStyleBackColor = true;
-            this.HistoryCheckBox.CheckedChanged += new System.EventHandler(this.HistoryCheckBox_CheckedChanged);
-            // 
             // HistoryLoadButton
             // 
             this.HistoryLoadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(83)))), ((int)(((byte)(51)))));
@@ -1102,15 +1105,6 @@
             this.HistoryLoadButton.Text = "<";
             this.HistoryLoadButton.UseVisualStyleBackColor = false;
             this.HistoryLoadButton.Click += new System.EventHandler(this.HistoryLoadButton_Click);
-            // 
-            // HistoryDecoration2Panel
-            // 
-            this.HistoryDecoration2Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.HistoryDecoration2Panel.Controls.Add(this.HistoryPanel);
-            this.HistoryDecoration2Panel.Location = new System.Drawing.Point(535, 215);
-            this.HistoryDecoration2Panel.Name = "HistoryDecoration2Panel";
-            this.HistoryDecoration2Panel.Size = new System.Drawing.Size(127, 22);
-            this.HistoryDecoration2Panel.TabIndex = 38;
             // 
             // OutputOpenLocationButton
             // 
@@ -1205,6 +1199,63 @@
             this.PlaylistPanel.Size = new System.Drawing.Size(51, 18);
             this.PlaylistPanel.TabIndex = 3;
             // 
+            // QueueProgressBarPanel
+            // 
+            this.QueueProgressBarPanel.BackColor = System.Drawing.Color.MediumPurple;
+            this.QueueProgressBarPanel.Location = new System.Drawing.Point(0, 12);
+            this.QueueProgressBarPanel.Name = "QueueProgressBarPanel";
+            this.QueueProgressBarPanel.Size = new System.Drawing.Size(125, 4);
+            this.QueueProgressBarPanel.TabIndex = 0;
+            // 
+            // QueueProgressDecorationPanel
+            // 
+            this.QueueProgressDecorationPanel.BackColor = System.Drawing.Color.MediumPurple;
+            this.QueueProgressDecorationPanel.Controls.Add(this.QueueProgressPanel);
+            this.QueueProgressDecorationPanel.Location = new System.Drawing.Point(379, 219);
+            this.QueueProgressDecorationPanel.Name = "QueueProgressDecorationPanel";
+            this.QueueProgressDecorationPanel.Size = new System.Drawing.Size(127, 18);
+            this.QueueProgressDecorationPanel.TabIndex = 0;
+            // 
+            // QueueProgressPanel
+            // 
+            this.QueueProgressPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.QueueProgressPanel.Controls.Add(this.QueueProgressLabel);
+            this.QueueProgressPanel.Controls.Add(this.QueueProgressBarPanel);
+            this.QueueProgressPanel.Location = new System.Drawing.Point(1, 1);
+            this.QueueProgressPanel.Name = "QueueProgressPanel";
+            this.QueueProgressPanel.Size = new System.Drawing.Size(125, 16);
+            this.QueueProgressPanel.TabIndex = 0;
+            // 
+            // HistoryPanel
+            // 
+            this.HistoryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.HistoryPanel.Controls.Add(this.HistoryCheckBox);
+            this.HistoryPanel.Location = new System.Drawing.Point(1, 1);
+            this.HistoryPanel.Name = "HistoryPanel";
+            this.HistoryPanel.Size = new System.Drawing.Size(125, 20);
+            this.HistoryPanel.TabIndex = 38;
+            // 
+            // HistoryCheckBox
+            // 
+            this.HistoryCheckBox.AutoSize = true;
+            this.HistoryCheckBox.ForeColor = System.Drawing.Color.Orchid;
+            this.HistoryCheckBox.Location = new System.Drawing.Point(4, 2);
+            this.HistoryCheckBox.Name = "HistoryCheckBox";
+            this.HistoryCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.HistoryCheckBox.TabIndex = 38;
+            this.HistoryCheckBox.Text = "Enable History";
+            this.HistoryCheckBox.UseVisualStyleBackColor = true;
+            this.HistoryCheckBox.CheckedChanged += new System.EventHandler(this.HistoryCheckBox_CheckedChanged);
+            // 
+            // HistoryDecoration2Panel
+            // 
+            this.HistoryDecoration2Panel.BackColor = System.Drawing.Color.Violet;
+            this.HistoryDecoration2Panel.Controls.Add(this.HistoryPanel);
+            this.HistoryDecoration2Panel.Location = new System.Drawing.Point(535, 215);
+            this.HistoryDecoration2Panel.Name = "HistoryDecoration2Panel";
+            this.HistoryDecoration2Panel.Size = new System.Drawing.Size(127, 22);
+            this.HistoryDecoration2Panel.TabIndex = 38;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1213,6 +1264,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(691, 244);
+            this.Controls.Add(this.QueueProgressDecorationPanel);
             this.Controls.Add(this.PlaylistDecorationPanel);
             this.Controls.Add(this.ResetSettingsButton);
             this.Controls.Add(this.NameOptionsDecorationPanel);
@@ -1227,7 +1279,6 @@
             this.Controls.Add(this.MoreOptionsDecorationPanel);
             this.Controls.Add(this.FormatDecorationPanel);
             this.Controls.Add(this.NameDecorationPanel);
-            this.Controls.Add(this.QueueProgressBar);
             this.Controls.Add(this.UrlDecorationPanel);
             this.Controls.Add(this.QueueLabel);
             this.Controls.Add(this.MenuExpandButton);
@@ -1279,15 +1330,18 @@
             this.CustomArgumentsDecorationPanel.ResumeLayout(false);
             this.CustomArgumentsPanel.ResumeLayout(false);
             this.CustomArgumentsPanel.PerformLayout();
-            this.HistoryPanel.ResumeLayout(false);
-            this.HistoryPanel.PerformLayout();
-            this.HistoryDecoration2Panel.ResumeLayout(false);
             this.NameOptionsDecorationPanel.ResumeLayout(false);
             this.NameOptionsPanel.ResumeLayout(false);
             this.NameOptionsPanel.PerformLayout();
             this.PlaylistDecorationPanel.ResumeLayout(false);
             this.PlaylistPanel.ResumeLayout(false);
             this.PlaylistPanel.PerformLayout();
+            this.QueueProgressDecorationPanel.ResumeLayout(false);
+            this.QueueProgressPanel.ResumeLayout(false);
+            this.QueueProgressPanel.PerformLayout();
+            this.HistoryPanel.ResumeLayout(false);
+            this.HistoryPanel.PerformLayout();
+            this.HistoryDecoration2Panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1353,7 +1407,6 @@
         private System.Windows.Forms.Panel CustomArgumentsPanel;
         private System.Windows.Forms.Button MenuExpandButton;
         private System.Windows.Forms.Label QueueLabel;
-        private System.Windows.Forms.ProgressBar QueueProgressBar;
         private System.Windows.Forms.Panel UrlDecorationPanel;
         private System.Windows.Forms.Panel NameDecorationPanel;
         private System.Windows.Forms.Panel FormatDecorationPanel;
@@ -1364,10 +1417,7 @@
         private System.Windows.Forms.Button HistoryRefreshButton;
         private System.Windows.Forms.Label HistoryLabel;
         private System.Windows.Forms.Panel HistoryDecorationPanel;
-        private System.Windows.Forms.Panel HistoryPanel;
         private System.Windows.Forms.Button HistoryLoadButton;
-        private System.Windows.Forms.Panel HistoryDecoration2Panel;
-        private System.Windows.Forms.CheckBox HistoryCheckBox;
         private System.Windows.Forms.CheckBox OutputTimeframeTrimToEnd;
         private System.Windows.Forms.Label TimeframeRightArrowLabel;
         private System.Windows.Forms.Label TimeframeLeftArrowLabel;
@@ -1381,5 +1431,13 @@
         private System.Windows.Forms.Panel PlaylistDecorationPanel;
         private System.Windows.Forms.Panel PlaylistPanel;
         private System.Windows.Forms.PictureBox NotificationPictureBox;
+        private System.Windows.Forms.Label QueueProgressLabel;
+        private System.Windows.Forms.Label NotificationLabel;
+        private System.Windows.Forms.Panel QueueProgressBarPanel;
+        private System.Windows.Forms.Panel QueueProgressDecorationPanel;
+        private System.Windows.Forms.Panel QueueProgressPanel;
+        private System.Windows.Forms.Panel HistoryPanel;
+        private System.Windows.Forms.CheckBox HistoryCheckBox;
+        private System.Windows.Forms.Panel HistoryDecoration2Panel;
     }
 }

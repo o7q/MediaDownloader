@@ -1,6 +1,11 @@
-~
+~ v4.3.0.0
+- Improved the progress bar for the queue system
+- Added a config option to allow only specified urls to be downloaded from
 - Double-clicking the url textbox now navigates to the current url in a browser
-- Improved the updater
+- Fixed minor bugs
+- MediaDownloader Updater v1.1.0
+	- Made it run inside a shell window instead of a powershell windows
+	- Made it work as a standalone updater
 
 ~ v4.2.3.0
 - Fixed playlist downloader not working with named folders (I broke it for the 2nd time, I swear it's fixed now :) )

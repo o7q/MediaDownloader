@@ -63,6 +63,8 @@ namespace MediaDownloader.Media.Downloaders
                 if (CONFIG.HISTORY_SAVE_INDEX == 0)
                     CONFIG.HISTORY_SAVE_INDEX = 1;
 
+                queueItem.OUTPUT_NAME_AUTO_ENABLE = false;
+
                 WriteQueueItem(queueItem, "MediaDownloader\\config\\history_temp\\(" + CONFIG.HISTORY_SAVE_INDEX + ") " + (queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null ? "unnamed" : queueItem.OUTPUT_NAME) + ".mdq");
                 CONFIG.HISTORY_SAVE_INDEX++;
             }
