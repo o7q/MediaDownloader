@@ -1,1 +1,2 @@
 - Add a settings menu
+- Make the auto checkbox stay checked
