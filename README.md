@@ -5,7 +5,7 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff)
 
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader.exe)
-### Welcome! MediaDownloader is a simple, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.
+### Welcome! MediaDownloader is a lightweight, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.
 
 ---
 
