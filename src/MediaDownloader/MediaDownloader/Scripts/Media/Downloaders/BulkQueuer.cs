@@ -19,7 +19,7 @@ namespace MediaDownloader.Media.Downloaders
 
                 progressLabel.Invoke((MethodInvoker)delegate
                 {
-                    progressLabel.Text = "1/" + queueList.Length + "  |  0.00%  |  00:00:00";
+                    progressLabel.Text = "0/" + queueList.Length + "  |  0.00%  |  00:00:00";
                 });
             }
             catch { }
