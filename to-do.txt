@@ -1,2 +1,3 @@
+- Improve the history storage system
 - Add a settings menu
 - Make the auto checkbox stay checked
