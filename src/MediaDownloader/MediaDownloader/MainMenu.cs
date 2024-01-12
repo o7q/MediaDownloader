@@ -1010,8 +1010,8 @@ namespace MediaDownloader
             WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\latest.mdq");
             WriteConfig(CONFIG, "MediaDownloader\\config\\config.cfg");
 
-            CompressFolder("MediaDownloader\\config\\queue_temp", "MediaDownloader\\config\\queue.pack");
-            CompressFolder("MediaDownloader\\config\\history_temp", "MediaDownloader\\config\\history.pack");
+            CompressFolder("MediaDownloader\\config\\queue_temp", "MediaDownloader\\config\\queue.zip");
+            CompressFolder("MediaDownloader\\config\\history_temp", "MediaDownloader\\config\\history.zip");
 
             Close();
         }

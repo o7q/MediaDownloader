@@ -63,17 +63,17 @@ namespace MediaDownloader
             else
             {
                 CONFIG.NOTIFICATIONS_ENABLE = true;
-                CONFIG.DATA_PACKING_ENABLE = true;
+                CONFIG.DATA_ZIPPING_ENABLE = true;
                 CONFIG.TRUSTED_URLS = "youtube.com,youtu.be,twitter.com,instagram.com";
             }
 
-            if (File.Exists("MediaDownloader\\config\\queue.pack") || Directory.Exists("MediaDownloader\\config\\queue"))
-                DecompressFolder("MediaDownloader\\config\\queue.pack", "MediaDownloader\\config\\queue_temp");
+            if (File.Exists("MediaDownloader\\config\\queue.zip") || Directory.Exists("MediaDownloader\\config\\queue"))
+                DecompressFolder("MediaDownloader\\config\\queue.zip", "MediaDownloader\\config\\queue_temp");
             else
                 Directory.CreateDirectory("MediaDownloader\\config\\queue_temp");
 
-            if (File.Exists("MediaDownloader\\config\\history.pack") || Directory.Exists("MediaDownloader\\config\\history"))
-                DecompressFolder("MediaDownloader\\config\\history.pack", "MediaDownloader\\config\\history_temp");
+            if (File.Exists("MediaDownloader\\config\\history.zip") || Directory.Exists("MediaDownloader\\config\\history"))
+                DecompressFolder("MediaDownloader\\config\\history.zip", "MediaDownloader\\config\\history_temp");
             else
                 Directory.CreateDirectory("MediaDownloader\\config\\history_temp");
 

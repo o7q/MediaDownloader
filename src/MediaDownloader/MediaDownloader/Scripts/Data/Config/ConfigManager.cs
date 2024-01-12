@@ -36,7 +36,7 @@ namespace MediaDownloader.Data.Config
                     // user config
                     case "HISTORY_ENABLE": config.HISTORY_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "NOTIFICATIONS_ENABLE": config.NOTIFICATIONS_ENABLE = bool.Parse(configSettingPair[1]); break;
-                    case "DATA_PACKING_ENABLE": config.DATA_PACKING_ENABLE = bool.Parse(configSettingPair[1]); break;
+                    case "DATA_ZIPPING_ENABLE": config.DATA_ZIPPING_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS_ENABLE": config.TRUSTED_URLS_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS": config.TRUSTED_URLS = configSettingPair[1]; break;
 

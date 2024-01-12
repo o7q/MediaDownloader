@@ -7,7 +7,7 @@
             // user config
             public bool HISTORY_ENABLE;
             public bool NOTIFICATIONS_ENABLE;
-            public bool DATA_PACKING_ENABLE;
+            public bool DATA_ZIPPING_ENABLE;
             public bool TRUSTED_URLS_ENABLE;
             public string TRUSTED_URLS;
 

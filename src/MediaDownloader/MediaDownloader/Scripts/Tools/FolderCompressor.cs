@@ -8,7 +8,7 @@ namespace MediaDownloader.Tools
     {
         public static void CompressFolder(string folder, string path)
         {
-            if (CONFIG.DATA_PACKING_ENABLE)
+            if (CONFIG.DATA_ZIPPING_ENABLE)
             {
                 ZipFile.CreateFromDirectory(folder, path, CompressionLevel.Fastest, false);
                 Directory.Delete(folder, true);
@@ -19,7 +19,7 @@ namespace MediaDownloader.Tools
 
         public static void DecompressFolder(string name, string path)
         {
-            if ((CONFIG.DATA_PACKING_ENABLE && !Directory.Exists(Path.ChangeExtension(name, ""))) || File.Exists(name))
+            if ((CONFIG.DATA_ZIPPING_ENABLE && !Directory.Exists(Path.ChangeExtension(name, ""))) || File.Exists(name))
             {
                 ZipFile.ExtractToDirectory(name, path);
                 File.Delete(name);
