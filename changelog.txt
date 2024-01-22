@@ -1,3 +1,6 @@
+~
+- Removed "by o7q" on the banners and logos (didn't like having my name on it because yt-dlp did most of the heavy lifting, and I didn't make yt-dlp)
+
 ~ v4.3.0.0
 - Improved the progress bar for the queue system
 - Added a config option to allow only specified urls to be downloaded from

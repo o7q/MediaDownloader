@@ -123,10 +123,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\banner_hq.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\notification.png" />
     <None Include="Resources\background.png" />
-    <None Include="Resources\banner_hq.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
