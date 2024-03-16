@@ -1,7 +1,3 @@
-- Improved the progress bar for the queue system
-- Added a config option to allow only specified urls to be downloaded from
-- Double-clicking the url textbox now navigates to the current url in a browser
-- Fixed minor bugs
-- MediaDownloader Updater v1.1.0
-	- Made it run inside a shell window instead of a powershell windows
-	- Made it work as a standalone updater
+- Greatly improved the bootstrapper, it now has a nice GUI that shows progress
+- Improved the update checker
+- Added some config safety features, this will prevent the config manager from breaking if the user inputs a '¶' or '\n' (these two characters are used as delimiters in the config manager)
