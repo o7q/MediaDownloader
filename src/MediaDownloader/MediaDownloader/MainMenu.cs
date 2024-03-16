@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Diagnostics;
+
 using MediaDownloader.Tools.CustomMessageBox;
 using static MediaDownloader.Global;
 using static MediaDownloader.Data.Config.ConfigManager;
@@ -80,7 +81,7 @@ namespace MediaDownloader
             var newVersionAvailable = CheckForNewUpdate(VERSION_INTERNAL);
             if (newVersionAvailable.Item1 && CONFIG.NOTIFICATIONS_ENABLE && !VERSION_INTERNAL.Contains("dev"))
             {
-                VERSION_REMOTE = newVersionAvailable.Item2;
+                VERSION_INTERNAL_REMOTE = newVersionAvailable.Item2;
                 NotificationPictureBox.Visible = true;
                 NotificationLabel.Visible = true;
             }
@@ -112,7 +113,7 @@ namespace MediaDownloader
                 "OutputTimeframeTrimFromStart", "Trim from the start",
                 "OutputTimeframeTrimToEnd", "Trim to the end",
 
-                "DownloadButton", "Download from the URL using the configured options",
+                "DownloadButton", "Download from the URL using the configured options (ctrl or shift click if it gets stuck)",
 
                 "OutputChangeLocationButton", "Change the folder location for download",
                 "OutputOpenLocationButton", "Open the selected download location in the file explorer",
@@ -120,11 +121,11 @@ namespace MediaDownloader
                 "OutputLocationTextBox", "Currently selected download location",
 
                 "OutputResizeCheckBox", "Enable resizing for video",
-                "OutputResizeWidthTextBox", "Width for video",
-                "OutputResizeHeightTextBox", "Height for video",
+                "OutputResizeWidthTextBox", "Width for video (this is fed into FFmpeg, meaning you can use math expressions - Examples: \"1920/2\" | \"1280*4\"",
+                "OutputResizeHeightTextBox", "Height for video (this is fed into FFmpeg, meaning you can use math expressions - Examples: \"1080/2\" | \"720*4\"",
 
                 "OutputFramerateCheckBox", "Enable framerate change for video",
-                "OutputFramerateTextBox", "Framerate for video",
+                "OutputFramerateTextBox", "Framerate for video (this is fed into FFmpeg, meaning you can use math expressions - Examples: \"60/2\" | \"30*4\"",
 
                 "OutputVideoBitrateTextBox", "Bitrate for video - Examples: \"100M\" | \"900K\" (M = MB/s, K = KB/s)",
                 "OutputAudioBitrateTextBox", "Bitrate for audio - Examples: \"320K\" | \"10K\" (M = MB/s, K = KB/s)",
@@ -1052,7 +1053,7 @@ namespace MediaDownloader
         {
             string changelog = ReadRemoteResource("https://raw.githubusercontent.com/o7q/MediaDownloader/main/remote/changelog");
 
-            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_REMOTE + ")\n\nChangelog:\n" + changelog + "\n\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
+            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_INTERNAL_REMOTE + ")\n\nChangelog:\n" + changelog + "\n\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
             customMessageBox.ShowDialog();
 
             if (customMessageBox.Result == DialogResult.OK)

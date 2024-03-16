@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomMessageBox));
             this.MessageLabel = new System.Windows.Forms.Label();
             this.TitlebarPanel = new System.Windows.Forms.Panel();
-            this.CloseButton = new System.Windows.Forms.Button();
             this.BottomBarPanel = new System.Windows.Forms.Panel();
             this.OkButton = new System.Windows.Forms.Button();
             this.BannerPicture = new System.Windows.Forms.PictureBox();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.TitlebarPanel.SuspendLayout();
             this.BottomBarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
@@ -61,21 +61,6 @@
             this.TitlebarPanel.Size = new System.Drawing.Size(334, 22);
             this.TitlebarPanel.TabIndex = 0;
             this.TitlebarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitlebarPanel_MouseDown);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.CloseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.CloseButton.Location = new System.Drawing.Point(311, 0);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(22, 22);
-            this.CloseButton.TabIndex = 0;
-            this.CloseButton.Text = "X";
-            this.CloseButton.UseVisualStyleBackColor = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // BottomBarPanel
             // 
@@ -113,6 +98,21 @@
             this.BannerPicture.TabStop = false;
             this.BannerPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BannerPicture_MouseDown);
             // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.CloseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.CloseButton.Location = new System.Drawing.Point(311, 0);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(22, 22);
+            this.CloseButton.TabIndex = 0;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // CustomMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,9 +138,9 @@
 
         private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Panel TitlebarPanel;
-        private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Panel BottomBarPanel;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.PictureBox BannerPicture;
+        private System.Windows.Forms.Button CloseButton;
     }
 }

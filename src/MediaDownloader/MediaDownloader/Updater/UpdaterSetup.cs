@@ -1,4 +1,5 @@
 ﻿using System.IO;
+
 using static MediaDownloader.Updater.ResourceReader;
 
 namespace MediaDownloader.Updater

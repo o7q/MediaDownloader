@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
+
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
+using static MediaDownloader.Tools.Strings;
 
 namespace MediaDownloader.Data.QueueItem
 {
@@ -13,7 +16,22 @@ namespace MediaDownloader.Data.QueueItem
             {
                 object value = field.GetValue(queueItem);
                 if (value != null)
-                    sb.Append(field.Name + '¶' + value.ToString());
+                {
+                    // this will convert the string to base64 in the case that the specific config value contains special characters to prevent the config reader from breaking
+                    // such as if the user happened to use a special split character such as '\n' somewhere in the configuration
+                    string keyValue = field.Name;
+                    string configValue = value.ToString();
+                    if (configValue.Contains("\n"))
+                    {
+                        configValue = EncodeString(configValue);
+                        // indicate that the config value is in base64
+                        keyValue += "_base64";
+                    }
+
+                    sb.Append(keyValue);
+                    sb.Append('¶');
+                    sb.Append(configValue);
+                }
                 sb.Append('\n');
             }
             sb.Length--;
@@ -30,7 +48,14 @@ namespace MediaDownloader.Data.QueueItem
 
             for (int i = 0; i < queueItemSetting.Length; i++)
             {
-                string[] queueItemSettingPair = queueItemSetting[i].Split('¶');
+                string[] queueItemSettingPair = queueItemSetting[i].Split(new string[] { "¶" }, 2, StringSplitOptions.None);
+
+                // check if the config key is in base64, if it is, convert it to plaintext and read it
+                if (queueItemSettingPair[0].Contains("_base64"))
+                {
+                    queueItemSettingPair[1] = DecodeString(queueItemSettingPair[1]);
+                    queueItemSettingPair[0] = queueItemSettingPair[0].Replace("_base64", "");
+                }
 
                 switch (queueItemSettingPair[0])
                 {

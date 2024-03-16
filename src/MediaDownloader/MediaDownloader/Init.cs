@@ -2,9 +2,10 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+
 using MediaDownloader.Tools.CustomMessageBox;
+using MediaDownloader.Setup.BootstrapForm;
 using static MediaDownloader.Global;
-using static MediaDownloader.Setup.Bootstrapper;
 using static MediaDownloader.Tools.FolderCompressor;
 using static MediaDownloader.Updater.UpdaterSetup;
 using static MediaDownloader.Data.Config.ConfigManager;
@@ -27,34 +28,30 @@ namespace MediaDownloader
                     return;
             }
 
-            // detect if redists exist
-            bool ytdlpCheck = true;
-            bool ffmpegCheck = true;
-            string redistText = "";
+            bool ytdlpMissing = false;
+            bool ffmpegMissing = false;
+
             if (!File.Exists("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe"))
-            {
-                ytdlpCheck = false;
-                redistText += "\n- yt-dlp";
-            }
-            if (!File.Exists("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe") || !File.Exists("MediaDownloader\\redist\\ffmpeg\\ffprobe.exe"))
-            {
-                ffmpegCheck = false;
-                redistText += "\n- ffmpeg";
-            }
+                ytdlpMissing = true;
 
-            if (!ytdlpCheck || !ffmpegCheck)
+            if (
+                !File.Exists("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe") ||
+                !File.Exists("MediaDownloader\\redist\\ffmpeg\\ffprobe.exe")
+                )
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox("MediaDownloader will download the following redist files:" + redistText + "\n\nPress OK to continue\nPress CLOSE to cancel", "OK", true);
-                customMessageBox.ShowDialog();
-
-                if (customMessageBox.Result == DialogResult.Cancel)
-                    return;
+                ffmpegMissing = true;
             }
 
-            if (!ytdlpCheck)
-                InstallYtdlp();
-            if (!ffmpegCheck)
-                InstallFFmpeg();
+            if (ytdlpMissing || ffmpegMissing)
+            {
+                BootstrapForm bootstrapForm = new BootstrapForm(ytdlpMissing, ffmpegMissing);
+                bootstrapForm.ShowDialog();
+
+                if (bootstrapForm.Result == DialogResult.Cancel)
+                {
+                    Environment.Exit(0);
+                }
+            }
 
             InstallUpdater();
 
@@ -63,7 +60,7 @@ namespace MediaDownloader
             else
             {
                 CONFIG.NOTIFICATIONS_ENABLE = true;
-                CONFIG.DATA_ZIPPING_ENABLE = true;
+                CONFIG.DATA_ZIPPING_ENABLE = false;
                 CONFIG.TRUSTED_URLS = "youtube.com,youtu.be,twitter.com,instagram.com";
             }
 

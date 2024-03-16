@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
+
 using static MediaDownloader.Data.Config.ConfigStructure;
 
 namespace MediaDownloader.Data.Config
@@ -29,7 +31,7 @@ namespace MediaDownloader.Data.Config
 
             for (int i = 0; i < configSetting.Length; i++)
             {
-                string[] configSettingPair = configSetting[i].Split('=');
+                string[] configSettingPair = configSetting[i].Split(new string[] { "=" }, 2, StringSplitOptions.None);
 
                 switch (configSettingPair[0])
                 {

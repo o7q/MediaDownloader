@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Build\MediaDownloader\</OutputPath>
+    <OutputPath>..\..\BUILD\MediaDownloader\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,7 +30,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>Build\MediaDownloader\</OutputPath>
+    <OutputPath>..\..\BUILD\MediaDownloader\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -58,6 +58,12 @@
     <Compile Include="Scripts\Data\QueueItem\QueueItemStructure.cs" />
     <Compile Include="Scripts\Media\Downloaders\BulkQueuer.cs" />
     <Compile Include="Scripts\Media\Downloaders\Queuer.cs" />
+    <Compile Include="Scripts\Setup\BootstrapForm\BootstrapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\Setup\BootstrapForm\BootstrapForm.Designer.cs">
+      <DependentUpon>BootstrapForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\Tools\FolderCompressor.cs" />
     <Compile Include="Scripts\Data\Config\ConfigManager.cs" />
     <Compile Include="Scripts\Media\Converters\Converter.cs" />
@@ -81,6 +87,7 @@
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Tools\Shell.cs" />
+    <Compile Include="Scripts\Tools\Strings.cs" />
     <Compile Include="Updater\UpdateChecker.cs" />
     <Compile Include="Updater\ResourceReader.cs" />
     <Compile Include="Updater\UpdaterSetup.cs" />
@@ -91,6 +98,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Setup\BootstrapForm\BootstrapForm.resx">
+      <DependentUpon>BootstrapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
@@ -123,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\loading_icon.gif" />
+    <None Include="Resources\checkmark.png" />
+    <None Include="Resources\crossmark.png" />
     <None Include="Resources\banner_hq.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\notification.png" />
