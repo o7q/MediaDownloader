@@ -33,6 +33,7 @@
             this.UrlTextBox = new System.Windows.Forms.TextBox();
             this.UrlLabel = new System.Windows.Forms.Label();
             this.TitlebarPanel = new System.Windows.Forms.Panel();
+            this.SettingsButton = new System.Windows.Forms.Button();
             this.NotificationLabel = new System.Windows.Forms.Label();
             this.NotificationPictureBox = new System.Windows.Forms.PictureBox();
             this.BannerPicture = new System.Windows.Forms.PictureBox();
@@ -56,10 +57,7 @@
             this.OutputNameTextBox = new System.Windows.Forms.TextBox();
             this.OutputYtdlpArgumentsLabel = new System.Windows.Forms.Label();
             this.OutputNameLabel = new System.Windows.Forms.Label();
-            this.OutputDisplayCheckBox = new System.Windows.Forms.CheckBox();
-            this.MoreOptionsLabel = new System.Windows.Forms.Label();
-            this.OutputPauseCheckBox = new System.Windows.Forms.CheckBox();
-            this.OutputLabel = new System.Windows.Forms.Label();
+            this.FormatOptionsLabel = new System.Windows.Forms.Label();
             this.OutputVideoBitrateTextBox = new System.Windows.Forms.TextBox();
             this.OutputBitrateLabel = new System.Windows.Forms.Label();
             this.OutputAudioBitrateTextBox = new System.Windows.Forms.TextBox();
@@ -89,22 +87,20 @@
             this.OutputTimeframeStartTextBox = new System.Windows.Forms.TextBox();
             this.TimeframeAndLabel = new System.Windows.Forms.Label();
             this.TimeframeDecorationPanel = new System.Windows.Forms.Panel();
-            this.OutputOptionsPanel = new System.Windows.Forms.Panel();
-            this.OutputOptionsDecorationPanel = new System.Windows.Forms.Panel();
             this.CustomArgumentsDecorationPanel = new System.Windows.Forms.Panel();
             this.CustomArgumentsPanel = new System.Windows.Forms.Panel();
             this.MenuExpandButton = new System.Windows.Forms.Button();
             this.QueueLabel = new System.Windows.Forms.Label();
-            this.UrlDecorationPanel = new System.Windows.Forms.Panel();
-            this.NameDecorationPanel = new System.Windows.Forms.Panel();
+            this.UrlDecorationStripPanel = new System.Windows.Forms.Panel();
+            this.NameDecorationStripPanel = new System.Windows.Forms.Panel();
             this.FormatDecorationPanel = new System.Windows.Forms.Panel();
             this.MoreOptionsDecorationPanel = new System.Windows.Forms.Panel();
-            this.QueueDecorationPanel = new System.Windows.Forms.Panel();
+            this.QueueDecorationStripPanel = new System.Windows.Forms.Panel();
             this.HistoryListBox = new System.Windows.Forms.ListBox();
             this.HistoryRemoveButton = new System.Windows.Forms.Button();
             this.HistoryRefreshButton = new System.Windows.Forms.Button();
             this.HistoryLabel = new System.Windows.Forms.Label();
-            this.HistoryDecorationPanel = new System.Windows.Forms.Panel();
+            this.HistoryDecorationStripPanel = new System.Windows.Forms.Panel();
             this.HistoryLoadButton = new System.Windows.Forms.Button();
             this.OutputOpenLocationButton = new System.Windows.Forms.Button();
             this.OutputNameAutoCheckBox = new System.Windows.Forms.CheckBox();
@@ -117,9 +113,14 @@
             this.QueueProgressBarPanel = new System.Windows.Forms.Panel();
             this.QueueProgressDecorationPanel = new System.Windows.Forms.Panel();
             this.QueueProgressPanel = new System.Windows.Forms.Panel();
-            this.HistoryPanel = new System.Windows.Forms.Panel();
-            this.HistoryCheckBox = new System.Windows.Forms.CheckBox();
-            this.HistoryDecoration2Panel = new System.Windows.Forms.Panel();
+            this.HistoryDecorationPanel = new System.Windows.Forms.Panel();
+            this.QueueDecorationPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CustomArgumentsLabel = new System.Windows.Forms.Label();
+            this.DisplayOutputLogCheckBox = new System.Windows.Forms.CheckBox();
+            this.ConsoleOutputLabel = new System.Windows.Forms.Label();
+            this.PauseOutputLogCheckBox = new System.Windows.Forms.CheckBox();
+            this.ConsoleOutputPanel = new System.Windows.Forms.Panel();
             this.TitlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
@@ -129,8 +130,6 @@
             this.BitrateDecorationPanel.SuspendLayout();
             this.TimeframePanel.SuspendLayout();
             this.TimeframeDecorationPanel.SuspendLayout();
-            this.OutputOptionsPanel.SuspendLayout();
-            this.OutputOptionsDecorationPanel.SuspendLayout();
             this.CustomArgumentsDecorationPanel.SuspendLayout();
             this.CustomArgumentsPanel.SuspendLayout();
             this.NameOptionsDecorationPanel.SuspendLayout();
@@ -139,8 +138,9 @@
             this.PlaylistPanel.SuspendLayout();
             this.QueueProgressDecorationPanel.SuspendLayout();
             this.QueueProgressPanel.SuspendLayout();
-            this.HistoryPanel.SuspendLayout();
-            this.HistoryDecoration2Panel.SuspendLayout();
+            this.HistoryDecorationPanel.SuspendLayout();
+            this.QueueDecorationPanel.SuspendLayout();
+            this.ConsoleOutputPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // UrlTextBox
@@ -151,7 +151,7 @@
             this.UrlTextBox.Location = new System.Drawing.Point(7, 55);
             this.UrlTextBox.Name = "UrlTextBox";
             this.UrlTextBox.Size = new System.Drawing.Size(204, 20);
-            this.UrlTextBox.TabIndex = 2;
+            this.UrlTextBox.TabIndex = 3;
             this.UrlTextBox.TextChanged += new System.EventHandler(this.UrlTextBox_TextChanged);
             this.UrlTextBox.DoubleClick += new System.EventHandler(this.UrlTextBox_DoubleClick);
             // 
@@ -170,6 +170,7 @@
             // TitlebarPanel
             // 
             this.TitlebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TitlebarPanel.Controls.Add(this.SettingsButton);
             this.TitlebarPanel.Controls.Add(this.NotificationLabel);
             this.TitlebarPanel.Controls.Add(this.NotificationPictureBox);
             this.TitlebarPanel.Controls.Add(this.BannerPicture);
@@ -182,13 +183,27 @@
             this.TitlebarPanel.TabIndex = 0;
             this.TitlebarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitlebarPanel_MouseDown);
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.BackgroundImage = global::MediaDownloader.Properties.Resources.settings;
+            this.SettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SettingsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SettingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SettingsButton.Location = new System.Drawing.Point(162, 6);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(22, 22);
+            this.SettingsButton.TabIndex = 0;
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // NotificationLabel
             // 
             this.NotificationLabel.AutoSize = true;
             this.NotificationLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NotificationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NotificationLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(173)))), ((int)(((byte)(0)))));
-            this.NotificationLabel.Location = new System.Drawing.Point(179, 12);
+            this.NotificationLabel.Location = new System.Drawing.Point(202, 11);
             this.NotificationLabel.Name = "NotificationLabel";
             this.NotificationLabel.Size = new System.Drawing.Size(76, 12);
             this.NotificationLabel.TabIndex = 0;
@@ -200,11 +215,11 @@
             // 
             this.NotificationPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NotificationPictureBox.Image = global::MediaDownloader.Properties.Resources.notification;
-            this.NotificationPictureBox.Location = new System.Drawing.Point(162, 9);
+            this.NotificationPictureBox.Location = new System.Drawing.Point(185, 8);
             this.NotificationPictureBox.Name = "NotificationPictureBox";
             this.NotificationPictureBox.Size = new System.Drawing.Size(17, 17);
             this.NotificationPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.NotificationPictureBox.TabIndex = 2;
+            this.NotificationPictureBox.TabIndex = 0;
             this.NotificationPictureBox.TabStop = false;
             this.NotificationPictureBox.Visible = false;
             this.NotificationPictureBox.Click += new System.EventHandler(this.NotificationPictureBox_Click);
@@ -213,7 +228,7 @@
             // 
             this.BannerPicture.BackColor = System.Drawing.Color.Transparent;
             this.BannerPicture.Image = global::MediaDownloader.Properties.Resources.banner_hq;
-            this.BannerPicture.Location = new System.Drawing.Point(0, 1);
+            this.BannerPicture.Location = new System.Drawing.Point(1, 1);
             this.BannerPicture.Name = "BannerPicture";
             this.BannerPicture.Size = new System.Drawing.Size(162, 33);
             this.BannerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -243,7 +258,7 @@
             this.MinimizeButton.Location = new System.Drawing.Point(637, 5);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(25, 25);
-            this.MinimizeButton.TabIndex = 0;
+            this.MinimizeButton.TabIndex = 1;
             this.MinimizeButton.Text = "_";
             this.MinimizeButton.UseVisualStyleBackColor = false;
             this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
@@ -257,7 +272,7 @@
             this.CloseButton.Location = new System.Drawing.Point(661, 5);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(25, 25);
-            this.CloseButton.TabIndex = 1;
+            this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "❌";
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -314,7 +329,7 @@
             this.OutputFormatComboBox.Location = new System.Drawing.Point(7, 93);
             this.OutputFormatComboBox.Name = "OutputFormatComboBox";
             this.OutputFormatComboBox.Size = new System.Drawing.Size(113, 21);
-            this.OutputFormatComboBox.TabIndex = 6;
+            this.OutputFormatComboBox.TabIndex = 7;
             this.OutputFormatComboBox.SelectedIndexChanged += new System.EventHandler(this.OutputFormatComboBox_SelectedIndexChanged);
             // 
             // OutputFormatLabel
@@ -334,15 +349,16 @@
             this.DownloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(68)))), ((int)(((byte)(16)))));
             this.DownloadButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(136)))), ((int)(((byte)(33)))));
             this.DownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DownloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadButton.ForeColor = System.Drawing.Color.LimeGreen;
             this.DownloadButton.Location = new System.Drawing.Point(7, 158);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(134, 39);
-            this.DownloadButton.TabIndex = 13;
+            this.DownloadButton.TabIndex = 14;
             this.DownloadButton.Text = "Download";
             this.DownloadButton.UseVisualStyleBackColor = false;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            this.DownloadButton.MouseHover += new System.EventHandler(this.DownloadButton_MouseHover);
             // 
             // ViewAvailableFormatsButton
             // 
@@ -353,7 +369,7 @@
             this.ViewAvailableFormatsButton.Location = new System.Drawing.Point(120, 93);
             this.ViewAvailableFormatsButton.Name = "ViewAvailableFormatsButton";
             this.ViewAvailableFormatsButton.Size = new System.Drawing.Size(21, 21);
-            this.ViewAvailableFormatsButton.TabIndex = 7;
+            this.ViewAvailableFormatsButton.TabIndex = 8;
             this.ViewAvailableFormatsButton.Text = "?";
             this.ViewAvailableFormatsButton.UseVisualStyleBackColor = false;
             this.ViewAvailableFormatsButton.Click += new System.EventHandler(this.ViewAvailableFormatsButton_Click);
@@ -368,7 +384,7 @@
             this.OutputChangeLocationButton.Location = new System.Drawing.Point(7, 197);
             this.OutputChangeLocationButton.Name = "OutputChangeLocationButton";
             this.OutputChangeLocationButton.Size = new System.Drawing.Size(90, 23);
-            this.OutputChangeLocationButton.TabIndex = 14;
+            this.OutputChangeLocationButton.TabIndex = 15;
             this.OutputChangeLocationButton.Text = "Change Directory";
             this.OutputChangeLocationButton.UseVisualStyleBackColor = false;
             this.OutputChangeLocationButton.Click += new System.EventHandler(this.OutputChangeLocationButton_Click);
@@ -382,7 +398,7 @@
             this.OutputClearLocationButton.Location = new System.Drawing.Point(118, 197);
             this.OutputClearLocationButton.Name = "OutputClearLocationButton";
             this.OutputClearLocationButton.Size = new System.Drawing.Size(23, 23);
-            this.OutputClearLocationButton.TabIndex = 16;
+            this.OutputClearLocationButton.TabIndex = 17;
             this.OutputClearLocationButton.Text = "❌";
             this.OutputClearLocationButton.UseVisualStyleBackColor = false;
             this.OutputClearLocationButton.Click += new System.EventHandler(this.OutputClearLocationButton_Click);
@@ -397,7 +413,7 @@
             this.OutputResizeWidthTextBox.Location = new System.Drawing.Point(22, 18);
             this.OutputResizeWidthTextBox.Name = "OutputResizeWidthTextBox";
             this.OutputResizeWidthTextBox.Size = new System.Drawing.Size(35, 20);
-            this.OutputResizeWidthTextBox.TabIndex = 18;
+            this.OutputResizeWidthTextBox.TabIndex = 19;
             this.OutputResizeWidthTextBox.TextChanged += new System.EventHandler(this.OutputResizeWidthTextBox_TextChanged);
             // 
             // OutputResizeHeightTextBox
@@ -410,7 +426,7 @@
             this.OutputResizeHeightTextBox.Location = new System.Drawing.Point(72, 18);
             this.OutputResizeHeightTextBox.Name = "OutputResizeHeightTextBox";
             this.OutputResizeHeightTextBox.Size = new System.Drawing.Size(35, 20);
-            this.OutputResizeHeightTextBox.TabIndex = 19;
+            this.OutputResizeHeightTextBox.TabIndex = 20;
             this.OutputResizeHeightTextBox.TextChanged += new System.EventHandler(this.OutputResizeHeightTextBox_TextChanged);
             // 
             // OutputWidthLabel
@@ -450,7 +466,7 @@
             this.OutputTimeframeCheckBox.Location = new System.Drawing.Point(5, 3);
             this.OutputTimeframeCheckBox.Name = "OutputTimeframeCheckBox";
             this.OutputTimeframeCheckBox.Size = new System.Drawing.Size(130, 17);
-            this.OutputTimeframeCheckBox.TabIndex = 8;
+            this.OutputTimeframeCheckBox.TabIndex = 9;
             this.OutputTimeframeCheckBox.Text = "Trim Length Between:";
             this.OutputTimeframeCheckBox.UseVisualStyleBackColor = false;
             this.OutputTimeframeCheckBox.CheckedChanged += new System.EventHandler(this.OutputTimeframeCheckBox_CheckedChanged);
@@ -460,11 +476,11 @@
             this.OutputYtdlpArgumentsTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.OutputYtdlpArgumentsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OutputYtdlpArgumentsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputYtdlpArgumentsTextBox.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.OutputYtdlpArgumentsTextBox.ForeColor = System.Drawing.Color.Salmon;
             this.OutputYtdlpArgumentsTextBox.Location = new System.Drawing.Point(5, 14);
             this.OutputYtdlpArgumentsTextBox.Name = "OutputYtdlpArgumentsTextBox";
-            this.OutputYtdlpArgumentsTextBox.Size = new System.Drawing.Size(103, 27);
-            this.OutputYtdlpArgumentsTextBox.TabIndex = 24;
+            this.OutputYtdlpArgumentsTextBox.Size = new System.Drawing.Size(103, 45);
+            this.OutputYtdlpArgumentsTextBox.TabIndex = 25;
             this.OutputYtdlpArgumentsTextBox.Text = "";
             this.OutputYtdlpArgumentsTextBox.TextChanged += new System.EventHandler(this.OutputYtdlpArgumentsTextBox_TextChanged);
             this.OutputYtdlpArgumentsTextBox.DoubleClick += new System.EventHandler(this.OutputYtdlpArgumentsTextBox_DoubleClick);
@@ -477,7 +493,7 @@
             this.OutputNameTextBox.Location = new System.Drawing.Point(264, 55);
             this.OutputNameTextBox.Name = "OutputNameTextBox";
             this.OutputNameTextBox.Size = new System.Drawing.Size(72, 20);
-            this.OutputNameTextBox.TabIndex = 4;
+            this.OutputNameTextBox.TabIndex = 5;
             this.OutputNameTextBox.TextChanged += new System.EventHandler(this.OutputNameTextBox_TextChanged);
             // 
             // OutputYtdlpArgumentsLabel
@@ -485,7 +501,7 @@
             this.OutputYtdlpArgumentsLabel.AutoSize = true;
             this.OutputYtdlpArgumentsLabel.BackColor = System.Drawing.Color.Transparent;
             this.OutputYtdlpArgumentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputYtdlpArgumentsLabel.ForeColor = System.Drawing.Color.SteelBlue;
+            this.OutputYtdlpArgumentsLabel.ForeColor = System.Drawing.Color.Tomato;
             this.OutputYtdlpArgumentsLabel.Location = new System.Drawing.Point(4, 2);
             this.OutputYtdlpArgumentsLabel.Name = "OutputYtdlpArgumentsLabel";
             this.OutputYtdlpArgumentsLabel.Size = new System.Drawing.Size(76, 12);
@@ -503,60 +519,17 @@
             this.OutputNameLabel.TabIndex = 0;
             this.OutputNameLabel.Text = "Name";
             // 
-            // OutputDisplayCheckBox
+            // FormatOptionsLabel
             // 
-            this.OutputDisplayCheckBox.AutoSize = true;
-            this.OutputDisplayCheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.OutputDisplayCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OutputDisplayCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputDisplayCheckBox.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.OutputDisplayCheckBox.Location = new System.Drawing.Point(5, 16);
-            this.OutputDisplayCheckBox.Name = "OutputDisplayCheckBox";
-            this.OutputDisplayCheckBox.Size = new System.Drawing.Size(57, 17);
-            this.OutputDisplayCheckBox.TabIndex = 26;
-            this.OutputDisplayCheckBox.Text = "Display";
-            this.OutputDisplayCheckBox.UseVisualStyleBackColor = false;
-            this.OutputDisplayCheckBox.CheckedChanged += new System.EventHandler(this.OutputDisplayCheckBox_CheckedChanged);
-            // 
-            // MoreOptionsLabel
-            // 
-            this.MoreOptionsLabel.AutoSize = true;
-            this.MoreOptionsLabel.BackColor = System.Drawing.Color.Transparent;
-            this.MoreOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoreOptionsLabel.ForeColor = System.Drawing.Color.Brown;
-            this.MoreOptionsLabel.Location = new System.Drawing.Point(137, 79);
-            this.MoreOptionsLabel.Name = "MoreOptionsLabel";
-            this.MoreOptionsLabel.Size = new System.Drawing.Size(70, 13);
-            this.MoreOptionsLabel.TabIndex = 0;
-            this.MoreOptionsLabel.Text = "More Options";
-            // 
-            // OutputPauseCheckBox
-            // 
-            this.OutputPauseCheckBox.AutoSize = true;
-            this.OutputPauseCheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.OutputPauseCheckBox.Enabled = false;
-            this.OutputPauseCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OutputPauseCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputPauseCheckBox.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.OutputPauseCheckBox.Location = new System.Drawing.Point(62, 16);
-            this.OutputPauseCheckBox.Name = "OutputPauseCheckBox";
-            this.OutputPauseCheckBox.Size = new System.Drawing.Size(53, 17);
-            this.OutputPauseCheckBox.TabIndex = 27;
-            this.OutputPauseCheckBox.Text = "Pause";
-            this.OutputPauseCheckBox.UseVisualStyleBackColor = false;
-            this.OutputPauseCheckBox.CheckedChanged += new System.EventHandler(this.OutputPauseCheckBox_CheckedChanged);
-            // 
-            // OutputLabel
-            // 
-            this.OutputLabel.AutoSize = true;
-            this.OutputLabel.BackColor = System.Drawing.Color.Transparent;
-            this.OutputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputLabel.ForeColor = System.Drawing.Color.DarkCyan;
-            this.OutputLabel.Location = new System.Drawing.Point(1, 3);
-            this.OutputLabel.Name = "OutputLabel";
-            this.OutputLabel.Size = new System.Drawing.Size(99, 13);
-            this.OutputLabel.TabIndex = 0;
-            this.OutputLabel.Text = "Output Log Options";
+            this.FormatOptionsLabel.AutoSize = true;
+            this.FormatOptionsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.FormatOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormatOptionsLabel.ForeColor = System.Drawing.Color.DarkCyan;
+            this.FormatOptionsLabel.Location = new System.Drawing.Point(137, 79);
+            this.FormatOptionsLabel.Name = "FormatOptionsLabel";
+            this.FormatOptionsLabel.Size = new System.Drawing.Size(78, 13);
+            this.FormatOptionsLabel.TabIndex = 0;
+            this.FormatOptionsLabel.Text = "Format Options";
             // 
             // OutputVideoBitrateTextBox
             // 
@@ -566,7 +539,7 @@
             this.OutputVideoBitrateTextBox.Location = new System.Drawing.Point(22, 16);
             this.OutputVideoBitrateTextBox.Name = "OutputVideoBitrateTextBox";
             this.OutputVideoBitrateTextBox.Size = new System.Drawing.Size(35, 20);
-            this.OutputVideoBitrateTextBox.TabIndex = 22;
+            this.OutputVideoBitrateTextBox.TabIndex = 23;
             this.OutputVideoBitrateTextBox.TextChanged += new System.EventHandler(this.OutputVideoBitrateTextBox_TextChanged);
             // 
             // OutputBitrateLabel
@@ -590,7 +563,7 @@
             this.OutputAudioBitrateTextBox.Location = new System.Drawing.Point(72, 16);
             this.OutputAudioBitrateTextBox.Name = "OutputAudioBitrateTextBox";
             this.OutputAudioBitrateTextBox.Size = new System.Drawing.Size(35, 20);
-            this.OutputAudioBitrateTextBox.TabIndex = 23;
+            this.OutputAudioBitrateTextBox.TabIndex = 24;
             this.OutputAudioBitrateTextBox.TextChanged += new System.EventHandler(this.OutputAudioBitrateTextBox_TextChanged);
             // 
             // OutputVideoBitrateLabel
@@ -619,17 +592,17 @@
             // 
             // QueueListBox
             // 
-            this.QueueListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.QueueListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(11)))), ((int)(((byte)(22)))));
             this.QueueListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.QueueListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.QueueListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QueueListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.QueueListBox.FormattingEnabled = true;
             this.QueueListBox.ItemHeight = 16;
-            this.QueueListBox.Location = new System.Drawing.Point(379, 55);
+            this.QueueListBox.Location = new System.Drawing.Point(1, 1);
             this.QueueListBox.Name = "QueueListBox";
-            this.QueueListBox.Size = new System.Drawing.Size(127, 128);
-            this.QueueListBox.TabIndex = 30;
+            this.QueueListBox.Size = new System.Drawing.Size(125, 112);
+            this.QueueListBox.TabIndex = 28;
             this.QueueListBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.QueueListBox_MouseClick);
             this.QueueListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.QueueListBox_DrawItem);
             this.QueueListBox.SelectedIndexChanged += new System.EventHandler(this.QueueListBox_SelectedIndexChanged);
@@ -643,7 +616,7 @@
             this.QueueAddButton.Location = new System.Drawing.Point(506, 55);
             this.QueueAddButton.Name = "QueueAddButton";
             this.QueueAddButton.Size = new System.Drawing.Size(29, 29);
-            this.QueueAddButton.TabIndex = 31;
+            this.QueueAddButton.TabIndex = 29;
             this.QueueAddButton.Text = "+";
             this.QueueAddButton.UseVisualStyleBackColor = false;
             this.QueueAddButton.Click += new System.EventHandler(this.QueueAddButton_Click);
@@ -657,7 +630,7 @@
             this.QueueRemoveButton.Location = new System.Drawing.Point(506, 84);
             this.QueueRemoveButton.Name = "QueueRemoveButton";
             this.QueueRemoveButton.Size = new System.Drawing.Size(29, 29);
-            this.QueueRemoveButton.TabIndex = 32;
+            this.QueueRemoveButton.TabIndex = 30;
             this.QueueRemoveButton.Text = "❌";
             this.QueueRemoveButton.UseVisualStyleBackColor = false;
             this.QueueRemoveButton.Click += new System.EventHandler(this.QueueRemoveButton_Click);
@@ -682,7 +655,7 @@
             this.OutputResizeCheckBox.Location = new System.Drawing.Point(5, 4);
             this.OutputResizeCheckBox.Name = "OutputResizeCheckBox";
             this.OutputResizeCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.OutputResizeCheckBox.TabIndex = 17;
+            this.OutputResizeCheckBox.TabIndex = 18;
             this.OutputResizeCheckBox.Text = "Change Size";
             this.OutputResizeCheckBox.UseVisualStyleBackColor = true;
             this.OutputResizeCheckBox.CheckedChanged += new System.EventHandler(this.OutputResizeCheckBox_CheckedChanged);
@@ -694,7 +667,7 @@
             this.OutputFramerateCheckBox.Location = new System.Drawing.Point(5, 38);
             this.OutputFramerateCheckBox.Name = "OutputFramerateCheckBox";
             this.OutputFramerateCheckBox.Size = new System.Drawing.Size(113, 17);
-            this.OutputFramerateCheckBox.TabIndex = 20;
+            this.OutputFramerateCheckBox.TabIndex = 21;
             this.OutputFramerateCheckBox.Text = "Change Framerate";
             this.OutputFramerateCheckBox.UseVisualStyleBackColor = true;
             this.OutputFramerateCheckBox.CheckedChanged += new System.EventHandler(this.OutputFramerateCheckBox_CheckedChanged);
@@ -709,7 +682,7 @@
             this.OutputFramerateTextBox.Location = new System.Drawing.Point(22, 53);
             this.OutputFramerateTextBox.Name = "OutputFramerateTextBox";
             this.OutputFramerateTextBox.Size = new System.Drawing.Size(35, 20);
-            this.OutputFramerateTextBox.TabIndex = 21;
+            this.OutputFramerateTextBox.TabIndex = 22;
             this.OutputFramerateTextBox.TextChanged += new System.EventHandler(this.OutputFramerateTextBox_TextChanged);
             // 
             // OutputFfmpegArgumentsTextBox
@@ -717,11 +690,11 @@
             this.OutputFfmpegArgumentsTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.OutputFfmpegArgumentsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OutputFfmpegArgumentsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputFfmpegArgumentsTextBox.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OutputFfmpegArgumentsTextBox.Location = new System.Drawing.Point(5, 56);
+            this.OutputFfmpegArgumentsTextBox.ForeColor = System.Drawing.Color.Salmon;
+            this.OutputFfmpegArgumentsTextBox.Location = new System.Drawing.Point(5, 74);
             this.OutputFfmpegArgumentsTextBox.Name = "OutputFfmpegArgumentsTextBox";
-            this.OutputFfmpegArgumentsTextBox.Size = new System.Drawing.Size(103, 27);
-            this.OutputFfmpegArgumentsTextBox.TabIndex = 25;
+            this.OutputFfmpegArgumentsTextBox.Size = new System.Drawing.Size(103, 45);
+            this.OutputFfmpegArgumentsTextBox.TabIndex = 26;
             this.OutputFfmpegArgumentsTextBox.Text = "";
             this.OutputFfmpegArgumentsTextBox.TextChanged += new System.EventHandler(this.OutputFfmpegArgumentsTextBox_TextChanged);
             this.OutputFfmpegArgumentsTextBox.DoubleClick += new System.EventHandler(this.OutputFfmpegArgumentsTextBox_DoubleClick);
@@ -731,8 +704,8 @@
             this.OutputFfmpegArgumentsLabel.AutoSize = true;
             this.OutputFfmpegArgumentsLabel.BackColor = System.Drawing.Color.Transparent;
             this.OutputFfmpegArgumentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputFfmpegArgumentsLabel.ForeColor = System.Drawing.Color.SteelBlue;
-            this.OutputFfmpegArgumentsLabel.Location = new System.Drawing.Point(2, 44);
+            this.OutputFfmpegArgumentsLabel.ForeColor = System.Drawing.Color.Tomato;
+            this.OutputFfmpegArgumentsLabel.Location = new System.Drawing.Point(2, 62);
             this.OutputFfmpegArgumentsLabel.Name = "OutputFfmpegArgumentsLabel";
             this.OutputFfmpegArgumentsLabel.Size = new System.Drawing.Size(88, 12);
             this.OutputFfmpegArgumentsLabel.TabIndex = 0;
@@ -743,13 +716,13 @@
             this.DownloadAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(37)))), ((int)(((byte)(73)))));
             this.DownloadAllButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(74)))), ((int)(((byte)(146)))));
             this.DownloadAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DownloadAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DownloadAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadAllButton.ForeColor = System.Drawing.Color.MediumPurple;
-            this.DownloadAllButton.Location = new System.Drawing.Point(379, 182);
+            this.DownloadAllButton.Location = new System.Drawing.Point(379, 173);
             this.DownloadAllButton.Name = "DownloadAllButton";
-            this.DownloadAllButton.Size = new System.Drawing.Size(127, 37);
-            this.DownloadAllButton.TabIndex = 33;
-            this.DownloadAllButton.Text = "Download All";
+            this.DownloadAllButton.Size = new System.Drawing.Size(127, 46);
+            this.DownloadAllButton.TabIndex = 31;
+            this.DownloadAllButton.Text = "Download Queue";
             this.DownloadAllButton.UseVisualStyleBackColor = false;
             this.DownloadAllButton.Click += new System.EventHandler(this.DownloadAllButton_Click);
             // 
@@ -764,7 +737,7 @@
             this.BitratePanel.Location = new System.Drawing.Point(1, 1);
             this.BitratePanel.Name = "BitratePanel";
             this.BitratePanel.Size = new System.Drawing.Size(121, 45);
-            this.BitratePanel.TabIndex = 22;
+            this.BitratePanel.TabIndex = 23;
             // 
             // VideoOptionsPanel
             // 
@@ -780,7 +753,7 @@
             this.VideoOptionsPanel.Location = new System.Drawing.Point(1, 1);
             this.VideoOptionsPanel.Name = "VideoOptionsPanel";
             this.VideoOptionsPanel.Size = new System.Drawing.Size(121, 77);
-            this.VideoOptionsPanel.TabIndex = 17;
+            this.VideoOptionsPanel.TabIndex = 18;
             // 
             // FramerateLabel
             // 
@@ -796,12 +769,12 @@
             // 
             // VideoOptionsDecorationPanel
             // 
-            this.VideoOptionsDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(143)))), ((int)(((byte)(0)))));
+            this.VideoOptionsDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(143)))), ((int)(((byte)(0)))));
             this.VideoOptionsDecorationPanel.Controls.Add(this.VideoOptionsPanel);
             this.VideoOptionsDecorationPanel.Location = new System.Drawing.Point(141, 93);
             this.VideoOptionsDecorationPanel.Name = "VideoOptionsDecorationPanel";
             this.VideoOptionsDecorationPanel.Size = new System.Drawing.Size(123, 79);
-            this.VideoOptionsDecorationPanel.TabIndex = 17;
+            this.VideoOptionsDecorationPanel.TabIndex = 18;
             // 
             // BitrateDecorationPanel
             // 
@@ -810,7 +783,7 @@
             this.BitrateDecorationPanel.Location = new System.Drawing.Point(141, 172);
             this.BitrateDecorationPanel.Name = "BitrateDecorationPanel";
             this.BitrateDecorationPanel.Size = new System.Drawing.Size(123, 47);
-            this.BitrateDecorationPanel.TabIndex = 22;
+            this.BitrateDecorationPanel.TabIndex = 23;
             // 
             // TimeframePanel
             // 
@@ -826,7 +799,7 @@
             this.TimeframePanel.Location = new System.Drawing.Point(1, 1);
             this.TimeframePanel.Name = "TimeframePanel";
             this.TimeframePanel.Size = new System.Drawing.Size(132, 42);
-            this.TimeframePanel.TabIndex = 8;
+            this.TimeframePanel.TabIndex = 9;
             // 
             // TimeframeLeftArrowLabel
             // 
@@ -847,7 +820,7 @@
             this.OutputTimeframeTrimFromStart.Location = new System.Drawing.Point(41, 17);
             this.OutputTimeframeTrimFromStart.Name = "OutputTimeframeTrimFromStart";
             this.OutputTimeframeTrimFromStart.Size = new System.Drawing.Size(15, 14);
-            this.OutputTimeframeTrimFromStart.TabIndex = 10;
+            this.OutputTimeframeTrimFromStart.TabIndex = 11;
             this.OutputTimeframeTrimFromStart.UseVisualStyleBackColor = true;
             this.OutputTimeframeTrimFromStart.CheckedChanged += new System.EventHandler(this.OutputTimeframeTrimFromStart_CheckedChanged);
             // 
@@ -859,7 +832,7 @@
             this.TimeframeRightArrowLabel.Location = new System.Drawing.Point(115, 30);
             this.TimeframeRightArrowLabel.Name = "TimeframeRightArrowLabel";
             this.TimeframeRightArrowLabel.Size = new System.Drawing.Size(15, 12);
-            this.TimeframeRightArrowLabel.TabIndex = 11;
+            this.TimeframeRightArrowLabel.TabIndex = 0;
             this.TimeframeRightArrowLabel.Text = ">>";
             // 
             // OutputTimeframeTrimToEnd
@@ -870,7 +843,7 @@
             this.OutputTimeframeTrimToEnd.Location = new System.Drawing.Point(115, 17);
             this.OutputTimeframeTrimToEnd.Name = "OutputTimeframeTrimToEnd";
             this.OutputTimeframeTrimToEnd.Size = new System.Drawing.Size(15, 14);
-            this.OutputTimeframeTrimToEnd.TabIndex = 12;
+            this.OutputTimeframeTrimToEnd.TabIndex = 13;
             this.OutputTimeframeTrimToEnd.UseVisualStyleBackColor = true;
             this.OutputTimeframeTrimToEnd.CheckedChanged += new System.EventHandler(this.OutputTimeframeTrimToEnd_CheckedChanged);
             // 
@@ -884,7 +857,7 @@
             this.OutputTimeframeEndTextBox.Location = new System.Drawing.Point(80, 18);
             this.OutputTimeframeEndTextBox.Name = "OutputTimeframeEndTextBox";
             this.OutputTimeframeEndTextBox.Size = new System.Drawing.Size(34, 20);
-            this.OutputTimeframeEndTextBox.TabIndex = 11;
+            this.OutputTimeframeEndTextBox.TabIndex = 12;
             this.OutputTimeframeEndTextBox.TextChanged += new System.EventHandler(this.OutputTimeframeEndTextBox_TextChanged);
             // 
             // OutputTimeframeStartTextBox
@@ -897,7 +870,7 @@
             this.OutputTimeframeStartTextBox.Location = new System.Drawing.Point(6, 18);
             this.OutputTimeframeStartTextBox.Name = "OutputTimeframeStartTextBox";
             this.OutputTimeframeStartTextBox.Size = new System.Drawing.Size(34, 20);
-            this.OutputTimeframeStartTextBox.TabIndex = 9;
+            this.OutputTimeframeStartTextBox.TabIndex = 10;
             this.OutputTimeframeStartTextBox.TextChanged += new System.EventHandler(this.OutputTimeframeStartTextBox_TextChanged);
             // 
             // TimeframeAndLabel
@@ -919,36 +892,16 @@
             this.TimeframeDecorationPanel.Location = new System.Drawing.Point(7, 114);
             this.TimeframeDecorationPanel.Name = "TimeframeDecorationPanel";
             this.TimeframeDecorationPanel.Size = new System.Drawing.Size(134, 44);
-            this.TimeframeDecorationPanel.TabIndex = 8;
-            // 
-            // OutputOptionsPanel
-            // 
-            this.OutputOptionsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.OutputOptionsPanel.Controls.Add(this.OutputDisplayCheckBox);
-            this.OutputOptionsPanel.Controls.Add(this.OutputPauseCheckBox);
-            this.OutputOptionsPanel.Controls.Add(this.OutputLabel);
-            this.OutputOptionsPanel.Location = new System.Drawing.Point(1, 1);
-            this.OutputOptionsPanel.Name = "OutputOptionsPanel";
-            this.OutputOptionsPanel.Size = new System.Drawing.Size(113, 35);
-            this.OutputOptionsPanel.TabIndex = 25;
-            // 
-            // OutputOptionsDecorationPanel
-            // 
-            this.OutputOptionsDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.OutputOptionsDecorationPanel.Controls.Add(this.OutputOptionsPanel);
-            this.OutputOptionsDecorationPanel.Location = new System.Drawing.Point(264, 182);
-            this.OutputOptionsDecorationPanel.Name = "OutputOptionsDecorationPanel";
-            this.OutputOptionsDecorationPanel.Size = new System.Drawing.Size(115, 37);
-            this.OutputOptionsDecorationPanel.TabIndex = 25;
+            this.TimeframeDecorationPanel.TabIndex = 9;
             // 
             // CustomArgumentsDecorationPanel
             // 
-            this.CustomArgumentsDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(86)))), ((int)(((byte)(120)))));
+            this.CustomArgumentsDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(66)))), ((int)(((byte)(47)))));
             this.CustomArgumentsDecorationPanel.Controls.Add(this.CustomArgumentsPanel);
             this.CustomArgumentsDecorationPanel.Location = new System.Drawing.Point(264, 93);
             this.CustomArgumentsDecorationPanel.Name = "CustomArgumentsDecorationPanel";
-            this.CustomArgumentsDecorationPanel.Size = new System.Drawing.Size(115, 89);
-            this.CustomArgumentsDecorationPanel.TabIndex = 24;
+            this.CustomArgumentsDecorationPanel.Size = new System.Drawing.Size(115, 126);
+            this.CustomArgumentsDecorationPanel.TabIndex = 25;
             // 
             // CustomArgumentsPanel
             // 
@@ -959,8 +912,8 @@
             this.CustomArgumentsPanel.Controls.Add(this.OutputFfmpegArgumentsLabel);
             this.CustomArgumentsPanel.Location = new System.Drawing.Point(1, 1);
             this.CustomArgumentsPanel.Name = "CustomArgumentsPanel";
-            this.CustomArgumentsPanel.Size = new System.Drawing.Size(113, 87);
-            this.CustomArgumentsPanel.TabIndex = 24;
+            this.CustomArgumentsPanel.Size = new System.Drawing.Size(113, 124);
+            this.CustomArgumentsPanel.TabIndex = 25;
             // 
             // MenuExpandButton
             // 
@@ -971,7 +924,7 @@
             this.MenuExpandButton.Location = new System.Drawing.Point(662, 142);
             this.MenuExpandButton.Name = "MenuExpandButton";
             this.MenuExpandButton.Size = new System.Drawing.Size(29, 102);
-            this.MenuExpandButton.TabIndex = 29;
+            this.MenuExpandButton.TabIndex = 27;
             this.MenuExpandButton.Text = "<<";
             this.MenuExpandButton.UseVisualStyleBackColor = false;
             this.MenuExpandButton.Click += new System.EventHandler(this.MenuExpandButton_Click);
@@ -988,21 +941,21 @@
             this.QueueLabel.TabIndex = 0;
             this.QueueLabel.Text = "Queue";
             // 
-            // UrlDecorationPanel
+            // UrlDecorationStripPanel
             // 
-            this.UrlDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
-            this.UrlDecorationPanel.Location = new System.Drawing.Point(7, 53);
-            this.UrlDecorationPanel.Name = "UrlDecorationPanel";
-            this.UrlDecorationPanel.Size = new System.Drawing.Size(257, 2);
-            this.UrlDecorationPanel.TabIndex = 0;
+            this.UrlDecorationStripPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(128)))), ((int)(((byte)(75)))));
+            this.UrlDecorationStripPanel.Location = new System.Drawing.Point(7, 53);
+            this.UrlDecorationStripPanel.Name = "UrlDecorationStripPanel";
+            this.UrlDecorationStripPanel.Size = new System.Drawing.Size(257, 2);
+            this.UrlDecorationStripPanel.TabIndex = 0;
             // 
-            // NameDecorationPanel
+            // NameDecorationStripPanel
             // 
-            this.NameDecorationPanel.BackColor = System.Drawing.Color.SeaGreen;
-            this.NameDecorationPanel.Location = new System.Drawing.Point(264, 53);
-            this.NameDecorationPanel.Name = "NameDecorationPanel";
-            this.NameDecorationPanel.Size = new System.Drawing.Size(115, 2);
-            this.NameDecorationPanel.TabIndex = 0;
+            this.NameDecorationStripPanel.BackColor = System.Drawing.Color.SeaGreen;
+            this.NameDecorationStripPanel.Location = new System.Drawing.Point(264, 53);
+            this.NameDecorationStripPanel.Name = "NameDecorationStripPanel";
+            this.NameDecorationStripPanel.Size = new System.Drawing.Size(115, 2);
+            this.NameDecorationStripPanel.TabIndex = 0;
             // 
             // FormatDecorationPanel
             // 
@@ -1014,33 +967,33 @@
             // 
             // MoreOptionsDecorationPanel
             // 
-            this.MoreOptionsDecorationPanel.BackColor = System.Drawing.Color.Brown;
+            this.MoreOptionsDecorationPanel.BackColor = System.Drawing.Color.DarkCyan;
             this.MoreOptionsDecorationPanel.Location = new System.Drawing.Point(141, 91);
             this.MoreOptionsDecorationPanel.Name = "MoreOptionsDecorationPanel";
-            this.MoreOptionsDecorationPanel.Size = new System.Drawing.Size(238, 2);
+            this.MoreOptionsDecorationPanel.Size = new System.Drawing.Size(123, 2);
             this.MoreOptionsDecorationPanel.TabIndex = 0;
             // 
-            // QueueDecorationPanel
+            // QueueDecorationStripPanel
             // 
-            this.QueueDecorationPanel.BackColor = System.Drawing.Color.MediumPurple;
-            this.QueueDecorationPanel.Location = new System.Drawing.Point(379, 53);
-            this.QueueDecorationPanel.Name = "QueueDecorationPanel";
-            this.QueueDecorationPanel.Size = new System.Drawing.Size(156, 2);
-            this.QueueDecorationPanel.TabIndex = 0;
+            this.QueueDecorationStripPanel.BackColor = System.Drawing.Color.MediumPurple;
+            this.QueueDecorationStripPanel.Location = new System.Drawing.Point(379, 53);
+            this.QueueDecorationStripPanel.Name = "QueueDecorationStripPanel";
+            this.QueueDecorationStripPanel.Size = new System.Drawing.Size(156, 2);
+            this.QueueDecorationStripPanel.TabIndex = 0;
             // 
             // HistoryListBox
             // 
-            this.HistoryListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.HistoryListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(13)))), ((int)(((byte)(24)))));
             this.HistoryListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.HistoryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.HistoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HistoryListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.HistoryListBox.FormattingEnabled = true;
             this.HistoryListBox.ItemHeight = 16;
-            this.HistoryListBox.Location = new System.Drawing.Point(535, 55);
+            this.HistoryListBox.Location = new System.Drawing.Point(1, 1);
             this.HistoryListBox.Name = "HistoryListBox";
-            this.HistoryListBox.Size = new System.Drawing.Size(127, 160);
-            this.HistoryListBox.TabIndex = 34;
+            this.HistoryListBox.Size = new System.Drawing.Size(125, 144);
+            this.HistoryListBox.TabIndex = 32;
             this.HistoryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.HistoryListBox_DrawItem);
             this.HistoryListBox.SelectedIndexChanged += new System.EventHandler(this.HistoryListBox_SelectedIndexChanged);
             // 
@@ -1053,7 +1006,7 @@
             this.HistoryRemoveButton.Location = new System.Drawing.Point(662, 113);
             this.HistoryRemoveButton.Name = "HistoryRemoveButton";
             this.HistoryRemoveButton.Size = new System.Drawing.Size(29, 29);
-            this.HistoryRemoveButton.TabIndex = 37;
+            this.HistoryRemoveButton.TabIndex = 35;
             this.HistoryRemoveButton.Text = "❌";
             this.HistoryRemoveButton.UseVisualStyleBackColor = false;
             this.HistoryRemoveButton.Click += new System.EventHandler(this.HistoryRemoveButton_Click);
@@ -1067,7 +1020,7 @@
             this.HistoryRefreshButton.Location = new System.Drawing.Point(662, 84);
             this.HistoryRefreshButton.Name = "HistoryRefreshButton";
             this.HistoryRefreshButton.Size = new System.Drawing.Size(29, 29);
-            this.HistoryRefreshButton.TabIndex = 36;
+            this.HistoryRefreshButton.TabIndex = 34;
             this.HistoryRefreshButton.Text = "↻";
             this.HistoryRefreshButton.UseVisualStyleBackColor = false;
             this.HistoryRefreshButton.Click += new System.EventHandler(this.HistoryRefreshButton_Click);
@@ -1084,13 +1037,13 @@
             this.HistoryLabel.TabIndex = 0;
             this.HistoryLabel.Text = "History";
             // 
-            // HistoryDecorationPanel
+            // HistoryDecorationStripPanel
             // 
-            this.HistoryDecorationPanel.BackColor = System.Drawing.Color.Orchid;
-            this.HistoryDecorationPanel.Location = new System.Drawing.Point(535, 53);
-            this.HistoryDecorationPanel.Name = "HistoryDecorationPanel";
-            this.HistoryDecorationPanel.Size = new System.Drawing.Size(156, 2);
-            this.HistoryDecorationPanel.TabIndex = 0;
+            this.HistoryDecorationStripPanel.BackColor = System.Drawing.Color.Orchid;
+            this.HistoryDecorationStripPanel.Location = new System.Drawing.Point(535, 53);
+            this.HistoryDecorationStripPanel.Name = "HistoryDecorationStripPanel";
+            this.HistoryDecorationStripPanel.Size = new System.Drawing.Size(156, 2);
+            this.HistoryDecorationStripPanel.TabIndex = 0;
             // 
             // HistoryLoadButton
             // 
@@ -1101,7 +1054,7 @@
             this.HistoryLoadButton.Location = new System.Drawing.Point(662, 55);
             this.HistoryLoadButton.Name = "HistoryLoadButton";
             this.HistoryLoadButton.Size = new System.Drawing.Size(29, 29);
-            this.HistoryLoadButton.TabIndex = 35;
+            this.HistoryLoadButton.TabIndex = 33;
             this.HistoryLoadButton.Text = "<";
             this.HistoryLoadButton.UseVisualStyleBackColor = false;
             this.HistoryLoadButton.Click += new System.EventHandler(this.HistoryLoadButton_Click);
@@ -1116,7 +1069,7 @@
             this.OutputOpenLocationButton.Location = new System.Drawing.Point(96, 197);
             this.OutputOpenLocationButton.Name = "OutputOpenLocationButton";
             this.OutputOpenLocationButton.Size = new System.Drawing.Size(23, 23);
-            this.OutputOpenLocationButton.TabIndex = 15;
+            this.OutputOpenLocationButton.TabIndex = 16;
             this.OutputOpenLocationButton.UseVisualStyleBackColor = false;
             this.OutputOpenLocationButton.Click += new System.EventHandler(this.OutputOpenLocationButton_Click);
             // 
@@ -1129,7 +1082,7 @@
             this.OutputNameAutoCheckBox.Location = new System.Drawing.Point(2, 2);
             this.OutputNameAutoCheckBox.Name = "OutputNameAutoCheckBox";
             this.OutputNameAutoCheckBox.Size = new System.Drawing.Size(44, 16);
-            this.OutputNameAutoCheckBox.TabIndex = 5;
+            this.OutputNameAutoCheckBox.TabIndex = 6;
             this.OutputNameAutoCheckBox.Text = "Auto";
             this.OutputNameAutoCheckBox.UseVisualStyleBackColor = false;
             this.OutputNameAutoCheckBox.CheckedChanged += new System.EventHandler(this.OutputNameAutoCheckBox_CheckedChanged);
@@ -1141,7 +1094,7 @@
             this.NameOptionsDecorationPanel.Location = new System.Drawing.Point(336, 55);
             this.NameOptionsDecorationPanel.Name = "NameOptionsDecorationPanel";
             this.NameOptionsDecorationPanel.Size = new System.Drawing.Size(43, 20);
-            this.NameOptionsDecorationPanel.TabIndex = 5;
+            this.NameOptionsDecorationPanel.TabIndex = 0;
             // 
             // NameOptionsPanel
             // 
@@ -1150,7 +1103,7 @@
             this.NameOptionsPanel.Location = new System.Drawing.Point(1, 1);
             this.NameOptionsPanel.Name = "NameOptionsPanel";
             this.NameOptionsPanel.Size = new System.Drawing.Size(41, 18);
-            this.NameOptionsPanel.TabIndex = 5;
+            this.NameOptionsPanel.TabIndex = 0;
             // 
             // ResetSettingsButton
             // 
@@ -1162,7 +1115,7 @@
             this.ResetSettingsButton.Location = new System.Drawing.Point(315, 219);
             this.ResetSettingsButton.Name = "ResetSettingsButton";
             this.ResetSettingsButton.Size = new System.Drawing.Size(64, 18);
-            this.ResetSettingsButton.TabIndex = 28;
+            this.ResetSettingsButton.TabIndex = 0;
             this.ResetSettingsButton.Text = "Reset Settings";
             this.ResetSettingsButton.UseVisualStyleBackColor = false;
             this.ResetSettingsButton.Click += new System.EventHandler(this.ResetSettingsButton_Click);
@@ -1176,7 +1129,7 @@
             this.OutputPlaylistCheckBox.Location = new System.Drawing.Point(2, 2);
             this.OutputPlaylistCheckBox.Name = "OutputPlaylistCheckBox";
             this.OutputPlaylistCheckBox.Size = new System.Drawing.Size(54, 16);
-            this.OutputPlaylistCheckBox.TabIndex = 3;
+            this.OutputPlaylistCheckBox.TabIndex = 4;
             this.OutputPlaylistCheckBox.Text = "Playlist";
             this.OutputPlaylistCheckBox.UseVisualStyleBackColor = false;
             this.OutputPlaylistCheckBox.CheckedChanged += new System.EventHandler(this.OutputPlaylistCheckBox_CheckedChanged);
@@ -1188,7 +1141,7 @@
             this.PlaylistDecorationPanel.Location = new System.Drawing.Point(211, 55);
             this.PlaylistDecorationPanel.Name = "PlaylistDecorationPanel";
             this.PlaylistDecorationPanel.Size = new System.Drawing.Size(53, 20);
-            this.PlaylistDecorationPanel.TabIndex = 39;
+            this.PlaylistDecorationPanel.TabIndex = 0;
             // 
             // PlaylistPanel
             // 
@@ -1197,7 +1150,7 @@
             this.PlaylistPanel.Location = new System.Drawing.Point(1, 1);
             this.PlaylistPanel.Name = "PlaylistPanel";
             this.PlaylistPanel.Size = new System.Drawing.Size(51, 18);
-            this.PlaylistPanel.TabIndex = 3;
+            this.PlaylistPanel.TabIndex = 0;
             // 
             // QueueProgressBarPanel
             // 
@@ -1226,35 +1179,96 @@
             this.QueueProgressPanel.Size = new System.Drawing.Size(125, 16);
             this.QueueProgressPanel.TabIndex = 0;
             // 
-            // HistoryPanel
+            // HistoryDecorationPanel
             // 
-            this.HistoryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.HistoryPanel.Controls.Add(this.HistoryCheckBox);
-            this.HistoryPanel.Location = new System.Drawing.Point(1, 1);
-            this.HistoryPanel.Name = "HistoryPanel";
-            this.HistoryPanel.Size = new System.Drawing.Size(125, 20);
-            this.HistoryPanel.TabIndex = 38;
+            this.HistoryDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(71)))), ((int)(((byte)(131)))));
+            this.HistoryDecorationPanel.Controls.Add(this.HistoryListBox);
+            this.HistoryDecorationPanel.Location = new System.Drawing.Point(535, 55);
+            this.HistoryDecorationPanel.Name = "HistoryDecorationPanel";
+            this.HistoryDecorationPanel.Size = new System.Drawing.Size(127, 150);
+            this.HistoryDecorationPanel.TabIndex = 0;
             // 
-            // HistoryCheckBox
+            // QueueDecorationPanel
             // 
-            this.HistoryCheckBox.AutoSize = true;
-            this.HistoryCheckBox.ForeColor = System.Drawing.Color.Orchid;
-            this.HistoryCheckBox.Location = new System.Drawing.Point(4, 2);
-            this.HistoryCheckBox.Name = "HistoryCheckBox";
-            this.HistoryCheckBox.Size = new System.Drawing.Size(94, 17);
-            this.HistoryCheckBox.TabIndex = 38;
-            this.HistoryCheckBox.Text = "Enable History";
-            this.HistoryCheckBox.UseVisualStyleBackColor = true;
-            this.HistoryCheckBox.CheckedChanged += new System.EventHandler(this.HistoryCheckBox_CheckedChanged);
+            this.QueueDecorationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(62)))), ((int)(((byte)(120)))));
+            this.QueueDecorationPanel.Controls.Add(this.QueueListBox);
+            this.QueueDecorationPanel.Location = new System.Drawing.Point(379, 55);
+            this.QueueDecorationPanel.Name = "QueueDecorationPanel";
+            this.QueueDecorationPanel.Size = new System.Drawing.Size(127, 118);
+            this.QueueDecorationPanel.TabIndex = 0;
             // 
-            // HistoryDecoration2Panel
+            // panel1
             // 
-            this.HistoryDecoration2Panel.BackColor = System.Drawing.Color.Violet;
-            this.HistoryDecoration2Panel.Controls.Add(this.HistoryPanel);
-            this.HistoryDecoration2Panel.Location = new System.Drawing.Point(535, 215);
-            this.HistoryDecoration2Panel.Name = "HistoryDecoration2Panel";
-            this.HistoryDecoration2Panel.Size = new System.Drawing.Size(127, 22);
-            this.HistoryDecoration2Panel.TabIndex = 38;
+            this.panel1.BackColor = System.Drawing.Color.Brown;
+            this.panel1.Location = new System.Drawing.Point(264, 91);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(115, 2);
+            this.panel1.TabIndex = 0;
+            // 
+            // CustomArgumentsLabel
+            // 
+            this.CustomArgumentsLabel.AutoSize = true;
+            this.CustomArgumentsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CustomArgumentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomArgumentsLabel.ForeColor = System.Drawing.Color.Brown;
+            this.CustomArgumentsLabel.Location = new System.Drawing.Point(260, 79);
+            this.CustomArgumentsLabel.Name = "CustomArgumentsLabel";
+            this.CustomArgumentsLabel.Size = new System.Drawing.Size(95, 13);
+            this.CustomArgumentsLabel.TabIndex = 0;
+            this.CustomArgumentsLabel.Text = "Custom Arguments";
+            // 
+            // DisplayOutputLogCheckBox
+            // 
+            this.DisplayOutputLogCheckBox.AutoSize = true;
+            this.DisplayOutputLogCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.DisplayOutputLogCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DisplayOutputLogCheckBox.ForeColor = System.Drawing.Color.Silver;
+            this.DisplayOutputLogCheckBox.Location = new System.Drawing.Point(3, 14);
+            this.DisplayOutputLogCheckBox.Name = "DisplayOutputLogCheckBox";
+            this.DisplayOutputLogCheckBox.Size = new System.Drawing.Size(55, 16);
+            this.DisplayOutputLogCheckBox.TabIndex = 36;
+            this.DisplayOutputLogCheckBox.Text = "Display";
+            this.DisplayOutputLogCheckBox.UseVisualStyleBackColor = false;
+            this.DisplayOutputLogCheckBox.CheckedChanged += new System.EventHandler(this.DisplayOutputLogCheckBox_CheckedChanged);
+            // 
+            // ConsoleOutputLabel
+            // 
+            this.ConsoleOutputLabel.AutoSize = true;
+            this.ConsoleOutputLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ConsoleOutputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleOutputLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.ConsoleOutputLabel.Location = new System.Drawing.Point(0, 1);
+            this.ConsoleOutputLabel.Name = "ConsoleOutputLabel";
+            this.ConsoleOutputLabel.Size = new System.Drawing.Size(80, 13);
+            this.ConsoleOutputLabel.TabIndex = 0;
+            this.ConsoleOutputLabel.Text = "Console Output";
+            // 
+            // PauseOutputLogCheckBox
+            // 
+            this.PauseOutputLogCheckBox.AutoSize = true;
+            this.PauseOutputLogCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.PauseOutputLogCheckBox.Enabled = false;
+            this.PauseOutputLogCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PauseOutputLogCheckBox.ForeColor = System.Drawing.Color.Silver;
+            this.PauseOutputLogCheckBox.Location = new System.Drawing.Point(55, 14);
+            this.PauseOutputLogCheckBox.Name = "PauseOutputLogCheckBox";
+            this.PauseOutputLogCheckBox.Size = new System.Drawing.Size(50, 16);
+            this.PauseOutputLogCheckBox.TabIndex = 37;
+            this.PauseOutputLogCheckBox.Text = "Pause";
+            this.PauseOutputLogCheckBox.UseVisualStyleBackColor = false;
+            this.PauseOutputLogCheckBox.CheckedChanged += new System.EventHandler(this.PauseOutputLogCheckBox_CheckedChanged);
+            // 
+            // ConsoleOutputPanel
+            // 
+            this.ConsoleOutputPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ConsoleOutputPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ConsoleOutputPanel.Controls.Add(this.PauseOutputLogCheckBox);
+            this.ConsoleOutputPanel.Controls.Add(this.ConsoleOutputLabel);
+            this.ConsoleOutputPanel.Controls.Add(this.DisplayOutputLogCheckBox);
+            this.ConsoleOutputPanel.Location = new System.Drawing.Point(535, 205);
+            this.ConsoleOutputPanel.Name = "ConsoleOutputPanel";
+            this.ConsoleOutputPanel.Size = new System.Drawing.Size(127, 32);
+            this.ConsoleOutputPanel.TabIndex = 0;
             // 
             // MainMenu
             // 
@@ -1264,26 +1278,27 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(691, 244);
+            this.Controls.Add(this.ConsoleOutputPanel);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.QueueDecorationPanel);
+            this.Controls.Add(this.HistoryDecorationPanel);
             this.Controls.Add(this.QueueProgressDecorationPanel);
             this.Controls.Add(this.PlaylistDecorationPanel);
             this.Controls.Add(this.ResetSettingsButton);
             this.Controls.Add(this.NameOptionsDecorationPanel);
-            this.Controls.Add(this.HistoryDecoration2Panel);
             this.Controls.Add(this.HistoryLoadButton);
-            this.Controls.Add(this.HistoryDecorationPanel);
+            this.Controls.Add(this.HistoryDecorationStripPanel);
             this.Controls.Add(this.HistoryLabel);
             this.Controls.Add(this.HistoryRefreshButton);
             this.Controls.Add(this.HistoryRemoveButton);
-            this.Controls.Add(this.HistoryListBox);
-            this.Controls.Add(this.QueueDecorationPanel);
+            this.Controls.Add(this.QueueDecorationStripPanel);
             this.Controls.Add(this.MoreOptionsDecorationPanel);
             this.Controls.Add(this.FormatDecorationPanel);
-            this.Controls.Add(this.NameDecorationPanel);
-            this.Controls.Add(this.UrlDecorationPanel);
+            this.Controls.Add(this.NameDecorationStripPanel);
+            this.Controls.Add(this.UrlDecorationStripPanel);
             this.Controls.Add(this.QueueLabel);
             this.Controls.Add(this.MenuExpandButton);
             this.Controls.Add(this.CustomArgumentsDecorationPanel);
-            this.Controls.Add(this.OutputOptionsDecorationPanel);
             this.Controls.Add(this.TimeframeDecorationPanel);
             this.Controls.Add(this.BitrateDecorationPanel);
             this.Controls.Add(this.VideoOptionsDecorationPanel);
@@ -1291,20 +1306,20 @@
             this.Controls.Add(this.OutputLocationTextBox);
             this.Controls.Add(this.QueueRemoveButton);
             this.Controls.Add(this.QueueAddButton);
-            this.Controls.Add(this.QueueListBox);
             this.Controls.Add(this.OutputNameLabel);
             this.Controls.Add(this.OutputNameTextBox);
             this.Controls.Add(this.OutputOpenLocationButton);
             this.Controls.Add(this.OutputClearLocationButton);
             this.Controls.Add(this.OutputChangeLocationButton);
             this.Controls.Add(this.ViewAvailableFormatsButton);
-            this.Controls.Add(this.MoreOptionsLabel);
+            this.Controls.Add(this.FormatOptionsLabel);
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.OutputFormatLabel);
             this.Controls.Add(this.OutputFormatComboBox);
             this.Controls.Add(this.TitlebarPanel);
             this.Controls.Add(this.UrlLabel);
             this.Controls.Add(this.UrlTextBox);
+            this.Controls.Add(this.CustomArgumentsLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1324,9 +1339,6 @@
             this.TimeframePanel.ResumeLayout(false);
             this.TimeframePanel.PerformLayout();
             this.TimeframeDecorationPanel.ResumeLayout(false);
-            this.OutputOptionsPanel.ResumeLayout(false);
-            this.OutputOptionsPanel.PerformLayout();
-            this.OutputOptionsDecorationPanel.ResumeLayout(false);
             this.CustomArgumentsDecorationPanel.ResumeLayout(false);
             this.CustomArgumentsPanel.ResumeLayout(false);
             this.CustomArgumentsPanel.PerformLayout();
@@ -1339,9 +1351,10 @@
             this.QueueProgressDecorationPanel.ResumeLayout(false);
             this.QueueProgressPanel.ResumeLayout(false);
             this.QueueProgressPanel.PerformLayout();
-            this.HistoryPanel.ResumeLayout(false);
-            this.HistoryPanel.PerformLayout();
-            this.HistoryDecoration2Panel.ResumeLayout(false);
+            this.HistoryDecorationPanel.ResumeLayout(false);
+            this.QueueDecorationPanel.ResumeLayout(false);
+            this.ConsoleOutputPanel.ResumeLayout(false);
+            this.ConsoleOutputPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1373,10 +1386,7 @@
         private System.Windows.Forms.TextBox OutputNameTextBox;
         private System.Windows.Forms.Label OutputYtdlpArgumentsLabel;
         private System.Windows.Forms.Label OutputNameLabel;
-        private System.Windows.Forms.CheckBox OutputDisplayCheckBox;
-        private System.Windows.Forms.Label MoreOptionsLabel;
-        private System.Windows.Forms.CheckBox OutputPauseCheckBox;
-        private System.Windows.Forms.Label OutputLabel;
+        private System.Windows.Forms.Label FormatOptionsLabel;
         private System.Windows.Forms.TextBox OutputVideoBitrateTextBox;
         private System.Windows.Forms.Label OutputBitrateLabel;
         private System.Windows.Forms.TextBox OutputAudioBitrateTextBox;
@@ -1401,22 +1411,20 @@
         private System.Windows.Forms.TextBox OutputTimeframeStartTextBox;
         private System.Windows.Forms.TextBox OutputTimeframeEndTextBox;
         private System.Windows.Forms.Panel TimeframeDecorationPanel;
-        private System.Windows.Forms.Panel OutputOptionsPanel;
-        private System.Windows.Forms.Panel OutputOptionsDecorationPanel;
         private System.Windows.Forms.Panel CustomArgumentsDecorationPanel;
         private System.Windows.Forms.Panel CustomArgumentsPanel;
         private System.Windows.Forms.Button MenuExpandButton;
         private System.Windows.Forms.Label QueueLabel;
-        private System.Windows.Forms.Panel UrlDecorationPanel;
-        private System.Windows.Forms.Panel NameDecorationPanel;
+        private System.Windows.Forms.Panel UrlDecorationStripPanel;
+        private System.Windows.Forms.Panel NameDecorationStripPanel;
         private System.Windows.Forms.Panel FormatDecorationPanel;
         private System.Windows.Forms.Panel MoreOptionsDecorationPanel;
-        private System.Windows.Forms.Panel QueueDecorationPanel;
+        private System.Windows.Forms.Panel QueueDecorationStripPanel;
         private System.Windows.Forms.ListBox HistoryListBox;
         private System.Windows.Forms.Button HistoryRemoveButton;
         private System.Windows.Forms.Button HistoryRefreshButton;
         private System.Windows.Forms.Label HistoryLabel;
-        private System.Windows.Forms.Panel HistoryDecorationPanel;
+        private System.Windows.Forms.Panel HistoryDecorationStripPanel;
         private System.Windows.Forms.Button HistoryLoadButton;
         private System.Windows.Forms.CheckBox OutputTimeframeTrimToEnd;
         private System.Windows.Forms.Label TimeframeRightArrowLabel;
@@ -1436,8 +1444,14 @@
         private System.Windows.Forms.Panel QueueProgressBarPanel;
         private System.Windows.Forms.Panel QueueProgressDecorationPanel;
         private System.Windows.Forms.Panel QueueProgressPanel;
-        private System.Windows.Forms.Panel HistoryPanel;
-        private System.Windows.Forms.CheckBox HistoryCheckBox;
-        private System.Windows.Forms.Panel HistoryDecoration2Panel;
+        private System.Windows.Forms.Button SettingsButton;
+        private System.Windows.Forms.Panel HistoryDecorationPanel;
+        private System.Windows.Forms.Panel QueueDecorationPanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label CustomArgumentsLabel;
+        private System.Windows.Forms.CheckBox DisplayOutputLogCheckBox;
+        private System.Windows.Forms.Label ConsoleOutputLabel;
+        private System.Windows.Forms.CheckBox PauseOutputLogCheckBox;
+        private System.Windows.Forms.Panel ConsoleOutputPanel;
     }
 }

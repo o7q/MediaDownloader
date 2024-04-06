@@ -9,36 +9,40 @@ namespace MediaDownloader.Media.Downloaders
 {
     public static class Downloader
     {
-        public static string[] DownloadMedia(QueueItemBase queueItem)
+        public static string[] DownloadMedia(QueueItemBase queueItem, bool skipDownload)
         {
-            CleanFolder("MediaDownloader\\temp");
-            Directory.CreateDirectory("MediaDownloader\\temp\\download");
-
-            string downloadName;
-            if (queueItem.OUTPUT_NAME_AUTO_ENABLE || queueItem.OUTPUT_PLAYLIST_ENABLE || queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null)
-                downloadName = "%(title)s";
-            else
-                downloadName = queueItem.OUTPUT_NAME;
-
-            string customArguments = "";
-            if (queueItem.OUTPUT_FORMAT == "(custom arguments)")
-                customArguments = queueItem.OUTPUT_YTDLP_ARGUMENTS + " ";
-
-            string downloadScript;
-
-            switch (queueItem.OUTPUT_FORMAT)
+            if (!skipDownload)
             {
-                case "png (thumbnail)":
-                case "jpg (thumbnail)":
-                    downloadScript = "-v --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" --skip-download --write-thumbnail -o \"MediaDownloader\\temp\\download\\" + downloadName + "\" " + queueItem.URL;
-                    break;
+                CleanPath("MediaDownloader\\temp", new string[] { "lastQueueItem.mdqi", "lastDownload" });
+                Directory.CreateDirectory("MediaDownloader\\temp\\download");
 
-                default:
-                    downloadScript = "-v --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" " + customArguments + "-o \"MediaDownloader\\temp\\download\\" + downloadName + "\" " + queueItem.URL;
-                    break;
+                string downloadName;
+                if (queueItem.OUTPUT_NAME_AUTO_ENABLE || queueItem.OUTPUT_PLAYLIST_ENABLE || queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null)
+                    downloadName = "%(title)s";
+                else
+                    downloadName = queueItem.OUTPUT_NAME;
+
+                string customArguments = "";
+                if (queueItem.OUTPUT_FORMAT == "(custom arguments)")
+                    customArguments = queueItem.OUTPUT_YTDLP_ARGUMENTS + " ";
+
+                string downloadScript;
+
+                switch (queueItem.OUTPUT_FORMAT)
+                {
+                    case "png (thumbnail)":
+                    case "jpg (thumbnail)":
+                        downloadScript = "-v --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" --skip-download --write-thumbnail -o \"MediaDownloader\\temp\\download\\" + downloadName + "\" " + queueItem.URL;
+                        break;
+
+                    default:
+                        downloadScript = "-v --ffmpeg-location \"MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe\" " + customArguments + "-o \"MediaDownloader\\temp\\download\\" + downloadName + "\" " + queueItem.URL;
+                        break;
+                }
+
+                StartProcess("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe", downloadScript, "MediaDownloader " + VERSION + "   [DOWNLOADING  :  " + queueItem.URL.ToUpper() + "]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
             }
 
-            StartProcess("MediaDownloader\\redist\\yt-dlp\\yt-dlp.exe", downloadScript, "MediaDownloader " + VERSION + "   [DOWNLOADING  :  " + queueItem.URL.ToUpper() + "]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
             string[] downloadPaths = Directory.GetFiles("MediaDownloader\\temp\\download");
             if (downloadPaths.Length == 0 && queueItem.OUTPUT_FORMAT != "(custom arguments)")
                 return null;

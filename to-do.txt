@@ -1,3 +1,0 @@
-- Add a settings menu
-- Improve the history and queue systems, make MD store all .mdq files in 1 large bulk file
-- Add a feature to scan if media has already been downloaded to prevent re-downloading it, this would be helpful if the user chose the wrong format and wanted to change it without downloading the media again

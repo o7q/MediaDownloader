@@ -1,4 +1,4 @@
-﻿namespace MediaDownloader.Tools.CustomMessageBox
+﻿namespace MediaDownloader.Forms.CustomMessageBox
 {
     partial class CustomMessageBox
     {

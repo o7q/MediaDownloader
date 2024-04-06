@@ -1,9 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+
+using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 
 namespace MediaDownloader.Tools
 {
@@ -40,6 +41,9 @@ namespace MediaDownloader.Tools
                         downloadButton.ForeColor = Color.FromArgb(255, 143, 188, 139);
                         downloadButton.BackColor = Color.FromArgb(255, 47, 62, 46);
                         downloadAllButton.FlatAppearance.BorderColor = Color.FromArgb(255, 95, 125, 92);
+
+                        downloadButton.Text = "Downloading...";
+                        downloadButton.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
                     });
                 }
                 catch { }
@@ -64,6 +68,9 @@ namespace MediaDownloader.Tools
                         downloadButton.ForeColor = Color.FromArgb(255, 50, 205, 50);
                         downloadButton.BackColor = Color.FromArgb(255, 16, 68, 16);
                         downloadAllButton.FlatAppearance.BorderColor = Color.FromArgb(255, 33, 136, 33);
+
+                        downloadButton.Text = "Download finished!";
+                        downloadButton.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
                     });
                 }
                 catch { }
@@ -81,47 +88,28 @@ namespace MediaDownloader.Tools
             }
         }
 
-        public static void UpdateListBox(ListBox listBox, string source, bool descendingOrder)
+        public static void ReadQueueItemPackToListBox(ListBox listBox, List<QueueItemBase> queueItemsList, bool reverseOrder)
         {
-            List<string> itemList = new List<string>();
-
-            foreach (string file in Directory.GetFiles(source))
+            listBox.Invoke((MethodInvoker)delegate
             {
-                string item = Path.GetFileNameWithoutExtension(file);
-                itemList.Add(item);
-            }
+                listBox.Items.Clear();
 
-            if (descendingOrder == true)
-                itemList.Sort((a, b) => b.CompareTo(a));
-            else
-                itemList.Sort();
+                if (queueItemsList.Count == 0)
+                    return;
 
-            listBox.Items.Clear();
-            foreach (var item in itemList)
-                listBox.Items.Add(item);
-        }
+                for (int i = 0; i < queueItemsList.Count; i++)
+                {
+                    if (queueItemsList[i].OUTPUT_NAME == null)
+                        continue;
 
-        public static void UpdateNumericalListBox(ListBox listBox, string source)
-        {
-            List<string> items = new List<string>();
-            foreach (string file in Directory.GetFiles(source))
-            {
-                string item = Path.GetFileNameWithoutExtension(file);
-                items.Add(item);
-            }
+                    int indexNum = reverseOrder ? queueItemsList.Count - i : i + 1;
 
-            items.Sort((a, b) =>
-            {
-                int numA = int.Parse(a.Substring(a.IndexOf("(") + 1, a.IndexOf(")") - a.IndexOf("(") - 1));
-                int numB = int.Parse(b.Substring(b.IndexOf("(") + 1, b.IndexOf(")") - b.IndexOf("(") - 1));
-                return numB.CompareTo(numA);
+                    listBox.Items.Add("[" + indexNum.ToString() + "] " + queueItemsList[i].OUTPUT_NAME);
+                }
             });
-
-            listBox.Items.Clear();
-            listBox.Items.AddRange(items.ToArray());
         }
 
-        public static void DrawListBox(ListBox listbox, DrawItemEventArgs e, Color color)
+        public static void DrawListBox(ListBox listbox, DrawItemEventArgs e, Color selectionColor, Color backgroundColor)
         {
             // code forked from: https://stackoverflow.com/a/3709452
             // custom drawing for queue list box items
@@ -135,11 +123,11 @@ namespace MediaDownloader.Tools
 
                 SolidBrush backgroundBrush;
                 if (selected)
-                    backgroundBrush = new SolidBrush(color);
+                    backgroundBrush = new SolidBrush(selectionColor);
                 else if ((index % 2) == 0)
-                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 20, 20, 20));
+                    backgroundBrush = new SolidBrush(Color.FromArgb(255, backgroundColor.R / 2, backgroundColor.G / 2, backgroundColor.B / 2));
                 else
-                    backgroundBrush = new SolidBrush(Color.FromArgb(255, 30, 30, 30));
+                    backgroundBrush = new SolidBrush(Color.FromArgb(255, backgroundColor.R, backgroundColor.G, backgroundColor.B));
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
                 string text = listbox.Items[index].ToString();

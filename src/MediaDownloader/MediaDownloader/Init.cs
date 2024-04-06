@@ -3,12 +3,13 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-using MediaDownloader.Tools.CustomMessageBox;
-using MediaDownloader.Setup.BootstrapForm;
+using MediaDownloader.Tools.MigrationTools;
+using MediaDownloader.Forms.BootstrapForm;
+using MediaDownloader.Forms.CustomMessageBox;
 using static MediaDownloader.Global;
-using static MediaDownloader.Tools.FolderCompressor;
 using static MediaDownloader.Updater.UpdaterSetup;
 using static MediaDownloader.Data.Config.ConfigManager;
+using static MediaDownloader.Data.QueueItem.QueueItemManager;
 
 namespace MediaDownloader
 {
@@ -19,6 +20,12 @@ namespace MediaDownloader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Directory.CreateDirectory("MediaDownloader\\config");
+            Directory.CreateDirectory("MediaDownloader\\redist");
+            Directory.CreateDirectory("MediaDownloader\\temp");
+            Directory.CreateDirectory("MediaDownloader\\updater");
+            Directory.CreateDirectory("Downloads");
 
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
             {
@@ -59,23 +66,20 @@ namespace MediaDownloader
                 CONFIG = ReadConfig("MediaDownloader\\config\\config.cfg");
             else
             {
+                CONFIG.HISTORY_ENABLE = true; 
                 CONFIG.NOTIFICATIONS_ENABLE = true;
-                CONFIG.DATA_ZIPPING_ENABLE = false;
                 CONFIG.TRUSTED_URLS = "youtube.com,youtu.be,twitter.com,instagram.com";
             }
 
-            if (File.Exists("MediaDownloader\\config\\queue.zip") || Directory.Exists("MediaDownloader\\config\\queue"))
-                DecompressFolder("MediaDownloader\\config\\queue.zip", "MediaDownloader\\config\\queue_temp");
-            else
-                Directory.CreateDirectory("MediaDownloader\\config\\queue_temp");
+            if (File.Exists("MediaDownloader\\config\\queue.mdqipack"))
+                if (File.ReadAllText("MediaDownloader\\config\\queue.mdqipack") != "")
+                    QUEUE = ReadQueueItemPackFromFile("MediaDownloader\\config\\queue.mdqipack");
+            if (File.Exists("MediaDownloader\\config\\history.mdqipack"))
+                if (File.ReadAllText("MediaDownloader\\config\\history.mdqipack") != "")
+                    HISTORY = ReadQueueItemPackFromFile("MediaDownloader\\config\\history.mdqipack");
 
-            if (File.Exists("MediaDownloader\\config\\history.zip") || Directory.Exists("MediaDownloader\\config\\history"))
-                DecompressFolder("MediaDownloader\\config\\history.zip", "MediaDownloader\\config\\history_temp");
-            else
-                Directory.CreateDirectory("MediaDownloader\\config\\history_temp");
-
-            Directory.CreateDirectory("MediaDownloader\\temp");
-            Directory.CreateDirectory("Downloads");
+            // run the migrator
+            Migrator.Run();
 
             // start MainMenu
             Application.Run(new MainMenu());

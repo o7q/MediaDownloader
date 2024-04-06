@@ -53,27 +53,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scripts\Forms\SettingsForm\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\Forms\SettingsForm\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\Global.cs" />
     <Compile Include="Scripts\Data\Config\ConfigStructure.cs" />
     <Compile Include="Scripts\Data\QueueItem\QueueItemStructure.cs" />
     <Compile Include="Scripts\Media\Downloaders\BulkQueuer.cs" />
     <Compile Include="Scripts\Media\Downloaders\Queuer.cs" />
-    <Compile Include="Scripts\Setup\BootstrapForm\BootstrapForm.cs">
+    <Compile Include="Scripts\Forms\BootstrapForm\BootstrapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scripts\Setup\BootstrapForm\BootstrapForm.Designer.cs">
+    <Compile Include="Scripts\Forms\BootstrapForm\BootstrapForm.Designer.cs">
       <DependentUpon>BootstrapForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Tools\FolderCompressor.cs" />
     <Compile Include="Scripts\Data\Config\ConfigManager.cs" />
     <Compile Include="Scripts\Media\Converters\Converter.cs" />
     <Compile Include="Scripts\Media\Downloaders\Downloader.cs" />
     <Compile Include="Scripts\Data\QueueItem\QueueItemManager.cs" />
-    <Compile Include="Scripts\Setup\Bootstrapper.cs" />
-    <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.cs">
+    <Compile Include="Scripts\Tools\MigrationTools\Migration.cs" />
+    <Compile Include="Scripts\Tools\MigrationTools\Functions\QueueItemPack.cs" />
+    <Compile Include="Scripts\Tools\SetupTools\Bootstrapper.cs" />
+    <Compile Include="Scripts\Forms\CustomMessageBox\CustomMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.Designer.cs">
+    <Compile Include="Scripts\Forms\CustomMessageBox\CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Tools\Files.cs" />
@@ -93,16 +100,17 @@
     <Compile Include="Updater\UpdaterSetup.cs" />
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\Setup\BootstrapForm\BootstrapForm.resx">
+    <EmbeddedResource Include="Scripts\Forms\BootstrapForm\BootstrapForm.resx">
       <DependentUpon>BootstrapForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\Tools\CustomMessageBox\CustomMessageBox.resx">
+    <EmbeddedResource Include="Scripts\Forms\CustomMessageBox\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -119,6 +127,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Scripts\Forms\SettingsForm\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Updater\Content\update.ps1" />
     <EmbeddedResource Include="Updater\Content\Updater.bat" />
   </ItemGroup>
@@ -133,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <None Include="Resources\settings_background.png" />
     <None Include="Resources\loading_icon.gif" />
     <None Include="Resources\checkmark.png" />
     <None Include="Resources\crossmark.png" />

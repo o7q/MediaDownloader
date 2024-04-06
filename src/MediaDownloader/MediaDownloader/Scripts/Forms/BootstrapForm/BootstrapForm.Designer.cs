@@ -1,4 +1,4 @@
-﻿namespace MediaDownloader.Setup.BootstrapForm
+﻿namespace MediaDownloader.Forms.BootstrapForm
 {
     partial class BootstrapForm
     {

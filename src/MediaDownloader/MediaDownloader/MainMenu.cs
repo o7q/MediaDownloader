@@ -5,18 +5,20 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-using MediaDownloader.Tools.CustomMessageBox;
+using MediaDownloader.Forms.SettingsForm;
+using MediaDownloader.Forms.CustomMessageBox;
 using static MediaDownloader.Global;
 using static MediaDownloader.Data.Config.ConfigManager;
 using static MediaDownloader.Data.QueueItem.QueueItemManager;
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
 using static MediaDownloader.Tools.Forms;
-using static MediaDownloader.Tools.FolderCompressor;
+using static MediaDownloader.Tools.Strings;
 using static MediaDownloader.Media.Downloaders.Queuer;
 using static MediaDownloader.Media.Downloaders.BulkQueuer;
 using static MediaDownloader.Updater.UpdateChecker;
 using static MediaDownloader.Updater.ResourceReader;
+
 
 namespace MediaDownloader
 {
@@ -31,8 +33,8 @@ namespace MediaDownloader
 
         private void Program_Load(object sender, EventArgs e)
         {
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
+            ReadQueueItemPackToListBox(QueueListBox, QUEUE, false);
+            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, true);
 
             UpdateVersionLabel();
 
@@ -40,13 +42,12 @@ namespace MediaDownloader
             {
                 if (QueueListBox.Items.Count == 0)
                 {
-                    if (File.Exists("MediaDownloader\\config\\latest.mdq"))
-                        LoadQueueItem("MediaDownloader\\config\\latest.mdq");
+                    if (File.Exists("MediaDownloader\\config\\latestQueueItem.mdqi"))
+                        RefreshCurrentQueueItemFromFile("MediaDownloader\\config\\latestQueueItem.mdqi");
                 }
                 else
                     QueueListBox.SelectedIndex = CONFIG.QUEUE_SELECTED_INDEX;
 
-                HistoryCheckBox.Checked = CONFIG.HISTORY_ENABLE;
                 if (HistoryListBox.Items.Count != 0)
                     HistoryListBox.SelectedIndex = CONFIG.HISTORY_SELECTED_INDEX;
 
@@ -54,10 +55,15 @@ namespace MediaDownloader
                     ExpandMenu();
                 else
                     CollapseMenu();
+
+                DisplayOutputLogCheckBox.Checked = CONFIG.OUTPUT_DISPLAY_ENABLE;
+                PauseOutputLogCheckBox.Checked = CONFIG.OUTPUT_PAUSE_ENABLE;
             }
             else
             {
                 OutputNameAutoCheckBox.Checked = true;
+
+                OutputFormatComboBox.Text = "mp4";
 
                 OutputTimeframeStartTextBox.Text = "0:00";
                 OutputTimeframeEndTextBox.Text = "0:10";
@@ -70,10 +76,8 @@ namespace MediaDownloader
                 OutputVideoBitrateTextBox.Text = "100M";
                 OutputAudioBitrateTextBox.Text = "320K";
 
-                OutputFormatComboBox.SelectedIndex = 2;
+                DisplayOutputLogCheckBox.Checked = true;
 
-                OutputDisplayCheckBox.Checked = true;
-                HistoryCheckBox.Checked = true;
                 CollapseMenu();
             }
 
@@ -89,10 +93,11 @@ namespace MediaDownloader
             #region loadTooltips
             // bind tooltips
             string[] tooltipMap = {
-                "BannerPicture", "MediaDownloader by o7q",
+                "BannerPicture", "MediaDownloader " + VERSION + " (double-click to open the GitHub page)",
                 "NotificationPictureBox", "Update available",
+                "SettingsButton", "Open the settings menu",
                 "NotificationLabel", "Update available",
-                "VersionLabel", "Version " + VERSION,
+                "VersionLabel", "Running " + VERSION,
 
                 "MinimizeButton", "Minimize",
                 "CloseButton", "Close",
@@ -133,9 +138,6 @@ namespace MediaDownloader
                 "OutputYtdlpArgumentsTextBox", "Custom arguments for yt-dlp (double-click to open the yt-dlp GitHub repository for information)",
                 "OutputFfmpegArgumentsTextBox", "Custom arguments for ffmpeg (this option will control the output directory, you will have to provide the output directory within these arguments, double-click to open the ffmpeg documentation for information)",
 
-                "OutputDisplayCheckBox", "Display the verbose log while downloading in a separate command prompt window",
-                "OutputPauseCheckBox", "Cause the command prompt to stay open after each stage finishes (helpful for debugging)",
-
                 "ResetSettingsButton", "Reset each setting to their default values on the current window",
 
                 "MenuExpandButton", "Expand/Collapse Menu",
@@ -149,7 +151,9 @@ namespace MediaDownloader
                 "HistoryLoadButton", "Load the config from the selected item",
                 "HistoryRefreshButton", "Refresh the history list",
                 "HistoryRemoveButton", "Remove the selected item from history",
-                "HistoryCheckBox", "Enable and disable the saving of history"
+
+                "DisplayOutputLogCheckBox", "Display the verbose log while downloading in a separate command prompt window",
+                "PauseOutputLogCheckBox", "Keep the command prompt open after each download stage finishes (helpful for debugging)"
             };
 
             // load tooltips
@@ -196,7 +200,7 @@ namespace MediaDownloader
             if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null || !containsTrustedUrl)
                 return;
 
-            Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton));
+            Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton, HistoryListBox));
         }
 
         private void DownloadAllButton_Click(object sender, EventArgs e)
@@ -211,22 +215,16 @@ namespace MediaDownloader
             if (IS_DOWNLOADING || QueueListBox.Items.Count == 0)
                 return;
 
-            string[] queueList = new string[QueueListBox.Items.Count];
-            int queueIndex = 0;
-            foreach (string item in QueueListBox.Items)
-            {
-                queueList[queueIndex] = item.ToString();
-                queueIndex++;
-            }
-
-            Task.Run(() => StartDownloadQueue(queueList, DownloadButton, DownloadAllButton, QueueProgressBarPanel, QueueProgressLabel));
+            Task.Run(() => StartDownloadQueue(QUEUE, DownloadButton, DownloadAllButton, QueueProgressBarPanel, QueueProgressLabel, HistoryListBox));
         }
 
         private void QueueAddButton_Click(object sender, EventArgs e)
         {
             if (OutputNameTextBox.Text == "")
                 return;
-            SaveQueueItem();
+
+            QUEUE.Add(currentQueueItem);
+            ReadQueueItemPackToListBox(QueueListBox, QUEUE, false);
         }
 
         private void QueueRemoveButton_Click(object sender, EventArgs e)
@@ -234,8 +232,8 @@ namespace MediaDownloader
             if (QueueListBox.SelectedItems.Count == 0)
                 return;
 
-            File.Delete("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
+            QUEUE.RemoveAt(QueueListBox.SelectedIndex);
+            ReadQueueItemPackToListBox(QueueListBox, QUEUE, false);
 
             if (QueueListBox.Items.Count >= 1)
                 QueueListBox.SelectedIndex = 0;
@@ -254,12 +252,12 @@ namespace MediaDownloader
             if (HistoryListBox.SelectedItems.Count == 0)
                 return;
 
-            LoadQueueItem("MediaDownloader\\config\\history_temp\\" + HistoryListBox.SelectedItem + ".mdq");
+            RefreshCurrentQueueItemFromQueueItem(HISTORY[HistoryListBox.SelectedIndex]);
         }
 
         private void HistoryRefreshButton_Click(object sender, EventArgs e)
         {
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
+            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, false);
         }
 
         private void HistoryRemoveButton_Click(object sender, EventArgs e)
@@ -267,11 +265,8 @@ namespace MediaDownloader
             if (HistoryListBox.SelectedItems.Count == 0)
                 return;
 
-            File.Delete("MediaDownloader\\config\\history_temp\\" + HistoryListBox.SelectedItem + ".mdq");
-            UpdateNumericalListBox(HistoryListBox, "MediaDownloader\\config\\history_temp");
-
-            if (HistoryListBox.Items.Count == 0)
-                CONFIG.HISTORY_SAVE_INDEX = 1;
+            HISTORY.RemoveAt(HistoryListBox.SelectedIndex);
+            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, true);
 
             if (HistoryListBox.Items.Count >= 1)
                 HistoryListBox.SelectedIndex = 0;
@@ -279,19 +274,23 @@ namespace MediaDownloader
 
         private void HistoryListBox_DrawItem(object sender, DrawItemEventArgs e)
         {
-            DrawListBox(HistoryListBox, e, Color.FromArgb(218, 112, 214));
+            DrawListBox(HistoryListBox, e, Color.FromArgb(218, 112, 214), Color.FromArgb(24, 13, 24));
         }
 
-        private void SaveQueueItem()
+        private void RefreshCurrentQueueItemFromQueueItem(QueueItemBase queueItem)
         {
-            WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
-            UpdateListBox(QueueListBox, "MediaDownloader\\config\\queue_temp", false);
+            currentQueueItem = queueItem;
+            UpdateUI();
         }
 
-        private void LoadQueueItem(string queueItemFile)
+        private void RefreshCurrentQueueItemFromFile(string queueItemFile)
         {
-            currentQueueItem = ReadQueueItem(queueItemFile);
+            currentQueueItem = ReadQueueItemFromFile(queueItemFile);
+            UpdateUI();
+        }
 
+        private void UpdateUI()
+        {
             UrlTextBox.Text = currentQueueItem.URL;
             OutputPlaylistCheckBox.Checked = currentQueueItem.OUTPUT_PLAYLIST_ENABLE;
 
@@ -320,9 +319,6 @@ namespace MediaDownloader
 
             OutputYtdlpArgumentsTextBox.Text = currentQueueItem.OUTPUT_YTDLP_ARGUMENTS;
             OutputFfmpegArgumentsTextBox.Text = currentQueueItem.OUTPUT_FFMPEG_ARGUMENTS;
-
-            OutputDisplayCheckBox.Checked = currentQueueItem.OUTPUT_DISPLAY_ENABLE;
-            OutputPauseCheckBox.Checked = currentQueueItem.OUTPUT_PAUSE_ENABLE;
         }
 
         private void OutputChangeLocationButton_Click(object sender, EventArgs e)
@@ -436,6 +432,9 @@ namespace MediaDownloader
         #region ConfigUpdate
         private void UrlTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (UrlTextBox.Text.Contains(" "))
+                UrlTextBox.Text = UrlTextBox.Text.Replace(" ", "");
+
             string[] playlistKeywords =
             {
                 "playlist",
@@ -474,7 +473,7 @@ namespace MediaDownloader
                 OutputNameAutoCheckBox.Checked = true;
             else
                 if (OutputPlaylistCheckBox.Checked == false)
-                    OutputNameAutoCheckBox.Checked = false;
+                OutputNameAutoCheckBox.Checked = false;
 
             currentQueueItem.OUTPUT_NAME = OutputNameTextBox.Text;
         }
@@ -539,8 +538,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = false;
                     OutputAudioBitrateTextBox.Enabled = false;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = false;
-                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = true;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.No;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = true;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.No;
                     break;
 
                 case "mp4":
@@ -560,8 +563,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = true;
                     OutputAudioBitrateTextBox.Enabled = true;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = false;
-                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = true;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.No;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = true;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.No;
                     break;
 
                 case "mp3":
@@ -589,8 +596,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = false;
                     OutputAudioBitrateTextBox.Enabled = true;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = false;
-                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = true;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.No;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = true;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.No;
                     break;
 
                 case "gif":
@@ -608,8 +619,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = true;
                     OutputAudioBitrateTextBox.Enabled = false;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = false;
-                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = true;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.No;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = true;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.No;
                     break;
 
                 case "png (thumbnail)":
@@ -632,8 +647,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = false;
                     OutputAudioBitrateTextBox.Enabled = false;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = false;
-                    OutputFfmpegArgumentsTextBox.Enabled = false;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = true;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.No;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 40, 40, 40);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = true;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.No;
                     break;
 
                 case "(custom arguments)":
@@ -658,8 +677,12 @@ namespace MediaDownloader
                     OutputVideoBitrateTextBox.Enabled = false;
                     OutputAudioBitrateTextBox.Enabled = false;
 
-                    OutputYtdlpArgumentsTextBox.Enabled = true;
-                    OutputFfmpegArgumentsTextBox.Enabled = true;
+                    OutputYtdlpArgumentsTextBox.BackColor = Color.FromArgb(255, 64, 64, 64);
+                    OutputYtdlpArgumentsTextBox.ReadOnly = false;
+                    OutputYtdlpArgumentsTextBox.Cursor = Cursors.IBeam;
+                    OutputFfmpegArgumentsTextBox.BackColor = Color.FromArgb(255, 64, 64, 64);
+                    OutputFfmpegArgumentsTextBox.ReadOnly = false;
+                    OutputFfmpegArgumentsTextBox.Cursor = Cursors.IBeam;
                     break;
 
                 default:
@@ -807,24 +830,6 @@ namespace MediaDownloader
             currentQueueItem.OUTPUT_FFMPEG_ARGUMENTS = OutputFfmpegArgumentsTextBox.Text;
         }
 
-        private void OutputDisplayCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (OutputDisplayCheckBox.Checked == false)
-            {
-                OutputPauseCheckBox.Checked = false;
-                OutputPauseCheckBox.Enabled = false;
-            }
-            else
-                OutputPauseCheckBox.Enabled = true;
-
-            currentQueueItem.OUTPUT_DISPLAY_ENABLE = OutputDisplayCheckBox.Checked;
-        }
-
-        private void OutputPauseCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            currentQueueItem.OUTPUT_PAUSE_ENABLE = OutputPauseCheckBox.Checked;
-        }
-
         private void ResetSettingsButton_Click(object sender, EventArgs e)
         {
             UrlTextBox.Text = "";
@@ -847,13 +852,6 @@ namespace MediaDownloader
             OutputAudioBitrateTextBox.Text = "320K";
             OutputYtdlpArgumentsTextBox.Text = "";
             OutputFfmpegArgumentsTextBox.Text = "";
-            OutputDisplayCheckBox.Checked = true;
-            OutputPauseCheckBox.Checked = false;
-        }
-
-        private void HistoryCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            CONFIG.HISTORY_ENABLE = HistoryCheckBox.Checked;
         }
         #endregion
 
@@ -875,8 +873,7 @@ namespace MediaDownloader
 
             QueueLabel.Visible = true;
             QueueDecorationPanel.Visible = true;
-
-            QueueListBox.Visible = true;
+            QueueDecorationStripPanel.Visible = true;
 
             DownloadAllButton.Visible = true;
 
@@ -890,12 +887,9 @@ namespace MediaDownloader
 
             HistoryLabel.Visible = true;
             HistoryDecorationPanel.Visible = true;
+            HistoryDecorationStripPanel.Visible = true;
 
             HistoryListBox.Visible = true;
-
-            HistoryCheckBox.Visible = true;
-            HistoryPanel.Visible = true;
-            HistoryDecoration2Panel.Visible = true;
 
             HistoryLoadButton.Visible = true;
             HistoryRefreshButton.Visible = true;
@@ -921,6 +915,7 @@ namespace MediaDownloader
 
             QueueLabel.Visible = false;
             QueueDecorationPanel.Visible = false;
+            QueueDecorationStripPanel.Visible = false;
 
             QueueListBox.Visible = true;
 
@@ -936,12 +931,9 @@ namespace MediaDownloader
 
             HistoryLabel.Visible = false;
             HistoryDecorationPanel.Visible = false;
+            HistoryDecorationStripPanel.Visible = false;
 
             HistoryListBox.Visible = false;
-
-            HistoryCheckBox.Visible = false;
-            HistoryPanel.Visible = false;
-            HistoryDecoration2Panel.Visible = false;
 
             HistoryLoadButton.Visible = false;
             HistoryRefreshButton.Visible = false;
@@ -968,8 +960,8 @@ namespace MediaDownloader
             if (QueueListBox.SelectedItems.Count == 0)
                 return;
 
-            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
-                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdqi"))
+                WriteQueueItemToFile(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdqi");
         }
 
         private void QueueListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -980,12 +972,12 @@ namespace MediaDownloader
             previousPathValue = "";
             CONFIG.QUEUE_SELECTED_INDEX = QueueListBox.SelectedIndex;
 
-            LoadQueueItem("MediaDownloader\\config\\queue_temp\\" + QueueListBox.SelectedItem + ".mdq");
+            RefreshCurrentQueueItemFromQueueItem(QUEUE[QueueListBox.SelectedIndex]);
         }
 
         private void QueueListBox_DrawItem(object sender, DrawItemEventArgs e)
         {
-            DrawListBox(QueueListBox, e, Color.FromArgb(147, 112, 219));
+            DrawListBox(QueueListBox, e, Color.FromArgb(147, 112, 219), Color.FromArgb(15, 11, 22));
         }
 
         private void OutputYtdlpArgumentsTextBox_DoubleClick(object sender, EventArgs e)
@@ -998,28 +990,78 @@ namespace MediaDownloader
             Process.Start("https://ffmpeg.org/ffmpeg.html");
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            CloseProgram();
-        }
-
         private void CloseProgram()
         {
-            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq"))
-                WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdq");
+            if (File.Exists("MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdqi"))
+                WriteQueueItemToFile(currentQueueItem, "MediaDownloader\\config\\queue_temp\\" + currentQueueItem.OUTPUT_NAME + ".mdqi");
 
-            WriteQueueItem(currentQueueItem, "MediaDownloader\\config\\latest.mdq");
+            WriteQueueItemToFile(currentQueueItem, "MediaDownloader\\config\\latestQueueItem.mdqi");
             WriteConfig(CONFIG, "MediaDownloader\\config\\config.cfg");
 
-            CompressFolder("MediaDownloader\\config\\queue_temp", "MediaDownloader\\config\\queue.zip");
-            CompressFolder("MediaDownloader\\config\\history_temp", "MediaDownloader\\config\\history.zip");
+            File.WriteAllBytes("MediaDownloader\\config\\queue.mdqipack", CompressString(GenerateQueueItemPack(QUEUE)));
+            File.WriteAllBytes("MediaDownloader\\config\\history.mdqipack", CompressString(GenerateQueueItemPack(HISTORY)));
 
             Close();
+        }
+
+        private void RunUpdateDialog()
+        {
+            string changelog = ReadRemoteResource("https://raw.githubusercontent.com/o7q/MediaDownloader/main/remote/changelog");
+
+            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_INTERNAL_REMOTE + ")\n\nChangelog:\n" + changelog + "\n\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
+            customMessageBox.ShowDialog();
+
+            if (customMessageBox.Result == DialogResult.OK)
+            {
+                Process.Start("MediaDownloader\\updater\\Updater.bat");
+                CloseProgram();
+            }
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
+
+            ReadQueueItemPackToListBox(QueueListBox, QUEUE, false);
+            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, true);
+        }
+
+        private void DisplayOutputLogCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DisplayOutputLogCheckBox.Checked == false)
+            {
+                PauseOutputLogCheckBox.Checked = false;
+                PauseOutputLogCheckBox.Enabled = false;
+            }
+            else
+                PauseOutputLogCheckBox.Enabled = true;
+
+            CONFIG.OUTPUT_DISPLAY_ENABLE = DisplayOutputLogCheckBox.Checked;
+        }
+
+        private void PauseOutputLogCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CONFIG.OUTPUT_PAUSE_ENABLE = PauseOutputLogCheckBox.Checked;
+        }
+
+        private void DownloadButton_MouseHover(object sender, EventArgs e)
+        {
+            if (!IS_DOWNLOADING)
+            {
+                DownloadButton.Text = "Download";
+                DownloadButton.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            }
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            CloseProgram();
         }
 
         private void BannerPicture_MouseDown(object sender, MouseEventArgs e)
@@ -1047,20 +1089,6 @@ namespace MediaDownloader
         private void NotificationLabel_Click(object sender, EventArgs e)
         {
             RunUpdateDialog();
-        }
-
-        private void RunUpdateDialog()
-        {
-            string changelog = ReadRemoteResource("https://raw.githubusercontent.com/o7q/MediaDownloader/main/remote/changelog");
-
-            CustomMessageBox customMessageBox = new CustomMessageBox("A newer version of MediaDownloader is available! (" + VERSION_INTERNAL_REMOTE + ")\n\nChangelog:\n" + changelog + "\n\nWould you like to download/install it now?\n\nPress OK to continue\nPress CLOSE to cancel\n\n(you can disable this notification in the config)", "OK", true);
-            customMessageBox.ShowDialog();
-
-            if (customMessageBox.Result == DialogResult.OK)
-            {
-                Process.Start("MediaDownloader\\updater\\Updater.bat");
-                CloseProgram();
-            }
         }
     }
 }

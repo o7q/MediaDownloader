@@ -1,3 +1,10 @@
+~ v4.4.0.0
+- Added a settings menu
+- Added a QoL feature that skips the download process automatically if the raw file is detected (this is helpful if the user chose an undesired format and wants to change it without redownloading the entire video)
+- Added a migration feature to prevent the loss of user config data when loading from older versions
+- Greatly optimized the queue and history storage systems, it now stores each in a single compressed file
+- Small UI improvements
+
 ~ v4.3.1.0
 - Greatly improved the bootstrapper, it now has a nice GUI that shows progress
 - Improved the update checker

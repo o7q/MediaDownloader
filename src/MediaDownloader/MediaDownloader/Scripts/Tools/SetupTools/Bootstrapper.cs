@@ -4,7 +4,7 @@ using System.Net;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace MediaDownloader.Setup
+namespace MediaDownloader.Tools.SetupTools
 {
     public static class Bootstrapper
     {

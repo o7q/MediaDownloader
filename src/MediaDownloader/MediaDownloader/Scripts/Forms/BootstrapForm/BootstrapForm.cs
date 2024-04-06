@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 using MediaDownloader.Properties;
 using static MediaDownloader.Tools.Forms;
-using static MediaDownloader.Setup.Bootstrapper;
+using static MediaDownloader.Tools.SetupTools.Bootstrapper;
 
-namespace MediaDownloader.Setup.BootstrapForm
+namespace MediaDownloader.Forms.BootstrapForm
 {
     public partial class BootstrapForm : Form
     {

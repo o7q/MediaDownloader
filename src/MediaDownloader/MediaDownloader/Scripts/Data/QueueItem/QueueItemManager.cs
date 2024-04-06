@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Strings;
@@ -9,7 +10,12 @@ namespace MediaDownloader.Data.QueueItem
 {
     public static class QueueItemManager
     {
-        public static void WriteQueueItem(QueueItemBase queueItem, string queueFile)
+        public static void WriteQueueItemToFile(QueueItemBase queueItem, string path)
+        {
+            File.WriteAllText(path, GenerateQueueItemString(queueItem));
+        }
+
+        public static string GenerateQueueItemString(QueueItemBase queueItem)
         {
             var sb = new StringBuilder();
             foreach (var field in typeof(QueueItemBase).GetFields())
@@ -21,7 +27,7 @@ namespace MediaDownloader.Data.QueueItem
                     // such as if the user happened to use a special split character such as '\n' somewhere in the configuration
                     string keyValue = field.Name;
                     string configValue = value.ToString();
-                    if (configValue.Contains("\n"))
+                    if (configValue.Contains("\n") || configValue.Contains("Ԯ"))
                     {
                         configValue = EncodeString(configValue);
                         // indicate that the config value is in base64
@@ -36,13 +42,17 @@ namespace MediaDownloader.Data.QueueItem
             }
             sb.Length--;
 
-            File.WriteAllText(queueFile, sb.ToString());
+            return sb.ToString();
         }
 
-        public static QueueItemBase ReadQueueItem(string queueFile)
+        public static QueueItemBase ReadQueueItemFromFile(string queueFile)
         {
-            string queueItemRaw = File.ReadAllText(queueFile);
-            string[] queueItemSetting = queueItemRaw.Split('\n');
+            return ReadQueueItemFromString(File.ReadAllText(queueFile));
+        }
+
+        public static QueueItemBase ReadQueueItemFromString(string queueString)
+        {
+            string[] queueItemSetting = queueString.Split('\n');
 
             QueueItemBase queueItem = new QueueItemBase();
 
@@ -87,13 +97,43 @@ namespace MediaDownloader.Data.QueueItem
 
                     case "OUTPUT_YTDLP_ARGUMENTS": queueItem.OUTPUT_YTDLP_ARGUMENTS = queueItemSettingPair[1]; break;
                     case "OUTPUT_FFMPEG_ARGUMENTS": queueItem.OUTPUT_FFMPEG_ARGUMENTS = queueItemSettingPair[1]; break;
-
-                    case "OUTPUT_DISPLAY_ENABLE": queueItem.OUTPUT_DISPLAY_ENABLE = bool.Parse(queueItemSettingPair[1]); break;
-                    case "OUTPUT_PAUSE_ENABLE": queueItem.OUTPUT_PAUSE_ENABLE = bool.Parse(queueItemSettingPair[1]); break;
                 }
             }
 
             return queueItem;
+        }
+
+        public static string GenerateQueueItemPack(List<QueueItemBase> queueItemsList)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (QueueItemBase item in queueItemsList)
+            {
+                if (item.OUTPUT_NAME == null)
+                    continue;
+
+                sb.Append(GenerateQueueItemString(item));
+                sb.Append('Ԯ');
+            }
+            if (sb.Length > 0)
+                sb.Length--;
+
+            return sb.ToString();
+        }
+
+        public static List<QueueItemBase> ReadQueueItemPackFromFile(string queueItemPackFile)
+        {
+            if (!File.Exists(queueItemPackFile))
+                return new List<QueueItemBase>();
+
+            string[] queueItems = DecompressString(File.ReadAllBytes(queueItemPackFile)).Split('Ԯ');
+
+            List<QueueItemBase> queueItemsList = new List<QueueItemBase>();
+            for (int i = 0; i < queueItems.Length; i++)
+            {
+                queueItemsList.Add(ReadQueueItemFromString(queueItems[i]));
+            }
+
+            return queueItemsList;
         }
     }
 }

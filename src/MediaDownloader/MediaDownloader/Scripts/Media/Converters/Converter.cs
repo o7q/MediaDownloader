@@ -141,10 +141,10 @@ namespace MediaDownloader.Media.Converters
                 if (queueItem.OUTPUT_FFMPEG_ARGUMENTS == "" || queueItem.OUTPUT_FFMPEG_ARGUMENTS == null)
                 {
                     string copyLocation = queueItem.OUTPUT_LOCATION == "" || queueItem.OUTPUT_LOCATION == null ? "Downloads" : queueItem.OUTPUT_LOCATION;
-                    File.Copy(downloadFile, copyLocation + "\\" + outputFile + Path.GetExtension(downloadFile));
+                    File.Copy(downloadFile, copyLocation + "\\" + outputFile + Path.GetExtension(downloadFile), true);
                 }
                 else
-                    StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", "-i \"" + downloadFile + "\" " + queueItem.OUTPUT_FFMPEG_ARGUMENTS, "MediaDownloader " + VERSION + "   [CONVERTING  :  CUSTOM ARGUMENTS]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
+                    StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", "-i \"" + downloadFile + "\" " + queueItem.OUTPUT_FFMPEG_ARGUMENTS, "MediaDownloader " + VERSION + "   [CONVERTING  :  CUSTOM ARGUMENTS]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
                 return;
             }
 
@@ -179,7 +179,7 @@ namespace MediaDownloader.Media.Converters
             }
 
             string convertArguments = "-loglevel verbose -y -i \"" + downloadFile + "\"" + convertScript + codecScript + "\"MediaDownloader\\temp\\converted." + mediaExtension + "\"";
-            StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", convertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  " + mediaType.ToUpper() + "]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
+            StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", convertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  " + mediaType.ToUpper() + "]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
 
             switch (mediaType)
             {
@@ -188,19 +188,19 @@ namespace MediaDownloader.Media.Converters
                 case "thumbnail":
                     {
                         string copyLocation = queueItem.OUTPUT_LOCATION == "" || queueItem.OUTPUT_LOCATION == null ? "Downloads" : queueItem.OUTPUT_LOCATION;
-                        File.Copy("MediaDownloader\\temp\\converted." + mediaExtension, copyLocation + "\\" + outputFile + "." + mediaExtension);
+                        File.Copy("MediaDownloader\\temp\\converted." + mediaExtension, copyLocation + "\\" + outputFile + "." + mediaExtension, true);
                     }
                     break;
 
                 case "gif":
                     {
                         string gifPaletteArguments = "-loglevel verbose -y -i \"MediaDownloader\\temp\\converted.mp4\" -vf palettegen \"MediaDownloader\\temp\\converted_gif_palette.png\"";
-                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", gifPaletteArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  GIF PALETTE]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
+                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", gifPaletteArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  GIF PALETTE]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
                         string gifConvertArguments = "-loglevel verbose -y -i \"MediaDownloader\\temp\\converted.mp4\" -i \"MediaDownloader\\temp\\converted_gif_palette.png\" -lavfi \"paletteuse\" \"MediaDownloader\\temp\\converted_gif.gif\"";
-                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", gifConvertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  GIF]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
+                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", gifConvertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  :  GIF]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
 
                         string copyLocation = queueItem.OUTPUT_LOCATION == "" || queueItem.OUTPUT_LOCATION == null ? "Downloads" : queueItem.OUTPUT_LOCATION;
-                        File.Copy("MediaDownloader\\temp\\converted_gif.gif", copyLocation + "\\" + outputFile + ".gif");
+                        File.Copy("MediaDownloader\\temp\\converted_gif.gif", copyLocation + "\\" + outputFile + ".gif", true);
                     }
                     break;
 
@@ -220,7 +220,7 @@ namespace MediaDownloader.Media.Converters
                         }
 
                         string sequenceConvertArguments = "-loglevel verbose -y -i \"MediaDownloader\\temp\\converted.mp4\" \"MediaDownloader\\temp\\converted_sequence\\" + outputFile + ".%d." + imageExtension;
-                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", sequenceConvertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  : IMAGE SEQUENCE]", queueItem.OUTPUT_DISPLAY_ENABLE, queueItem.OUTPUT_PAUSE_ENABLE);
+                        StartProcess("MediaDownloader\\redist\\ffmpeg\\ffmpeg.exe", sequenceConvertArguments, "MediaDownloader " + VERSION + "   [CONVERTING  : IMAGE SEQUENCE]", CONFIG.OUTPUT_DISPLAY_ENABLE, CONFIG.OUTPUT_PAUSE_ENABLE);
 
                         string copyLocation = queueItem.OUTPUT_LOCATION == "" || queueItem.OUTPUT_LOCATION == null ? "Downloads" : queueItem.OUTPUT_LOCATION;
                         Directory.Move("MediaDownloader\\temp\\converted_sequence", copyLocation + "\\" + outputFile);

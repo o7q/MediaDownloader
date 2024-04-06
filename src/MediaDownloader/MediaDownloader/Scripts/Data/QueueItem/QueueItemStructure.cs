@@ -32,9 +32,6 @@
 
             public string OUTPUT_YTDLP_ARGUMENTS;
             public string OUTPUT_FFMPEG_ARGUMENTS;
-
-            public bool OUTPUT_DISPLAY_ENABLE;
-            public bool OUTPUT_PAUSE_ENABLE;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using static MediaDownloader.Tools.Forms;
 
-namespace MediaDownloader.Tools.CustomMessageBox
+namespace MediaDownloader.Forms.CustomMessageBox
 {
     public partial class CustomMessageBox : Form
     {

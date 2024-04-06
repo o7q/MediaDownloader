@@ -38,9 +38,10 @@ namespace MediaDownloader.Data.Config
                     // user config
                     case "HISTORY_ENABLE": config.HISTORY_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "NOTIFICATIONS_ENABLE": config.NOTIFICATIONS_ENABLE = bool.Parse(configSettingPair[1]); break;
-                    case "DATA_ZIPPING_ENABLE": config.DATA_ZIPPING_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS_ENABLE": config.TRUSTED_URLS_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS": config.TRUSTED_URLS = configSettingPair[1]; break;
+                    case "OUTPUT_DISPLAY_ENABLE": config.OUTPUT_DISPLAY_ENABLE = bool.Parse(configSettingPair[1]); break;
+                    case "OUTPUT_PAUSE_ENABLE": config.OUTPUT_PAUSE_ENABLE = bool.Parse(configSettingPair[1]); break;
 
                     // program config
                     case "MENU_EXPANDED_ENABLE": config.MENU_EXPANDED_ENABLE = bool.Parse(configSettingPair[1]); break;
@@ -48,7 +49,6 @@ namespace MediaDownloader.Data.Config
                     case "QUEUE_SELECTED_INDEX": config.QUEUE_SELECTED_INDEX = int.Parse(configSettingPair[1]); break;
 
                     case "HISTORY_SELECTED_INDEX": config.HISTORY_SELECTED_INDEX = int.Parse(configSettingPair[1]); break;
-                    case "HISTORY_SAVE_INDEX": config.HISTORY_SAVE_INDEX = int.Parse(configSettingPair[1]); break;
                 }
             }
 
