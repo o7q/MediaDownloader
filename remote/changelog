@@ -1,3 +1,5 @@
-- Greatly improved the bootstrapper, it now has a nice GUI that shows progress
-- Improved the update checker
-- Added some config safety features, this will prevent the config manager from breaking if the user inputs a '¶' or '\n' (these two characters are used as delimiters in the config manager)
+- Added a settings menu
+- Added a QoL feature that skips the download process automatically if the raw file is detected (this is helpful if the user chose an undesired format and wants to change it without redownloading the entire video)
+- Added a migration feature to prevent the loss of user config data when loading from older versions
+- Greatly optimized the queue and history storage systems, it now stores each in a single compressed file
+- Small UI improvements
