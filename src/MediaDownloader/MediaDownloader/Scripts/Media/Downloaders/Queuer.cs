@@ -6,6 +6,7 @@ using static MediaDownloader.Global;
 using static MediaDownloader.Data.QueueItem.QueueItemManager;
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Forms;
+using static MediaDownloader.Tools.Sounds;
 using static MediaDownloader.Media.Converters.Converter;
 using static MediaDownloader.Media.Downloaders.Downloader;
 
@@ -48,6 +49,18 @@ namespace MediaDownloader.Media.Downloaders
             string[] downloadFiles = DownloadMedia(queueItem, skipDownload);
             if (downloadFiles == null)
             {
+                if (CONFIG.COMPLETE_SOUND_ENABLE)
+                {
+                    if (CONFIG.COMPLETE_SOUND_PATH == "")
+                    {
+                        PlaySound("MediaDownloader.Resources.download_complete_error.wav", true);
+                    }
+                    else
+                    {
+                        PlaySound(CONFIG.COMPLETE_SOUND_PATH, false);
+                    }
+                }
+
                 CustomMessageBox customMessageBox = new CustomMessageBox("Error: Download Failed!", "OK", true);
                 customMessageBox.ShowDialog();
 
@@ -100,6 +113,18 @@ namespace MediaDownloader.Media.Downloaders
 
             ChangeDownloadButtonColors(false, downloadButton, downloadAllButton);
             IS_DOWNLOADING = false;
+
+            if (CONFIG.COMPLETE_SOUND_ENABLE)
+            {
+                if (CONFIG.COMPLETE_SOUND_PATH == "")
+                {
+                    PlaySound("MediaDownloader.Resources.download_complete_success.wav", true);
+                }
+                else
+                {
+                    PlaySound(CONFIG.COMPLETE_SOUND_PATH, false);
+                }
+            }
         }
     }
 }

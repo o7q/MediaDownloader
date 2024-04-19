@@ -66,8 +66,9 @@ namespace MediaDownloader
                 CONFIG = ReadConfig("MediaDownloader\\config\\config.cfg");
             else
             {
-                CONFIG.HISTORY_ENABLE = true; 
+                CONFIG.COMPLETE_SOUND_ENABLE = true;
                 CONFIG.NOTIFICATIONS_ENABLE = true;
+                CONFIG.HISTORY_ENABLE = true; 
                 CONFIG.TRUSTED_URLS = "youtube.com,youtu.be,twitter.com,instagram.com";
             }
 

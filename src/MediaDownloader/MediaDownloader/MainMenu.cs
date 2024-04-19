@@ -19,7 +19,6 @@ using static MediaDownloader.Media.Downloaders.BulkQueuer;
 using static MediaDownloader.Updater.UpdateChecker;
 using static MediaDownloader.Updater.ResourceReader;
 
-
 namespace MediaDownloader
 {
     public partial class MainMenu : Form
@@ -257,7 +256,7 @@ namespace MediaDownloader
 
         private void HistoryRefreshButton_Click(object sender, EventArgs e)
         {
-            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, false);
+            ReadQueueItemPackToListBox(HistoryListBox, HISTORY, true);
         }
 
         private void HistoryRemoveButton_Click(object sender, EventArgs e)

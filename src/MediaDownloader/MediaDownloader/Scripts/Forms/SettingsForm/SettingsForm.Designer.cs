@@ -53,12 +53,19 @@
             this.EnableUpdateNotificationsCheckBox = new System.Windows.Forms.CheckBox();
             this.ApplySettingsButton = new System.Windows.Forms.Button();
             this.DiscardSettingsButton = new System.Windows.Forms.Button();
+            this.SoundSettingsPanel = new System.Windows.Forms.Panel();
+            this.CustomSoundLabel = new System.Windows.Forms.Label();
+            this.CustomCompleteSoundTextBox = new System.Windows.Forms.TextBox();
+            this.CustomSoundButton = new System.Windows.Forms.Button();
+            this.SoundSettingsLabel = new System.Windows.Forms.Label();
+            this.PlayCompleteSoundCheckBox = new System.Windows.Forms.CheckBox();
             this.TitlebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BannerPicture)).BeginInit();
             this.HistorySettingsPanel.SuspendLayout();
             this.QueueSettingsPanel.SuspendLayout();
             this.UrlSettingsPanel.SuspendLayout();
             this.UpdateSettingsButton.SuspendLayout();
+            this.SoundSettingsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // TitlebarPanel
@@ -109,7 +116,7 @@
             this.HistorySettingsPanel.Location = new System.Drawing.Point(159, 29);
             this.HistorySettingsPanel.Name = "HistorySettingsPanel";
             this.HistorySettingsPanel.Size = new System.Drawing.Size(123, 70);
-            this.HistorySettingsPanel.TabIndex = 6;
+            this.HistorySettingsPanel.TabIndex = 9;
             // 
             // ClearHistoryButton
             // 
@@ -121,7 +128,7 @@
             this.ClearHistoryButton.Location = new System.Drawing.Point(6, 39);
             this.ClearHistoryButton.Name = "ClearHistoryButton";
             this.ClearHistoryButton.Size = new System.Drawing.Size(70, 21);
-            this.ClearHistoryButton.TabIndex = 7;
+            this.ClearHistoryButton.TabIndex = 10;
             this.ClearHistoryButton.Text = "Clear History";
             this.ClearHistoryButton.UseVisualStyleBackColor = false;
             this.ClearHistoryButton.Click += new System.EventHandler(this.ClearHistoryButton_Click);
@@ -145,7 +152,7 @@
             this.EnableHistoryCheckBox.Location = new System.Drawing.Point(5, 20);
             this.EnableHistoryCheckBox.Name = "EnableHistoryCheckBox";
             this.EnableHistoryCheckBox.Size = new System.Drawing.Size(105, 19);
-            this.EnableHistoryCheckBox.TabIndex = 6;
+            this.EnableHistoryCheckBox.TabIndex = 9;
             this.EnableHistoryCheckBox.Text = "Enable History";
             this.EnableHistoryCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -155,10 +162,10 @@
             this.QueueSettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.QueueSettingsPanel.Controls.Add(this.ClearQueueButton);
             this.QueueSettingsPanel.Controls.Add(this.QueueSettings);
-            this.QueueSettingsPanel.Location = new System.Drawing.Point(159, 103);
+            this.QueueSettingsPanel.Location = new System.Drawing.Point(159, 104);
             this.QueueSettingsPanel.Name = "QueueSettingsPanel";
             this.QueueSettingsPanel.Size = new System.Drawing.Size(123, 52);
-            this.QueueSettingsPanel.TabIndex = 8;
+            this.QueueSettingsPanel.TabIndex = 11;
             // 
             // ClearQueueButton
             // 
@@ -170,7 +177,7 @@
             this.ClearQueueButton.Location = new System.Drawing.Point(6, 23);
             this.ClearQueueButton.Name = "ClearQueueButton";
             this.ClearQueueButton.Size = new System.Drawing.Size(70, 21);
-            this.ClearQueueButton.TabIndex = 8;
+            this.ClearQueueButton.TabIndex = 11;
             this.ClearQueueButton.Text = "Clear Queue";
             this.ClearQueueButton.UseVisualStyleBackColor = false;
             this.ClearQueueButton.Click += new System.EventHandler(this.ClearQueueButton_Click);
@@ -194,10 +201,10 @@
             this.UrlSettingsPanel.Controls.Add(this.TrustedUrlsTextBox);
             this.UrlSettingsPanel.Controls.Add(this.UrlSettingsLabel);
             this.UrlSettingsPanel.Controls.Add(this.EnableTrustedUrlsCheckBox);
-            this.UrlSettingsPanel.Location = new System.Drawing.Point(5, 29);
+            this.UrlSettingsPanel.Location = new System.Drawing.Point(5, 117);
             this.UrlSettingsPanel.Name = "UrlSettingsPanel";
             this.UrlSettingsPanel.Size = new System.Drawing.Size(150, 84);
-            this.UrlSettingsPanel.TabIndex = 1;
+            this.UrlSettingsPanel.TabIndex = 4;
             // 
             // TrustedUrlsLabel
             // 
@@ -217,7 +224,7 @@
             this.TrustedUrlsTextBox.Location = new System.Drawing.Point(4, 55);
             this.TrustedUrlsTextBox.Name = "TrustedUrlsTextBox";
             this.TrustedUrlsTextBox.Size = new System.Drawing.Size(139, 20);
-            this.TrustedUrlsTextBox.TabIndex = 2;
+            this.TrustedUrlsTextBox.TabIndex = 5;
             // 
             // UrlSettingsLabel
             // 
@@ -238,7 +245,7 @@
             this.EnableTrustedUrlsCheckBox.Location = new System.Drawing.Point(5, 20);
             this.EnableTrustedUrlsCheckBox.Name = "EnableTrustedUrlsCheckBox";
             this.EnableTrustedUrlsCheckBox.Size = new System.Drawing.Size(143, 19);
-            this.EnableTrustedUrlsCheckBox.TabIndex = 1;
+            this.EnableTrustedUrlsCheckBox.TabIndex = 4;
             this.EnableTrustedUrlsCheckBox.Text = "Enable Trusted URLs";
             this.EnableTrustedUrlsCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -247,7 +254,7 @@
             this.VersionLabel.AutoSize = true;
             this.VersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VersionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.VersionLabel.Location = new System.Drawing.Point(1, 89);
+            this.VersionLabel.Location = new System.Drawing.Point(1, 87);
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(132, 12);
             this.VersionLabel.TabIndex = 0;
@@ -258,7 +265,7 @@
             this.InternalVersionLabel.AutoSize = true;
             this.InternalVersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InternalVersionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.InternalVersionLabel.Location = new System.Drawing.Point(1, 101);
+            this.InternalVersionLabel.Location = new System.Drawing.Point(1, 99);
             this.InternalVersionLabel.Name = "InternalVersionLabel";
             this.InternalVersionLabel.Size = new System.Drawing.Size(76, 12);
             this.InternalVersionLabel.TabIndex = 0;
@@ -282,10 +289,10 @@
             this.CheckForUpdatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CheckForUpdatesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckForUpdatesButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.CheckForUpdatesButton.Location = new System.Drawing.Point(5, 42);
+            this.CheckForUpdatesButton.Location = new System.Drawing.Point(5, 40);
             this.CheckForUpdatesButton.Name = "CheckForUpdatesButton";
             this.CheckForUpdatesButton.Size = new System.Drawing.Size(99, 21);
-            this.CheckForUpdatesButton.TabIndex = 4;
+            this.CheckForUpdatesButton.TabIndex = 7;
             this.CheckForUpdatesButton.Text = "Check for Updates";
             this.CheckForUpdatesButton.UseVisualStyleBackColor = false;
             this.CheckForUpdatesButton.Click += new System.EventHandler(this.CheckForUpdatesButton_Click);
@@ -300,10 +307,10 @@
             this.UpdateSettingsButton.Controls.Add(this.VersionLabel);
             this.UpdateSettingsButton.Controls.Add(this.CheckForUpdatesButton);
             this.UpdateSettingsButton.Controls.Add(this.UpdateSettingsLabel);
-            this.UpdateSettingsButton.Location = new System.Drawing.Point(5, 117);
+            this.UpdateSettingsButton.Location = new System.Drawing.Point(5, 205);
             this.UpdateSettingsButton.Name = "UpdateSettingsButton";
             this.UpdateSettingsButton.Size = new System.Drawing.Size(150, 117);
-            this.UpdateSettingsButton.TabIndex = 3;
+            this.UpdateSettingsButton.TabIndex = 6;
             // 
             // RunBootstrapperButton
             // 
@@ -312,10 +319,10 @@
             this.RunBootstrapperButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RunBootstrapperButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RunBootstrapperButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.RunBootstrapperButton.Location = new System.Drawing.Point(5, 66);
+            this.RunBootstrapperButton.Location = new System.Drawing.Point(5, 64);
             this.RunBootstrapperButton.Name = "RunBootstrapperButton";
             this.RunBootstrapperButton.Size = new System.Drawing.Size(99, 21);
-            this.RunBootstrapperButton.TabIndex = 5;
+            this.RunBootstrapperButton.TabIndex = 8;
             this.RunBootstrapperButton.Text = "Run Bootstrapper";
             this.RunBootstrapperButton.UseVisualStyleBackColor = false;
             this.RunBootstrapperButton.Click += new System.EventHandler(this.RunBootstrapperButton_Click);
@@ -325,10 +332,10 @@
             this.EnableUpdateNotificationsCheckBox.AutoSize = true;
             this.EnableUpdateNotificationsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EnableUpdateNotificationsCheckBox.ForeColor = System.Drawing.Color.Gainsboro;
-            this.EnableUpdateNotificationsCheckBox.Location = new System.Drawing.Point(4, 22);
+            this.EnableUpdateNotificationsCheckBox.Location = new System.Drawing.Point(4, 20);
             this.EnableUpdateNotificationsCheckBox.Name = "EnableUpdateNotificationsCheckBox";
             this.EnableUpdateNotificationsCheckBox.Size = new System.Drawing.Size(135, 19);
-            this.EnableUpdateNotificationsCheckBox.TabIndex = 3;
+            this.EnableUpdateNotificationsCheckBox.TabIndex = 6;
             this.EnableUpdateNotificationsCheckBox.Text = "Enable Notifications";
             this.EnableUpdateNotificationsCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -339,10 +346,10 @@
             this.ApplySettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ApplySettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ApplySettingsButton.ForeColor = System.Drawing.Color.MediumSpringGreen;
-            this.ApplySettingsButton.Location = new System.Drawing.Point(222, 159);
+            this.ApplySettingsButton.Location = new System.Drawing.Point(222, 160);
             this.ApplySettingsButton.Name = "ApplySettingsButton";
-            this.ApplySettingsButton.Size = new System.Drawing.Size(60, 33);
-            this.ApplySettingsButton.TabIndex = 9;
+            this.ApplySettingsButton.Size = new System.Drawing.Size(60, 28);
+            this.ApplySettingsButton.TabIndex = 12;
             this.ApplySettingsButton.Text = "Apply";
             this.ApplySettingsButton.UseVisualStyleBackColor = false;
             this.ApplySettingsButton.Click += new System.EventHandler(this.ApplySettingsButton_Click);
@@ -354,13 +361,86 @@
             this.DiscardSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DiscardSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiscardSettingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.DiscardSettingsButton.Location = new System.Drawing.Point(159, 159);
+            this.DiscardSettingsButton.Location = new System.Drawing.Point(159, 160);
             this.DiscardSettingsButton.Name = "DiscardSettingsButton";
-            this.DiscardSettingsButton.Size = new System.Drawing.Size(60, 33);
-            this.DiscardSettingsButton.TabIndex = 10;
+            this.DiscardSettingsButton.Size = new System.Drawing.Size(60, 28);
+            this.DiscardSettingsButton.TabIndex = 13;
             this.DiscardSettingsButton.Text = "Cancel";
             this.DiscardSettingsButton.UseVisualStyleBackColor = false;
             this.DiscardSettingsButton.Click += new System.EventHandler(this.DiscardSettingsButton_Click);
+            // 
+            // SoundSettingsPanel
+            // 
+            this.SoundSettingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.SoundSettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SoundSettingsPanel.Controls.Add(this.CustomSoundLabel);
+            this.SoundSettingsPanel.Controls.Add(this.CustomCompleteSoundTextBox);
+            this.SoundSettingsPanel.Controls.Add(this.CustomSoundButton);
+            this.SoundSettingsPanel.Controls.Add(this.SoundSettingsLabel);
+            this.SoundSettingsPanel.Controls.Add(this.PlayCompleteSoundCheckBox);
+            this.SoundSettingsPanel.Location = new System.Drawing.Point(5, 29);
+            this.SoundSettingsPanel.Name = "SoundSettingsPanel";
+            this.SoundSettingsPanel.Size = new System.Drawing.Size(150, 83);
+            this.SoundSettingsPanel.TabIndex = 1;
+            // 
+            // CustomSoundLabel
+            // 
+            this.CustomSoundLabel.AutoSize = true;
+            this.CustomSoundLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomSoundLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.CustomSoundLabel.Location = new System.Drawing.Point(3, 40);
+            this.CustomSoundLabel.Name = "CustomSoundLabel";
+            this.CustomSoundLabel.Size = new System.Drawing.Size(142, 12);
+            this.CustomSoundLabel.TabIndex = 0;
+            this.CustomSoundLabel.Text = "Custom Sound: (blank for default)";
+            // 
+            // CustomCompleteSoundTextBox
+            // 
+            this.CustomCompleteSoundTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CustomCompleteSoundTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomCompleteSoundTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.CustomCompleteSoundTextBox.Location = new System.Drawing.Point(26, 55);
+            this.CustomCompleteSoundTextBox.Name = "CustomCompleteSoundTextBox";
+            this.CustomCompleteSoundTextBox.Size = new System.Drawing.Size(116, 20);
+            this.CustomCompleteSoundTextBox.TabIndex = 3;
+            // 
+            // CustomSoundButton
+            // 
+            this.CustomSoundButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(73)))), ((int)(((byte)(73)))));
+            this.CustomSoundButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(146)))), ((int)(((byte)(146)))));
+            this.CustomSoundButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomSoundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomSoundButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.CustomSoundButton.Image = global::MediaDownloader.Properties.Resources.folder_gray;
+            this.CustomSoundButton.Location = new System.Drawing.Point(6, 55);
+            this.CustomSoundButton.Name = "CustomSoundButton";
+            this.CustomSoundButton.Size = new System.Drawing.Size(20, 20);
+            this.CustomSoundButton.TabIndex = 2;
+            this.CustomSoundButton.UseVisualStyleBackColor = false;
+            this.CustomSoundButton.Click += new System.EventHandler(this.CustomSoundButton_Click);
+            // 
+            // SoundSettingsLabel
+            // 
+            this.SoundSettingsLabel.AutoSize = true;
+            this.SoundSettingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SoundSettingsLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.SoundSettingsLabel.Location = new System.Drawing.Point(2, 3);
+            this.SoundSettingsLabel.Name = "SoundSettingsLabel";
+            this.SoundSettingsLabel.Size = new System.Drawing.Size(111, 16);
+            this.SoundSettingsLabel.TabIndex = 0;
+            this.SoundSettingsLabel.Text = "Sound Settings";
+            // 
+            // PlayCompleteSoundCheckBox
+            // 
+            this.PlayCompleteSoundCheckBox.AutoSize = true;
+            this.PlayCompleteSoundCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayCompleteSoundCheckBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.PlayCompleteSoundCheckBox.Location = new System.Drawing.Point(5, 20);
+            this.PlayCompleteSoundCheckBox.Name = "PlayCompleteSoundCheckBox";
+            this.PlayCompleteSoundCheckBox.Size = new System.Drawing.Size(144, 19);
+            this.PlayCompleteSoundCheckBox.TabIndex = 1;
+            this.PlayCompleteSoundCheckBox.Text = "Play Complete Sound";
+            this.PlayCompleteSoundCheckBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -368,8 +448,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(287, 240);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(287, 328);
+            this.Controls.Add(this.SoundSettingsPanel);
             this.Controls.Add(this.DiscardSettingsButton);
             this.Controls.Add(this.ApplySettingsButton);
             this.Controls.Add(this.UpdateSettingsButton);
@@ -393,6 +474,8 @@
             this.UrlSettingsPanel.PerformLayout();
             this.UpdateSettingsButton.ResumeLayout(false);
             this.UpdateSettingsButton.PerformLayout();
+            this.SoundSettingsPanel.ResumeLayout(false);
+            this.SoundSettingsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -423,5 +506,11 @@
         private System.Windows.Forms.Button RunBootstrapperButton;
         private System.Windows.Forms.Button ApplySettingsButton;
         private System.Windows.Forms.Button DiscardSettingsButton;
+        private System.Windows.Forms.Panel SoundSettingsPanel;
+        private System.Windows.Forms.Label SoundSettingsLabel;
+        private System.Windows.Forms.CheckBox PlayCompleteSoundCheckBox;
+        private System.Windows.Forms.Button CustomSoundButton;
+        private System.Windows.Forms.TextBox CustomCompleteSoundTextBox;
+        private System.Windows.Forms.Label CustomSoundLabel;
     }
 }

@@ -9,6 +9,8 @@
             public bool NOTIFICATIONS_ENABLE;
             public bool TRUSTED_URLS_ENABLE;
             public string TRUSTED_URLS;
+            public bool COMPLETE_SOUND_ENABLE;
+            public string COMPLETE_SOUND_PATH;
 
             public bool OUTPUT_DISPLAY_ENABLE;
             public bool OUTPUT_PAUSE_ENABLE;

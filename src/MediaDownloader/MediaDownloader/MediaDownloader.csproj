@@ -94,6 +94,7 @@
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Tools\Shell.cs" />
+    <Compile Include="Scripts\Tools\Sounds.cs" />
     <Compile Include="Scripts\Tools\Strings.cs" />
     <Compile Include="Updater\UpdateChecker.cs" />
     <Compile Include="Updater\ResourceReader.cs" />
@@ -144,7 +145,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />
+    <EmbeddedResource Include="Resources\download_complete_error.wav" />
+    <EmbeddedResource Include="Resources\download_complete_success.wav" />
     <None Include="Resources\settings_background.png" />
+    <None Include="Resources\folder_gray.png" />
     <None Include="Resources\loading_icon.gif" />
     <None Include="Resources\checkmark.png" />
     <None Include="Resources\crossmark.png" />

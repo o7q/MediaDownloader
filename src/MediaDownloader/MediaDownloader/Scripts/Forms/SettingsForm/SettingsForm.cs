@@ -23,6 +23,9 @@ namespace MediaDownloader.Forms.SettingsForm
             EnableUpdateNotificationsCheckBox.Checked = CONFIG.NOTIFICATIONS_ENABLE;
 
             EnableHistoryCheckBox.Checked = CONFIG.HISTORY_ENABLE;
+
+            PlayCompleteSoundCheckBox.Checked = CONFIG.COMPLETE_SOUND_ENABLE;
+            CustomCompleteSoundTextBox.Text = CONFIG.COMPLETE_SOUND_PATH;
         }
 
         private void TitlebarPanel_MouseDown(object sender, MouseEventArgs e)
@@ -48,6 +51,9 @@ namespace MediaDownloader.Forms.SettingsForm
             CONFIG.NOTIFICATIONS_ENABLE = EnableUpdateNotificationsCheckBox.Checked;
 
             CONFIG.HISTORY_ENABLE = EnableHistoryCheckBox.Checked;
+
+            CONFIG.COMPLETE_SOUND_ENABLE = PlayCompleteSoundCheckBox.Checked;
+            CONFIG.COMPLETE_SOUND_PATH = CustomCompleteSoundTextBox.Text;
 
             Close();
         }
@@ -109,6 +115,17 @@ namespace MediaDownloader.Forms.SettingsForm
             if (customMessageBox.Result == DialogResult.OK)
             {
                 QUEUE.Clear();
+            }
+        }
+
+        private void CustomSoundButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Wave Files (*.wav)|*.wav";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                CustomCompleteSoundTextBox.Text = openFileDialog.FileName;
             }
         }
     }

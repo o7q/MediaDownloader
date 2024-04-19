@@ -40,6 +40,9 @@ namespace MediaDownloader.Data.Config
                     case "NOTIFICATIONS_ENABLE": config.NOTIFICATIONS_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS_ENABLE": config.TRUSTED_URLS_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "TRUSTED_URLS": config.TRUSTED_URLS = configSettingPair[1]; break;
+                    case "COMPLETE_SOUND_ENABLE": config.COMPLETE_SOUND_ENABLE = bool.Parse(configSettingPair[1]); break;
+                    case "COMPLETE_SOUND_PATH": config.COMPLETE_SOUND_PATH = configSettingPair[1]; break;
+
                     case "OUTPUT_DISPLAY_ENABLE": config.OUTPUT_DISPLAY_ENABLE = bool.Parse(configSettingPair[1]); break;
                     case "OUTPUT_PAUSE_ENABLE": config.OUTPUT_PAUSE_ENABLE = bool.Parse(configSettingPair[1]); break;
 
