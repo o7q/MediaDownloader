@@ -1,5 +1,2 @@
-- Added a settings menu
-- Added a QoL feature that skips the download process automatically if the raw file is detected (this is helpful if the user chose an undesired format and wants to change it without redownloading the entire video)
-- Added a migration feature to prevent the loss of user config data when loading from older versions
-- Greatly optimized the queue and history storage systems, it now stores each in a single compressed file
-- Small UI improvements
+- Added an option to play a sound when the download finishes, you can also specify a custom sound
+- Fixed a small bug with the history re-sorting in the wrong order
