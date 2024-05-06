@@ -5,7 +5,7 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff)
 
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader.exe)
-### Welcome! MediaDownloader is a lightweight, lightning-fast, GUI based tool that removes the hassle of using yt-dlp through a command-line.
+### Welcome! MediaDownloader is a lightweight, lightning-fast, GUI abstraction for yt-dlp and FFmpeg.
 
 ---
 
@@ -14,7 +14,7 @@
 ---
 
 # Overview
-MediaDownloader is a GUI-wrapper for yt-dlp that auto-configures scripts based on user settings.\
+MediaDownloader is a GUI-wrapper for yt-dlp that auto-configures command-line scripts based on user settings.\
 FFmpeg is then used for further media processing if needed.
 
 ### **Powered by**
@@ -62,9 +62,6 @@ FFmpeg: https://ffmpeg.org
     - **Audio Bitrate** Bitrate for audio - Examples: "320K" | "10K" (M = MB/s, K = KB/s)
 - **yt-dlp Arguments Input** Specify arguments to send to yt-dlp (double-click on the textbox to open the yt-dlp GitHub repository page)
 - **FFmpeg Arguments Input** Specify arguments to send to FFmpeg (double-click on the textbox to open the yt-dlp GitHub repository page)
-- **Log Output Options** Controls how MediaDownloader displays the download process
-    - **Display Checkbox** Displays the ongoing download log
-    - **Keep Checkbox** Keeps the log open even after MediaDownloader finishes downloading
 
 </details>
 </details>
@@ -82,7 +79,28 @@ FFmpeg: https://ffmpeg.org
     - **Load Button** Loads the selected item and its settings
     - **Refresh Button** Refreshes the history list
     - **Remove Button** Removes the selected history item
-    - **Enable History Checkbox** Enable/Disable saving of history
+- **Log Output Options** Controls how MediaDownloader displays the download process
+    - **Display Checkbox** Displays the ongoing download log
+    - **Keep Checkbox** Keeps the log open even after MediaDownloader finishes downloading
+
+</details>
+
+<details>
+<summary><b>Settings Menu</b></summary>
+
+- **Sound Settings**
+    - **Custom Complete Sound** Play a sound to indicate when a download is finished. Specify you own sound in the textbox, or leave it blank to use the default sound
+- **URL Settings**
+    - **Enable Trusted URLs** Only allow downloading from specified sites (comma separated)
+- **Update Settings** Controls how MediaDownloader displays the download process
+    - **Enable Notifications** Displays a notification when there is a new update for MediaDownloader
+    - **Check for Updates** Checks if there is a new update for MediaDownloader
+    - **Run Bootstrapper** Starts the redist bootstrapper
+- **History Settings**
+    - **Enable History** Enables the download history
+    - **Clear History** Clears all history (this cannot be undone!)
+- **Queue Settings**
+    - **Clear Queue** Clears the queue (this cannot be undone!)
 
 </details>
 
