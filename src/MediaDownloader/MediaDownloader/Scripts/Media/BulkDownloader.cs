@@ -2,25 +2,36 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 
+using MediaDownloader.Media;
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
-using static MediaDownloader.Media.Downloaders.Queuer;
 
-namespace MediaDownloader.Media.Downloaders
+namespace MediaDownloader.Media
 {
-    public static class BulkQueuer
+    public class BulkDownloader
     {
-        public static void StartDownloadQueue(List<QueueItemBase> queueList, Button downloadButton, Button downloadAllButton, Panel progressPanel, Label progressLabel, ListBox historyListBox)
+        private QueueItemBase queueItem;
+        private ControlPack controlPack;
+        private List<QueueItemBase> queueList;
+
+        public BulkDownloader(QueueItemBase queueItem, ControlPack controlPack, List<QueueItemBase> queueList)
+        {
+            this.controlPack = controlPack;
+            this.controlPack = controlPack;
+            this.queueList = queueList;
+        }
+
+        public void StartBulkDownload()
         {
             try
             {
-                progressPanel.Invoke((MethodInvoker)delegate
+                controlPack.progressPanel.Invoke((MethodInvoker)delegate
                 {
-                    progressPanel.Width = 0;
+                    controlPack.progressPanel.Width = 0;
                 });
 
-                progressLabel.Invoke((MethodInvoker)delegate
+                controlPack.progressLabel.Invoke((MethodInvoker)delegate
                 {
-                    progressLabel.Text = "0/" + queueList.Count + "  |  0.00%  |  00:00:00";
+                    controlPack.progressLabel.Text = "0/" + queueList.Count + "  |  0.00%  |  00:00:00";
                 });
             }
             catch { }
@@ -35,7 +46,9 @@ namespace MediaDownloader.Media.Downloaders
                 stopwatch.Start();
 
                 QueueItemBase queueItem = queueList[i];
-                StartDownload(queueItem, null, downloadButton, downloadAllButton, historyListBox);
+
+                Downloader queuer = new Downloader(queueItem, controlPack);
+                queuer.StartDownload();
 
                 percentage = ((i + 1) / (float)queueList.Count) * 100;
                 progressBarWidth = (int)((125 / (float)100) * percentage);
@@ -52,14 +65,14 @@ namespace MediaDownloader.Media.Downloaders
 
                 try
                 {
-                    progressPanel.Invoke((MethodInvoker)delegate
+                    controlPack.progressPanel.Invoke((MethodInvoker)delegate
                     {
-                        progressPanel.Width = progressBarWidth;
+                        controlPack.progressPanel.Width = progressBarWidth;
                     });
 
-                    progressLabel.Invoke((MethodInvoker)delegate
+                    controlPack.progressLabel.Invoke((MethodInvoker)delegate
                     {
-                        progressLabel.Text = (i + 1) + "/" + queueList.Count + "  |  " + percentage.ToString("0.00") + "%  |  " + time;
+                        controlPack.progressLabel.Text = (i + 1) + "/" + queueList.Count + "  |  " + percentage.ToString("0.00") + "%  |  " + time;
                     });
                 }
                 catch { }

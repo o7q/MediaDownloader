@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 using MediaDownloader.Forms.SettingsForm;
 using MediaDownloader.Forms.CustomMessageBox;
+
+using MediaDownloader.Media;
+
 using static MediaDownloader.Global;
 using static MediaDownloader.Data.Config.ConfigManager;
 using static MediaDownloader.Data.QueueItem.QueueItemManager;
@@ -14,8 +17,6 @@ using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
 using static MediaDownloader.Tools.Forms;
 using static MediaDownloader.Tools.Strings;
-using static MediaDownloader.Media.Downloaders.Queuer;
-using static MediaDownloader.Media.Downloaders.BulkQueuer;
 using static MediaDownloader.Updater.UpdateChecker;
 using static MediaDownloader.Updater.ResourceReader;
 
@@ -28,10 +29,21 @@ namespace MediaDownloader
             InitializeComponent();
         }
 
-        QueueItemBase currentQueueItem = new QueueItemBase();
+        QueueItemBase currentQueueItem;
+        ControlPack controlPack;
 
         private void Program_Load(object sender, EventArgs e)
         {
+            currentQueueItem = new QueueItemBase();
+            controlPack = new ControlPack();
+            controlPack.nameTextBox = OutputNameTextBox;
+            controlPack.downloadButton = DownloadButton;
+            controlPack.downloadAllButton = DownloadAllButton;
+            controlPack.progressPanel = QueueProgressPanel;
+            controlPack.progressLabel = QueueProgressLabel;
+            controlPack.queueListBox = QueueListBox;
+            controlPack.historyListBox = HistoryListBox;
+
             ReadQueueItemPackToListBox(QueueListBox, QUEUE, false);
             ReadQueueItemPackToListBox(HistoryListBox, HISTORY, true);
 
@@ -42,7 +54,9 @@ namespace MediaDownloader
                 if (QueueListBox.Items.Count == 0)
                 {
                     if (File.Exists("MediaDownloader\\config\\latestQueueItem.mdqi"))
+                    {
                         RefreshCurrentQueueItemFromFile("MediaDownloader\\config\\latestQueueItem.mdqi");
+                    }
                 }
                 else
                     QueueListBox.SelectedIndex = CONFIG.QUEUE_SELECTED_INDEX;
@@ -197,9 +211,12 @@ namespace MediaDownloader
             }
 
             if (IS_DOWNLOADING || currentQueueItem.URL == "" || currentQueueItem.URL == null || !containsTrustedUrl)
+            {
                 return;
+            }
 
-            Task.Run(() => StartDownload(currentQueueItem, OutputNameTextBox, DownloadButton, DownloadAllButton, HistoryListBox));
+            Downloader downloader = new Downloader(currentQueueItem, controlPack);
+            Task.Run(() => downloader.StartDownload());
         }
 
         private void DownloadAllButton_Click(object sender, EventArgs e)
@@ -214,7 +231,8 @@ namespace MediaDownloader
             if (IS_DOWNLOADING || QueueListBox.Items.Count == 0)
                 return;
 
-            Task.Run(() => StartDownloadQueue(QUEUE, DownloadButton, DownloadAllButton, QueueProgressBarPanel, QueueProgressLabel, HistoryListBox));
+            BulkDownloader bulkDownloader = new BulkDownloader(currentQueueItem, controlPack, QUEUE);
+            Task.Run(() => bulkDownloader.StartBulkDownload());
         }
 
         private void QueueAddButton_Click(object sender, EventArgs e)

@@ -62,8 +62,9 @@
     <Compile Include="Scripts\Global.cs" />
     <Compile Include="Scripts\Data\Config\ConfigStructure.cs" />
     <Compile Include="Scripts\Data\QueueItem\QueueItemStructure.cs" />
-    <Compile Include="Scripts\Media\Downloaders\BulkQueuer.cs" />
-    <Compile Include="Scripts\Media\Downloaders\Queuer.cs" />
+    <Compile Include="Scripts\Media\BulkDownloader.cs" />
+    <Compile Include="Scripts\Media\ControlPack.cs" />
+    <Compile Include="Scripts\Media\Downloader.cs" />
     <Compile Include="Scripts\Forms\BootstrapForm\BootstrapForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,8 +72,8 @@
       <DependentUpon>BootstrapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Data\Config\ConfigManager.cs" />
-    <Compile Include="Scripts\Media\Converters\Converter.cs" />
-    <Compile Include="Scripts\Media\Downloaders\Downloader.cs" />
+    <Compile Include="Scripts\Media\Converter.cs" />
+    <Compile Include="Scripts\Media\YtdlpWrapper.cs" />
     <Compile Include="Scripts\Data\QueueItem\QueueItemManager.cs" />
     <Compile Include="Scripts\Tools\MigrationTools\Migration.cs" />
     <Compile Include="Scripts\Tools\MigrationTools\Functions\QueueItemPack.cs" />

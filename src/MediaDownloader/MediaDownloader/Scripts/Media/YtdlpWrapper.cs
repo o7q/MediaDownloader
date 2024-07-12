@@ -5,11 +5,11 @@ using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Shell;
 using static MediaDownloader.Tools.Files;
 
-namespace MediaDownloader.Media.Downloaders
+namespace MediaDownloader.Media
 {
-    public static class Downloader
+    public static class YtdlpWrapper
     {
-        public static string[] DownloadMedia(QueueItemBase queueItem, bool skipDownload)
+        public static string[] DownloadQueueItem(QueueItemBase queueItem, bool skipDownload)
         {
             if (!skipDownload)
             {

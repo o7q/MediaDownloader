@@ -7,17 +7,26 @@ using static MediaDownloader.Data.QueueItem.QueueItemManager;
 using static MediaDownloader.Data.QueueItem.QueueItemStructure;
 using static MediaDownloader.Tools.Forms;
 using static MediaDownloader.Tools.Sounds;
-using static MediaDownloader.Media.Converters.Converter;
-using static MediaDownloader.Media.Downloaders.Downloader;
+using static MediaDownloader.Media.YtdlpWrapper;
+using static MediaDownloader.Media.Converter;
 
-namespace MediaDownloader.Media.Downloaders
+namespace MediaDownloader.Media
 {
-    public static class Queuer
+    public class Downloader
     {
-        public static void StartDownload(QueueItemBase queueItem, TextBox nameTextBox, Button downloadButton, Button downloadAllButton, ListBox historyListBox)
+        private QueueItemBase queueItem;
+        private ControlPack controlPack;
+
+        public Downloader(QueueItemBase queueItem, ControlPack controlPack)
+        {
+            this.queueItem = queueItem;
+            this.controlPack = controlPack;
+        }
+
+        public void StartDownload()
         {
             IS_DOWNLOADING = true;
-            ChangeDownloadButtonColors(true, downloadButton, downloadAllButton);
+            ChangeDownloadButtonColors(true, controlPack.downloadButton, controlPack.downloadAllButton);
 
             QueueItemBase lastQueueItem = new QueueItemBase();
             if (File.Exists("MediaDownloader\\temp\\lastQueueItem.mdqi"))
@@ -46,7 +55,7 @@ namespace MediaDownloader.Media.Downloaders
             lastQueueItem = queueItem;
             WriteQueueItemToFile(lastQueueItem, "MediaDownloader\\temp\\lastQueueItem.mdqi");
 
-            string[] downloadFiles = DownloadMedia(queueItem, skipDownload);
+            string[] downloadFiles = DownloadQueueItem(queueItem, skipDownload);
             if (downloadFiles == null)
             {
                 if (CONFIG.COMPLETE_SOUND_ENABLE)
@@ -64,7 +73,7 @@ namespace MediaDownloader.Media.Downloaders
                 CustomMessageBox customMessageBox = new CustomMessageBox("Error: Download Failed!", "OK", true);
                 customMessageBox.ShowDialog();
 
-                ChangeDownloadButtonColors(false, downloadButton, downloadAllButton);
+                ChangeDownloadButtonColors(false, controlPack.downloadButton, controlPack.downloadAllButton);
                 IS_DOWNLOADING = false;
 
                 return;
@@ -79,7 +88,9 @@ namespace MediaDownloader.Media.Downloaders
                 Directory.CreateDirectory(copyLocation + "\\" + directoryName);
 
                 for (int i = 0; i < downloadFiles.Length; i++)
-                    ConvertMedia(queueItem, downloadFiles[i], directoryName + "\\" + Path.GetFileNameWithoutExtension(downloadFiles[i]));
+                {
+                    ConvertQueueItem(queueItem, downloadFiles[i], directoryName + "\\" + Path.GetFileNameWithoutExtension(downloadFiles[i]));
+                }
             }
             else
             {
@@ -88,19 +99,19 @@ namespace MediaDownloader.Media.Downloaders
                 if (queueItem.OUTPUT_NAME == "" || queueItem.OUTPUT_NAME == null)
                     queueItem.OUTPUT_NAME = outputName;
 
-                if (nameTextBox != null)
+                if (controlPack.nameTextBox != null)
                 {
                     try
                     {
-                        nameTextBox.Invoke((MethodInvoker)delegate
+                        controlPack.nameTextBox.Invoke((MethodInvoker)delegate
                         {
-                            nameTextBox.Text = queueItem.OUTPUT_NAME;
+                            controlPack.nameTextBox.Text = queueItem.OUTPUT_NAME;
                         });
                     }
                     catch { }
                 }
 
-                ConvertMedia(queueItem, downloadFiles[0], queueItem.OUTPUT_NAME);
+                ConvertQueueItem(queueItem, downloadFiles[0], queueItem.OUTPUT_NAME);
             }
 
             if (CONFIG.HISTORY_ENABLE)
@@ -108,10 +119,10 @@ namespace MediaDownloader.Media.Downloaders
                 queueItem.OUTPUT_NAME_AUTO_ENABLE = false;
                 HISTORY.Insert(0, queueItem);
 
-                ReadQueueItemPackToListBox(historyListBox, HISTORY, true);
+                ReadQueueItemPackToListBox(controlPack.historyListBox, HISTORY, true);
             }
 
-            ChangeDownloadButtonColors(false, downloadButton, downloadAllButton);
+            ChangeDownloadButtonColors(false, controlPack.downloadButton, controlPack.downloadAllButton);
             IS_DOWNLOADING = false;
 
             if (CONFIG.COMPLETE_SOUND_ENABLE)
