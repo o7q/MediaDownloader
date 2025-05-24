@@ -1,0 +1,13 @@
+.button--download {
+    width: 20%;
+    height: 20%;
+
+    left: 5px;
+    top: 60%;
+
+    color: #32CD32;
+    background-color: #104410;
+    border: 2px solid #218821;
+
+    font-size: 3vw;
+}

@@ -7,7 +7,8 @@
   "build": {
     "files": [
       "**/*",
-      "!*.bat"
+      "!**/*.exe",
+      "!**/*.bat"
     ],
     "win": {
       "target": "dir",

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/body.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+
+    <link rel="stylesheet" href="styles/ui_containers/ui.css">
+    <link rel="stylesheet" href="styles/ui_containers/titlebar.css">
+
+    <link rel="stylesheet" href="styles/ui_controls/text.css">
+    <link rel="stylesheet" href="styles/ui_controls/button.css">
+    <link rel="stylesheet" href="styles/ui_controls/textbox.css">
+
+    <link rel="stylesheet" href="styles/ui/url-box.css">
+    <link rel="stylesheet" href="styles/ui/download-box.css">
+
+    <script src="scripts/init/init.js"></script>
+    <script src="scripts/init/ui_init/buttons.js"></script>
+    <script src="scripts/init/ui_init/titlebar.js"></script>
+
+    <script src="scripts/download/download-button.js"></script>
+</head>
+
+<body>
+    <div class="ui-container">
+        <div class="titlebar">
+            <div class="titlebar__buttons">
+                <button id="min-button">_</button>
+                <button id="close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--url-label">URL</p>
+        <input type="text" class="textbox textbox--url" id="url-input" autocomplete="off">
+        <button class="button button--download" id="download-button">Download</button>
+    </div>
+</body>
+
+</html>

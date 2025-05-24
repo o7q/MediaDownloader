@@ -1,0 +1,12 @@
+.textbox {
+    width: 100px;
+
+    font-size: 15px;
+
+    position: absolute;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(83, 83, 83);
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 3px;
+}
