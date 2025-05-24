@@ -1,0 +1,22 @@
+{
+  "name": "mediadownloader",
+  "version": "1.0.0",
+  "description": "GUI wrapper for yt-dlp",
+  "main": "main.js",
+  "build": {
+    "productName": "MediaDownloader",
+    "win": {
+      "target": "dir"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "o7q",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^36.3.1",
+    "electron-builder": "^26.0.12"
+  }
+}

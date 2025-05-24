@@ -1,2 +1,2 @@
-# Build folder
-BUILD
+node_modules
+dist
