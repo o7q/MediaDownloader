@@ -1,6 +1,9 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
-const { registerIpcEvents } = require("./scripts/events.js");
+
+const { registerWindowEvents } = require("./preload/events/window.js");
+const { registerSystemEvents } = require("./preload/events/system.js");
+const { registerDebugEvents } = require("./preload/events/debug.js");
 
 const createWindow = () => {
     const window = new BrowserWindow({
@@ -12,13 +15,15 @@ const createWindow = () => {
         titleBarStyle: "hidden",
         icon: path.join(__dirname, "assets/icon.ico"),
         webPreferences: {
-            preload: path.join(__dirname, "./scripts/preload.js")
+            preload: path.join(__dirname, "./preload/preload.js")
         }
     });
 
-    window.loadFile("./index.html");
+    window.loadFile("./renderer/index.html");
 
-    registerIpcEvents(window);
+    registerWindowEvents(window);
+    registerSystemEvents();
+    registerDebugEvents();
 }
 
 app.whenReady().then(() => {

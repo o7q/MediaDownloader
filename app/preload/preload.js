@@ -6,8 +6,8 @@ contextBridge.exposeInMainWorld("windowControls", {
 });
 
 contextBridge.exposeInMainWorld("system", {
-    createFile: (path) => ipcRenderer.send("create-file", path),
-    createFolder: (path) => ipcRenderer.send("create-folder", path),
+    createFile: (path, data) => ipcRenderer.invoke("create-file", path, data),
+    createFolder: (path) => ipcRenderer.invoke("create-folder", path),
     startProcess: (path, args) => ipcRenderer.send("start-process", path, args)
 });
 
