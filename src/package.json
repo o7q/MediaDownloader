@@ -1,12 +1,17 @@
 {
   "name": "mediadownloader",
+  "productName": "MediaDownloader",
   "version": "1.0.0",
   "description": "GUI wrapper for yt-dlp",
   "main": "main.js",
   "build": {
-    "productName": "MediaDownloader",
+    "files": [
+      "**/*",
+      "!*.bat"
+    ],
     "win": {
-      "target": "dir"
+      "target": "dir",
+      "icon": "assets/icon.ico"
     }
   },
   "scripts": {

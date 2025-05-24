@@ -1,0 +1,27 @@
+.titlebar {
+    width: 100%;
+    height: 30px;
+    background-color: rgb(36, 36, 36);
+
+    -webkit-app-region: drag;
+}
+
+.titlebar__windowButtons {
+    height: 100%;
+    display: flex;
+    gap: 3px;
+    justify-content: flex-end;
+}
+
+.titlebar__windowButtons button {
+    background-color: rgb(31, 31, 31);
+    border: none;
+    color: rgb(145, 145, 145);
+    border-radius: 10px;
+    width: 30px;
+    height: 100%;
+    font-size: 10px;
+    cursor: pointer;
+
+    -webkit-app-region: no-drag;
+}
