@@ -1,4 +1,6 @@
-class Downloader {
+const { startProcess } = require("../utils/process");
+
+class UrlDownloader {
     constructor() {
         this.name = "";
         this.downloadType = "video"; // types are: video, thumbnail
@@ -32,6 +34,8 @@ class Downloader {
                 break;
         }
 
-        window.system.startProcess("bin/yt-dlp", args);
+        await startProcess("MediaDownloader/bin/yt-dlp", args);
     }
 }
+
+module.exports = { UrlDownloader };

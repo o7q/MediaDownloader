@@ -13,6 +13,10 @@
     "win": {
       "target": "dir",
       "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "dir",
+      "icon": "assets/icon.png"
     }
   },
   "scripts": {

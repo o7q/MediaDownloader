@@ -1,19 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     initTitlebar();
     initButtons();
-
-    createDirectories();
 });
-
-async function createDirectories() {
-
-}
-
-function initButtons() {
-    document.getElementById("download-button").addEventListener("click", () => {
-        downloadStart();
-    });
-}
 
 function initTitlebar() {
     document.getElementById("min-button").addEventListener("click", () => {
@@ -22,5 +10,16 @@ function initTitlebar() {
 
     document.getElementById("close-button").addEventListener("click", () => {
         window.windowControls.closeWindow();
+    });
+}
+
+function initButtons() {
+    document.getElementById("download-button").addEventListener("click", async () => {
+        const downloadSettings = {
+            url: document.getElementById("url-textbox").value,
+            name: ""
+        };
+
+        await window.downloader.download(downloadSettings);
     });
 }
