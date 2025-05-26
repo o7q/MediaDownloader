@@ -3,8 +3,6 @@
     height: 30px;
 
     background-color: rgb(36, 36, 36);
-
-    -webkit-app-region: drag;
 }
 
 .titlebar__banner {
@@ -36,8 +34,6 @@
     cursor: pointer;
 
     transition: 0.2s color ease-in-out, 0.2s background-color ease-in-out;
-
-    -webkit-app-region: no-drag;
 }
 
 .titlebar__buttons button:hover {

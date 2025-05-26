@@ -1,21 +1,22 @@
+use crate::downloaders::downloader::Downloader;
 use std::process::Command;
 
-pub struct Downloader {
+pub struct VideoDownloader {
     url: String,
 }
 
-impl Downloader {
-    pub fn new() -> Self {
+impl Downloader for VideoDownloader {
+    fn new() -> Self {
         Self {
             url: String::from(""),
         }
     }
 
-    pub fn set_url(&mut self, url: &str) {
+    fn set_url(&mut self, url: &str) {
         self.url = String::from(url)
     }
 
-    pub fn download(&self) {
+    fn download(&self) {
         let output = Command::new("bin/yt-dlp")
             .arg("--verbose")
             .arg("--ffmpeg-location")
