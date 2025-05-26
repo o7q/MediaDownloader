@@ -8,13 +8,19 @@ function createWindow() {
     const window = new BrowserWindow({
         width: 500,
         height: 250,
+
         minWidth: 400,
         minHeight: 200,
+
+        // maxWidth: 1000,
+        // maxHeight: 500,
+
         frame: false,
         titleBarStyle: "hidden",
         icon: path.join(__dirname, "assets/icon.ico"),
         webPreferences: {
-            preload: path.join(__dirname, "./backend/preload.js")
+            preload: path.join(__dirname, "./backend/preload.js"),
+            devTools: !app.isPackaged
         }
     });
 

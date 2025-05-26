@@ -12,23 +12,21 @@
     <link rel="stylesheet" href="styles/containers/titlebar.css">
 
     <link rel="stylesheet" href="styles/controls_base/text.css">
+    <link rel="stylesheet" href="styles/controls_base/dropdown.css">
     <link rel="stylesheet" href="styles/controls_base/button.css">
     <link rel="stylesheet" href="styles/controls_base/textbox.css">
 
-    <link rel="stylesheet" href="styles/controls/url-box.css">
-    <link rel="stylesheet" href="styles/controls/download-box.css">
+    <link rel="stylesheet" href="styles/controls/textbox/url-textbox.css">
+    <link rel="stylesheet" href="styles/controls/button/download-button.css">
+    <link rel="stylesheet" href="styles/controls/dropdown/format-dropdown.css">
 
     <script src="scripts/init.js"></script>
-    <script src="scripts/init/ui_init/buttons.js"></script>
-    <script src="scripts/init/ui_init/titlebar.js"></script>
-
-    <script src="scripts/downloader/downloader.js"></script>
-    <script src="scripts/downloader/download-button.js"></script>
 </head>
 
 <body>
     <div class="ui-container">
         <div class="titlebar">
+            <img class="titlebar__banner" src="../assets/images/banner.png">
             <div class="titlebar__buttons">
                 <button id="min-button">_</button>
                 <button id="close-button">x</button>
@@ -36,7 +34,43 @@
         </div>
 
         <p class="text text--url-label">URL</p>
-        <input type="text" class="textbox textbox--url" id="url-textbox" autocomplete="off">
+        <input name="hhaa" type="text" class="textbox textbox--url" id="url-textbox" autocomplete="off">
+
+        <select class="dropdown dropdown--formats" id="format-dropdown">
+            <option>[Video]</option>
+            <option value="mp4-fast">mp4 (fast)</option>
+            <option value="mp4">mp4</option>
+            <option value="mp4-nvidia">mp4 (nvidia)</option>
+            <option value="mp4-amd">mp4 (amd)</option>
+            <option value="webm">webm</option>
+            <option value="avi">avi (uncompressed)</option>
+            <option></option>
+
+            <option>[Audio]</option>
+            <option value="mp3">mp3</option>
+            <option value="wav">wav</option>
+            <option value="ogg">ogg</option>
+            <option value="aac">aac</option>
+            <option value="opus">opus</option>
+            <option value="wma">wma</option>
+            <option value="flac">flac (lossless)</option>
+            <option value="m4a">m4a (lossless)</option>
+            <option></option>
+
+            <option>[Image]</option>
+            <option value="gif">gif</option>
+            <option value="png">png (sequence)</option>
+            <option value="jpg">jpg (sequence)</option>
+            <option></option>
+
+            <option>[Thumbnail]</option>
+            <option value="png">png</option>
+            <option value="jpg">jpg</option>
+
+            <option>[Custom]</option>
+            <option value="custom-arguments">Custom Arguments</option>
+        </select>
+
         <button class="button button--download" id="download-button">Download</button>
     </div>
 </body>

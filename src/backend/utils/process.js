@@ -2,7 +2,7 @@ const { spawn } = require('node:child_process');
 
 function startProcess(path, args) {
     return new Promise((resolve, reject) => {
-        const child = spawn(path, args, { stdio: 'ignore' });
+        const child = spawn(path, args, { stdio: 'inherit' });
 
         child.on('close', (exitCode) => {
             if (exitCode === 0) {

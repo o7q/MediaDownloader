@@ -24,7 +24,7 @@ class UrlDownloader {
         let args;
         switch (this.downloadType) {
             case "video":
-                args = ["--verbose", "-o", `MediaDownloader/temp/download/${outputName}`, this.url];
+                args = ["--verbose", "--ffmpeg-location", "bin/ffmpeg.exe", "-o", `MediaDownloader/temp/download/${outputName}`, this.url];
                 break;
             case "thumbnail":
                 args = ["--verbose", "--skip-download", "--write-thumbnail", "-o", `MediaDownloader/temp/download/${outputName}`, this.url];
@@ -34,7 +34,7 @@ class UrlDownloader {
                 break;
         }
 
-        await startProcess("MediaDownloader/bin/yt-dlp", args);
+        await startProcess("bin/yt-dlp", args);
     }
 }
 

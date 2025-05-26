@@ -1,0 +1,13 @@
+.textbox--url {
+    width: 60vw;
+    height: 3vw;
+
+    left: 1vw;
+    top: 8vw;
+}
+
+.text--url-label {
+    left: 1vw;
+    top: 5vw;
+    font-size: 2vw;
+}

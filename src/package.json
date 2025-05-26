@@ -1,7 +1,7 @@
 {
   "name": "mediadownloader",
   "productName": "MediaDownloader",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "GUI wrapper for yt-dlp",
   "main": "main.js",
   "build": {
