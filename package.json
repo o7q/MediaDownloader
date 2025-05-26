@@ -1,0 +1,13 @@
+{
+  "name": "media-downloader",
+  "private": true,
+  "version": "5.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tauri dev --config backend/tauri.conf.json",
+    "build": "tauri build --no-bundle --config backend/tauri.conf.json"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
