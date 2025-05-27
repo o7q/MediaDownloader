@@ -1,0 +1,48 @@
+/* hide the default checkbox */
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* style the custom checkbox box */
+.checkbox .checkbox-checkmark {
+    height: 2vw;
+    width: 2vw;
+
+    position: absolute;
+
+    background-color: #757575;
+    border: 2px solid #757575;
+    border-radius: 0.5vw;
+    transition: background-color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+/* change background when checked */
+.checkbox input[type="checkbox"]:checked+.checkbox-checkmark {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+/* add checkbox-checkmark symbol */
+.checkbox .checkbox-checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 0.7vw;
+    top: 0.2vw;
+    width: 0.5vw;
+    height: 1vw;
+    border: solid white;
+    border-width: 0 0.15vw 0.15vw 0;
+    transform: rotate(45deg);
+}
+
+/* show checkbox-checkmark when checked */
+.checkbox input[type="checkbox"]:checked+.checkbox-checkmark::after {
+    display: block;
+}
+
+.checkbox--trim {
+    top: 100px;
+    left: 100px;
+}

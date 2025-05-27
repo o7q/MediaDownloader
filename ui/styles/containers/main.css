@@ -1,5 +1,5 @@
 .ui-container {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: block;
     background-image: linear-gradient(rgb(20, 20, 20), rgb(37, 37, 37));

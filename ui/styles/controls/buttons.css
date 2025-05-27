@@ -1,16 +1,27 @@
+.button {
+    position: absolute;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(83, 83, 83);
+    border: 0.1vw solid rgb(148, 148, 148);
+    border-radius: 0.25vw;
+
+    cursor: pointer;
+}
+
 .button--download {
     width: 30vw;
     height: 10vw;
 
     left: 1vw;
-    top: 19vw;
+    top: 100vw;
 
     color: #32CD32;
     background-color: #104410;
     border: 0.5px solid #218821;
 
     font-size: 4vw;
-    
+
     transition: 0.4s color ease-in-out, 0.4s background-color ease-in-out;
 }
 

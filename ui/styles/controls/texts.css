@@ -1,0 +1,31 @@
+.text {
+    font-size: 2vw;
+    font-family: Roboto-Medium;
+
+    position: absolute;
+
+    color: rgb(160, 160, 160);
+    line-height: 0px;
+}
+
+.text--settings-panel {
+    left: 1vw;
+    top: 11.5vw;
+    color: rgb(88, 88, 88);
+    font-family: Roboto-Regular;
+}
+
+.text--url-label {
+    left: 1vw;
+    top: 5vw;
+}
+
+.text--format-label {
+    left: 2vw;
+    top: 15vw;
+}
+
+.text--name-label {
+    left: 62vw;
+    top: 5vw;
+}

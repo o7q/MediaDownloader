@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="styles/containers/main.css">
     <link rel="stylesheet" href="styles/containers/titlebar.css">
 
-    <link rel="stylesheet" href="styles/controls_base/text.css">
-    <link rel="stylesheet" href="styles/controls_base/dropdown.css">
-    <link rel="stylesheet" href="styles/controls_base/button.css">
-    <link rel="stylesheet" href="styles/controls_base/textbox.css">
+    <link rel="stylesheet" href="styles/controls/buttons.css">
+    <link rel="stylesheet" href="styles/controls/checkboxes.css">
+    <link rel="stylesheet" href="styles/controls/dropdowns.css">
+    <link rel="stylesheet" href="styles/controls/panels.css">
+    <link rel="stylesheet" href="styles/controls/textboxes.css">
+    <link rel="stylesheet" href="styles/controls/texts.css">
 
     <link rel="stylesheet" href="styles/controls/textbox/url-textbox.css">
     <link rel="stylesheet" href="styles/controls/button/download-button.css">
@@ -38,9 +40,16 @@
             </div>
         </div>
 
+        <div class="panel panel--settings"></div>
+        <p class="text text--settings-panel">Settings</p>
+
         <p class="text text--url-label">URL</p>
         <input type="text" class="textbox textbox--url" id="url-textbox" autocomplete="off">
 
+        <p class="text text--name-label">Name</p>
+        <input type="text" class="textbox textbox--name" id="url-textbox" autocomplete="off">
+
+        <p class="text text--format-label">Format</p>
         <select class="dropdown dropdown--formats" id="format-dropdown">
             <option>[Video]</option>
             <option value="mp4-fast">mp4 (fast)</option>
@@ -49,7 +58,7 @@
             <option value="mp4-amd">mp4 (amd)</option>
             <option value="webm">webm</option>
             <option value="avi">avi (uncompressed)</option>
-            <option></option>
+            <option>---</option>
 
             <option>[Audio]</option>
             <option value="mp3">mp3</option>
@@ -60,21 +69,27 @@
             <option value="wma">wma</option>
             <option value="flac">flac (lossless)</option>
             <option value="m4a">m4a (lossless)</option>
-            <option></option>
+            <option>---</option>
 
             <option>[Image]</option>
             <option value="gif">gif</option>
             <option value="png">png (sequence)</option>
             <option value="jpg">jpg (sequence)</option>
-            <option></option>
+            <option>---</option>
 
             <option>[Thumbnail]</option>
             <option value="png">png</option>
             <option value="jpg">jpg</option>
+            <option>---</option>
 
             <option>[Custom]</option>
             <option value="custom-arguments">Custom Arguments</option>
         </select>
+
+        <!-- <label class="checkbox">
+            <input type="checkbox" />
+            <span class="checkbox-checkmark checkbox--trim"></span>
+        </label> -->
 
         <button class="button button--download" id="download-button">Download</button>
     </div>

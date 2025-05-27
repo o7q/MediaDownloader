@@ -1,0 +1,16 @@
+.panel {
+    position: absolute;
+}
+
+.panel--settings
+{
+    width: 98vw;
+    height: 30vw;
+
+    left: 1vw;
+    top: 15vw;
+
+border-radius: 1vw;
+
+    background-color: rgb(17, 17, 17);
+}
