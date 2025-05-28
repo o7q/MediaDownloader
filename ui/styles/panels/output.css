@@ -1,15 +1,14 @@
-.button {
-    position: absolute;
+.panel--output {
+    width: 98vw;
+    height: 5vw;
 
-    color: rgb(212, 212, 212);
-    background-color: rgb(83, 83, 83);
-    border: 0.1vw solid rgb(148, 148, 148);
-    border-radius: 0.25vw;
+    left: 1vw;
+    top: 36vw;
 
-    cursor: pointer;
+    background-color: rgb(231, 28, 28);
 }
 
-.button--download {
+.button--output-download {
     width: 30vw;
     height: 10vw;
 
@@ -25,7 +24,7 @@
     transition: 0.4s color ease-in-out, 0.4s background-color ease-in-out;
 }
 
-.button--download:hover {
+.button--output-download:hover {
     color: #31d331;
     background-color: #135313;
 }

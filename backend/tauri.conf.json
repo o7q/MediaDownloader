@@ -11,10 +11,10 @@
     "windows": [
       {
         "title": "MediaDownloader",
-        "width": 500,
+        "width": 550,
         "height": 250,
-        "minWidth": 400,
-        "minHeight": 200,
+        "minWidth": 550,
+        "minHeight": 250,
         "decorations": false
       }
     ],

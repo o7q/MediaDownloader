@@ -1,0 +1,59 @@
+.panel--settings-bitrate {
+    width: 37vw;
+    height: 11vw;
+
+    left: 30vw;
+    top: 10vw;
+
+    background-color: rgb(22, 22, 22);
+
+    border-radius: 0vw;
+
+    border-left: 0.1vw solid rgb(85, 85, 85);
+    border-top: 0.1vw solid rgb(85, 85, 85);
+    border-bottom: 0.1vw solid rgb(85, 85, 85);
+}
+
+.checkbox--settings-bitrate-video {
+    left: 1vw;
+    top: 1vw;
+}
+
+.text--settings-bitrate-video {
+    font-size: 2.25vw;
+
+    white-space: nowrap;
+    left: 4vw;
+    top: -0.5vw;
+}
+
+.textbox--settings-bitrate-video {
+    width: 10vw;
+
+    font-size: 2vw;
+
+    left: 1vw;
+    top: 5vw;
+}
+
+.checkbox--settings-bitrate-audio {
+    left: 19vw;
+    top: 1vw;
+}
+
+.text--settings-bitrate-audio {
+    font-size: 2.25vw;
+
+    white-space: nowrap;
+    left: 4vw;
+    top: -0.5vw;
+}
+
+.textbox--settings-bitrate-audio {
+    width: 10vw;
+
+    font-size: 2vw;
+
+    left: 19vw;
+    top: 5vw;
+}

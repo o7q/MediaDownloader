@@ -11,16 +11,23 @@
     <link rel="stylesheet" href="styles/containers/main.css">
     <link rel="stylesheet" href="styles/containers/titlebar.css">
 
-    <link rel="stylesheet" href="styles/controls/buttons.css">
-    <link rel="stylesheet" href="styles/controls/checkboxes.css">
-    <link rel="stylesheet" href="styles/controls/dropdowns.css">
-    <link rel="stylesheet" href="styles/controls/panels.css">
-    <link rel="stylesheet" href="styles/controls/textboxes.css">
-    <link rel="stylesheet" href="styles/controls/texts.css">
+    <link rel="stylesheet" href="styles/controls/button.css">
+    <link rel="stylesheet" href="styles/controls/checkbox.css">
+    <link rel="stylesheet" href="styles/controls/dropdown.css">
+    <link rel="stylesheet" href="styles/controls/panel.css">
+    <link rel="stylesheet" href="styles/controls/textbox.css">
+    <link rel="stylesheet" href="styles/controls/text.css">
 
-    <link rel="stylesheet" href="styles/controls/textbox/url-textbox.css">
-    <link rel="stylesheet" href="styles/controls/button/download-button.css">
-    <link rel="stylesheet" href="styles/controls/dropdown/format-dropdown.css">
+    <link rel="stylesheet" href="styles/panels/input/input.css">
+    <link rel="stylesheet" href="styles/panels/input/url.css">
+
+    <link rel="stylesheet" href="styles/panels/settings/settings.css">
+    <link rel="stylesheet" href="styles/panels/settings/formats.css">
+    <link rel="stylesheet" href="styles/panels/settings/time.css">
+    <link rel="stylesheet" href="styles/panels/settings/res-fps.css">
+    <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
+
+    <link rel="stylesheet" href="styles/panels/output.css">
 
     <script src="scripts/main.js"></script>
 
@@ -31,7 +38,7 @@
 </head>
 
 <body>
-    <div class="ui-container">
+    <div class="container-main">
         <div class="titlebar" id="titlebar">
             <img class="titlebar__banner" src="assets/images/banner.png">
             <div class="titlebar__buttons">
@@ -40,58 +47,132 @@
             </div>
         </div>
 
-        <div class="panel panel--settings"></div>
-        <p class="text text--settings-panel">Settings</p>
+        <p class="text text--input">Input</p>
+        <div class="panel panel--input">
+            <p class="text text--input-url">URL</p>
+            <input type="text" class="textbox textbox--input-url" id="input-url-textbox" autocomplete="off">
+        </div>
 
-        <p class="text text--url-label">URL</p>
-        <input type="text" class="textbox textbox--url" id="url-textbox" autocomplete="off">
+        <p class="text text--settings">Settings</p>
+        <div class="panel panel--settings">
+            <div class="panel panel--settings-formats">
+                <p class="text text--settings-formats">Format</p>
+                <select class="dropdown dropdown--settings-formats" id="settings-formats-dropdown">
+                    <option>[Video]</option>
+                    <option value="mp4-fast">mp4 (fast)</option>
+                    <option value="mp4">mp4</option>
+                    <option value="mp4-nvidia">mp4 (nvidia)</option>
+                    <option value="mp4-amd">mp4 (amd)</option>
+                    <option value="webm">webm</option>
+                    <option value="avi">avi (uncompressed)</option>
+                    <option>---</option>
 
-        <p class="text text--name-label">Name</p>
-        <input type="text" class="textbox textbox--name" id="url-textbox" autocomplete="off">
+                    <option>[Audio]</option>
+                    <option value="mp3">mp3</option>
+                    <option value="wav">wav</option>
+                    <option value="ogg">ogg</option>
+                    <option value="aac">aac</option>
+                    <option value="opus">opus</option>
+                    <option value="wma">wma</option>
+                    <option value="flac">flac (lossless)</option>
+                    <option value="m4a">m4a (lossless)</option>
+                    <option>---</option>
 
-        <p class="text text--format-label">Format</p>
-        <select class="dropdown dropdown--formats" id="format-dropdown">
-            <option>[Video]</option>
-            <option value="mp4-fast">mp4 (fast)</option>
-            <option value="mp4">mp4</option>
-            <option value="mp4-nvidia">mp4 (nvidia)</option>
-            <option value="mp4-amd">mp4 (amd)</option>
-            <option value="webm">webm</option>
-            <option value="avi">avi (uncompressed)</option>
-            <option>---</option>
+                    <option>[Image]</option>
+                    <option value="gif">gif</option>
+                    <option value="png">png (sequence)</option>
+                    <option value="jpg">jpg (sequence)</option>
+                    <option>---</option>
 
-            <option>[Audio]</option>
-            <option value="mp3">mp3</option>
-            <option value="wav">wav</option>
-            <option value="ogg">ogg</option>
-            <option value="aac">aac</option>
-            <option value="opus">opus</option>
-            <option value="wma">wma</option>
-            <option value="flac">flac (lossless)</option>
-            <option value="m4a">m4a (lossless)</option>
-            <option>---</option>
+                    <option>[Thumbnail]</option>
+                    <option value="png">png</option>
+                    <option value="jpg">jpg</option>
+                    <option>---</option>
 
-            <option>[Image]</option>
-            <option value="gif">gif</option>
-            <option value="png">png (sequence)</option>
-            <option value="jpg">jpg (sequence)</option>
-            <option>---</option>
+                    <option>[Custom]</option>
+                    <option value="custom-arguments">Custom Arguments</option>
+                </select>
+            </div>
 
-            <option>[Thumbnail]</option>
-            <option value="png">png</option>
-            <option value="jpg">jpg</option>
-            <option>---</option>
+            <div class="panel panel--settings-time">
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-time">
+                        <p class="text text--settings-time">Trim Time Between</p>
+                    </span>
+                </label>
 
-            <option>[Custom]</option>
-            <option value="custom-arguments">Custom Arguments</option>
-        </select>
+                <input type="text" class="textbox textbox--settings-time-start" id="settings-time-start-textbox"
+                    autocomplete="off">
 
-        <!-- <label class="checkbox">
-            <input type="checkbox" />
-            <span class="checkbox-checkmark checkbox--trim"></span>
-        </label> -->
+                <p class="text text--settings-time-and">and</p>
 
-        <button class="button button--download" id="download-button">Download</button>
+                <input type="text" class="textbox textbox--settings-time-end" id="settings-time-start-textbox"
+                    autocomplete="off">
+            </div>
+
+            <div class="panel panel--settings-res-fps">
+                <label class="checkbox">
+                    <input name="test" type="checkbox" />
+                    <span class="text checkbox-checkmark checkbox--settings-res-fps-resolution">
+                        <p class="text text--settings-res-fps-resolution">Change Size</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-res-fps-width" id="settings-res-fps-width"
+                    autocomplete="off">
+
+                <input type="text" class="textbox textbox--settings-res-fps-height" id="settings-res-fps-height"
+                    autocomplete="off">
+
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-res-fps-framerate">
+                        <p class="text text--settings-res-fps-framerate">Change FPS</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-res-fps-framerate" id="settings-res-fps-framerate"
+                    autocomplete="off">
+            </div>
+
+            <div class="panel panel--settings-bitrate">
+                <label class="checkbox">
+                    <input name="test" type="checkbox" />
+                    <span class="text checkbox-checkmark checkbox--settings-bitrate-video">
+                        <p class="text text--settings-bitrate-video">Change VBR</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video"
+                    autocomplete="off">
+
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-bitrate-audio">
+                        <p class="text text--settings-bitrate-audio">Change ABR</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio"
+                    autocomplete="off">
+            </div>
+
+
+            <!-- <div class="panel panel--settings-bitrate">
+                <p class="text text--settings-res-fps-resolution">Resolution</p>
+                <input type="text" class="textbox textbox--settings-res-fps-width" id="settings-res-fps-width"
+                    autocomplete="off">
+
+                <input type="text" class="textbox textbox--settings-res-fps-height" id="settings-res-fps-height"
+                    autocomplete="off">
+
+                <p class="text text--settings-res-fps-framerate">Framerate</p>
+                <input type="text" class="textbox textbox--settings-res-fps-framerate" id="settings-res-fps-framerate"
+                    autocomplete="off">
+            </div> -->
+        </div>
+
+
+        <!-- <div class="panel panel--output">
+            <button class="button button--output-download" id="download-button">Download</button>
+        </div> -->
     </div>
 </body>
 

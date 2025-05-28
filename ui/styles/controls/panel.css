@@ -1,0 +1,9 @@
+.panel {
+    width: 20vw;
+    height: 10vw;
+
+    position: absolute;
+    background-color: rgb(15, 15, 15);
+
+    border-radius: 1vw;
+}

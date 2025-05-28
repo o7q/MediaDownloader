@@ -1,0 +1,75 @@
+.panel--settings-time {
+    width: 30vw;
+    height: 11vw;
+
+    top: 10vw;
+
+    background-color: rgb(22, 22, 22);
+
+    border-radius: 0vw;
+    border-bottom-left-radius: 1vw;
+
+    border-top: 0.1vw solid rgb(85, 85, 85);
+    border-bottom: 0.1vw solid rgb(85, 85, 85);
+}
+
+.text--settings-time {
+    font-size: 2.25vw;
+
+    white-space: nowrap;
+    left: 4vw;
+    top: -0.5vw;
+}
+
+.checkbox--settings-time {
+    left: 1vw;
+    top: 1vw;
+}
+
+.textbox--settings-time-start {
+    width: 10vw;
+
+    font-size: 2vw;
+
+    left: 1vw;
+    top: 5vw;
+}
+
+.text--settings-time-and {
+    font-size: 2.25vw;
+    left: 13vw;
+    top: 5vw;
+}
+
+.textbox--settings-time-end {
+    width: 10vw;
+
+    font-size: 2vw;
+
+    left: 18vw;
+    top: 5vw;
+}
+
+.button--settings-time-start-reset {
+    width: 1vw;
+    height: 3.5vw;
+
+    font-size: 2vw;
+
+    left: 1.25vw;
+    top: 5.5vw;
+
+    color: rgb(206, 180, 180);
+}
+
+.button--settings-time-end-reset {
+    width: 1vw;
+    height: 3.5vw;
+
+    font-size: 2vw;
+
+    left: 25vw;
+    top: 5.5vw;
+
+    color: rgb(206, 180, 180);
+}

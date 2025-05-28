@@ -1,0 +1,24 @@
+.button {
+    width: 2vw;
+    height: 1vw;
+
+    font-size: 2vw;
+    font-family: Roboto-Regular;
+
+    position: absolute;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(51, 51, 51);
+
+    border: 0.1vw solid rgb(85, 85, 85);
+    border-radius: 0.25vw;
+
+    cursor: pointer;
+
+    transition: 0.1s color ease-in-out, 0.1s background-color ease-in-out;
+}
+
+.button:hover {
+    color: rgb(199, 216, 193);
+    background-color: rgb(66, 66, 66);
+}

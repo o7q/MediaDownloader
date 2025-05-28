@@ -1,0 +1,66 @@
+.panel--settings-res-fps {
+    width: 37vw;
+    height: 10vw;
+
+    left: 30vw;
+    top: 0vw;
+
+    background-color: rgb(22, 22, 22);
+
+    border-radius: 0vw;
+
+    border-left: 0.1vw solid rgb(85, 85, 85);
+}
+
+.checkbox--settings-res-fps-resolution {
+    left: 1vw;
+    top: 1vw;
+}
+
+.text--settings-res-fps-resolution {
+    font-size: 2.25vw;
+
+    white-space: nowrap;
+    left: 4vw;
+    top: -0.5vw;
+}
+
+.textbox--settings-res-fps-width {
+    width: 6vw;
+
+    font-size: 2vw;
+
+    left: 1vw;
+    top: 5vw;
+}
+
+.textbox--settings-res-fps-height {
+    width: 6vw;
+
+    font-size: 2vw;
+
+    left: 9vw;
+    top: 5vw;
+}
+
+.checkbox--settings-res-fps-framerate {
+    left: 19vw;
+    top: 1vw;
+}
+
+.text--settings-res-fps-framerate {
+    font-size: 2.25vw;
+
+    white-space: nowrap;
+    left: 4vw;
+    top: -0.5vw;
+}
+
+.textbox--settings-res-fps-framerate {
+    width: 6vw;
+
+    font-size: 2vw;
+
+    left: 19vw;
+    top: 5vw;
+}
