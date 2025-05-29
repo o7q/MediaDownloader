@@ -1,6 +1,6 @@
 .panel--settings-formats {
     width: 30vw;
-    height: 10vw;
+    height: 11vw;
 
     background-color: rgb(36, 36, 36);
 
@@ -10,6 +10,7 @@
 
 .text--settings-formats {
     left: 1vw;
+    top: 0.5vw;
 }
 
 .dropdown--settings-formats {
@@ -17,5 +18,5 @@
     height: 5vw;
 
     left: 1vw;
-    top: 4vw;
+    top: 5vw;
 }

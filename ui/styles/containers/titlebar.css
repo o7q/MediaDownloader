@@ -6,8 +6,11 @@
 }
 
 .titlebar__banner {
-    position: absolute;
     width: 140px;
+
+    position: absolute;
+    
+    pointer-events: none;
 }
 
 .titlebar__buttons {

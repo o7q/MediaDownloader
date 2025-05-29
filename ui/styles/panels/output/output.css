@@ -1,0 +1,92 @@
+.text--output {
+    font-size: 2.5vw;
+    font-family: Roboto-Regular;
+
+    left: 1.25vw;
+    top: 46vw;
+
+    color: rgb(88, 88, 88);
+}
+
+.panel--output {
+    width: 98vw;
+    height: 12vw;
+
+    left: 1vw;
+    top: 50vw;
+
+    background-color: rgb(22, 22, 22);
+
+    border-radius: 1vw;
+    border: 0.1vw solid rgb(85, 85, 85);
+}
+
+.button--output-download {
+    width: 28vw;
+    height: 10vw;
+
+    left: 1vw;
+    top: 1vw;
+
+    color: rgb(50, 205, 50);
+    background-color: rgb(16, 68, 16);
+    border: 0.2vw solid rgb(33, 136, 33);
+
+    font-size: 4vw;
+
+    transition: 0.4s color ease-in-out, 0.4s background-color ease-in-out;
+}
+
+.button--output-download:hover {
+    color: rgb(49, 211, 49);
+    background-color: rgb(19, 83, 19);
+}
+
+.text--output-name {
+    left: 30vw;
+    top: 1vw;
+}
+
+.textbox--output-name {
+    left: 30vw;
+    top: 5vw;
+    width: 20vw;
+}
+
+.text--output-path {
+    left: 53vw;
+    top: 1vw;
+}
+
+.button--output-path {
+    width: 4vw;
+    height: 4vw;
+
+    left: 53vw;
+    top: 5.4vw;
+}
+
+.textbox--output-path {
+    width: 38vw;
+
+    left: 57.5vw;
+    top: 5vw;
+}
+
+.button--output-path {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 4.25vw;
+    height: 4.25vw;
+
+    left: 53vw;
+    top: 5.3vw;
+}
+
+.button--output-path img {
+    max-width: 3vw;
+    max-height: 3vw;
+    object-fit: contain;
+}

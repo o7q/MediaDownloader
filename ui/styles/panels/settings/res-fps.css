@@ -1,6 +1,6 @@
 .panel--settings-res-fps {
     width: 37vw;
-    height: 10vw;
+    height: 11vw;
 
     left: 30vw;
     top: 0vw;
@@ -20,9 +20,10 @@
 .text--settings-res-fps-resolution {
     font-size: 2.25vw;
 
-    white-space: nowrap;
     left: 4vw;
     top: -0.5vw;
+
+    white-space: nowrap;
 }
 
 .textbox--settings-res-fps-width {
@@ -51,9 +52,10 @@
 .text--settings-res-fps-framerate {
     font-size: 2.25vw;
 
-    white-space: nowrap;
     left: 4vw;
     top: -0.5vw;
+    
+    white-space: nowrap;
 }
 
 .textbox--settings-res-fps-framerate {

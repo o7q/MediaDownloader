@@ -1,9 +1,9 @@
 .panel--settings-bitrate {
     width: 37vw;
-    height: 11vw;
+    height: calc(12vw - 1px);
 
     left: 30vw;
-    top: 10vw;
+    top: 11vw;
 
     background-color: rgb(22, 22, 22);
 
@@ -22,9 +22,10 @@
 .text--settings-bitrate-video {
     font-size: 2.25vw;
 
-    white-space: nowrap;
     left: 4vw;
     top: -0.5vw;
+
+    white-space: nowrap;
 }
 
 .textbox--settings-bitrate-video {
@@ -44,9 +45,10 @@
 .text--settings-bitrate-audio {
     font-size: 2.25vw;
 
-    white-space: nowrap;
     left: 4vw;
     top: -0.5vw;
+
+    white-space: nowrap;
 }
 
 .textbox--settings-bitrate-audio {

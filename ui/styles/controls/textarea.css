@@ -1,0 +1,17 @@
+.textarea {
+    width: 20vw;
+    height: 10vw;
+
+    font-size: 2vw;
+    font-family: Roboto-Regular;
+
+    position: absolute;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(51, 51, 51);
+
+    border: 0.1vw solid rgb(85, 85, 85);
+    border-radius: 1vw;
+
+    resize: none;
+}

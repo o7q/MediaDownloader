@@ -3,7 +3,6 @@
     display: none;
 }
 
-/* style the custom checkbox box */
 .checkbox .checkbox-checkmark {
     width: 3.25vw;
     height: 3.25vw;
@@ -12,19 +11,18 @@
 
     background-color: rgb(51, 51, 51);
 
-    border-radius: 0.5vw;
-
-    transition: background-color 0.2s, border-color 0.2s;
+    border-radius: 1vw;
 
     cursor: pointer;
+    
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* change background when checked */
 .checkbox input[type="checkbox"]:checked+.checkbox-checkmark {
-    background-color: rgb(40, 116, 50);
+    background-color: rgb(33, 136, 33);
 }
 
-/* add checkbox-checkmark symbol */
+/* checkmark symbol */
 .checkbox .checkbox-checkmark::after {
     width: 0.75vw;
     height: 1.5vw;
@@ -43,7 +41,7 @@
     display: none;
 }
 
-/* show checkbox-checkmark when checked */
+/* show checkbox-checkmark*/
 .checkbox input[type="checkbox"]:checked+.checkbox-checkmark::after {
     display: block;
 }

@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="styles/controls/checkbox.css">
     <link rel="stylesheet" href="styles/controls/dropdown.css">
     <link rel="stylesheet" href="styles/controls/panel.css">
-    <link rel="stylesheet" href="styles/controls/textbox.css">
     <link rel="stylesheet" href="styles/controls/text.css">
+    <link rel="stylesheet" href="styles/controls/textarea.css">
+    <link rel="stylesheet" href="styles/controls/textbox.css">
 
     <link rel="stylesheet" href="styles/panels/input/input.css">
     <link rel="stylesheet" href="styles/panels/input/url.css">
@@ -26,8 +27,9 @@
     <link rel="stylesheet" href="styles/panels/settings/time.css">
     <link rel="stylesheet" href="styles/panels/settings/res-fps.css">
     <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
+    <link rel="stylesheet" href="styles/panels/settings/arguments.css">
 
-    <link rel="stylesheet" href="styles/panels/output.css">
+    <link rel="stylesheet" href="styles/panels/output/output.css">
 
     <script src="scripts/main.js"></script>
 
@@ -42,15 +44,15 @@
         <div class="titlebar" id="titlebar">
             <img class="titlebar__banner" src="assets/images/banner.png">
             <div class="titlebar__buttons">
-                <button id="minimize-button">_</button>
-                <button id="close-button">x</button>
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
             </div>
         </div>
 
         <p class="text text--input">Input</p>
         <div class="panel panel--input">
             <p class="text text--input-url">URL</p>
-            <input type="text" class="textbox textbox--input-url" id="input-url-textbox" autocomplete="off">
+            <input type="text" class="textbox textbox--input-url" id="input-url-textbox">
         </div>
 
         <p class="text text--settings">Settings</p>
@@ -87,10 +89,6 @@
                     <option>[Thumbnail]</option>
                     <option value="png">png</option>
                     <option value="jpg">jpg</option>
-                    <option>---</option>
-
-                    <option>[Custom]</option>
-                    <option value="custom-arguments">Custom Arguments</option>
                 </select>
             </div>
 
@@ -102,13 +100,11 @@
                     </span>
                 </label>
 
-                <input type="text" class="textbox textbox--settings-time-start" id="settings-time-start-textbox"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-time-start" id="settings-time-start-textbox">
 
                 <p class="text text--settings-time-and">and</p>
 
-                <input type="text" class="textbox textbox--settings-time-end" id="settings-time-start-textbox"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-time-end" id="settings-time-end-textbox">
             </div>
 
             <div class="panel panel--settings-res-fps">
@@ -118,11 +114,10 @@
                         <p class="text text--settings-res-fps-resolution">Change Size</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-res-fps-width" id="settings-res-fps-width"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-res-fps-width" id="settings-res-fps-width-textbox">
 
-                <input type="text" class="textbox textbox--settings-res-fps-height" id="settings-res-fps-height"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-res-fps-height"
+                    id="settings-res-fps-height-textbox">
 
                 <label class="checkbox">
                     <input type="checkbox" />
@@ -130,8 +125,8 @@
                         <p class="text text--settings-res-fps-framerate">Change FPS</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-res-fps-framerate" id="settings-res-fps-framerate"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-res-fps-framerate"
+                    id="settings-res-fps-framerate-textbox">
             </div>
 
             <div class="panel panel--settings-bitrate">
@@ -141,8 +136,7 @@
                         <p class="text text--settings-bitrate-video">Change VBR</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox">
 
                 <label class="checkbox">
                     <input type="checkbox" />
@@ -150,29 +144,42 @@
                         <p class="text text--settings-bitrate-audio">Change ABR</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio"
-                    autocomplete="off">
+                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox">
             </div>
 
+            <div class="panel panel--settings-arguments">
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-arguments-ytdlp">
+                        <p class="text text--settings-arguments-ytdlp">Add yt-dlp Arguments</p>
+                    </span>
+                </label>
+                <textarea class="textarea textarea--settings-arguments-ytdlp"
+                    id="settings-arguments-ytdlp-textarea"></textarea>
 
-            <!-- <div class="panel panel--settings-bitrate">
-                <p class="text text--settings-res-fps-resolution">Resolution</p>
-                <input type="text" class="textbox textbox--settings-res-fps-width" id="settings-res-fps-width"
-                    autocomplete="off">
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-arguments-ffmpeg">
+                        <p class="text text--settings-arguments-ffmpeg">Add FFmpeg Arguments</p>
+                    </span>
+                </label>
+                <textarea class="textarea textarea--settings-arguments-ffmpeg"
+                    id="settings-arguments-ffmpeg-textarea"></textarea>
 
-                <input type="text" class="textbox textbox--settings-res-fps-height" id="settings-res-fps-height"
-                    autocomplete="off">
-
-                <p class="text text--settings-res-fps-framerate">Framerate</p>
-                <input type="text" class="textbox textbox--settings-res-fps-framerate" id="settings-res-fps-framerate"
-                    autocomplete="off">
-            </div> -->
+            </div>
         </div>
 
+        <p class="text text--output">Output</p>
+        <div class="panel panel--output">
+            <button class="button button--output-download" id="output-download-button">Download</button>
 
-        <!-- <div class="panel panel--output">
-            <button class="button button--output-download" id="download-button">Download</button>
-        </div> -->
+            <p class="text text--output-name">Name</p>
+            <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
+
+            <p class="text text--output-path">Path</p>
+            <button class="button button--output-path" id="output-path-button"><img src="assets/images/folder_icon.png"></button>
+            <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+        </div>
     </div>
 </body>
 

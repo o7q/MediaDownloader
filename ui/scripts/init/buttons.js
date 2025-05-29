@@ -1,5 +1,5 @@
 function initButtons() {
-    document.getElementById("download-button").addEventListener("click", () => {
-        startDownloadAsync();
-    });
+    // document.getElementById("download-button").addEventListener("click", () => {
+    //     startDownloadAsync();
+    // });
 }
