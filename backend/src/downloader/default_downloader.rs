@@ -3,13 +3,13 @@ use crate::downloader::downloader::Downloader;
 use crate::utils::files::create_directory;
 use crate::utils::process::start_process;
 
-pub struct ThumbnailDownloader {
+pub struct DefaultDownloader {
     url: String,
     name: String,
     custom_arguments: Vec<String>,
 }
 
-impl Downloader for ThumbnailDownloader {
+impl Downloader for DefaultDownloader {
     fn new() -> Self {
         Self {
             url: String::new(),
@@ -36,13 +36,11 @@ impl Downloader for ThumbnailDownloader {
 
     fn download(&self) {
         let _ = create_directory("MediaDownloader/temp/download");
-
+        
         let mut args: Vec<String> = Vec::new();
         args.push(String::from("--verbose"));
         args.push(String::from("--ffmpeg-location"));
         args.push(String::from("MediaDownloader/bin/ffmpeg.exe"));
-        args.push(String::from("--skip-download"));
-        args.push(String::from("--write-thumbnail"));
 
         for arg in &self.custom_arguments {
             args.push(arg.clone())

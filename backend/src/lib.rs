@@ -2,13 +2,13 @@ mod downloader;
 mod utils;
 
 mod commands;
-use commands::{download_thumbnail, download_video};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![download_video, download_thumbnail])
+        .invoke_handler(tauri::generate_handler![commands::download])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

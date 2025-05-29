@@ -37,6 +37,7 @@
     <script src="scripts/init/buttons.js"></script>
 
     <script src="scripts/download.js"></script>
+    <script src="scripts/path-dialog.js"></script>
 </head>
 
 <body>
@@ -60,35 +61,35 @@
             <div class="panel panel--settings-formats">
                 <p class="text text--settings-formats">Format</p>
                 <select class="dropdown dropdown--settings-formats" id="settings-formats-dropdown">
-                    <option>[Video]</option>
-                    <option value="mp4-fast">mp4 (fast)</option>
-                    <option value="mp4">mp4</option>
-                    <option value="mp4-nvidia">mp4 (nvidia)</option>
-                    <option value="mp4-amd">mp4 (amd)</option>
-                    <option value="webm">webm</option>
-                    <option value="avi">avi (uncompressed)</option>
-                    <option>---</option>
+                    <option data-type="null">[Video]</option>
+                    <option value="mp4-fast" data-type="video">mp4 (fast)</option>
+                    <option value="mp4" data-type="video">mp4</option>
+                    <option value="mp4-nvidia" data-type="video">mp4 (nvidia)</option>
+                    <option value="mp4-amd" data-type="video">mp4 (amd)</option>
+                    <option value="webm" data-type="video">webm</option>
+                    <option value="avi" data-type="video">avi (uncompressed)</option>
+                    <option data-type="null">---</option>
 
-                    <option>[Audio]</option>
-                    <option value="mp3">mp3</option>
-                    <option value="wav">wav</option>
-                    <option value="ogg">ogg</option>
-                    <option value="aac">aac</option>
-                    <option value="opus">opus</option>
-                    <option value="wma">wma</option>
-                    <option value="flac">flac (lossless)</option>
-                    <option value="m4a">m4a (lossless)</option>
-                    <option>---</option>
+                    <option data-type="null">[Audio]</option>
+                    <option value="mp3" data-type="audio">mp3</option>
+                    <option value="wav" data-type="audio">wav</option>
+                    <option value="ogg" data-type="audio">ogg</option>
+                    <option value="aac" data-type="audio">aac</option>
+                    <option value="opus" data-type="audio">opus</option>
+                    <option value="wma" data-type="audio">wma</option>
+                    <option value="flac" data-type="audio">flac (lossless)</option>
+                    <option value="m4a" data-type="audio">m4a (lossless)</option>
+                    <option data-type="null">---</option>
 
-                    <option>[Image]</option>
-                    <option value="gif">gif</option>
-                    <option value="png">png (sequence)</option>
-                    <option value="jpg">jpg (sequence)</option>
-                    <option>---</option>
+                    <option data-type="null">[Image]</option>
+                    <option value="gif" data-type="gif">gif</option>
+                    <option value="png" data-type="sequence">png (sequence)</option>
+                    <option value="jpg" data-type="sequence">jpg (sequence)</option>
+                    <option data-type="null">---</option>
 
-                    <option>[Thumbnail]</option>
-                    <option value="png">png</option>
-                    <option value="jpg">jpg</option>
+                    <option data-type="null">[Thumbnail]</option>
+                    <option value="png" data-type="thumbnail">png</option>
+                    <option value="jpg" data-type="thumbnail">jpg</option>
                 </select>
             </div>
 
@@ -177,7 +178,8 @@
             <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
 
             <p class="text text--output-path">Path</p>
-            <button class="button button--output-path" id="output-path-button"><img src="assets/images/folder_icon.png"></button>
+            <button class="button button--output-path" id="output-path-button"><img
+                    src="assets/images/folder_icon.png"></button>
             <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
         </div>
     </div>

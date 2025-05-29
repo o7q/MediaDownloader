@@ -1,19 +1,25 @@
+use crate::downloader::default_downloader::DefaultDownloader;
 use crate::downloader::downloader::Downloader;
 use crate::downloader::thumbnail_downloader::ThumbnailDownloader;
-use crate::downloader::video_downloader::VideoDownloader;
 
 #[tauri::command(async)]
-pub fn download_video(url: &str, output_name: &str) {
-    let mut downloader: VideoDownloader = VideoDownloader::new();
-    downloader.set_url(url);
-    downloader.set_name(output_name);
-    downloader.download();
-}
+pub fn download(download_type: &str, url: &str, output_name: &str, custom_arguments: &str) {
+    match download_type {
+        "thumbnail" => {
+            let mut downloader: ThumbnailDownloader = ThumbnailDownloader::new();
+            downloader.set_url(url);
+            downloader.set_name(output_name);
+            downloader.set_custom_arguments(custom_arguments);
+            downloader.download()
+        }
+        _ => {
+            let mut downloader: DefaultDownloader = DefaultDownloader::new();
+            downloader.set_url(url);
+            downloader.set_name(output_name);
+            downloader.set_custom_arguments(custom_arguments);
+            downloader.download()
+        }
+    }
 
-#[tauri::command(async)]
-pub fn download_thumbnail(url: &str, output_name: &str) {
-    let mut downloader: ThumbnailDownloader = ThumbnailDownloader::new();
-    downloader.set_url(url);
-    downloader.set_name(output_name);
-    downloader.download();
+    println!("DONE!!!!!!!!!!!!!!!!");
 }
