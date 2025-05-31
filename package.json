@@ -8,10 +8,8 @@
     "dev": "tauri dev --config backend/tauri.conf.json",
     "build": "tauri build --no-bundle --config backend/tauri.conf.json"
   },
-  "devDependencies": {
-    "@tauri-apps/cli": "^2"
-  },
   "dependencies": {
+    "@tauri-apps/cli": "^2.5.0",
     "@tauri-apps/plugin-dialog": "^2.2.2"
   }
 }

@@ -1,19 +1,31 @@
 async function startDownloadAsync() {
+    await download();
+}
+
+async function download() {
     const url = document.getElementById("input-url-textbox").value;
     const outputName = document.getElementById("output-name-textbox").value;
 
-    const format_dropdown = document.getElementById("settings-formats-dropdown");
-    const format = format_dropdown.value;
-    const format_type = format_dropdown.options[format_dropdown.selectedIndex].getAttribute("data-type");
+    const type_dropdown = document.getElementById("settings-types-dropdown");
+    const mode = type_dropdown.options[type_dropdown.selectedIndex].getAttribute("mode");
 
     const ytdlpArguments = document.getElementById("settings-arguments-ytdlp-textarea").value;
 
     let downloadType;
 
-    switch (format_type) {
+    switch (mode) {
         case "image": downloadType = "thumbnail"; break;
         default: downloadType = "default"; break;
     }
 
-    await invoke("download", { downloadType: downloadType, url: url, outputName: outputName, customArguments: ytdlpArguments });
+    const isPlaylist = isUrlPlaylist(url);
+
+    let downloadData = { url: url, forced_name: outputName, custom_raw_arguments: ytdlpArguments, is_playlist: isPlaylist };
+
+    const download_name = await tauri_invoke("download", { downloadData, downloadType });
+    document.getElementById("output-name-textbox").value = download_name;
+}
+
+async function convert() {
+
 }

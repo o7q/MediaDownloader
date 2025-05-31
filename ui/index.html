@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles/panels/input/url.css">
 
     <link rel="stylesheet" href="styles/panels/settings/settings.css">
-    <link rel="stylesheet" href="styles/panels/settings/formats.css">
+    <link rel="stylesheet" href="styles/panels/settings/types.css">
     <link rel="stylesheet" href="styles/panels/settings/time.css">
     <link rel="stylesheet" href="styles/panels/settings/res-fps.css">
     <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
@@ -32,12 +32,13 @@
     <link rel="stylesheet" href="styles/panels/output/output.css">
 
     <script src="scripts/main.js"></script>
+    <script src="scripts/utils.js"></script>
 
-    <script src="scripts/init/titlebar.js"></script>
-    <script src="scripts/init/buttons.js"></script>
+    <script src="scripts/ui/titlebar.js"></script>
+    <script src="scripts/ui/buttons.js"></script>
+    <script src="scripts/ui/textboxes.js"></script>
 
     <script src="scripts/download.js"></script>
-    <script src="scripts/path-dialog.js"></script>
 </head>
 
 <body>
@@ -52,44 +53,44 @@
 
         <p class="text text--input">Input</p>
         <div class="panel panel--input">
-            <p class="text text--input-url">URL</p>
+            <p class="text text--input-url" id="input-url-text">URL</p>
             <input type="text" class="textbox textbox--input-url" id="input-url-textbox">
         </div>
 
         <p class="text text--settings">Settings</p>
         <div class="panel panel--settings">
-            <div class="panel panel--settings-formats">
-                <p class="text text--settings-formats">Format</p>
-                <select class="dropdown dropdown--settings-formats" id="settings-formats-dropdown">
-                    <option data-type="null">[Video]</option>
-                    <option value="mp4-fast" data-type="video">mp4 (fast)</option>
-                    <option value="mp4" data-type="video">mp4</option>
-                    <option value="mp4-nvidia" data-type="video">mp4 (nvidia)</option>
-                    <option value="mp4-amd" data-type="video">mp4 (amd)</option>
-                    <option value="webm" data-type="video">webm</option>
-                    <option value="avi" data-type="video">avi (uncompressed)</option>
-                    <option data-type="null">---</option>
+            <div class="panel panel--settings-types">
+                <p class="text text--settings-types">Download Type</p>
+                <select class="dropdown dropdown--settings-types" id="settings-types-dropdown">
+                    <option mode="null">[Video]</option>
+                    <option value="mp4-fast" mode="video">mp4 (fast)</option>
+                    <option value="mp4" mode="video">mp4</option>
+                    <option value="mp4-nvidia" mode="video">mp4 (nvidia)</option>
+                    <option value="mp4-amd" mode="video">mp4 (amd)</option>
+                    <option value="webm" mode="video">webm</option>
+                    <option value="avi" mode="video">avi (uncompressed)</option>
+                    <option mode="null">---</option>
 
-                    <option data-type="null">[Audio]</option>
-                    <option value="mp3" data-type="audio">mp3</option>
-                    <option value="wav" data-type="audio">wav</option>
-                    <option value="ogg" data-type="audio">ogg</option>
-                    <option value="aac" data-type="audio">aac</option>
-                    <option value="opus" data-type="audio">opus</option>
-                    <option value="wma" data-type="audio">wma</option>
-                    <option value="flac" data-type="audio">flac (lossless)</option>
-                    <option value="m4a" data-type="audio">m4a (lossless)</option>
-                    <option data-type="null">---</option>
+                    <option mode="null">[Audio]</option>
+                    <option value="mp3" mode="audio">mp3</option>
+                    <option value="wav" mode="audio">wav</option>
+                    <option value="ogg" mode="audio">ogg</option>
+                    <option value="aac" mode="audio">aac</option>
+                    <option value="opus" mode="audio">opus</option>
+                    <option value="wma" mode="audio">wma</option>
+                    <option value="flac" mode="audio">flac (lossless)</option>
+                    <option value="m4a" mode="audio">m4a (lossless)</option>
+                    <option mode="null">---</option>
 
-                    <option data-type="null">[Image]</option>
-                    <option value="gif" data-type="gif">gif</option>
-                    <option value="png" data-type="sequence">png (sequence)</option>
-                    <option value="jpg" data-type="sequence">jpg (sequence)</option>
-                    <option data-type="null">---</option>
+                    <option mode="null">[Image]</option>
+                    <option value="gif" mode="gif">gif</option>
+                    <option value="png" mode="sequence">png (sequence)</option>
+                    <option value="jpg" mode="sequence">jpg (sequence)</option>
+                    <option mode="null">---</option>
 
-                    <option data-type="null">[Thumbnail]</option>
-                    <option value="png" data-type="thumbnail">png</option>
-                    <option value="jpg" data-type="thumbnail">jpg</option>
+                    <option mode="null">[Thumbnail]</option>
+                    <option value="png" mode="image">png</option>
+                    <option value="jpg" mode="image">jpg</option>
                 </select>
             </div>
 
@@ -174,7 +175,7 @@
         <div class="panel panel--output">
             <button class="button button--output-download" id="output-download-button">Download</button>
 
-            <p class="text text--output-name">Name</p>
+            <p class="text text--output-name" id="output-name-text">Name (Auto)</p>
             <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
 
             <p class="text text--output-path">Path</p>

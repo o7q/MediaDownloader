@@ -9,15 +9,15 @@ function initTitlebar() {
                 e.target.closest("#titlebar-close-button")
             )
         ) {
-            appWindow.startDragging();
+            tauri_appWindow.startDragging();
         }
     });
 
     document.getElementById("titlebar-minimize-button").addEventListener("click", () => {
-        appWindow.minimize();
+        tauri_appWindow.minimize();
     });
 
     document.getElementById("titlebar-close-button").addEventListener("click", () => {
-        appWindow.close();
+        tauri_appWindow.close();
     });
 }
