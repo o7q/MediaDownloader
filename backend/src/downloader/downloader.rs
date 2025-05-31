@@ -27,13 +27,8 @@ pub trait Downloader {
     fn set_custom_arguments(&mut self, custom_arguments: &str);
     fn set_as_playlist(&mut self, playlist: bool);
 
-    fn get_forced_name(&self) -> String {
-        String::new()
-    }
-
-    fn is_playlist(&self) -> bool {
-        false
-    }
+    fn get_forced_name(&self) -> String;
+    fn is_playlist(&self) -> bool;
 
     // returns the name of the downloaded file (without extension) if no forced name is set
     fn download(&self) -> String;

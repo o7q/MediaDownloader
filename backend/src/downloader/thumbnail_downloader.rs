@@ -39,6 +39,10 @@ impl Downloader for ThumbnailDownloader {
         self.forced_name.clone()
     }
 
+    fn is_playlist(&self) -> bool {
+        self.is_playlist
+    }
+
     fn download(&self) -> String {
         self.init_paths();
 
