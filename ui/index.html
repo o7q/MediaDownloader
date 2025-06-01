@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="styles/panels/settings/settings.css">
     <link rel="stylesheet" href="styles/panels/settings/types.css">
-    <link rel="stylesheet" href="styles/panels/settings/time.css">
+    <link rel="stylesheet" href="styles/panels/settings/trim.css">
     <link rel="stylesheet" href="styles/panels/settings/res-fps.css">
     <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
     <link rel="stylesheet" href="styles/panels/settings/arguments.css">
@@ -94,19 +94,31 @@
                 </select>
             </div>
 
-            <div class="panel panel--settings-time">
+            <div class="panel panel--settings-trim">
                 <label class="checkbox">
                     <input type="checkbox" />
-                    <span class="checkbox-checkmark checkbox--settings-time">
-                        <p class="text text--settings-time">Trim Time Between</p>
+                    <span class="checkbox-checkmark checkbox--settings-trim">
+                        <p class="text text--settings-trim">Trim Time Between</p>
                     </span>
                 </label>
 
-                <input type="text" class="textbox textbox--settings-time-start" id="settings-time-start-textbox">
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-trim-start">
+                        <p class="text text--settings-trim-start"><<</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox">
 
-                <p class="text text--settings-time-and">and</p>
+                <p class="text text--settings-trim-and">and</p>
 
-                <input type="text" class="textbox textbox--settings-time-end" id="settings-time-end-textbox">
+                <label class="checkbox">
+                    <input type="checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-trim-end">
+                        <p class="text text--settings-trim-end">>></p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox">
             </div>
 
             <div class="panel panel--settings-res-fps">

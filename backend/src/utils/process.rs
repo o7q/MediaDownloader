@@ -2,8 +2,8 @@ use std::io::{BufRead, BufReader};
 use std::process::{Command, Stdio};
 use std::thread;
 
-pub fn start_process(process_path: &str, arguments: &[String]) -> std::io::Result<()> {
-    println!("PROCESS ARGS:");
+pub fn start_process(process_path: &str, arguments: &Vec<String>) -> std::io::Result<()> {
+    println!("Starting Process: \"{}\" with args:", process_path);
     for arg in arguments {
         println!("{}", arg);
     }

@@ -9,7 +9,7 @@ use crate::utils::{
 pub struct IPCDownloadData {
     pub url: String,
     pub forced_name: String,
-    pub custom_arguments: Vec<String>,
+    pub custom_ytdlp_arguments: Vec<String>,
     pub is_playlist: bool,
 }
 

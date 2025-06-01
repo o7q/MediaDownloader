@@ -1,6 +1,4 @@
-use crate::downloader::downloader::Downloader;
-
-use super::downloader::IPCDownloadData;
+use super::downloader::{Downloader, IPCDownloadData};
 
 pub struct ThumbnailDownloader {
     download_data: IPCDownloadData,
@@ -27,7 +25,7 @@ impl Downloader for ThumbnailDownloader {
         args.push(String::from("--skip-download"));
         args.push(String::from("--write-thumbnail"));
 
-        for arg in &self.download_data.custom_arguments {
+        for arg in &self.download_data.custom_ytdlp_arguments {
             args.push(arg.clone())
         }
 

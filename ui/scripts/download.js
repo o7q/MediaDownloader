@@ -13,7 +13,7 @@ async function download() {
 
     const isPlaylist = isUrlPlaylist(url);
 
-    let downloadData = { url: url, forced_name: outputName, custom_arguments: ytdlpArguments, is_playlist: isPlaylist };
+    let downloadData = { url: url, forced_name: outputName, custom_ytdlp_arguments: ytdlpArguments, is_playlist: isPlaylist };
 
     let downloadType;
     switch (mode) {

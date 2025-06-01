@@ -43,9 +43,9 @@ pub fn get_files(path: &str) -> Vec<String> {
 }
 
 pub fn get_filename(path: &str, extension: bool) -> String {
-    let path = Path::new(path);
+    let path: &Path = Path::new(path);
 
-    let filename = if extension {
+    let filename: Option<&std::ffi::OsStr> = if extension {
         path.file_name()
     } else {
         path.file_stem()
