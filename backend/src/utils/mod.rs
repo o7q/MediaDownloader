@@ -1,2 +1,3 @@
-pub mod files;
+pub mod file;
 pub mod process;
+pub mod string;

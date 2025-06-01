@@ -1,41 +1,35 @@
 use serde::Deserialize;
 
 use crate::utils::{
-    files::{create_directory, get_filename, get_files, remove_directory},
+    file::{create_directory, get_filename, get_files, remove_directory},
     process::start_process,
 };
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct IPCDownloadData {
     pub url: String,
     pub forced_name: String,
-    pub custom_raw_arguments: String,
+    pub custom_arguments: Vec<String>,
     pub is_playlist: bool,
 }
 
-#[allow(dead_code)]
 pub trait Downloader {
     fn new(download_data: IPCDownloadData) -> Self;
 
-    fn init_paths(&self) {
-        let _ = remove_directory("MediaDownloader/temp");
+    fn init(&self) {
+        let _ = remove_directory("MediaDownloader/temp/download");
         let _ = create_directory("MediaDownloader/temp/download");
     }
 
-    fn set_url(&mut self, url: &str);
-    fn set_forced_name(&mut self, name: &str);
-    fn set_custom_arguments(&mut self, custom_arguments: &str);
-    fn set_as_playlist(&mut self, playlist: bool);
-
-    fn get_forced_name(&self) -> String;
-    fn is_playlist(&self) -> bool;
+    fn get_download_data(&self) -> IPCDownloadData;
 
     // returns the name of the downloaded file (without extension) if no forced name is set
+    // else, it just returns the forced name
     fn download(&self) -> String;
     fn run(&self, args: &Vec<String>) -> String {
         let _ = start_process("MediaDownloader/bin/yt-dlp", args);
 
-        let forced_name: String = self.get_forced_name();
+        let forced_name: String = self.get_download_data().forced_name.clone();
         if forced_name.is_empty() {
             let downloaded_files: Vec<String> = get_files("MediaDownloader/temp/download");
 
@@ -49,19 +43,13 @@ pub trait Downloader {
         }
     }
 
-    fn decode_raw_arguments(raw: &str) -> Vec<String> {
-        if !raw.is_empty() {
-            raw.split('\n').map(String::from).collect()
-        } else {
-            Vec::new()
-        }
-    }
-
     fn determine_output_name_argument(&self) -> String {
-        if self.get_forced_name().is_empty() || self.is_playlist() {
+        let download_data: IPCDownloadData = self.get_download_data();
+
+        if download_data.forced_name.is_empty() || download_data.is_playlist {
             String::from("%(title)s")
         } else {
-            String::from(self.get_forced_name())
+            String::from(download_data.forced_name)
         }
     }
 }

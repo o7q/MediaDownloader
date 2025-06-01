@@ -3,48 +3,22 @@ use crate::downloader::downloader::Downloader;
 use super::downloader::IPCDownloadData;
 
 pub struct ThumbnailDownloader {
-    url: String,
-    forced_name: String,
-    custom_arguments: Vec<String>,
-    is_playlist: bool,
+    download_data: IPCDownloadData,
 }
 
 impl Downloader for ThumbnailDownloader {
     fn new(download_data: IPCDownloadData) -> Self {
         Self {
-            url: download_data.url,
-            forced_name: download_data.forced_name,
-            custom_arguments: Self::decode_raw_arguments(&download_data.custom_raw_arguments),
-            is_playlist: download_data.is_playlist,
+            download_data: download_data,
         }
     }
 
-    fn set_url(&mut self, url: &str) {
-        self.url = url.to_string();
-    }
-
-    fn set_forced_name(&mut self, forced_name: &str) {
-        self.forced_name = forced_name.to_string();
-    }
-
-    fn set_custom_arguments(&mut self, raw_custom_arguments: &str) {
-        self.custom_arguments = Self::decode_raw_arguments(raw_custom_arguments);
-    }
-
-    fn set_as_playlist(&mut self, playlist: bool) {
-        self.is_playlist = playlist;
-    }
-
-    fn get_forced_name(&self) -> String {
-        self.forced_name.clone()
-    }
-
-    fn is_playlist(&self) -> bool {
-        self.is_playlist
+    fn get_download_data(&self) -> IPCDownloadData {
+        self.download_data.clone()
     }
 
     fn download(&self) -> String {
-        self.init_paths();
+        self.init();
 
         let mut args: Vec<String> = Vec::new();
         args.push(String::from("--verbose"));
@@ -53,7 +27,7 @@ impl Downloader for ThumbnailDownloader {
         args.push(String::from("--skip-download"));
         args.push(String::from("--write-thumbnail"));
 
-        for arg in &self.custom_arguments {
+        for arg in &self.download_data.custom_arguments {
             args.push(arg.clone())
         }
 
@@ -62,7 +36,7 @@ impl Downloader for ThumbnailDownloader {
             "MediaDownloader/temp/download/{}",
             self.determine_output_name_argument()
         ));
-        args.push(self.url.clone());
+        args.push(self.download_data.url.clone());
 
         self.run(&args)
     }
