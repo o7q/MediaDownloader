@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "dev": "tauri dev --config backend/tauri.conf.json",
-    "build": "tauri build --no-bundle --config backend/tauri.conf.json"
+    "dev": "tauri dev --config src/backend/tauri.conf.json",
+    "build": "tauri build --no-bundle --config src/backend/tauri.conf.json"
   },
   "dependencies": {
     "@tauri-apps/cli": "^2",

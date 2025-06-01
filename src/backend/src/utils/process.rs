@@ -3,7 +3,7 @@ use std::process::{Command, Stdio};
 use std::thread;
 
 pub fn start_process(process_path: &str, arguments: &Vec<String>) -> std::io::Result<()> {
-    println!("Starting Process: \"{}\" with args:", process_path);
+    println!("Starting Process: \"{}\" with arguments:", process_path);
     for arg in arguments {
         println!("{}", arg);
     }
