@@ -25,8 +25,10 @@ impl Downloader for ThumbnailDownloader {
         args.push(String::from("--skip-download"));
         args.push(String::from("--write-thumbnail"));
 
-        for arg in &self.download_data.custom_ytdlp_arguments {
-            args.push(arg.clone())
+        if self.download_data.custom_ytdlp_arguments_enable {
+            for arg in &self.download_data.custom_ytdlp_arguments {
+                args.push(arg.clone())
+            }
         }
 
         args.push(String::from("-o"));

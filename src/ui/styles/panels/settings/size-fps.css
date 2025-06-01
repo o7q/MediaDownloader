@@ -1,4 +1,4 @@
-.panel--settings-res-fps {
+.panel--settings-size-fps {
     width: 37vw;
     height: 11vw;
 
@@ -12,12 +12,12 @@
     border-left: 0.1vw solid rgb(85, 85, 85);
 }
 
-.checkbox--settings-res-fps-resolution {
+.checkbox--settings-size-fps-resolution {
     left: 1vw;
     top: 1vw;
 }
 
-.text--settings-res-fps-resolution {
+.text--settings-size-fps-resolution {
     font-size: 2.25vw;
 
     left: 4vw;
@@ -26,7 +26,7 @@
     white-space: nowrap;
 }
 
-.textbox--settings-res-fps-width {
+.textbox--settings-size-fps-width {
     width: 6vw;
 
     font-size: 2vw;
@@ -35,7 +35,7 @@
     top: 5vw;
 }
 
-.textbox--settings-res-fps-height {
+.textbox--settings-size-fps-height {
     width: 6vw;
 
     font-size: 2vw;
@@ -44,12 +44,12 @@
     top: 5vw;
 }
 
-.checkbox--settings-res-fps-framerate {
+.checkbox--settings-size-fps-framerate {
     left: 19vw;
     top: 1vw;
 }
 
-.text--settings-res-fps-framerate {
+.text--settings-size-fps-framerate {
     font-size: 2.25vw;
 
     left: 4vw;
@@ -58,7 +58,7 @@
     white-space: nowrap;
 }
 
-.textbox--settings-res-fps-framerate {
+.textbox--settings-size-fps-framerate {
     width: 6vw;
 
     font-size: 2vw;

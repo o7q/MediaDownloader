@@ -14,22 +14,17 @@
     border-bottom: 0.1vw solid rgb(85, 85, 85);
 }
 
-.checkbox--settings-bitrate-video {
-    left: 1vw;
-    top: 1vw;
-}
-
 .text--settings-bitrate-video {
     font-size: 2.25vw;
 
-    left: 4vw;
-    top: -0.5vw;
+    left: 1vw;
+    top: 1.5vw;
 
     white-space: nowrap;
 }
 
 .textbox--settings-bitrate-video {
-    width: 10vw;
+    width: 16vw;
 
     font-size: 2vw;
 
@@ -37,22 +32,15 @@
     top: 5vw;
 }
 
-.checkbox--settings-bitrate-audio {
-    left: 19vw;
-    top: 1vw;
-}
-
 .text--settings-bitrate-audio {
     font-size: 2.25vw;
 
-    left: 4vw;
-    top: -0.5vw;
-
-    white-space: nowrap;
+    left: 19vw;
+    top: 1.5vw;
 }
 
 .textbox--settings-bitrate-audio {
-    width: 10vw;
+    width: 16vw;
 
     font-size: 2vw;
 

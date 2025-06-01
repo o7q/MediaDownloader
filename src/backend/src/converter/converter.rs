@@ -2,7 +2,7 @@ use serde::Deserialize;
 
 use crate::utils::file::{create_directory, remove_directory};
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct IPCConvertData {
     pub format: String,
 
@@ -19,11 +19,8 @@ pub struct IPCConvertData {
     pub fps_change_enable: bool,
     pub fps_change_framerate: String,
 
-    pub vbr_change_enable: bool,
-    pub vbr_change_bitrate: String,
-
-    pub abr_change_enable: bool,
-    pub abr_change_bitrate: String,
+    pub vbr_bitrate: String,
+    pub abr_bitrate: String,
 
     pub custom_ffmpeg_arguments_enable: bool,
     pub custom_ffmpeg_arguments: Vec<String>,
@@ -32,10 +29,10 @@ pub struct IPCConvertData {
 pub trait Converter {
     fn new(convert_data: IPCConvertData) -> Self;
 
-    fn init_paths(&self) {
+    fn init(&self) {
         let _ = remove_directory("MediaDownloader/temp/convert");
         let _ = create_directory("MediaDownloader/temp/convert");
     }
 
-    fn convert(&self);
+    fn convert(&self) -> bool;
 }

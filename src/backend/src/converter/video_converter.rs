@@ -16,12 +16,14 @@ impl Converter for VideoConverter {
         }
     }
 
-    fn convert(&self) {
+    fn convert(&self) -> bool {
+        self.init();
+
         let (video_codec, audio_codec, extension) = match self.convert_data.format.as_str() {
-            "mp4 (fast)" => ("copy", "copy", "mp4"),
+            "mp4-fast" => ("copy", "copy", "mp4"),
             "mp4" => ("libx264", "aac", "mp4"),
-            "mp4 (nvidia)" => ("h264_nvenc", "aac", "mp4"),
-            "mp4 (amd)" => ("h264_amf", "aac", "mp4"),
+            "mp4-nvidia" => ("h264_nvenc", "aac", "mp4"),
+            "mp4-amd" => ("h264_amf", "aac", "mp4"),
             "webm" => ("libvpx-vp9", "libopus", "webm"),
             "avi" => ("rawvideo", "pcm_s16le", "avi"),
             _ => ("", "", ""),
@@ -39,25 +41,34 @@ impl Converter for VideoConverter {
             args.push("-c:a".to_string());
             args.push(audio_codec.to_string());
 
-            if self.convert_data.vbr_change_enable {
+            if !self.convert_data.vbr_bitrate.is_empty() {
                 args.push("-b:v".to_string());
-                args.push(self.convert_data.vbr_change_bitrate.clone());
+                args.push(self.convert_data.vbr_bitrate.clone());
             }
-            if self.convert_data.abr_change_enable {
+            if !self.convert_data.abr_bitrate.is_empty() {
                 args.push("-b:a".to_string());
-                args.push(self.convert_data.abr_change_bitrate.clone());
+                args.push(self.convert_data.abr_bitrate.clone());
             }
 
-            if self.convert_data.size_change_enable {
+            if self.convert_data.size_change_enable
+                && self.convert_data.size_change_width.parse::<i32>().is_ok()
+                && self.convert_data.size_change_height.parse::<i32>().is_ok()
+            {
                 args.push("-vf".to_string());
 
                 args.push(format!(
-                    "\"scale={}:{},setsar=1\"",
+                    "scale={}:{},setsar=1",
                     self.convert_data.size_change_width, self.convert_data.size_change_height
                 ));
             }
 
-            if self.convert_data.fps_change_enable {
+            if self.convert_data.fps_change_enable
+                && self
+                    .convert_data
+                    .fps_change_framerate
+                    .parse::<i32>()
+                    .is_ok()
+            {
                 args.push("-r".to_string());
                 args.push(self.convert_data.fps_change_framerate.clone());
             }
@@ -73,19 +84,21 @@ impl Converter for VideoConverter {
                 }
             }
 
-            for arg in &self.convert_data.custom_ffmpeg_arguments {
-                args.push(arg.clone())
+            if self.convert_data.custom_ffmpeg_arguments_enable {
+                for arg in &self.convert_data.custom_ffmpeg_arguments {
+                    args.push(arg.clone())
+                }
             }
 
-            if self.convert_data.custom_ffmpeg_arguments_enable {
-                args.push(format!(
-                    "MediaDownloader/temp/convert/{}.{}",
-                    get_filename(&input_file, false),
-                    extension
-                ));
-            }
+            args.push(format!(
+                "MediaDownloader/temp/convert/{}.{}",
+                get_filename(&input_file, false),
+                extension
+            ));
 
             let _ = start_process("MediaDownloader/bin/ffmpeg", &args);
         }
+
+        true
     }
 }

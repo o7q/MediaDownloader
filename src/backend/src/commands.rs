@@ -1,7 +1,11 @@
-use crate::converter::converter::IPCConvertData;
 use crate::downloader::default_downloader::DefaultDownloader;
 use crate::downloader::downloader::{Downloader, IPCDownloadData};
 use crate::downloader::thumbnail_downloader::ThumbnailDownloader;
+
+use crate::converter::audio_converter::AudioConverter;
+use crate::converter::converter::{Converter, IPCConvertData};
+use crate::converter::video_converter::VideoConverter;
+
 use crate::utils::string::clean_string_vector;
 
 #[tauri::command(async)]
@@ -9,29 +13,21 @@ pub fn download(mut download_data: IPCDownloadData, download_type: &str) -> Stri
     clean_string_vector(&mut download_data.custom_ytdlp_arguments);
 
     match download_type {
-        "thumbnail" => {
-            let downloader: ThumbnailDownloader = ThumbnailDownloader::new(download_data);
-            downloader.download()
-        }
-        _ => {
-            let downloader: DefaultDownloader = DefaultDownloader::new(download_data);
-            downloader.download()
-        }
+        "thumbnail" => ThumbnailDownloader::new(download_data).download(),
+        _ => DefaultDownloader::new(download_data).download(),
     }
 }
 
 #[tauri::command(async)]
-pub fn convert(mut convert_data: IPCConvertData, convert_type: &str) -> String {
+pub fn convert(mut convert_data: IPCConvertData, convert_type: &str) -> bool {
     clean_string_vector(&mut convert_data.custom_ffmpeg_arguments);
 
     match convert_type {
-        "video" => {}
-        "audio" => {}
-        "gif" => {}
-        "sequence" => {}
-        "image" => {}
-        _ => {}
+        "video" => VideoConverter::new(convert_data).convert(),
+        "audio" => AudioConverter::new(convert_data).convert(),
+        "gif" => false,
+        "sequence" => false,
+        "image" => false,
+        _ => false,
     }
-
-    String::new()
 }

@@ -8,9 +8,12 @@ use crate::utils::{
 #[derive(Deserialize, Clone)]
 pub struct IPCDownloadData {
     pub url: String,
+    pub url_is_playlist: bool,
+
     pub forced_name: String,
+
+    pub custom_ytdlp_arguments_enable: bool,
     pub custom_ytdlp_arguments: Vec<String>,
-    pub is_playlist: bool,
 }
 
 pub trait Downloader {
@@ -46,7 +49,7 @@ pub trait Downloader {
     fn determine_output_name_argument(&self) -> String {
         let download_data: IPCDownloadData = self.get_download_data();
 
-        if download_data.forced_name.is_empty() || download_data.is_playlist {
+        if download_data.forced_name.is_empty() || download_data.url_is_playlist {
             String::from("%(title)s")
         } else {
             String::from(download_data.forced_name)
