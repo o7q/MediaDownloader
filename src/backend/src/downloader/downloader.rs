@@ -20,8 +20,8 @@ pub trait Downloader {
     fn new(download_data: IPCDownloadData) -> Self;
 
     fn init(&self) {
-        let _ = remove_directory("MediaDownloader/temp/download");
-        let _ = create_directory("MediaDownloader/temp/download");
+        let _ = remove_directory("MediaDownloader/_temp/download");
+        let _ = create_directory("MediaDownloader/_temp/download");
     }
 
     fn get_download_data(&self) -> IPCDownloadData;
@@ -34,7 +34,7 @@ pub trait Downloader {
 
         let forced_name: String = self.get_download_data().forced_name.clone();
         if forced_name.is_empty() {
-            let downloaded_files: Vec<String> = get_files("MediaDownloader/temp/download");
+            let downloaded_files: Vec<String> = get_files("MediaDownloader/_temp/download");
 
             if downloaded_files.len() > 0 {
                 get_filename(&downloaded_files[0].clone(), false)

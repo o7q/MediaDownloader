@@ -30,9 +30,9 @@ pub trait Converter {
     fn new(convert_data: IPCConvertData) -> Self;
 
     fn init(&self) {
-        let _ = remove_directory("MediaDownloader/temp/convert");
-        let _ = create_directory("MediaDownloader/temp/convert");
+        let _ = remove_directory("MediaDownloader/_temp/convert");
+        let _ = create_directory("MediaDownloader/_temp/convert");
     }
 
-    fn convert(&self) -> bool;
+    fn convert(&self);
 }

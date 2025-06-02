@@ -31,7 +31,7 @@ impl Downloader for DefaultDownloader {
 
         args.push(String::from("-o"));
         args.push(format!(
-            "MediaDownloader/temp/download/{}",
+            "MediaDownloader/_temp/download/{}",
             self.determine_output_name_argument()
         ));
         args.push(self.download_data.url.clone());
