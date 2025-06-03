@@ -2,20 +2,6 @@ use std::fs;
 use std::io;
 use std::path::Path;
 
-pub fn create_directory(path: &str) -> io::Result<()> {
-    println!("Creating directory: {}", path);
-    fs::create_dir_all(path)
-}
-
-pub fn remove_directory(path: &str) -> io::Result<()> {
-    println!("Removing directory: {}", path);
-    fs::remove_dir_all(path)
-}
-
-pub fn directory_exists(path: &str) -> bool {
-    fs::metadata(path).is_ok()
-}
-
 pub fn write_file(path: &str, content: &str) -> io::Result<()> {
     println!("Writing file: {}", path);
     fs::write(path, content)

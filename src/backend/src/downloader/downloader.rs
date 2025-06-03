@@ -2,7 +2,10 @@ use serde::Deserialize;
 
 use crate::{
     config::{config::IPCConfig, serial::serialize_config},
-    utils::file::{create_directory, get_filename, get_files, remove_directory, write_file},
+    utils::{
+        directory::{create_directory, remove_directory},
+        file::{get_filename, get_files, write_file},
+    },
 };
 
 #[derive(Deserialize, Clone)]

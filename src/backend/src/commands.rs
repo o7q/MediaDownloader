@@ -13,7 +13,8 @@ use crate::converter::video_converter::VideoConverter;
 use crate::config::config::IPCConfig;
 use crate::config::serial::deserialize_config;
 
-use crate::utils::file::{read_file, remove_directory};
+use crate::utils::directory::remove_directory;
+use crate::utils::file::read_file;
 
 #[tauri::command(async)]
 pub fn download(mut download_data: IPCDownloadData, download_type: &str) -> String {

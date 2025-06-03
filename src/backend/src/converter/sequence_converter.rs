@@ -1,5 +1,6 @@
 use crate::utils::{
-    file::{create_directory, get_filename, get_files, remove_directory},
+    directory::{create_directory, remove_directory},
+    file::{get_filename, get_files},
     process::start_process,
 };
 

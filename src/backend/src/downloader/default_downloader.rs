@@ -1,7 +1,4 @@
-use crate::{
-    config::serial::serialize_config,
-    utils::{file::write_file, process::start_process},
-};
+use crate::utils::process::start_process;
 
 use super::downloader::{Downloader, IPCDownloadData};
 

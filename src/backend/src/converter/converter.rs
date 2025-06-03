@@ -2,7 +2,7 @@ use serde::Deserialize;
 
 use crate::{
     config::config::IPCConfig,
-    utils::file::{create_directory, remove_directory},
+    utils::directory::{create_directory, remove_directory},
 };
 
 #[derive(Deserialize, Clone)]
