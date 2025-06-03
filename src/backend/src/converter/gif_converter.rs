@@ -6,22 +6,26 @@ use crate::utils::{
 use super::converter::{Converter, IPCConvertData};
 
 pub struct GifConverter {
-    convert_data: IPCConvertData,
+    data: IPCConvertData,
+    bin_dir: String,
+    working_dir: String,
 }
 
 impl Converter for GifConverter {
-    fn new(convert_data: IPCConvertData) -> Self {
+    fn new(convert_data: IPCConvertData, bin_dir: &str, working_dir: &str) -> Self {
         Self {
-            convert_data: convert_data,
+            data: convert_data,
+            bin_dir: bin_dir.to_string(),
+            working_dir: working_dir.to_string(),
         }
     }
 
     fn convert(&self) {
-        self.init();
+        self.init_dir(&self.working_dir);
 
-        for input_file in get_files("MediaDownloader/_temp/download") {
-            let _ = remove_directory("MediaDownloader/_temp/convert_temp");
-            let _ = create_directory("MediaDownloader/_temp/convert_temp");
+        for input_file in get_files(&format!("{}/download", &self.working_dir)) {
+            let _ = remove_directory(&format!("{}/convert_temp", &self.working_dir));
+            let _ = create_directory(&format!("{}/convert_temp", &self.working_dir));
 
             let mut pre_convert_args: Vec<String> = Vec::new();
             pre_convert_args.push("-loglevel".to_string());
@@ -36,47 +40,61 @@ impl Converter for GifConverter {
 
             pre_convert_args.push("-an".to_string());
 
-            if !self.convert_data.vbr_bitrate.is_empty() {
+            if !self.data.cfg.settings.vbr_bitrate.is_empty() {
                 pre_convert_args.push("-b:v".to_string());
-                pre_convert_args.push(self.convert_data.vbr_bitrate.clone());
+                pre_convert_args.push(self.data.cfg.settings.vbr_bitrate.clone());
             }
 
-            if self.convert_data.size_change_enable
-                && self.convert_data.size_change_width.parse::<i32>().is_ok()
-                && self.convert_data.size_change_height.parse::<i32>().is_ok()
+            if self.data.cfg.settings.size_change_enable
+                && self
+                    .data
+                    .cfg
+                    .settings
+                    .size_change_width
+                    .parse::<i32>()
+                    .is_ok()
+                && self
+                    .data
+                    .cfg
+                    .settings
+                    .size_change_height
+                    .parse::<i32>()
+                    .is_ok()
             {
                 pre_convert_args.push("-vf".to_string());
                 pre_convert_args.push(format!(
                     "scale={}:{},setsar=1",
-                    self.convert_data.size_change_width, self.convert_data.size_change_height
+                    self.data.cfg.settings.size_change_width,
+                    self.data.cfg.settings.size_change_height
                 ));
             }
 
-            if self.convert_data.fps_change_enable
+            if self.data.cfg.settings.fps_change_enable
                 && self
-                    .convert_data
+                    .data
+                    .cfg
+                    .settings
                     .fps_change_framerate
                     .parse::<i32>()
                     .is_ok()
             {
                 pre_convert_args.push("-r".to_string());
-                pre_convert_args.push(self.convert_data.fps_change_framerate.clone());
+                pre_convert_args.push(self.data.cfg.settings.fps_change_framerate.clone());
             }
 
-            if self.convert_data.trim_enable {
-                if !self.convert_data.trim_start_enable {
+            if self.data.cfg.settings.trim_enable {
+                if !self.data.cfg.settings.trim_from_start_enable {
                     pre_convert_args.push("-ss".to_string());
-                    pre_convert_args.push(self.convert_data.trim_start.clone());
+                    pre_convert_args.push(self.data.cfg.settings.trim_start.clone());
                 }
-                if !self.convert_data.trim_end_enable {
+                if !self.data.cfg.settings.trim_to_end_enable {
                     pre_convert_args.push("-to".to_string());
-                    pre_convert_args.push(self.convert_data.trim_end.clone());
+                    pre_convert_args.push(self.data.cfg.settings.trim_end.clone());
                 }
             }
 
-            pre_convert_args.push("MediaDownloader/_temp/convert_temp/video.mp4".to_string());
-
-            let _ = start_process("MediaDownloader/bin/ffmpeg", &pre_convert_args);
+            pre_convert_args.push(format!("{}/convert_temp/video.mp4", &self.working_dir));
+            let _ = start_process(&format!("{}/ffmpeg", &self.bin_dir), &pre_convert_args);
 
             let mut palette_args: Vec<String> = Vec::new();
             palette_args.push("-loglevel".to_string());
@@ -84,14 +102,13 @@ impl Converter for GifConverter {
             palette_args.push("-y".to_string());
 
             palette_args.push("-i".to_string());
-            palette_args.push("MediaDownloader/_temp/convert_temp/video.mp4".to_string());
+            palette_args.push(format!("{}/convert_temp/video.mp4", &self.working_dir));
 
             palette_args.push("-vf".to_string());
             palette_args.push("palettegen".to_string());
 
-            palette_args.push("MediaDownloader/_temp/convert_temp/palette.png".to_string());
-
-            let _ = start_process("MediaDownloader/bin/ffmpeg", &palette_args);
+            palette_args.push(format!("{}/convert_temp/palette.png", &self.working_dir));
+            let _ = start_process(&format!("{}/ffmpeg", &self.bin_dir), &palette_args);
 
             let mut convert_args: Vec<String> = Vec::new();
             convert_args.push("-loglevel".to_string());
@@ -99,20 +116,20 @@ impl Converter for GifConverter {
             convert_args.push("-y".to_string());
 
             convert_args.push("-i".to_string());
-            convert_args.push("MediaDownloader/_temp/convert_temp/video.mp4".to_string());
+            convert_args.push(format!("{}/convert_temp/video.mp4", &self.working_dir));
 
             convert_args.push("-i".to_string());
-            convert_args.push("MediaDownloader/_temp/convert_temp/palette.png".to_string());
+            convert_args.push(format!("{}/convert_temp/palette.png", &self.working_dir));
 
             convert_args.push("-lavfi".to_string());
             convert_args.push("paletteuse".to_string());
 
             convert_args.push(format!(
-                "MediaDownloader/_temp/convert/{}.gif",
+                "{}/convert/{}.gif",
+                &self.working_dir,
                 get_filename(&input_file, false)
             ));
-
-            let _ = start_process("MediaDownloader/bin/ffmpeg", &convert_args);
+            let _ = start_process(&format!("{}/ffmpeg", &self.bin_dir), &convert_args);
         }
     }
 }

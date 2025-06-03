@@ -6,20 +6,24 @@ use crate::utils::{
 use super::converter::{Converter, IPCConvertData};
 
 pub struct AudioConverter {
-    convert_data: IPCConvertData,
+    data: IPCConvertData,
+    bin_dir: String,
+    working_dir: String,
 }
 
 impl Converter for AudioConverter {
-    fn new(convert_data: IPCConvertData) -> Self {
+    fn new(convert_data: IPCConvertData, bin_dir: &str, working_dir: &str) -> Self {
         Self {
-            convert_data: convert_data,
+            data: convert_data,
+            bin_dir: bin_dir.to_string(),
+            working_dir: working_dir.to_string(),
         }
     }
 
     fn convert(&self) {
-        self.init();
+        self.init_dir(&self.working_dir);
 
-        let (audio_codec, extension) = match self.convert_data.format.as_str() {
+        let (audio_codec, extension) = match self.data.cfg.settings.format.as_str() {
             "mp3" => ("libmp3lame", "mp3"),
             "wav" => ("pcm_s16le", "wav"),
             "flac" => ("flac", "flac"),
@@ -27,7 +31,7 @@ impl Converter for AudioConverter {
             _ => ("", ""),
         };
 
-        for input_file in get_files("MediaDownloader/_temp/download") {
+        for input_file in get_files(&format!("{}/download", &self.working_dir)) {
             let mut convert_args: Vec<String> = Vec::new();
             convert_args.push("-loglevel".to_string());
             convert_args.push("verbose".to_string());
@@ -41,35 +45,35 @@ impl Converter for AudioConverter {
             convert_args.push("-c:a".to_string());
             convert_args.push(audio_codec.to_string());
 
-            if !self.convert_data.abr_bitrate.is_empty() {
+            if !self.data.cfg.settings.abr_bitrate.is_empty() {
                 convert_args.push("-b:a".to_string());
-                convert_args.push(self.convert_data.abr_bitrate.clone());
+                convert_args.push(self.data.cfg.settings.abr_bitrate.clone());
             }
 
-            if self.convert_data.trim_enable {
-                if !self.convert_data.trim_start_enable {
+            if self.data.cfg.settings.trim_enable {
+                if !self.data.cfg.settings.trim_from_start_enable {
                     convert_args.push("-ss".to_string());
-                    convert_args.push(self.convert_data.trim_start.clone());
+                    convert_args.push(self.data.cfg.settings.trim_start.clone());
                 }
-                if !self.convert_data.trim_end_enable {
+                if !self.data.cfg.settings.trim_to_end_enable {
                     convert_args.push("-to".to_string());
-                    convert_args.push(self.convert_data.trim_end.clone());
+                    convert_args.push(self.data.cfg.settings.trim_end.clone());
                 }
             }
 
-            if self.convert_data.custom_ffmpeg_arguments_enable {
-                for arg in &self.convert_data.custom_ffmpeg_arguments {
+            if self.data.cfg.settings.custom_ffmpeg_arguments_enable {
+                for arg in &self.data.cfg.settings.custom_ffmpeg_arguments {
                     convert_args.push(arg.clone())
                 }
             }
 
             convert_args.push(format!(
-                "MediaDownloader/_temp/convert/{}.{}",
+                "{}/convert/{}.{}",
+                &self.working_dir,
                 get_filename(&input_file, false),
                 extension
             ));
-
-            let _ = start_process("MediaDownloader/bin/ffmpeg", &convert_args);
+            let _ = start_process(&format!("{}/ffmpeg", &self.bin_dir), &convert_args);
         }
     }
 }

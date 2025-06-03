@@ -6,26 +6,30 @@ use crate::utils::{
 use super::converter::{Converter, IPCConvertData};
 
 pub struct ImageConverter {
-    convert_data: IPCConvertData,
+    data: IPCConvertData,
+    bin_dir: String,
+    working_dir: String,
 }
 
 impl Converter for ImageConverter {
-    fn new(convert_data: IPCConvertData) -> Self {
+    fn new(convert_data: IPCConvertData, bin_dir: &str, working_dir: &str) -> Self {
         Self {
-            convert_data: convert_data,
+            data: convert_data,
+            bin_dir: bin_dir.to_string(),
+            working_dir: working_dir.to_string(),
         }
     }
 
     fn convert(&self) {
-        self.init();
+        self.init_dir(&self.working_dir);
 
-        let extension = match self.convert_data.format.as_str() {
+        let extension = match self.data.cfg.settings.format.as_str() {
             "png" => "png",
             "jpg" => "jpg",
             _ => "",
         };
 
-        for input_file in get_files("MediaDownloader/_temp/download") {
+        for input_file in get_files(&format!("{}/download", &self.working_dir)) {
             let mut convert_args: Vec<String> = Vec::new();
             convert_args.push("-loglevel".to_string());
             convert_args.push("verbose".to_string());
@@ -34,30 +38,43 @@ impl Converter for ImageConverter {
             convert_args.push("-i".to_string());
             convert_args.push(input_file.clone());
 
-            if self.convert_data.size_change_enable
-                && self.convert_data.size_change_width.parse::<i32>().is_ok()
-                && self.convert_data.size_change_height.parse::<i32>().is_ok()
+            if self.data.cfg.settings.size_change_enable
+                && self
+                    .data
+                    .cfg
+                    .settings
+                    .size_change_width
+                    .parse::<i32>()
+                    .is_ok()
+                && self
+                    .data
+                    .cfg
+                    .settings
+                    .size_change_height
+                    .parse::<i32>()
+                    .is_ok()
             {
                 convert_args.push("-vf".to_string());
                 convert_args.push(format!(
                     "scale={}:{},setsar=1",
-                    self.convert_data.size_change_width, self.convert_data.size_change_height
+                    self.data.cfg.settings.size_change_width,
+                    self.data.cfg.settings.size_change_height
                 ));
             }
 
-            if self.convert_data.custom_ffmpeg_arguments_enable {
-                for arg in &self.convert_data.custom_ffmpeg_arguments {
+            if self.data.cfg.settings.custom_ffmpeg_arguments_enable {
+                for arg in &self.data.cfg.settings.custom_ffmpeg_arguments {
                     convert_args.push(arg.clone())
                 }
             }
 
             convert_args.push(format!(
-                "MediaDownloader/_temp/convert/{}.{}",
+                "{}/convert/{}.{}",
+                &self.working_dir,
                 get_filename(&input_file, false),
                 extension
             ));
-
-            let _ = start_process("MediaDownloader/bin/ffmpeg", &convert_args);
+            let _ = start_process(&format!("{}/ffmpeg", &self.bin_dir), &convert_args);
         }
     }
 }

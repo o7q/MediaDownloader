@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles/panels/input/url.css">
 
     <link rel="stylesheet" href="styles/panels/settings/settings.css">
-    <link rel="stylesheet" href="styles/panels/settings/types.css">
+    <link rel="stylesheet" href="styles/panels/settings/format.css">
     <link rel="stylesheet" href="styles/panels/settings/trim.css">
     <link rel="stylesheet" href="styles/panels/settings/size-fps.css">
     <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
@@ -34,7 +34,8 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/utils.js"></script>
 
-    <script src="scripts/ui/get.js"></script>
+    <script src="scripts/config/generate.js"></script>
+
     <script src="scripts/ui/titlebar.js"></script>
     <script src="scripts/ui/buttons.js"></script>
     <script src="scripts/ui/textboxes.js"></script>
@@ -60,34 +61,34 @@
 
         <p class="text text--settings">Settings</p>
         <div class="panel panel--settings">
-            <div class="panel panel--settings-types">
-                <p class="text text--settings-types">Download Type</p>
-                <select class="dropdown dropdown--settings-types" id="settings-types-dropdown">
-                    <option mode="null">[Video]</option>
-                    <option value="mp4-fast" mode="video">mp4 (fast)</option>
-                    <option value="mp4" mode="video">mp4</option>
-                    <option value="mp4-nvidia" mode="video">mp4 (nvidia)</option>
-                    <option value="mp4-amd" mode="video">mp4 (amd)</option>
-                    <option value="webm" mode="video">webm</option>
-                    <option value="avi" mode="video">avi (uncompressed)</option>
-                    <option mode="null">---</option>
+            <div class="panel panel--settings-format">
+                <p class="text text--settings-format">Format</p>
+                <select class="dropdown dropdown--settings-format" id="settings-format-dropdown">
+                    <option type-value="null">[Video]</option>
+                    <option value="mp4-fast" type-value="video">mp4 (fast)</option>
+                    <option value="mp4" type-value="video">mp4</option>
+                    <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
+                    <option value="mp4-amd" type-value="video">mp4 (amd)</option>
+                    <option value="webm" type-value="video">webm</option>
+                    <option value="avi" type-value="video">avi (uncompressed)</option>
+                    <option type-value="null">---</option>
 
-                    <option mode="null">[Audio]</option>
-                    <option value="mp3" mode="audio">mp3</option>
-                    <option value="wav" mode="audio">wav (lossless)</option>
-                    <option value="flac" mode="audio">flac (lossless)</option>
-                    <option value="ogg" mode="audio">ogg</option>
-                    <option mode="null">---</option>
+                    <option type-value="null">[Audio]</option>
+                    <option value="mp3" type-value="audio">mp3</option>
+                    <option value="wav" type-value="audio">wav (lossless)</option>
+                    <option value="flac" type-value="audio">flac (lossless)</option>
+                    <option value="ogg" type-value="audio">ogg</option>
+                    <option type-value="null">---</option>
 
-                    <option mode="null">[Image]</option>
-                    <option value="gif" mode="gif">gif</option>
-                    <option value="png" mode="sequence">png (sequence)</option>
-                    <option value="jpg" mode="sequence">jpg (sequence)</option>
-                    <option mode="null">---</option>
+                    <option type-value="null">[Image]</option>
+                    <option value="gif" type-value="gif">gif</option>
+                    <option value="png" type-value="sequence">png (sequence)</option>
+                    <option value="jpg" type-value="sequence">jpg (sequence)</option>
+                    <option type-value="null">---</option>
 
-                    <option mode="null">[Thumbnail]</option>
-                    <option value="png" mode="image">png</option>
-                    <option value="jpg" mode="image">jpg</option>
+                    <option type-value="null">[Thumbnail]</option>
+                    <option value="png" type-value="image">png</option>
+                    <option value="jpg" type-value="image">jpg</option>
                 </select>
             </div>
 

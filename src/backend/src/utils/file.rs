@@ -1,17 +1,15 @@
 use std::fs;
-use std::fs::File;
 use std::io;
-use std::io::Write;
 use std::path::Path;
 
 pub fn create_directory(path: &str) -> io::Result<()> {
-    fs::create_dir_all(path)?;
-    Ok(())
+    println!("Creating directory: {}", path);
+    fs::create_dir_all(path)
 }
 
 pub fn remove_directory(path: &str) -> io::Result<()> {
-    fs::remove_dir_all(path)?;
-    Ok(())
+    println!("Removing directory: {}", path);
+    fs::remove_dir_all(path)
 }
 
 pub fn directory_exists(path: &str) -> bool {
@@ -19,9 +17,16 @@ pub fn directory_exists(path: &str) -> bool {
 }
 
 pub fn write_file(path: &str, content: &str) -> io::Result<()> {
-    let mut file: File = File::create(path)?;
-    file.write_all(content.as_bytes())?;
-    Ok(())
+    println!("Writing file: {}", path);
+    fs::write(path, content)
+}
+
+pub fn read_file(path: &str) -> io::Result<String> {
+    fs::read_to_string(path)
+}
+
+pub fn file_exists(path: &str) -> bool {
+    Path::new(path).exists()
 }
 
 pub fn get_files(path: &str) -> Vec<String> {

@@ -1,37 +1,21 @@
 use serde::Deserialize;
 
-use crate::utils::file::{create_directory, remove_directory};
+use crate::{
+    config::config::IPCConfig,
+    utils::file::{create_directory, remove_directory},
+};
 
 #[derive(Deserialize, Clone)]
 pub struct IPCConvertData {
-    pub format: String,
-
-    pub trim_enable: bool,
-    pub trim_start_enable: bool,
-    pub trim_start: String,
-    pub trim_end_enable: bool,
-    pub trim_end: String,
-
-    pub size_change_enable: bool,
-    pub size_change_width: String,
-    pub size_change_height: String,
-
-    pub fps_change_enable: bool,
-    pub fps_change_framerate: String,
-
-    pub vbr_bitrate: String,
-    pub abr_bitrate: String,
-
-    pub custom_ffmpeg_arguments_enable: bool,
-    pub custom_ffmpeg_arguments: Vec<String>,
+    pub cfg: IPCConfig,
 }
 
 pub trait Converter {
-    fn new(convert_data: IPCConvertData) -> Self;
+    fn new(convert_data: IPCConvertData, bin_dir: &str, working_dir: &str) -> Self;
 
-    fn init(&self) {
-        let _ = remove_directory("MediaDownloader/_temp/convert");
-        let _ = create_directory("MediaDownloader/_temp/convert");
+    fn init_dir(&self, working_dir: &str) {
+        let _ = remove_directory(&format!("{}/convert", working_dir));
+        let _ = create_directory(&format!("{}/convert", working_dir));
     }
 
     fn convert(&self);

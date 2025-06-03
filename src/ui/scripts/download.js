@@ -1,55 +1,33 @@
 async function startDownloadAsync() {
-    const uiValues = getUIValues();
+    const ipcConfig = generateIPCConfig();
 
-    const download_name = await download(uiValues);
+    const settingsFormatDropdown = document.getElementById("settings-format-dropdown");
+    let formatType = settingsFormatDropdown.options[settingsFormatDropdown.selectedIndex].getAttribute("type-value");
+
+    const download_name = await download(ipcConfig, formatType);
     document.getElementById("output-name-textbox").value = download_name;
-    
-    await convert(uiValues);
+
+    await convert(ipcConfig, formatType);
 }
 
-async function download(uiValues) {
+async function download(ipcConfig, formatType) {
     let downloadType;
-    switch (uiValues.settingsMode) {
+    switch (formatType) {
         case "image": downloadType = "thumbnail"; break;
         default: downloadType = "default"; break;
     }
 
     const downloadData = {
-        url: uiValues.inputUrl,
-        url_is_playlist: isUrlPlaylist(uiValues.inputUrl),
-
-        forced_name: uiValues.outputName,
-
-        custom_ytdlp_arguments_enable: uiValues.settingsArgumentsYtdlpEnable,
-        custom_ytdlp_arguments: uiValues.settingsArgumentsYtdlp
-    };
+        cfg: ipcConfig,
+        is_playlist: isUrlPlaylist(ipcConfig.input.url)
+    }
 
     return await tauri_invoke("download", { downloadData: downloadData, downloadType: downloadType });
 }
 
-async function convert(uiValues) {
+async function convert(ipcConfig, formatType) {
     const convertData = {
-        format: uiValues.settingsType,
-
-        trim_enable: uiValues.settingsTrimEnable,
-        trim_start_enable: uiValues.settingsTrimStartEnable,
-        trim_start: uiValues.settingsTrimStart,
-        trim_end_enable: uiValues.settingsTrimEndEnable,
-        trim_end: uiValues.settingsTrimEnd,
-
-        size_change_enable: uiValues.settingsSizeEnable,
-        size_change_width: uiValues.settingsSizeWidth,
-        size_change_height: uiValues.settingsSizeHeight,
-
-        fps_change_enable: uiValues.settingsFramerateEnable,
-        fps_change_framerate: uiValues.settingsFramerate,
-
-        vbr_bitrate: uiValues.settingsBitrateVideo,
-        abr_bitrate: uiValues.settingsBitrateAudio,
-
-        custom_ffmpeg_arguments_enable: uiValues.settingsArgumentsFfmpegEnable,
-        custom_ffmpeg_arguments: uiValues.settingsArgumentsFfmpeg
-    };
-
-    await tauri_invoke("convert", { convertData: convertData, convertType: uiValues.settingsMode });
+        cfg: ipcConfig
+    }
+    await tauri_invoke("convert", { convertData: convertData, convertType: formatType });
 }

@@ -1,3 +1,4 @@
+mod config;
 mod converter;
 mod downloader;
 mod utils;
@@ -11,8 +12,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::download,
-            commands::convert,
-            commands::purge_temp
+            commands::convert
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

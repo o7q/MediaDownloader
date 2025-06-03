@@ -1,4 +1,4 @@
-.panel--settings-types {
+.panel--settings-format {
     width: 30vw;
     height: 11vw;
 
@@ -8,12 +8,12 @@
     border-top-left-radius: 1vw;
 }
 
-.text--settings-types {
+.text--settings-format {
     left: 1vw;
     top: 0.5vw;
 }
 
-.dropdown--settings-types {
+.dropdown--settings-format {
     width: 28vw;
     height: 5vw;
 
