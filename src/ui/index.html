@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="main.ts" defer></script>
 
     <link rel="stylesheet" href="styles/body.css">
     <link rel="stylesheet" href="styles/fonts.css">
@@ -30,17 +32,6 @@
     <link rel="stylesheet" href="styles/panels/settings/arguments.css">
 
     <link rel="stylesheet" href="styles/panels/output/output.css">
-
-    <script src="scripts/main.js"></script>
-    <script src="scripts/utils.js"></script>
-
-    <script src="scripts/config/generate.js"></script>
-
-    <script src="scripts/ui/titlebar.js"></script>
-    <script src="scripts/ui/buttons.js"></script>
-    <script src="scripts/ui/textboxes.js"></script>
-
-    <script src="scripts/download.js"></script>
 </head>
 
 <body>
@@ -103,8 +94,7 @@
                 <label class="checkbox">
                     <input type="checkbox" id="settings-trim-start-checkbox" />
                     <span class="checkbox-checkmark checkbox--settings-trim-start">
-                        <p class="text text--settings-trim-start">
-                            << </p>
+                        <p class="text text--settings-trim-start">&lt;&lt;</p>
                     </span>
                 </label>
                 <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox"
@@ -115,7 +105,7 @@
                 <label class="checkbox">
                     <input type="checkbox" id="settings-trim-end-checkbox" />
                     <span class="checkbox-checkmark checkbox--settings-trim-end">
-                        <p class="text text--settings-trim-end">>></p>
+                        <p class="text text--settings-trim-end">&gt;&gt;</p>
                     </span>
                 </label>
                 <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox"

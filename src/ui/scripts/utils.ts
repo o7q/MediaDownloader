@@ -1,4 +1,4 @@
-function isUrlPlaylist(url) {
+export function isUrlPlaylist(url: String) {
     const playlistKeywords = ["/playlist?", "&list=", "?list=", "/sets"];
     for (const keyword of playlistKeywords) {
         if (url.includes(keyword)) {
@@ -6,12 +6,4 @@ function isUrlPlaylist(url) {
         }
     }
     return false;
-}
-
-async function openPathDialogAsync() {
-    const file = await tauri_open({
-        directory: true,
-    });
-
-    document.getElementById("output-path-textbox").value = file;
 }
