@@ -65,7 +65,7 @@
                 <p class="text text--settings-format">Format</p>
                 <select class="dropdown dropdown--settings-format" id="settings-format-dropdown">
                     <option type-value="null">[Video]</option>
-                    <option value="mp4-fast" type-value="video">mp4 (fast)</option>
+                    <option value="mp4-fast" type-value="video" selected="true">mp4 (fast)</option>
                     <option value="mp4" type-value="video">mp4</option>
                     <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
                     <option value="mp4-amd" type-value="video">mp4 (amd)</option>
@@ -107,7 +107,8 @@
                             << </p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox">
+                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox"
+                    value="0:00">
 
                 <p class="text text--settings-trim-and">and</p>
 
@@ -117,7 +118,8 @@
                         <p class="text text--settings-trim-end">>></p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox">
+                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox"
+                    value="0:10">
             </div>
 
             <div class="panel panel--settings-size-fps">
@@ -127,11 +129,11 @@
                         <p class="text text--settings-size-fps-resolution">Change Size</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-size-fps-width"
-                    id="settings-size-fps-width-textbox">
+                <input type="text" class="textbox textbox--settings-size-fps-width" id="settings-size-fps-width-textbox"
+                    value="1280">
 
                 <input type="text" class="textbox textbox--settings-size-fps-height"
-                    id="settings-size-fps-height-textbox">
+                    id="settings-size-fps-height-textbox" value="-1">
 
                 <label class="checkbox">
                     <input type="checkbox" id="settings-size-fps-framerate-checkbox" />
@@ -140,15 +142,17 @@
                     </span>
                 </label>
                 <input type="text" class="textbox textbox--settings-size-fps-framerate"
-                    id="settings-size-fps-framerate-textbox">
+                    id="settings-size-fps-framerate-textbox" value="30">
             </div>
 
             <div class="panel panel--settings-bitrate">
                 <p class="text text--settings-bitrate-video">Video Bitrate</p>
-                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox">
+                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox"
+                    value="10M">
 
                 <p class="text text--settings-bitrate-audio">Audio Bitrate</p>
-                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox">
+                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox"
+                    value="320K">
             </div>
 
             <div class="panel panel--settings-arguments">

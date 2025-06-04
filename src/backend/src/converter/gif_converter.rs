@@ -1,21 +1,24 @@
-use crate::utils::{
-    directory::{create_directory, remove_directory},
-    file::{get_filename, get_files},
-    process::start_process,
+use crate::{
+    config::config::IPCConfig,
+    utils::{
+        directory::{create_directory, remove_directory},
+        file::{get_filename, get_files},
+        process::start_process,
+    },
 };
 
-use super::converter::{Converter, IPCConvertData};
+use super::converter::Converter;
 
 pub struct GifConverter {
-    data: IPCConvertData,
+    cfg: IPCConfig,
     bin_dir: String,
     working_dir: String,
 }
 
 impl Converter for GifConverter {
-    fn new(convert_data: IPCConvertData, bin_dir: &str, working_dir: &str) -> Self {
+    fn new(ipc_config: IPCConfig, bin_dir: &str, working_dir: &str) -> Self {
         Self {
-            data: convert_data,
+            cfg: ipc_config,
             bin_dir: bin_dir.to_string(),
             working_dir: working_dir.to_string(),
         }
@@ -41,38 +44,24 @@ impl Converter for GifConverter {
 
             pre_convert_args.push("-an".to_string());
 
-            if !self.data.cfg.settings.vbr_bitrate.is_empty() {
+            if !self.cfg.settings.vbr_bitrate.is_empty() {
                 pre_convert_args.push("-b:v".to_string());
-                pre_convert_args.push(self.data.cfg.settings.vbr_bitrate.clone());
+                pre_convert_args.push(self.cfg.settings.vbr_bitrate.clone());
             }
 
-            if self.data.cfg.settings.size_change_enable
-                && self
-                    .data
-                    .cfg
-                    .settings
-                    .size_change_width
-                    .parse::<i32>()
-                    .is_ok()
-                && self
-                    .data
-                    .cfg
-                    .settings
-                    .size_change_height
-                    .parse::<i32>()
-                    .is_ok()
+            if self.cfg.settings.size_change_enable
+                && self.cfg.settings.size_change_width.parse::<i32>().is_ok()
+                && self.cfg.settings.size_change_height.parse::<i32>().is_ok()
             {
                 pre_convert_args.push("-vf".to_string());
                 pre_convert_args.push(format!(
                     "scale={}:{},setsar=1",
-                    self.data.cfg.settings.size_change_width,
-                    self.data.cfg.settings.size_change_height
+                    self.cfg.settings.size_change_width, self.cfg.settings.size_change_height
                 ));
             }
 
-            if self.data.cfg.settings.fps_change_enable
+            if self.cfg.settings.fps_change_enable
                 && self
-                    .data
                     .cfg
                     .settings
                     .fps_change_framerate
@@ -80,17 +69,17 @@ impl Converter for GifConverter {
                     .is_ok()
             {
                 pre_convert_args.push("-r".to_string());
-                pre_convert_args.push(self.data.cfg.settings.fps_change_framerate.clone());
+                pre_convert_args.push(self.cfg.settings.fps_change_framerate.clone());
             }
 
-            if self.data.cfg.settings.trim_enable {
-                if !self.data.cfg.settings.trim_from_start_enable {
+            if self.cfg.settings.trim_enable {
+                if !self.cfg.settings.trim_from_start_enable {
                     pre_convert_args.push("-ss".to_string());
-                    pre_convert_args.push(self.data.cfg.settings.trim_start.clone());
+                    pre_convert_args.push(self.cfg.settings.trim_start.clone());
                 }
-                if !self.data.cfg.settings.trim_to_end_enable {
+                if !self.cfg.settings.trim_to_end_enable {
                     pre_convert_args.push("-to".to_string());
-                    pre_convert_args.push(self.data.cfg.settings.trim_end.clone());
+                    pre_convert_args.push(self.cfg.settings.trim_end.clone());
                 }
             }
 

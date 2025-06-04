@@ -5,11 +5,14 @@ use crate::utils::string::clean_string_vector;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct IPCInputConfig {
     pub url: String,
+    pub is_playlist: bool,
+    pub download_type: String,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct IPCSettingsConfig {
     pub format: String,
+    pub format_type: String,
 
     pub trim_enable: bool,
     pub trim_from_start_enable: bool,

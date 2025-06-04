@@ -1,13 +1,27 @@
 function generateIPCConfig() {
     const $ = id => document.getElementById(id);
 
+    const url = $("input-url-textbox").value;
+
+    const settingsFormatDropdown = document.getElementById("settings-format-dropdown");
+    const formatType = settingsFormatDropdown.options[settingsFormatDropdown.selectedIndex].getAttribute("type-value");
+
+    let downloadType;
+    switch (formatType) {
+        case "image": downloadType = "thumbnail"; break;
+        default: downloadType = "default"; break;
+    }
+
     return {
         input: {
-            url: $("input-url-textbox").value
+            url:           url,
+            is_playlist:   isUrlPlaylist(url),
+            download_type: downloadType
         },
 
         settings: {
             format:                         $("settings-format-dropdown")            .value,
+            format_type:                    formatType,
 
             trim_enable:                    $("settings-trim-checkbox")              .checked,
             trim_from_start_enable:         $("settings-trim-start-checkbox")        .checked,
