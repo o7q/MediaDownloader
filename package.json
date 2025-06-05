@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri-dev": "tauri dev",
-    "tauri-release": "tauri build --no-bundle --config src/backend/tauri.conf.json"
+    "tauri-build": "tauri build --no-bundle --config src/app/tauri.conf.json"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

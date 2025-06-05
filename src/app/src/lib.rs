@@ -2,6 +2,7 @@ mod config;
 mod converter;
 mod downloader;
 mod utils;
+mod wrapper;
 
 mod commands;
 
