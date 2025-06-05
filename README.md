@@ -6,7 +6,7 @@
             A modern, lightweight 🍃 GUI wrapper for yt-dlp. <br>
             <img src="https://img.shields.io/github/downloads/o7q/MediaDownloader/total?logo=github&label=Downloads&color=%232fd653">
             <img src="https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff"><br>
-            <h3><a href="">Download</a></h3>
+            <strong><a href="">Download</a></strong>
         </td>
     </tr>
 </table>

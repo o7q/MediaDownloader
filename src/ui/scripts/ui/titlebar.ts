@@ -1,6 +1,4 @@
-import { getCurrentWindow } from '@tauri-apps/api/window';
-
-const appWindow = getCurrentWindow();
+import { appWindow } from "../../main";
 
 export function initTitlebar() {
     document.getElementById("titlebar")?.addEventListener("mousedown", (e: MouseEvent) => {

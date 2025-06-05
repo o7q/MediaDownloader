@@ -1,5 +1,6 @@
 import { invoke } from '@tauri-apps/api/core';
-import { generateIPCConfig, IPCConfig } from './config/generate';
+import { IPCConfig } from './config/config';
+import { generateIPCConfig } from './config/generate';
 
 export async function startDownloadAsync() {
     const ipcConfig: IPCConfig = generateIPCConfig();

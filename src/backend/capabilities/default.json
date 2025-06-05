@@ -12,6 +12,7 @@
     "core:window:allow-close",
     "core:window:allow-minimize",
     "core:window:allow-start-dragging",
+    "core:webview:allow-webview-show",
     "dialog:default"
   ]
 }
