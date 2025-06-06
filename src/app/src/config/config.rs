@@ -2,14 +2,14 @@ use serde::{Deserialize, Serialize};
 
 use crate::utils::string::clean_string_vector;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct IPCInputConfig {
     pub url: String,
     pub is_playlist: bool,
     pub download_type: String,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct IPCSettingsConfig {
     pub format: String,
     pub format_type: String,
@@ -37,13 +37,13 @@ pub struct IPCSettingsConfig {
     pub custom_ytdlp_arguments: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct IPCOutputConfig {
     pub name: String,
     pub path: String,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct IPCConfig {
     pub input: IPCInputConfig,
     pub settings: IPCSettingsConfig,

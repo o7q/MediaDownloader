@@ -1,4 +1,6 @@
-use crate::{config::config::IPCConfig, utils::process::start_process};
+use crate::{
+    config::config::IPCConfig, logger::logger::IPCLogger, processor::processor::Processor,
+};
 
 use super::downloader::Downloader;
 
@@ -21,28 +23,31 @@ impl Downloader for DefaultDownloader {
         self.cfg.clone()
     }
 
-    fn download(&self) -> String {
+    fn download(&self, logger: IPCLogger) -> String {
         self.init_dir(&self.working_dir);
 
-        let mut args: Vec<String> = Vec::new();
-        args.push(String::from("--verbose"));
-        args.push(String::from("--ffmpeg-location"));
-        args.push(format!("{}/ffmpeg.exe", &self.bin_dir));
+        let _ = Processor::new(&logger, &format!("{}/yt-dlp", &self.bin_dir), &{
+            let mut args: Vec<String> = Vec::new();
+            args.push(String::from("--ffmpeg-location"));
+            args.push(format!("{}/ffmpeg.exe", &self.bin_dir));
 
-        if self.cfg.settings.custom_ytdlp_arguments_enable {
-            for arg in &self.cfg.settings.custom_ytdlp_arguments {
-                args.push(arg.clone())
+            if self.cfg.settings.custom_ytdlp_arguments_enable {
+                for arg in &self.cfg.settings.custom_ytdlp_arguments {
+                    args.push(arg.clone())
+                }
             }
-        }
 
-        args.push(String::from("-o"));
-        args.push(format!(
-            "{}/download/{}",
-            &self.working_dir,
-            self.determine_output_name_argument()
-        ));
-        args.push(self.cfg.input.url.clone());
-        let _ = start_process(&format!("{}/yt-dlp", &self.bin_dir), &args);
+            args.push(String::from("-o"));
+            args.push(format!(
+                "{}/download/{}",
+                &self.working_dir,
+                self.determine_output_name_argument()
+            ));
+            args.push(self.cfg.input.url.clone());
+
+            args
+        })
+        .start();
 
         self.finalize(&self.working_dir)
     }

@@ -49,6 +49,31 @@ pub fn get_filename(path: &str, extension: bool) -> String {
     }
 }
 
+pub fn get_mediasafe_filename(path: &str, extension: bool) -> String {
+    if extension {
+        get_filename(path, true)
+    } else {
+        let known_extensions: [&'static str; 16] = [
+            "avi", "flv", "mkv", "mov", "mp4", "webm", "wmv", "aac", "flac", "m4a", "mp3", "ogg",
+            "opus", "raw", "wav", "wma",
+        ];
+
+        let mut filename_str: String = get_filename(path, true);
+
+        for ext in known_extensions {
+            let extd: String = format!(".{}", ext);
+            if filename_str.ends_with(&extd) {
+                if let Some(stripped) = filename_str.strip_suffix(&extd) {
+                    filename_str = stripped.to_string();
+                }
+                break;
+            }
+        }
+
+        filename_str
+    }
+}
+
 #[cfg(windows)]
 pub fn normalize_path(s: &str) -> String {
     s.replace("/", "\\")

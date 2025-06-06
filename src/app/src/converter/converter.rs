@@ -1,5 +1,6 @@
 use crate::{
     config::config::IPCConfig,
+    logger::logger::IPCLogger,
     utils::directory::{create_directory, remove_directory},
 };
 
@@ -11,5 +12,5 @@ pub trait Converter {
         let _ = create_directory(&format!("{}/convert", working_dir));
     }
 
-    fn convert(&self);
+    fn convert(&self, logger: IPCLogger);
 }

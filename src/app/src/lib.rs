@@ -1,8 +1,9 @@
 mod config;
 mod converter;
 mod downloader;
+mod logger;
+mod processor;
 mod utils;
-mod wrapper;
 
 mod commands;
 

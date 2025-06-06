@@ -1,8 +1,9 @@
 use crate::{
     config::{config::IPCConfig, serial::serialize_config},
+    logger::logger::IPCLogger,
     utils::{
         directory::{create_directory, remove_directory},
-        file::{get_filename, get_files, write_file},
+        file::{get_files, get_mediasafe_filename, write_file},
     },
 };
 
@@ -18,7 +19,7 @@ pub trait Downloader {
 
     // returns the name of the downloaded file (without extension) if no forced name is set
     // else, it just returns the forced name
-    fn download(&self) -> String;
+    fn download(&self, logger: IPCLogger) -> String;
     fn finalize(&self, working_dir: &str) -> String {
         let forced_name: String = self.get_ipc_config().output.name.clone();
 
@@ -28,7 +29,7 @@ pub trait Downloader {
             let downloaded_files: Vec<String> = get_files(&format!("{}/download", working_dir));
 
             if downloaded_files.len() > 0 {
-                get_filename(&downloaded_files[0].clone(), false)
+                get_mediasafe_filename(&downloaded_files[0].clone(), false)
             } else {
                 String::from("")
             }
