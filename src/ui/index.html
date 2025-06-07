@@ -5,33 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="main.ts" defer></script>
+    <script type="module" src="scripts/index/main.ts" defer></script>
 
-    <link rel="stylesheet" href="styles/body.css">
-    <link rel="stylesheet" href="styles/fonts.css">
+    <!-- common -->
+    <link rel="stylesheet" href="styles/common/body.css">
+    <link rel="stylesheet" href="styles/common/fonts.css">
 
-    <link rel="stylesheet" href="styles/containers/main.css">
-    <link rel="stylesheet" href="styles/containers/titlebar.css">
+    <link rel="stylesheet" href="styles/common/containers/main.css">
+    <link rel="stylesheet" href="styles/common/containers/titlebar.css">
 
-    <link rel="stylesheet" href="styles/controls/button.css">
-    <link rel="stylesheet" href="styles/controls/checkbox.css">
-    <link rel="stylesheet" href="styles/controls/dropdown.css">
-    <link rel="stylesheet" href="styles/controls/panel.css">
-    <link rel="stylesheet" href="styles/controls/text.css">
-    <link rel="stylesheet" href="styles/controls/textarea.css">
-    <link rel="stylesheet" href="styles/controls/textbox.css">
+    <link rel="stylesheet" href="styles/common/controls/button.css">
+    <link rel="stylesheet" href="styles/common/controls/checkbox.css">
+    <link rel="stylesheet" href="styles/common/controls/dropdown.css">
+    <link rel="stylesheet" href="styles/common/controls/panel.css">
+    <link rel="stylesheet" href="styles/common/controls/text.css">
+    <link rel="stylesheet" href="styles/common/controls/textarea.css">
+    <link rel="stylesheet" href="styles/common/controls/textbox.css">
+    <!-- common -->
 
-    <link rel="stylesheet" href="styles/panels/input/input.css">
-    <link rel="stylesheet" href="styles/panels/input/url.css">
+    <link rel="stylesheet" href="styles/index/panels/input/input.css">
+    <link rel="stylesheet" href="styles/index/panels/input/url.css">
 
-    <link rel="stylesheet" href="styles/panels/settings/settings.css">
-    <link rel="stylesheet" href="styles/panels/settings/format.css">
-    <link rel="stylesheet" href="styles/panels/settings/trim.css">
-    <link rel="stylesheet" href="styles/panels/settings/size-fps.css">
-    <link rel="stylesheet" href="styles/panels/settings/bitrate.css">
-    <link rel="stylesheet" href="styles/panels/settings/arguments.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/settings.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/format.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/trim.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/size-fps.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/bitrate.css">
+    <link rel="stylesheet" href="styles/index/panels/settings/arguments.css">
 
-    <link rel="stylesheet" href="styles/panels/output/output.css">
+    <link rel="stylesheet" href="styles/index/panels/output/output.css">
 </head>
 
 <body>
@@ -169,8 +171,6 @@
 
         <p class="text text--output">Output</p>
         <div class="panel panel--output">
-            <button class="button button--output-download" id="output-download-button">Download</button>
-
             <p class="text text--output-name" id="output-name-text">Name (Auto)</p>
             <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
 
@@ -179,6 +179,13 @@
                 <img src="assets/images/folder_icon.png">
             </button>
             <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+
+            <button class="button button--output-download" id="output-download-button">Download</button>
+
+            <p class="text text--output-console">Console</p>
+            <textarea readonly class="output-console-textarea" id="output-console-textarea"></textarea>
+            <button class="button button--output-console-open" id="output-console-open-button"> <img
+                    src="assets/images/console_icon.png"></button>
         </div>
     </div>
 </body>

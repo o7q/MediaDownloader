@@ -4,6 +4,9 @@ use std::thread;
 
 use crate::logger::logger::IPCLogger;
 
+#[cfg(windows)]
+use std::os::windows::process::CommandExt;
+
 pub struct Processor {
     pub logger: IPCLogger,
     pub path: String,
@@ -29,11 +32,20 @@ impl Processor {
             logger.log(&arg);
         }
 
-        let mut child: std::process::Child = Command::new(path)
+        let mut command = Command::new(path);
+
+        command
             .args(args)
             .stdout(Stdio::piped())
-            .stderr(Stdio::piped())
-            .spawn()?;
+            .stderr(Stdio::piped());
+
+        // prevent console window on windows
+        #[cfg(windows)]
+        {
+            command.creation_flags(0x08000000);
+        }
+
+        let mut child: std::process::Child = command.spawn()?;
 
         // clone stdout and stderr handles
         let stdout: std::process::ChildStdout =

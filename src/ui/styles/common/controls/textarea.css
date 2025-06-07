@@ -15,3 +15,8 @@
 
     resize: none;
 }
+
+.textarea:focus {
+    border-color: rgb(51, 97, 51);
+    outline: none;
+}

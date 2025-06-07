@@ -3,6 +3,10 @@ import { IPCConfig } from './config/config';
 import { generateIPCConfig } from './config/generate';
 
 export async function startDownloadAsync() {
+    let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
+
+    if (consoleTextarea) consoleTextarea.value = "";
+
     const ipcConfig: IPCConfig = generateIPCConfig();
 
     const download_name = await download(ipcConfig);

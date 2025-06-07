@@ -1,8 +1,0 @@
-.container-main {
-    width: 100vw;
-    height: 100vh;
-
-    display: block;
-    
-    background-image: linear-gradient(rgb(20, 20, 20), rgb(30, 30, 30));
-}

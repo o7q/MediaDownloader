@@ -9,7 +9,12 @@
 
     color: rgb(212, 212, 212);
     background-color: rgb(51, 51, 51);
-    
+
     border: 0.1vw solid rgb(85, 85, 85);
     border-radius: 1vw;
+}
+
+.textbox:focus {
+    border-color: rgb(51, 97, 51);
+    outline: none;
 }

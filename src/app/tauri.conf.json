@@ -15,11 +15,9 @@
       {
         "title": "MediaDownloader",
         "width": 500,
-        "height": 320,
+        "height": 382,
         "minWidth": 500,
-        "minHeight": 320,
-        "maxWidth": 1000,
-        "maxHeight": 640,
+        "minHeight": 382,
         "decorations": false
       }
     ],

@@ -10,7 +10,7 @@
 
 .panel--output {
     width: 98vw;
-    height: 12vw;
+    height: 25vw;
 
     left: 1vw;
     top: 50vw;
@@ -23,10 +23,10 @@
 
 .button--output-download {
     width: 28vw;
-    height: 10vw;
+    height: 13vw;
 
-    left: 69vw;
-    top: 1vw;
+    left: 1vw;
+    top: 11vw;
 
     color: rgb(50, 205, 50);
     background-color: rgb(16, 68, 16);
@@ -48,20 +48,21 @@
 }
 
 .textbox--output-name {
+    width: 27vw;
+
     left: 1vw;
     top: 5vw;
-    width: 20vw;
 }
 
 .text--output-path {
-    left: 24vw;
+    left: 30vw;
     top: 1vw;
 }
 
 .textbox--output-path {
-    width: 38vw;
+    width: 61vw;
 
-    left: 29vw;
+    left: 35vw;
     top: 5vw;
 }
 
@@ -69,11 +70,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     width: 4.5vw;
     height: 4.5vw;
 
-    left: 24vw;
+    left: 30vw;
     top: 5vw;
 }
 
@@ -81,4 +82,56 @@
     max-width: 3vw;
     max-height: 3vw;
     object-fit: contain;
+}
+
+.text--output-console {
+    left: 30vw;
+    top: 10vw;
+}
+
+.button--output-console-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 5vw;
+    height: calc(10vw + 1px);
+
+    border-radius: 0.5vw;
+    border-left: none;
+    background-color: rgb(27, 27, 27);
+
+    left: 92vw;
+    top: 14vw;
+}
+
+.button--output-console-open img {
+    max-width: 4vw;
+    max-height: 4vw;
+    object-fit: contain;
+}
+
+.output-console-textarea {
+    width: 61vw;
+    height: 9vw;
+
+    left: 30vw;
+    top: 14vw;
+
+    font-size: 2vw;
+
+    position: absolute;
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 0.5vw;
+
+    resize: none;
+}
+
+.output-console-textarea:focus {
+    border-color: #797979;
+    outline: none;
 }

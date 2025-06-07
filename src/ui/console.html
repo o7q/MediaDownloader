@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="scripts/console/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="styles/common/body.css">
+    <link rel="stylesheet" href="styles/common/fonts.css">
+
+    <link rel="stylesheet" href="styles/common/containers/main.css">
+    <link rel="stylesheet" href="styles/common/containers/titlebar.css">
+
+    <link rel="stylesheet" href="styles/common/controls/button.css">
+    <link rel="stylesheet" href="styles/common/controls/checkbox.css">
+    <link rel="stylesheet" href="styles/common/controls/dropdown.css">
+    <link rel="stylesheet" href="styles/common/controls/panel.css">
+    <link rel="stylesheet" href="styles/common/controls/text.css">
+    <link rel="stylesheet" href="styles/common/controls/textarea.css">
+    <link rel="stylesheet" href="styles/common/controls/textbox.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="styles/console/console-textarea.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <textarea readonly class="console-textarea" id="console-textarea"></textarea>
+        <button class="button button--console-clear" id="console-clear-button">Clear</button>
+    </div>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-import { appWindow } from "../../main";
+import { appWindow } from "../index/main";
 
 export function initTitlebar() {
     document.getElementById("titlebar")?.addEventListener("mousedown", (e: MouseEvent) => {
