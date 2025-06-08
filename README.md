@@ -1,7 +1,11 @@
+# Update
+MediaDownloader is currently being re-written in Rust using the [**Tauri**](https://tauri.app) framework, enabling cross-platform builds, better stability, and more features!
+
+If you are interested, you can track its progress [**here**](https://github.com/o7q/MediaDownloader/tree/dev)!
+
 <img src="assets/images/banner.png">
 
 ![Total Downloads](https://img.shields.io/github/downloads/o7q/MediaDownloader/total?logo=github&label=Total%20Downloads&color=%232fd653)
-![Code Quality](https://img.shields.io/codefactor/grade/github/o7q/MediaDownloader/main?logo=github&label=Code%20Quality&color=%2315bf87)
 ![Code Size](https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff)
 
 # [<b>>> Download Latest</b>](https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader.exe)
