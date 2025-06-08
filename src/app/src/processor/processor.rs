@@ -7,6 +7,12 @@ use crate::logger::logger::IPCLogger;
 #[cfg(windows)]
 use std::os::windows::process::CommandExt;
 
+#[derive(Clone)]
+pub struct ProcessPaths {
+    pub bin: String,
+    pub work: String,
+}
+
 pub struct Processor {
     pub logger: IPCLogger,
     pub path: String,
@@ -32,7 +38,7 @@ impl Processor {
             logger.log(&arg);
         }
 
-        let mut command = Command::new(path);
+        let mut command: Command = Command::new(path);
 
         command
             .args(args)

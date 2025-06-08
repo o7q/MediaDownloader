@@ -1,35 +1,39 @@
 use crate::{
-    config::config::IPCConfig, logger::logger::IPCLogger, processor::processor::Processor,
+    config::config::IPCConfig,
+    logger::logger::IPCLogger,
+    processor::processor::{ProcessPaths, Processor},
 };
 
 use super::downloader::Downloader;
 
 pub struct ThumbnailDownloader {
     cfg: IPCConfig,
-    bin_dir: String,
-    working_dir: String,
+    path: ProcessPaths,
 }
 
 impl Downloader for ThumbnailDownloader {
-    fn new(ipc_config: IPCConfig, bin_dir: &str, working_dir: &str) -> Self {
+    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self {
         Self {
-            cfg: ipc_config,
-            bin_dir: bin_dir.to_string(),
-            working_dir: working_dir.to_string(),
+            cfg: config.clone(),
+            path: paths.clone(),
         }
     }
 
-    fn get_ipc_config(&self) -> IPCConfig {
+    fn get_config(&self) -> IPCConfig {
         self.cfg.clone()
     }
 
-    fn download(&self, logger: IPCLogger) -> String {
-        self.init_dir(&self.working_dir);
+    fn get_path(&self) -> ProcessPaths {
+        self.path.clone()
+    }
 
-        let _ = Processor::new(&logger, &format!("{}/yt-dlp", &self.bin_dir), &{
+    fn download(&self, logger: &IPCLogger) {
+        self.init_dir(&self.path.work);
+
+        let _ = Processor::new(logger, &format!("{}/yt-dlp", &self.path.bin), &{
             let mut args: Vec<String> = Vec::new();
             args.push("--ffmpeg-location".to_string());
-            args.push(format!("{}/ffmpeg.exe", &self.bin_dir));
+            args.push(format!("{}/ffmpeg.exe", &self.path.bin));
             args.push("--skip-download".to_string());
             args.push("--write-thumbnail".to_string());
 
@@ -42,7 +46,7 @@ impl Downloader for ThumbnailDownloader {
             args.push("-o".to_string());
             args.push(format!(
                 "{}/download/{}",
-                &self.working_dir,
+                &self.path.work,
                 self.determine_output_name_argument()
             ));
             args.push(self.cfg.input.url.clone());
@@ -51,6 +55,7 @@ impl Downloader for ThumbnailDownloader {
         })
         .start();
 
-        self.finalize(&self.working_dir)
+        self.write_lock();
+        self.write_name_lock();
     }
 }

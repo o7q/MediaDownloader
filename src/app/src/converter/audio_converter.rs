@@ -1,7 +1,7 @@
 use crate::{
     config::config::IPCConfig,
     logger::logger::IPCLogger,
-    processor::processor::Processor,
+    processor::processor::{ProcessPaths, Processor},
     utils::file::{get_files, get_mediasafe_filename},
 };
 
@@ -9,21 +9,19 @@ use super::converter::Converter;
 
 pub struct AudioConverter {
     cfg: IPCConfig,
-    bin_dir: String,
-    working_dir: String,
+    path: ProcessPaths,
 }
 
 impl Converter for AudioConverter {
-    fn new(ipc_config: IPCConfig, bin_dir: &str, working_dir: &str) -> Self {
+    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self {
         Self {
-            cfg: ipc_config,
-            bin_dir: bin_dir.to_string(),
-            working_dir: working_dir.to_string(),
+            cfg: config.clone(),
+            path: paths.clone(),
         }
     }
 
-    fn convert(&self, logger: IPCLogger) {
-        self.init_dir(&self.working_dir);
+    fn convert(&self, logger: &IPCLogger) {
+        self.init_dir(&self.path.work);
 
         let (audio_codec, extension) = match self.cfg.settings.format.as_str() {
             "mp3" => ("libmp3lame", "mp3"),
@@ -33,8 +31,8 @@ impl Converter for AudioConverter {
             _ => ("", ""),
         };
 
-        for input_file in get_files(&format!("{}/download", &self.working_dir)) {
-            let _ = Processor::new(&logger, &format!("{}/ffmpeg", &self.bin_dir), &{
+        for input_file in get_files(&format!("{}/download", &self.path.work)) {
+            let _ = Processor::new(logger, &format!("{}/ffmpeg", &self.path.bin), &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
@@ -70,7 +68,7 @@ impl Converter for AudioConverter {
 
                 args.push(format!(
                     "{}/convert/{}.{}",
-                    &self.working_dir,
+                    &self.path.work,
                     get_mediasafe_filename(&input_file, false),
                     extension
                 ));

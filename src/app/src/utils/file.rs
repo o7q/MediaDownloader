@@ -3,11 +3,17 @@ use std::io;
 use std::path::Path;
 
 pub fn write_file(path: &str, content: &str) -> io::Result<()> {
-    println!("Writing file: {}", path);
+    println!("Writing file: \"{}\"", path);
     fs::write(path, content)
 }
 
+pub fn copy_file(path_from: &str, path_to: &str) -> io::Result<u64> {
+    println!("Copying file from: \"{}\", to: \"{}\"", path_from, path_to);
+    fs::copy(path_from, path_to)
+}
+
 pub fn read_file(path: &str) -> io::Result<String> {
+    println!("Reading file: \"{}\"", path);
     fs::read_to_string(path)
 }
 
@@ -16,6 +22,8 @@ pub fn file_exists(path: &str) -> bool {
 }
 
 pub fn get_files(path: &str) -> Vec<String> {
+    println!("Getting files from: \"{}\"", path);
+
     let mut files: Vec<String> = Vec::new();
 
     match fs::read_dir(path) {
@@ -53,9 +61,10 @@ pub fn get_mediasafe_filename(path: &str, extension: bool) -> String {
     if extension {
         get_filename(path, true)
     } else {
-        let known_extensions: [&'static str; 16] = [
+        let known_extensions: [&'static str; 24] = [
             "avi", "flv", "mkv", "mov", "mp4", "webm", "wmv", "aac", "flac", "m4a", "mp3", "ogg",
-            "opus", "raw", "wav", "wma",
+            "opus", "raw", "wav", "wma", "avif", "bmp", "heif", "jpeg", "jpg", "png", "tiff",
+            "webp",
         ];
 
         let mut filename_str: String = get_filename(path, true);
@@ -74,12 +83,12 @@ pub fn get_mediasafe_filename(path: &str, extension: bool) -> String {
     }
 }
 
-#[cfg(windows)]
+#[cfg(target_os = "windows")]
 pub fn normalize_path(s: &str) -> String {
     s.replace("/", "\\")
 }
 
-#[cfg(not(windows))]
+#[cfg(not(target_os = "windows"))]
 pub fn normalize_path(s: &str) -> String {
     s.to_string()
 }

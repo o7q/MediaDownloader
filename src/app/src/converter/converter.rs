@@ -1,16 +1,17 @@
 use crate::{
     config::config::IPCConfig,
     logger::logger::IPCLogger,
+    processor::processor::ProcessPaths,
     utils::directory::{create_directory, remove_directory},
 };
 
 pub trait Converter {
-    fn new(ipc_config: IPCConfig, bin_dir: &str, working_dir: &str) -> Self;
+    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self;
 
     fn init_dir(&self, working_dir: &str) {
         let _ = remove_directory(&format!("{}/convert", working_dir));
         let _ = create_directory(&format!("{}/convert", working_dir));
     }
 
-    fn convert(&self, logger: IPCLogger);
+    fn convert(&self, logger: &IPCLogger);
 }
