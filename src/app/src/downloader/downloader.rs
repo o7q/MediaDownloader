@@ -1,5 +1,5 @@
 use crate::{
-    config::{config::IPCConfig, serial::serialize_config},
+    config::{config::serialize_config, config::IPCConfig},
     logger::logger::IPCLogger,
     processor::processor::ProcessPaths,
     utils::{

@@ -18,8 +18,9 @@ use crate::processor::processor::ProcessPaths;
 use crate::utils::directory::remove_directory;
 use crate::utils::file::read_file;
 
+use crate::config::config::deserialize_config;
 use crate::config::config::IPCConfig;
-use crate::config::serial::deserialize_config;
+use crate::config::pack::append_config;
 
 use crate::logger::logger::IPCLogger;
 
@@ -34,6 +35,8 @@ pub fn get_download_name() -> String {
 #[tauri::command(async)]
 pub fn download(app: AppHandle, mut config: IPCConfig) {
     config.purify();
+
+    append_config("MediaDownloader/history.json", &config);
 
     let logger: IPCLogger = IPCLogger::new(app);
 
