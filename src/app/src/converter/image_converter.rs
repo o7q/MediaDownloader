@@ -30,7 +30,7 @@ impl Converter for ImageConverter {
         };
 
         for input_file in get_files(&format!("{}/download", &self.path.work)) {
-            let _ = Processor::new(logger, &format!("{}/ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 

@@ -37,8 +37,15 @@ pub fn download(app: AppHandle, mut config: IPCConfig) {
 
     let logger: IPCLogger = IPCLogger::new(app);
 
+    #[cfg(not(target_os = "linux"))]
     let paths: ProcessPaths = ProcessPaths {
-        bin: "MediaDownloader/bin".to_string(),
+        bin: "MediaDownloader/bin/".to_string(),
+        work: "MediaDownloader/_temp".to_string(),
+    };
+
+    #[cfg(target_os = "linux")]
+    let paths: ProcessPaths = ProcessPaths {
+        bin: "".to_string(),
         work: "MediaDownloader/_temp".to_string(),
     };
 
@@ -65,18 +72,18 @@ pub fn download(app: AppHandle, mut config: IPCConfig) {
 fn step_download(config: &IPCConfig, paths: &ProcessPaths, logger: &IPCLogger) {
     match config.input.download_type.as_str() {
         "thumbnail" => ThumbnailDownloader::new(config, paths).download(logger),
-        "default"   => DefaultDownloader::  new(config, paths).download(logger),
+        "default" => DefaultDownloader::new(config, paths).download(logger),
         _ => {}
     };
 }
 
 fn step_convert(ipc_config: &IPCConfig, paths: &ProcessPaths, ipc_logger: &IPCLogger) {
     match ipc_config.settings.format_type.as_str() {
-        "video"    => VideoConverter::   new(ipc_config, paths).convert(ipc_logger),
-        "audio"    => AudioConverter::   new(ipc_config, paths).convert(ipc_logger),
-        "gif"      => GifConverter::     new(ipc_config, paths).convert(ipc_logger),
+        "video" => VideoConverter::new(ipc_config, paths).convert(ipc_logger),
+        "audio" => AudioConverter::new(ipc_config, paths).convert(ipc_logger),
+        "gif" => GifConverter::new(ipc_config, paths).convert(ipc_logger),
         "sequence" => SequenceConverter::new(ipc_config, paths).convert(ipc_logger),
-        "image"    => ImageConverter::   new(ipc_config, paths).convert(ipc_logger),
+        "image" => ImageConverter::new(ipc_config, paths).convert(ipc_logger),
         _ => {}
     }
 }

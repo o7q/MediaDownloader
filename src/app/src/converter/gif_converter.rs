@@ -30,7 +30,7 @@ impl Converter for GifConverter {
             let _ = remove_directory(&format!("{}/convert_temp", &self.path.work));
             let _ = create_directory(&format!("{}/convert_temp", &self.path.work));
 
-            let _ = Processor::new(logger, &format!("{}/ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
@@ -87,7 +87,7 @@ impl Converter for GifConverter {
             })
             .start();
 
-            let _ = Processor::new(logger, &format!("{}/ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
@@ -103,7 +103,7 @@ impl Converter for GifConverter {
             })
             .start();
 
-            let _ = Processor::new(logger, &format!("{}/ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 

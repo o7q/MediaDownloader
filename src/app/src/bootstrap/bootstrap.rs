@@ -1,10 +1,6 @@
-use crate::{
-    bootstrap::{ffmpeg::install_ffmpeg, ytdlp::install_ytdlp},
-    utils::directory::create_directory,
-};
+use crate::bootstrap::{ffmpeg::bootstrap_ffmpeg, ytdlp::bootstrap_ytdlp};
 
-pub fn install() {
-    let _ = create_directory("MediaDownloader/bin");
-    install_ytdlp();
-    install_ffmpeg();
+pub fn bootstrap_check() {
+    bootstrap_ytdlp();
+    bootstrap_ffmpeg();
 }

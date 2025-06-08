@@ -30,10 +30,8 @@ impl Downloader for ThumbnailDownloader {
     fn download(&self, logger: &IPCLogger) {
         self.init_dir(&self.path.work);
 
-        let _ = Processor::new(logger, &format!("{}/yt-dlp", &self.path.bin), &{
+        let _ = Processor::new(logger, &format!("{}yt-dlp", &self.path.bin), &{
             let mut args: Vec<String> = Vec::new();
-            args.push("--ffmpeg-location".to_string());
-            args.push(format!("{}/ffmpeg.exe", &self.path.bin));
             args.push("--skip-download".to_string());
             args.push("--write-thumbnail".to_string());
 

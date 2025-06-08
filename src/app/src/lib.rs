@@ -1,4 +1,4 @@
-use crate::bootstrap::bootstrap::install;
+use crate::bootstrap::bootstrap::bootstrap_check;
 
 mod converter;
 mod downloader;
@@ -15,7 +15,7 @@ mod bootstrap;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    install();
+    bootstrap_check();
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
