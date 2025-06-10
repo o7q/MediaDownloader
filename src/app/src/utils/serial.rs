@@ -1,0 +1,85 @@
+use serde::{de::DeserializeOwned, Serialize};
+
+use crate::utils::{
+    compress::write_file_compressed,
+    file::{read_file, write_file},
+};
+
+#[derive(PartialEq)]
+pub enum WriteType {
+    Pretty,
+    Squash,
+    Compress,
+}
+
+pub fn serialize<T>(data: &T, pretty: bool) -> String
+where
+    T: Serialize,
+{
+    let serde_result: Result<String, serde_json::Error> = if pretty {
+        serde_json::to_string_pretty(data)
+    } else {
+        serde_json::to_string(data)
+    };
+
+    match serde_result {
+        Ok(ipc_config_string) => ipc_config_string,
+        Err(e) => {
+            eprintln!("Failed to serialize: {}", e);
+            String::new()
+        }
+    }
+}
+
+pub fn deserialize<T>(input: &str) -> T
+where
+    T: DeserializeOwned + Default,
+{
+    match serde_json::from_str(input) {
+        Ok(data) => data,
+        Err(e) => {
+            eprintln!("Failed to deserialize: {}", e);
+            T::default()
+        }
+    }
+}
+
+pub fn deserialize_file_read<T>(file_path: &str) -> T
+where
+    T: DeserializeOwned + Default,
+{
+    match read_file(file_path) {
+        Ok(serialized_data) => deserialize(&serialized_data),
+        Err(_) => T::default(),
+    }
+}
+
+pub fn serialize_file_write<T>(file_path: &str, data: &T, write_type: WriteType)
+where
+    T: Serialize,
+{
+    let pretty: bool = match write_type {
+        WriteType::Pretty => true,
+        _ => false,
+    };
+
+    let serialized_data: String = serialize(&data, pretty);
+    if write_type == WriteType::Compress {
+        let _ = write_file_compressed(file_path, &serialized_data);
+    } else {
+        let _ = write_file(file_path, &serialized_data);
+    }
+}
+
+pub fn serialize_file_write_push<T>(file_path: &str, data: &T, write_type: WriteType)
+where
+    T: Serialize + DeserializeOwned + Clone,
+{
+    let mut data_vec: Vec<T> = match read_file(file_path) {
+        Ok(serialized_vec) => deserialize(&serialized_vec),
+        Err(_) => Vec::new(),
+    };
+
+    data_vec.push(data.clone());
+    serialize_file_write(file_path, &data_vec, write_type);
+}

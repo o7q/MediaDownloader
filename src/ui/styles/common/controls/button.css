@@ -22,3 +22,15 @@
     color: rgb(199, 216, 193);
     background-color: rgb(66, 66, 66);
 }
+
+.image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-button img {
+    max-width: 3vw;
+    max-height: 3vw;
+    object-fit: contain;
+}

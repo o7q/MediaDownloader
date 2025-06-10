@@ -1,0 +1,20 @@
+.button--output-download {
+    width: 26vw;
+    height: 9vw;
+
+    left: 1vw;
+    top: 20vw;
+
+    color: rgb(50, 205, 50);
+    background-color: rgb(16, 68, 16);
+    border: 0.2vw solid rgb(33, 136, 33);
+
+    font-size: 3vw;
+
+    transition: 0.4s color ease-in-out, 0.4s background-color ease-in-out;
+}
+
+.button--output-download:hover {
+    color: rgb(49, 211, 49);
+    background-color: rgb(19, 83, 19);
+}

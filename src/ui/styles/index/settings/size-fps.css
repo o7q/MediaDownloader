@@ -5,8 +5,6 @@
     left: 30vw;
     top: 0vw;
 
-    background-color: rgb(22, 22, 22);
-
     border-radius: 0vw;
 
     border-left: 0.1vw solid rgb(85, 85, 85);
@@ -27,21 +25,27 @@
 }
 
 .textbox--settings-size-fps-width {
-    width: 6vw;
+    width: 7vw;
 
     font-size: 2vw;
 
     left: 1vw;
     top: 5vw;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .textbox--settings-size-fps-height {
-    width: 6vw;
+    width: 7vw;
 
     font-size: 2vw;
 
     left: 9vw;
     top: 5vw;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .checkbox--settings-size-fps-framerate {
@@ -54,12 +58,12 @@
 
     left: 4vw;
     top: -0.5vw;
-    
+
     white-space: nowrap;
 }
 
 .textbox--settings-size-fps-framerate {
-    width: 6vw;
+    width: 7vw;
 
     font-size: 2vw;
 

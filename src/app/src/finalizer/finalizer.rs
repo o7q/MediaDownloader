@@ -1,19 +1,19 @@
 use crate::{
-    config::config::IPCConfig,
+    config::download_config::IPCDownloadConfig,
     utils::{
-        directory::create_directory,
+        directory::{create_directory, get_directories, get_directory_name},
         file::{copy_file, get_filename, get_files, read_file},
     },
 };
 
 pub struct Finalizer {
-    pub cfg: IPCConfig,
+    pub cfg: IPCDownloadConfig,
 }
 
 impl Finalizer {
-    pub fn new(ipc_config: &IPCConfig) -> Self {
+    pub fn new(config: &IPCDownloadConfig) -> Self {
         Self {
-            cfg: ipc_config.clone(),
+            cfg: config.clone(),
         }
     }
 
@@ -43,8 +43,18 @@ impl Finalizer {
 
         for file in get_files("MediaDownloader/_temp/convert") {
             let dest_path: String = format!("{}/{}", out, get_filename(&file, true));
-            println!("{dest_path}");
             let _ = copy_file(&file, &dest_path);
+        }
+
+        for folder in get_directories("MediaDownloader/_temp/convert") {
+            let folder_dest_path: String = format!("{}/{}", out, get_directory_name(&folder));
+
+            let _ = create_directory(&folder_dest_path);
+            for file in get_files(&folder) {
+                let file_dest_path: String =
+                    format!("{}/{}", folder_dest_path, get_filename(&file, true));
+                let _ = copy_file(&file, &file_dest_path);
+            }
         }
     }
 }

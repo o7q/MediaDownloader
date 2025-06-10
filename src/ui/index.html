@@ -23,23 +23,28 @@
     <link rel="stylesheet" href="styles/common/controls/textbox.css">
     <!-- common -->
 
-    <link rel="stylesheet" href="styles/index/panels/input/input.css">
-    <link rel="stylesheet" href="styles/index/panels/input/url.css">
+    <link rel="stylesheet" href="styles/index/input/input.css">
+    <link rel="stylesheet" href="styles/index/input/url.css">
 
-    <link rel="stylesheet" href="styles/index/panels/settings/settings.css">
-    <link rel="stylesheet" href="styles/index/panels/settings/format.css">
-    <link rel="stylesheet" href="styles/index/panels/settings/trim.css">
-    <link rel="stylesheet" href="styles/index/panels/settings/size-fps.css">
-    <link rel="stylesheet" href="styles/index/panels/settings/bitrate.css">
-    <link rel="stylesheet" href="styles/index/panels/settings/arguments.css">
+    <link rel="stylesheet" href="styles/index/settings/settings.css">
+    <link rel="stylesheet" href="styles/index/settings/format.css">
+    <link rel="stylesheet" href="styles/index/settings/trim.css">
+    <link rel="stylesheet" href="styles/index/settings/size-fps.css">
+    <link rel="stylesheet" href="styles/index/settings/bitrate.css">
+    <link rel="stylesheet" href="styles/index/settings/arguments.css">
 
-    <link rel="stylesheet" href="styles/index/panels/output/output.css">
+    <link rel="stylesheet" href="styles/index/output/output.css">
+    <link rel="stylesheet" href="styles/index/output/name-path.css">
+    <link rel="stylesheet" href="styles/index/output/queue.css">
+    <link rel="stylesheet" href="styles/index/output/download.css">
+    <link rel="stylesheet" href="styles/index/output/console.css">
 </head>
 
 <body>
     <div class="container-main">
         <div class="titlebar" id="titlebar">
             <img class="titlebar__banner" src="assets/images/banner.png">
+            <p class="titlebar__version-text">v5.0.0</p>
             <div class="titlebar__buttons">
                 <button id="titlebar-minimize-button">_</button>
                 <button id="titlebar-close-button">x</button>
@@ -175,10 +180,23 @@
             <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
 
             <p class="text text--output-path">Path</p>
-            <button class="button button--output-path" id="output-path-button">
+            <button class="button image-button button--output-path" id="output-path-button">
                 <img src="assets/images/folder_icon.png">
             </button>
             <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+
+            <p class="text text--output-queue">Queue</p>
+            <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
+                    src="assets/images/console_icon.png"></button>
+            <button class="button image-button button--output-queue-edit" id="output-queue-edit-button"><img
+                    src="assets/images/console_icon.png"></button>
+
+            <label class="checkbox">
+                <input type="checkbox" id="output-queue-checkbox-enable" />
+                <span class="checkbox-checkmark checkbox--output-queue-enable">
+                    <p class="text text--output-queue-enable">Enable</p>
+                </span>
+            </label>
 
             <button class="button button--output-download" id="output-download-button">Download</button>
 

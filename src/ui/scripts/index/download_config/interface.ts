@@ -1,10 +1,10 @@
-interface IPCInputConfig {
+interface IPCDownloadInputConfig {
     url:           string;
     is_playlist:   boolean;
     download_type: string;
 }
 
-interface IPCSettingsConfig {
+interface IPCDownloadSettingsConfig {
     format:                         string;
     format_type:                    string;
 
@@ -31,13 +31,13 @@ interface IPCSettingsConfig {
     custom_ytdlp_arguments:         string[];
 }
 
-interface IPCOutputConfig {
+interface IPCDownloadOutputConfig {
     name: string;
     path: string;
 }
 
-export interface IPCConfig {
-    input:    IPCInputConfig;
-    settings: IPCSettingsConfig;
-    output:   IPCOutputConfig;
+export interface IPCDownloadConfig {
+    input:    IPCDownloadInputConfig;
+    settings: IPCDownloadSettingsConfig;
+    output:   IPCDownloadOutputConfig;
 }

@@ -15,16 +15,19 @@ use crate::finalizer::finalizer::Finalizer;
 
 use crate::processor::processor::ProcessPaths;
 
+use crate::config::download_config::IPCDownloadConfig;
+
+use crate::utils::directory::create_directory;
+use crate::utils::directory::directory_exists;
 use crate::utils::directory::remove_directory;
 use crate::utils::file::read_file;
-
-use crate::config::config::deserialize_config;
-use crate::config::config::IPCConfig;
-use crate::config::pack::append_config;
+use crate::utils::serial::deserialize_file_read;
 
 use crate::logger::logger::IPCLogger;
+use crate::utils::serial::serialize_file_write_push;
+use crate::utils::serial::WriteType;
 
-#[tauri::command(async)]
+#[tauri::command]
 pub fn get_download_name() -> String {
     match read_file("MediaDownloader/_temp/download_name_lock") {
         Ok(contents) => contents,
@@ -33,35 +36,29 @@ pub fn get_download_name() -> String {
 }
 
 #[tauri::command(async)]
-pub fn download(app: AppHandle, mut config: IPCConfig) {
+pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
     config.purify();
-
-    append_config("MediaDownloader/history.json", &config);
 
     let logger: IPCLogger = IPCLogger::new(app);
 
-    #[cfg(not(target_os = "linux"))]
+    #[cfg(target_os = "windows")]
     let paths: ProcessPaths = ProcessPaths {
         bin: "MediaDownloader/bin/".to_string(),
         work: "MediaDownloader/_temp".to_string(),
     };
 
-    #[cfg(target_os = "linux")]
+    #[cfg(not(target_os = "windows"))]
     let paths: ProcessPaths = ProcessPaths {
         bin: "".to_string(),
         work: "MediaDownloader/_temp".to_string(),
     };
 
     // determine if the download should be skipped or not
-    let should_download: bool = match read_file("MediaDownloader/_temp/download_lock.json") {
-        Ok(contents) => {
-            let config_lock: IPCConfig = deserialize_config(&contents);
+    let download_lock: IPCDownloadConfig =
+        deserialize_file_read("MediaDownloader/_temp/download_lock.json");
 
-            config.input.url != config_lock.input.url
-                || config.input.download_type != config_lock.input.download_type
-        }
-        Err(_) => true,
-    };
+    let should_download: bool = config.input.url != download_lock.input.url
+        || config.input.download_type != download_lock.input.download_type;
 
     if should_download {
         let _ = remove_directory("MediaDownloader/_temp");
@@ -72,7 +69,7 @@ pub fn download(app: AppHandle, mut config: IPCConfig) {
     step_finalize(&config);
 }
 
-fn step_download(config: &IPCConfig, paths: &ProcessPaths, logger: &IPCLogger) {
+fn step_download(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) {
     match config.input.download_type.as_str() {
         "thumbnail" => ThumbnailDownloader::new(config, paths).download(logger),
         "default" => DefaultDownloader::new(config, paths).download(logger),
@@ -80,17 +77,26 @@ fn step_download(config: &IPCConfig, paths: &ProcessPaths, logger: &IPCLogger) {
     };
 }
 
-fn step_convert(ipc_config: &IPCConfig, paths: &ProcessPaths, ipc_logger: &IPCLogger) {
-    match ipc_config.settings.format_type.as_str() {
-        "video" => VideoConverter::new(ipc_config, paths).convert(ipc_logger),
-        "audio" => AudioConverter::new(ipc_config, paths).convert(ipc_logger),
-        "gif" => GifConverter::new(ipc_config, paths).convert(ipc_logger),
-        "sequence" => SequenceConverter::new(ipc_config, paths).convert(ipc_logger),
-        "image" => ImageConverter::new(ipc_config, paths).convert(ipc_logger),
+fn step_convert(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) {
+    match config.settings.format_type.as_str() {
+        "video" => VideoConverter::new(config, paths).convert(logger),
+        "audio" => AudioConverter::new(config, paths).convert(logger),
+        "gif" => GifConverter::new(config, paths).convert(logger),
+        "sequence" => SequenceConverter::new(config, paths).convert(logger),
+        "image" => ImageConverter::new(config, paths).convert(logger),
         _ => {}
     }
 }
 
-fn step_finalize(config: &IPCConfig) {
+fn step_finalize(config: &IPCDownloadConfig) {
+    if !directory_exists("MediaDownloader/config") {
+        let _ = create_directory("MediaDownloader/config");
+    }
+    serialize_file_write_push(
+        "MediaDownloader/config/history.json",
+        config,
+        WriteType::Compress,
+    );
+
     Finalizer::new(config).finalize();
 }

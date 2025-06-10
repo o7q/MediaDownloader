@@ -1,7 +1,8 @@
-import { IPCConfig } from "./config";
+
+import { IPCDownloadConfig } from "./interface";
 import { isUrlPlaylist } from "../utils";
 
-export function generateIPCConfig(): IPCConfig {
+export function generateIPCDownloadConfig(): IPCDownloadConfig {
     const $ = (id: string) => document.getElementById(id);
 
     const url = (document.getElementById("input-url-textbox") as HTMLInputElement).value;
@@ -20,7 +21,7 @@ export function generateIPCConfig(): IPCConfig {
         default: downloadType = "default"; break;
     }
     
-    const config: IPCConfig = {
+    const config: IPCDownloadConfig = {
         input: {
             url:           url,
             is_playlist:   isUrlPlaylist(url),

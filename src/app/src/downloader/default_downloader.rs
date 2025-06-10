@@ -1,5 +1,5 @@
 use crate::{
-    config::config::IPCConfig,
+    config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
     processor::processor::{ProcessPaths, Processor},
 };
@@ -7,19 +7,19 @@ use crate::{
 use super::downloader::Downloader;
 
 pub struct DefaultDownloader {
-    cfg: IPCConfig,
+    cfg: IPCDownloadConfig,
     path: ProcessPaths,
 }
 
 impl Downloader for DefaultDownloader {
-    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
         Self {
             cfg: config.clone(),
             path: paths.clone(),
         }
     }
 
-    fn get_config(&self) -> IPCConfig {
+    fn get_config(&self) -> IPCDownloadConfig {
         self.cfg.clone()
     }
 

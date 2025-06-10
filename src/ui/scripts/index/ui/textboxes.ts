@@ -1,11 +1,8 @@
-import { listen } from "@tauri-apps/api/event";
 import { isUrlPlaylist } from "../utils";
-import { IPCLoggerEvent } from "../../common/logger";
 
 export function initTextboxes() {
     initUrlTextbox();
     initNameTextbox();
-    initConsoleTextarea();
 }
 
 function initUrlTextbox() {
@@ -37,17 +34,5 @@ function initNameTextbox() {
         else {
             outputNameText.textContent = "Name";
         }
-    });
-}
-
-function initConsoleTextarea() {
-    console.log("dd");
-    let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
-
-    if (!consoleTextarea) return;
-
-    listen<IPCLoggerEvent>("log", (event) => {
-        consoleTextarea.value += '\n' + event.payload.text;
-        consoleTextarea.scrollTop = consoleTextarea.scrollHeight;
     });
 }

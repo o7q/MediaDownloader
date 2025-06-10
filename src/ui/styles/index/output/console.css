@@ -1,0 +1,50 @@
+.text--output-console {
+    left: 28vw;
+    top: 10vw;
+}
+
+.button--output-console-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 5vw;
+    height: 15vw;
+
+    border-radius: 0.5vw;
+    background-color: rgb(27, 27, 27);
+
+    left: 92vw;
+    top: 14vw;
+}
+
+.button--output-console-open img {
+    max-width: 4vw;
+    max-height: 4vw;
+    object-fit: contain;
+}
+
+.output-console-textarea {
+    width: 63vw;
+    height: 14vw;
+
+    left: 28vw;
+    top: 14vw;
+
+    font-size: 2vw;
+
+    position: absolute;
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 0.5vw;
+
+    resize: none;
+}
+
+.output-console-textarea:focus {
+    border-color: #797979;
+    outline: none;
+}

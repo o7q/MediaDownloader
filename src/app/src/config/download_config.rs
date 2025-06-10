@@ -3,14 +3,14 @@ use serde::{Deserialize, Serialize};
 use crate::utils::string::clean_string_vector;
 
 #[derive(Serialize, Deserialize, Clone, Default)]
-pub struct IPCInputConfig {
+pub struct IPCDownloadInputConfig {
     pub url: String,
     pub is_playlist: bool,
     pub download_type: String,
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
-pub struct IPCSettingsConfig {
+pub struct IPCDownloadSettingsConfig {
     pub format: String,
     pub format_type: String,
 
@@ -38,41 +38,21 @@ pub struct IPCSettingsConfig {
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
-pub struct IPCOutputConfig {
+pub struct IPCDownloadOutputConfig {
     pub name: String,
     pub path: String,
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
-pub struct IPCConfig {
-    pub input: IPCInputConfig,
-    pub settings: IPCSettingsConfig,
-    pub output: IPCOutputConfig,
+pub struct IPCDownloadConfig {
+    pub input: IPCDownloadInputConfig,
+    pub settings: IPCDownloadSettingsConfig,
+    pub output: IPCDownloadOutputConfig,
 }
 
-impl IPCConfig {
+impl IPCDownloadConfig {
     pub fn purify(&mut self) {
         clean_string_vector(&mut self.settings.custom_ytdlp_arguments);
         clean_string_vector(&mut self.settings.custom_ffmpeg_arguments);
-    }
-}
-
-pub fn serialize_config(config: &IPCConfig) -> String {
-    match serde_json::to_string(config) {
-        Ok(ipc_config_string) => ipc_config_string,
-        Err(e) => {
-            eprintln!("Failed to serialize IPCConfig: {}", e);
-            String::new()
-        }
-    }
-}
-
-pub fn deserialize_config(config_str: &str) -> IPCConfig {
-    match serde_json::from_str(config_str) {
-        Ok(ipc_config) => ipc_config,
-        Err(e) => {
-            eprintln!("Failed to deserialize IPCConfig: {}", e);
-            IPCConfig::default()
-        }
     }
 }

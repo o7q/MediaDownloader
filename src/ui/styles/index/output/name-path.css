@@ -1,0 +1,39 @@
+.text--output-name {
+    left: 1vw;
+    top: 1vw;
+}
+
+.textbox--output-name {
+    width: 25vw;
+
+    left: 1vw;
+    top: 5vw;
+}
+
+.text--output-path {
+    left: 28vw;
+    top: 1vw;
+}
+
+.textbox--output-path {
+    width: 64vw;
+
+    left: 32.5vw;
+    top: 5vw;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    border-left: none;
+}
+
+.button--output-path {
+    width: 4.5vw;
+    height: 4.5vw;
+
+    left: 28vw;
+    top: 5vw;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}

@@ -46,3 +46,14 @@
     color: rgb(182, 141, 141);
     background-color: rgb(40, 40, 40);
 }
+
+.titlebar__version-text {
+    font-size: 10px;
+    font-family: Roboto-Bold;
+
+    position: absolute;
+    left: 141px;
+    top: -1px;
+    
+    color: rgb(82, 82, 82);
+}

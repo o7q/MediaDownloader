@@ -1,5 +1,5 @@
 use crate::{
-    config::config::IPCConfig,
+    config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
     processor::processor::{ProcessPaths, Processor},
     utils::{
@@ -11,12 +11,12 @@ use crate::{
 use super::converter::Converter;
 
 pub struct SequenceConverter {
-    cfg: IPCConfig,
+    cfg: IPCDownloadConfig,
     path: ProcessPaths,
 }
 
 impl Converter for SequenceConverter {
-    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
         Self {
             cfg: config.clone(),
             path: paths.clone(),

@@ -1,6 +1,8 @@
 import { startDownloadAsync } from '../download';
-import { openConsoleWindow } from '../console';
+import { openConsoleWindow } from '../mini-console';
 import { openDialogAsync } from '../dialog';
+import { generateIPCDownloadConfig } from '../download_config/generate';
+import { addQueueItemAsync } from '../queue';
 
 export function initButtons() {
     document.getElementById("output-download-button")?.addEventListener("click", () => {
@@ -15,6 +17,10 @@ export function initButtons() {
         if (!pathTextbox) return;
 
         pathTextbox.value = file.toString();
+    });
+
+    document.getElementById("output-queue-add-button")?.addEventListener("click", async () => {
+        addQueueItemAsync(generateIPCDownloadConfig());
     });
 
     document.getElementById("output-console-open-button")?.addEventListener("click", async () => {

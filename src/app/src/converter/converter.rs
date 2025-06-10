@@ -1,12 +1,12 @@
 use crate::{
-    config::config::IPCConfig,
+    config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
     processor::processor::ProcessPaths,
     utils::directory::{create_directory, remove_directory},
 };
 
 pub trait Converter {
-    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self;
+    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self;
 
     fn init_dir(&self, working_dir: &str) {
         let _ = remove_directory(&format!("{}/convert", working_dir));

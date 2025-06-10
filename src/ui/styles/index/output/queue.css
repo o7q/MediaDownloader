@@ -1,0 +1,41 @@
+.text--output-queue {
+    left: 1vw;
+    top: 10vw;
+}
+
+.button--output-queue-add {
+    width: 4.5vw;
+    height: 4.5vw;
+
+    left: 1vw;
+    top: 14vw;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button--output-queue-edit {
+    width: 4.5vw;
+    height: 4.5vw;
+
+    left: 5.5vw;
+    top: 14vw;
+    border-left: none;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.text--output-queue-enable {
+    font-size: 2.25vw;
+
+    left: 4vw;
+    top: -0.5vw;
+
+    white-space: nowrap;
+}
+
+.checkbox--output-queue-enable {
+    left: 11vw;
+    top: 14.5vw;
+}

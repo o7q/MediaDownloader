@@ -1,22 +1,23 @@
 use crate::{
-    config::{config::serialize_config, config::IPCConfig},
+    config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
     processor::processor::ProcessPaths,
     utils::{
         directory::{create_directory, remove_directory},
         file::{get_files, get_mediasafe_filename, write_file},
+        serial::serialize,
     },
 };
 
 pub trait Downloader {
-    fn new(config: &IPCConfig, paths: &ProcessPaths) -> Self;
+    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self;
 
     fn init_dir(&self, working_dir: &str) {
         let _ = remove_directory(&format!("{}/download", working_dir));
         let _ = create_directory(&format!("{}/download", working_dir));
     }
 
-    fn get_config(&self) -> IPCConfig;
+    fn get_config(&self) -> IPCDownloadConfig;
     fn get_path(&self) -> ProcessPaths;
 
     // returns the name of the downloaded file (without extension) if no forced name is set
@@ -29,12 +30,12 @@ pub trait Downloader {
     fn write_lock(&self) {
         let _ = write_file(
             "MediaDownloader/_temp/download_lock.json",
-            &serialize_config(&self.get_config()),
+            &serialize(&self.get_config(), false),
         );
     }
 
     fn write_name_lock(&self) {
-        let config: IPCConfig = self.get_config();
+        let config: IPCDownloadConfig = self.get_config();
         let path: ProcessPaths = self.get_path();
 
         let filename: String = if config.output.name.is_empty() {
@@ -53,7 +54,7 @@ pub trait Downloader {
     }
 
     fn determine_output_name_argument(&self) -> String {
-        let config: IPCConfig = self.get_config();
+        let config: IPCDownloadConfig = self.get_config();
 
         if config.output.name.is_empty() || config.input.is_playlist {
             String::from("%(title)s")
