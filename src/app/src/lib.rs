@@ -21,7 +21,6 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::download::download,
-            commands::download::get_download_name,
             commands::data::write_current_download_config,
             commands::data::load_current_download_config,
             commands::data::does_current_download_config_exist,

@@ -58,6 +58,13 @@ pub fn get_filename(path: &str, extension: bool) -> String {
     }
 }
 
+pub fn get_extension(path: &str) -> Option<String> {
+    Path::new(path)
+        .extension()
+        .and_then(|ext| ext.to_str())
+        .map(|s| s.to_string())
+}
+
 pub fn get_mediasafe_filename(path: &str, extension: bool) -> String {
     if extension {
         get_filename(path, true)

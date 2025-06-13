@@ -21,7 +21,7 @@
 }
 
 .textbox--settings-bitrate-video {
-    width: 16vw;
+    width: 17vw;
 
     font-size: 2vw;
 
@@ -40,11 +40,11 @@
 }
 
 .textbox--settings-bitrate-audio {
-    width: 16vw;
+    width: 17vw;
 
     font-size: 2vw;
 
-    left: 18.25vw;
+    left: 18vw;
     top: 5vw;
 
     border-top-left-radius: 0;

@@ -19,6 +19,7 @@
 }
 
 .textbox:focus {
-    border-color: rgb(51, 97, 51);
+    border-color: rgb(45, 119, 45);
+    /* background-color: ; */
     outline: none;
 }

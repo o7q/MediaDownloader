@@ -19,11 +19,13 @@ export async function startDownloadAsync() {
 
     if (shouldDownloadQueue) {
         for (const downloadConfig of download_queue) {
+            console.log(downloadConfig.output.name);
             await invoke("download", { config: downloadConfig });
         };
     }
     else {
         const downloadConfig: IPCDownloadConfig = generateIPCDownloadConfig();
+
 
         await invoke("download", { config: downloadConfig });
     }

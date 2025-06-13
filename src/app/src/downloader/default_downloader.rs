@@ -19,19 +19,17 @@ impl Downloader for DefaultDownloader {
         }
     }
 
-    fn get_config(&self) -> IPCDownloadConfig {
-        self.cfg.clone()
-    }
-
     fn get_path(&self) -> ProcessPaths {
         self.path.clone()
     }
 
-    fn download(&self, logger: &IPCLogger) {
+    fn download(&self, logger: &IPCLogger) -> &Self {
         self.init_dir(&self.path.work);
 
         let _ = Processor::new(logger, &format!("{}yt-dlp", &self.path.bin), &{
             let mut args: Vec<String> = Vec::new();
+
+            args.push("-U".to_string());
 
             if self.cfg.settings.custom_ytdlp_arguments_enable {
                 for arg in &self.cfg.settings.custom_ytdlp_arguments {
@@ -40,18 +38,13 @@ impl Downloader for DefaultDownloader {
             }
 
             args.push(String::from("-o"));
-            args.push(format!(
-                "{}/download/{}",
-                &self.path.work,
-                self.determine_output_name_argument()
-            ));
+            args.push(format!("{}/download/%(title)s", &self.path.work));
             args.push(self.cfg.input.url.clone());
 
             args
         })
         .start();
 
-        self.write_lock();
-        self.write_name_lock();
+        self
     }
 }

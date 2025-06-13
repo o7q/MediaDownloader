@@ -30,11 +30,11 @@ pub struct IPCDownloadSettingsConfig {
     pub vbr_bitrate: String,
     pub abr_bitrate: String,
 
-    pub custom_ffmpeg_arguments_enable: bool,
-    pub custom_ffmpeg_arguments: Vec<String>,
-
     pub custom_ytdlp_arguments_enable: bool,
     pub custom_ytdlp_arguments: Vec<String>,
+
+    pub custom_ffmpeg_arguments_enable: bool,
+    pub custom_ffmpeg_arguments: Vec<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -45,6 +45,8 @@ pub struct IPCDownloadOutputConfig {
 
 #[derive(Serialize, Deserialize, Clone, Default)]
 pub struct IPCDownloadConfig {
+    pub valid: bool,
+
     pub input: IPCDownloadInputConfig,
     pub settings: IPCDownloadSettingsConfig,
     pub output: IPCDownloadOutputConfig,

@@ -74,16 +74,3 @@ where
         let _ = write_file(file_path, &serialized_data);
     }
 }
-
-pub fn serialize_file_write_push<T>(file_path: &str, data: &T, write_type: WriteType)
-where
-    T: Serialize + DeserializeOwned + Clone,
-{
-    let mut data_vec: Vec<T> = match read_file(file_path) {
-        Ok(serialized_vec) => deserialize(&serialized_vec),
-        Err(_) => Vec::new(),
-    };
-
-    data_vec.push(data.clone());
-    serialize_file_write(file_path, &data_vec, write_type);
-}

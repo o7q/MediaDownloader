@@ -19,7 +19,7 @@
 }
 
 .checkbox input[type="checkbox"]:checked+.checkbox-checkmark {
-    background-color: rgb(33, 136, 33);
+    background-color: rgb(45, 119, 45);
 }
 
 /* checkmark symbol */

@@ -3,7 +3,7 @@ import { initTitlebar } from "../common/titlebar";
 import { appWindow, download_queue } from "./main";
 import { initInput } from "./input/input";
 import { initOutput } from "./output/output";
-import { IPCDownloadConfig } from "../common/download-config";
+import { createIPCDownloadConfig, IPCDownloadConfig } from "../common/download-config";
 import { generateIPCDownloadConfig } from "./download-config-gen/generate";
 import { loadIPCDownloadConfig } from "./download-config-gen/load";
 
@@ -29,7 +29,12 @@ export async function init() {
     initInput();
     initOutput();
 
-    if (await invoke("does_current_download_config_exist")) {
-        loadIPCDownloadConfig(await invoke("load_current_download_config"));
+    const downloadConfig: IPCDownloadConfig = await invoke("load_current_download_config");
+
+    if (downloadConfig.valid) {
+        loadIPCDownloadConfig(downloadConfig);
+    } else
+    {
+        loadIPCDownloadConfig(generateIPCDownloadConfig());
     }
 }

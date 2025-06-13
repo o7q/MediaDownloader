@@ -32,5 +32,6 @@
 .image-button img {
     max-width: 3vw;
     max-height: 3vw;
+
     object-fit: contain;
 }

@@ -37,6 +37,8 @@ interface IPCDownloadOutputConfig {
 }
 
 export interface IPCDownloadConfig {
+    valid:    boolean;
+
     input:    IPCDownloadInputConfig;
     settings: IPCDownloadSettingsConfig;
     output:   IPCDownloadOutputConfig;
@@ -44,34 +46,37 @@ export interface IPCDownloadConfig {
 
 export function createIPCDownloadConfig() {
     const config: IPCDownloadConfig = {
+        valid: true,
+
         input: {
             url:           "",
             is_playlist:   false,
-            download_type: ""
+            download_type: "default"
         },
 
         settings: {
-            format:                         "",
-            format_type:                    "",
+            format:                         "mp4-fast",
+            format_type:                    "video",
 
             trim_enable:                    false,
             trim_from_start_enable:         false,
-            trim_start:                     "",
+            trim_start:                     "0:00",
             trim_to_end_enable:             false,
-            trim_end:                       "",
+            trim_end:                       "0:10",
 
             size_change_enable:             false,
-            size_change_width:              "",
-            size_change_height:             "",
+            size_change_width:              "1280",
+            size_change_height:             "-1",
 
             fps_change_enable:              false,
-            fps_change_framerate:           "",
+            fps_change_framerate:           "30",
 
-            vbr_bitrate:                    "",
-            abr_bitrate:                    "",
+            vbr_bitrate:                    "10M",
+            abr_bitrate:                    "320K",
 
             custom_ytdlp_arguments_enable:  false,
             custom_ytdlp_arguments:         [],
+
             custom_ffmpeg_arguments_enable: false,
             custom_ffmpeg_arguments:        []
         },

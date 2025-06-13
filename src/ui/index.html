@@ -46,6 +46,9 @@
             <img class="titlebar__banner" src="assets/images/banner.png">
             <p class="titlebar__version-text">v5.0.0</p>
             <div class="titlebar__buttons">
+                <button class="button__titlebar-mini-button" id="titlebar-reset-button"><img
+                        src="assets/images/trash.png"></button>
+                <div style="width: 1px;"></div>
                 <button id="titlebar-minimize-button">_</button>
                 <button id="titlebar-close-button">x</button>
             </div>
@@ -105,8 +108,7 @@
                         <p class="text text--settings-trim-start">&lt;&lt;</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox"
-                    value="0:00">
+                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox">
 
                 <p class="text text--settings-trim-and">and</p>
 
@@ -116,8 +118,7 @@
                         <p class="text text--settings-trim-end">&gt;&gt;</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox"
-                    value="0:10">
+                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox">
             </div>
 
             <div class="panel panel--settings-size-fps">
@@ -127,11 +128,11 @@
                         <p class="text text--settings-size-fps-resolution">Change Size</p>
                     </span>
                 </label>
-                <input type="text" class="textbox textbox--settings-size-fps-width" id="settings-size-fps-width-textbox"
-                    value="1280">
+                <input type="text" class="textbox textbox--settings-size-fps-width"
+                    id="settings-size-fps-width-textbox">
 
                 <input type="text" class="textbox textbox--settings-size-fps-height"
-                    id="settings-size-fps-height-textbox" value="-1">
+                    id="settings-size-fps-height-textbox">
 
                 <label class="checkbox">
                     <input type="checkbox" id="settings-size-fps-framerate-checkbox" />
@@ -140,17 +141,15 @@
                     </span>
                 </label>
                 <input type="text" class="textbox textbox--settings-size-fps-framerate"
-                    id="settings-size-fps-framerate-textbox" value="30">
+                    id="settings-size-fps-framerate-textbox">
             </div>
 
             <div class="panel panel--settings-bitrate">
                 <p class="text text--settings-bitrate-video">Video Bitrate</p>
-                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox"
-                    value="10M">
+                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox">
 
                 <p class="text text--settings-bitrate-audio">Audio Bitrate</p>
-                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox"
-                    value="320K">
+                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox">
             </div>
 
             <div class="panel panel--settings-arguments">
@@ -194,8 +193,7 @@
                 <div class="panel panel--output-queue-sub">
                     <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
                             src="assets/images/saveload-right.png"></button>
-                    <button class="button image-button button--output-queue-edit"
-                        id="output-queue-edit-button"><img
+                    <button class="button image-button button--output-queue-edit" id="output-queue-edit-button"><img
                             src="assets/images/gear.png"></button>
 
                     <label class="checkbox">

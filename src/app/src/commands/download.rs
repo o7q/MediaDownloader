@@ -17,23 +17,11 @@ use crate::processor::processor::ProcessPaths;
 
 use crate::config::download_config::IPCDownloadConfig;
 
-use crate::utils::directory::create_directory;
-use crate::utils::directory::directory_exists;
 use crate::utils::directory::remove_directory;
-use crate::utils::file::read_file;
-use crate::utils::serial::deserialize_file_read;
+use crate::utils::file::{read_file, write_file};
+use crate::utils::serial::{deserialize_file_read, serialize_file_write, WriteType};
 
 use crate::logger::logger::IPCLogger;
-use crate::utils::serial::serialize_file_write_push;
-use crate::utils::serial::WriteType;
-
-#[tauri::command]
-pub fn get_download_name() -> String {
-    match read_file("MediaDownloader/_temp/download_name_lock") {
-        Ok(contents) => contents,
-        Err(_) => String::new(),
-    }
-}
 
 #[tauri::command(async)]
 pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
@@ -62,19 +50,44 @@ pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
 
     if should_download {
         let _ = remove_directory("MediaDownloader/_temp");
-        step_download(&config, &paths, &logger);
+        let download_name: String = step_download(&config, &paths, &logger);
+
+        // write the lock file
+        // this file is used to detect if a re-download is required the next time the user starts a download
+        // such as if the user just changes the format, there would be no need to re-download the entire video
+        serialize_file_write(
+            "MediaDownloader/_temp/download_lock.json",
+            &config,
+            WriteType::Squash,
+        );
+
+        let _ = write_file("MediaDownloader/_temp/download_name.txt", &download_name);
     }
 
     step_convert(&config, &paths, &logger);
-    step_finalize(&config);
+
+    let finalize_name: String = if config.output.name.is_empty() {
+        match read_file("MediaDownloader/_temp/download_name.txt") {
+            Ok(contents) => contents,
+            Err(_) => "Unnamed".to_string(),
+        }
+    } else {
+        config.output.name.clone()
+    };
+
+    step_finalize(&config, &finalize_name);
 }
 
-fn step_download(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) {
+fn step_download(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) -> String {
     match config.input.download_type.as_str() {
-        "thumbnail" => ThumbnailDownloader::new(config, paths).download(logger),
-        "default" => DefaultDownloader::new(config, paths).download(logger),
-        _ => {}
-    };
+        "thumbnail" => ThumbnailDownloader::new(config, paths)
+            .download(logger)
+            .get_download_name(),
+        "default" => DefaultDownloader::new(config, paths)
+            .download(logger)
+            .get_download_name(),
+        _ => String::new(),
+    }
 }
 
 fn step_convert(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) {
@@ -88,15 +101,6 @@ fn step_convert(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLo
     }
 }
 
-fn step_finalize(config: &IPCDownloadConfig) {
-    if !directory_exists("MediaDownloader/config") {
-        let _ = create_directory("MediaDownloader/config");
-    }
-    serialize_file_write_push(
-        "MediaDownloader/config/history.json",
-        config,
-        WriteType::Compress,
-    );
-
-    Finalizer::new(config).finalize();
+fn step_finalize(config: &IPCDownloadConfig, finalize_name: &str) {
+    Finalizer::new(config).finalize(finalize_name);
 }

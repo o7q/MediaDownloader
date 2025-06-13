@@ -23,6 +23,7 @@
 
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .titlebar__buttons button {
@@ -40,11 +41,27 @@
     cursor: pointer;
 
     transition: 0.2s color ease-in-out, 0.2s background-color ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titlebar__buttons button img {
+    max-width: 15px;
+    max-height: 15px;
+
+    object-fit: contain;
 }
 
 .titlebar__buttons button:hover {
     color: rgb(182, 141, 141);
     background-color: rgb(40, 40, 40);
+}
+
+.button__titlebar-mini-button {
+    width: 25px !important;
+    height: 25px !important;
 }
 
 .titlebar__version-text {
@@ -54,6 +71,6 @@
     position: absolute;
     left: 141px;
     top: -1px;
-    
+
     color: rgb(82, 82, 82);
 }

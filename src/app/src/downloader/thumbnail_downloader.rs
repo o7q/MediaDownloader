@@ -19,19 +19,16 @@ impl Downloader for ThumbnailDownloader {
         }
     }
 
-    fn get_config(&self) -> IPCDownloadConfig {
-        self.cfg.clone()
-    }
-
     fn get_path(&self) -> ProcessPaths {
         self.path.clone()
     }
 
-    fn download(&self, logger: &IPCLogger) {
+    fn download(&self, logger: &IPCLogger) -> &Self {
         self.init_dir(&self.path.work);
 
         let _ = Processor::new(logger, &format!("{}yt-dlp", &self.path.bin), &{
             let mut args: Vec<String> = Vec::new();
+            args.push("-U".to_string());
             args.push("--skip-download".to_string());
             args.push("--write-thumbnail".to_string());
 
@@ -43,9 +40,8 @@ impl Downloader for ThumbnailDownloader {
 
             args.push("-o".to_string());
             args.push(format!(
-                "{}/download/{}",
-                &self.path.work,
-                self.determine_output_name_argument()
+                "{}/download/%(title)s",
+                &self.path.work
             ));
             args.push(self.cfg.input.url.clone());
 
@@ -53,7 +49,6 @@ impl Downloader for ThumbnailDownloader {
         })
         .start();
 
-        self.write_lock();
-        self.write_name_lock();
+        self
     }
 }
