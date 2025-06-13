@@ -7,8 +7,8 @@
 
     border-radius: 0vw;
 
-    border-left: 0.1vw solid rgb(85, 85, 85);
-    border-top: 0.1vw solid rgb(85, 85, 85);
+    border-left: 0.1vw solid rgb(65, 65, 65);
+    border-top: 0.1vw solid rgb(65, 65, 65);
 }
 
 .text--settings-bitrate-video {

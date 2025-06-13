@@ -5,7 +5,7 @@ use crate::{
     utils::{
         directory::{create_directory, remove_directory},
         file::{get_files, get_mediasafe_filename, write_file},
-        serial::serialize,
+        serial::{serialize_file_write, WriteType},
     },
 };
 
@@ -28,9 +28,10 @@ pub trait Downloader {
     // this file is used to detect if a re-download is required the next time the user starts a download
     // such as if the user just changes the format, there would be no need to re-download the entire video
     fn write_lock(&self) {
-        let _ = write_file(
+        serialize_file_write(
             "MediaDownloader/_temp/download_lock.json",
-            &serialize(&self.get_config(), false),
+            &self.get_config(),
+            WriteType::Squash,
         );
     }
 

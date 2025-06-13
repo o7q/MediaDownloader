@@ -1,7 +1,7 @@
 use serde::{de::DeserializeOwned, Serialize};
 
 use crate::utils::{
-    compress::write_file_compressed,
+    compress::{read_file_compressed, write_file_compressed},
     file::{read_file, write_file},
 };
 
@@ -44,11 +44,15 @@ where
     }
 }
 
-pub fn deserialize_file_read<T>(file_path: &str) -> T
+pub fn deserialize_file_read<T>(file_path: &str, is_file_compressed: bool) -> T
 where
     T: DeserializeOwned + Default,
 {
-    match read_file(file_path) {
+    match if is_file_compressed {
+        read_file_compressed(file_path)
+    } else {
+        read_file(file_path)
+    } {
         Ok(serialized_data) => deserialize(&serialized_data),
         Err(_) => T::default(),
     }

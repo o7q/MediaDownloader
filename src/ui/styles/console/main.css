@@ -1,10 +1,9 @@
 .console-textarea {
     width: calc(100vw - 15px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 50px);
 
     left: 5px;
     top: 35px;
-
     font-size: 15px;
 
     position: absolute;
@@ -29,6 +28,10 @@
 
     font-size: 15px;
 
-    left: 5px;
-    bottom: 8px;
+    color: rgb(255, 176, 176);
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+
+    right: 8px;
+    bottom: 10px;
 }

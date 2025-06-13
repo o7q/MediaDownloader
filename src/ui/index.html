@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="styles/common/controls/button.css">
     <link rel="stylesheet" href="styles/common/controls/checkbox.css">
-    <link rel="stylesheet" href="styles/common/controls/dropdown.css">
+    <link rel="stylesheet" href="styles/common/controls/select.css">
     <link rel="stylesheet" href="styles/common/controls/panel.css">
     <link rel="stylesheet" href="styles/common/controls/text.css">
     <link rel="stylesheet" href="styles/common/controls/textarea.css">
@@ -61,32 +61,33 @@
         <div class="panel panel--settings">
             <div class="panel panel--settings-format">
                 <p class="text text--settings-format">Format</p>
-                <select class="dropdown dropdown--settings-format" id="settings-format-dropdown">
-                    <option type-value="null">[Video]</option>
-                    <option value="mp4-fast" type-value="video" selected="true">mp4 (fast)</option>
-                    <option value="mp4" type-value="video">mp4</option>
-                    <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
-                    <option value="mp4-amd" type-value="video">mp4 (amd)</option>
-                    <option value="webm" type-value="video">webm</option>
-                    <option value="avi" type-value="video">avi (uncompressed)</option>
-                    <option type-value="null">---</option>
+                <select class="select select--settings-format" id="settings-format-select">
+                    <optgroup label="Video">
+                        <option value="mp4-fast" type-value="video" selected="true">mp4 (fast)</option>
+                        <option value="mp4" type-value="video">mp4</option>
+                        <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
+                        <option value="mp4-amd" type-value="video">mp4 (amd)</option>
+                        <option value="webm" type-value="video">webm</option>
+                        <option value="avi" type-value="video">avi (uncompressed)</option>
+                    </optgroup>
 
-                    <option type-value="null">[Audio]</option>
-                    <option value="mp3" type-value="audio">mp3</option>
-                    <option value="wav" type-value="audio">wav (lossless)</option>
-                    <option value="flac" type-value="audio">flac (lossless)</option>
-                    <option value="ogg" type-value="audio">ogg</option>
-                    <option type-value="null">---</option>
+                    <optgroup label="Audio">
+                        <option value="mp3" type-value="audio">mp3</option>
+                        <option value="wav" type-value="audio">wav (lossless)</option>
+                        <option value="flac" type-value="audio">flac (lossless)</option>
+                        <option value="ogg" type-value="audio">ogg</option>
+                    </optgroup>
 
-                    <option type-value="null">[Image]</option>
-                    <option value="gif" type-value="gif">gif</option>
-                    <option value="png" type-value="sequence">png (sequence)</option>
-                    <option value="jpg" type-value="sequence">jpg (sequence)</option>
-                    <option type-value="null">---</option>
+                    <optgroup label="Image">
+                        <option value="gif" type-value="gif">gif</option>
+                        <option value="png" type-value="sequence">png (sequence)</option>
+                        <option value="jpg" type-value="sequence">jpg (sequence)</option>
+                    </optgroup>
 
-                    <option type-value="null">[Thumbnail]</option>
-                    <option value="png" type-value="image">png</option>
-                    <option value="jpg" type-value="image">jpg</option>
+                    <optgroup label="Thumbnail">
+                        <option value="png" type-value="image">png</option>
+                        <option value="jpg" type-value="image">jpg</option>
+                    </optgroup>
                 </select>
             </div>
 
@@ -176,34 +177,44 @@
 
         <p class="text text--output">Output</p>
         <div class="panel panel--output">
-            <p class="text text--output-name" id="output-name-text">Name (Auto)</p>
-            <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
+            <div class="panel panel--output-name-path">
+                <p class="text text--output-name" id="output-name-text">Name (Auto)</p>
+                <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
 
-            <p class="text text--output-path">Path</p>
-            <button class="button image-button button--output-path" id="output-path-button">
-                <img src="assets/images/folder_icon.png">
-            </button>
-            <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+                <p class="text text--output-path">Path</p>
+                <button class="button image-button button--output-path" id="output-path-button">
+                    <img src="assets/images/folder.png">
+                </button>
+                <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+            </div>
 
-            <p class="text text--output-queue">Queue</p>
-            <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
-                    src="assets/images/console_icon.png"></button>
-            <button class="button image-button button--output-queue-edit" id="output-queue-edit-button"><img
-                    src="assets/images/console_icon.png"></button>
+            <div class="panel panel--output-queue">
+                <p class="text text--output-queue">Queue</p>
 
-            <label class="checkbox">
-                <input type="checkbox" id="output-queue-checkbox-enable" />
-                <span class="checkbox-checkmark checkbox--output-queue-enable">
-                    <p class="text text--output-queue-enable">Enable</p>
-                </span>
-            </label>
+                <div class="panel panel--output-queue-sub">
+                    <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
+                            src="assets/images/saveload-right.png"></button>
+                    <button class="button image-button button--output-queue-edit"
+                        id="output-queue-edit-button"><img
+                            src="assets/images/gear.png"></button>
+
+                    <label class="checkbox">
+                        <input type="checkbox" id="output-queue-checkbox-enable" />
+                        <span class="checkbox-checkmark checkbox--output-queue-enable">
+                            <p class="text text--output-queue-enable">Enable</p>
+                        </span>
+                    </label>
+                </div>
+            </div>
 
             <button class="button button--output-download" id="output-download-button">Download</button>
 
-            <p class="text text--output-console">Console</p>
-            <textarea readonly class="output-console-textarea" id="output-console-textarea"></textarea>
-            <button class="button button--output-console-open" id="output-console-open-button"> <img
-                    src="assets/images/console_icon.png"></button>
+            <div class="panel panel--output-console">
+                <p class="text text--output-console">Console</p>
+                <textarea readonly class="output-console-textarea" id="output-console-textarea"></textarea>
+                <button class="button button--output-console-open" id="output-console-open-button"> <img
+                        src="assets/images/console.png"></button>
+            </div>
         </div>
     </div>
 </body>

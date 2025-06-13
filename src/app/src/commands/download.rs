@@ -55,7 +55,7 @@ pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
 
     // determine if the download should be skipped or not
     let download_lock: IPCDownloadConfig =
-        deserialize_file_read("MediaDownloader/_temp/download_lock.json");
+        deserialize_file_read("MediaDownloader/_temp/download_lock.json", false);
 
     let should_download: bool = config.input.url != download_lock.input.url
         || config.input.download_type != download_lock.input.download_type;

@@ -22,8 +22,12 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::download::download,
             commands::download::get_download_name,
-            commands::data::push_queue,
+            commands::data::write_current_download_config,
+            commands::data::load_current_download_config,
+            commands::data::does_current_download_config_exist,
+            commands::data::write_queue,
             commands::data::load_queue,
+            commands::data::write_history,
             commands::data::load_history
         ])
         .run(tauri::generate_context!())

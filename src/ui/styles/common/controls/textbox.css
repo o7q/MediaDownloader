@@ -1,9 +1,13 @@
 .textbox {
     width: 10vw;
-    height: 4vw;
+    height: 5vw;
 
-    font-size: 3vw;
+    font-size: 2.5vw;
     font-family: Roboto-Regular;
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 
     position: absolute;
 

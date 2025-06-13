@@ -1,0 +1,62 @@
+.select--box {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 90px);
+
+    font-size: 15px;
+    font-family: Roboto-Regular;
+
+    top: 40px;
+    left: 10px;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(51, 51, 51);
+
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 5px;
+
+    border-bottom-left-radius: 0;
+
+    cursor: pointer;
+}
+
+.button--load-selected {
+    width: 30px;
+    height: 30px;
+
+    bottom: 20px;
+    left: 10px;
+
+    border-top: 1px solid rgb(67, 67, 67);
+    border-right: none;
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button--remove-selected {
+    bottom: 20px;
+    left: 40px;
+
+    width: 30px;
+    height: 30px;
+
+    border-left: 1px solid rgb(67, 67, 67);
+    border-top: 1px solid rgb(67, 67, 67);
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.custom-image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-image-button img {
+    max-width: 15px;
+    max-height: 15px;
+    object-fit: contain;
+}

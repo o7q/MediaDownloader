@@ -3,7 +3,7 @@
     font-family: Roboto-Regular;
 
     left: 1.25vw;
-    top: 5vw;
+    top: 6vw;
 
     color: rgb(88, 88, 88);
 }
@@ -13,10 +13,10 @@
     height: 10vw;
 
     left: 1vw;
-    top: 9vw;
+    top: 10vw;
 
     background-color: rgb(15, 15, 15);
 
     border-radius: 1vw;
-    border: 0.1vw solid rgb(79, 133, 77);
+    border: 0.1vw solid rgb(85, 85, 85);
 }

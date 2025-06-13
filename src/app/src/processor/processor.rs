@@ -46,7 +46,7 @@ impl Processor {
             .stderr(Stdio::piped());
 
         // prevent console window on windows
-        #[cfg(windows)]
+        #[cfg(target_os = "windows")]
         {
             command.creation_flags(0x08000000);
         }

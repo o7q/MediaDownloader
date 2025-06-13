@@ -1,4 +1,5 @@
-import { appWindow } from "../index/main";
+import { getCurrentWindow } from '@tauri-apps/api/window';
+export const appWindow = getCurrentWindow();
 
 export function initTitlebar() {
     document.getElementById("titlebar")?.addEventListener("mousedown", (e: MouseEvent) => {
@@ -13,13 +14,5 @@ export function initTitlebar() {
         ) {
             appWindow.startDragging();
         }
-    });
-
-    document.getElementById("titlebar-minimize-button")?.addEventListener("click", () => {
-        appWindow.minimize();
-    });
-
-    document.getElementById("titlebar-close-button")?.addEventListener("click", () => {
-        appWindow.close();
     });
 }

@@ -1,5 +1,5 @@
-import { listen } from '@tauri-apps/api/event';
-import { IPCLoggerEvent } from '../common/logger';
+import { listen } from "@tauri-apps/api/event";
+import { IPCLoggerEvent } from "../common/logger";
 
 export function initConsole() {
     let consoleTextarea = document.getElementById("console-textarea") as HTMLTextAreaElement | null;

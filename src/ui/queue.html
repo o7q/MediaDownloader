@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="scripts/console/main.ts" defer></script>
+    <script type="module" src="scripts/queue/main.ts" defer></script>
 
     <!-- common -->
     <link rel="stylesheet" href="styles/common/body.css">
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="styles/common/controls/textbox.css">
     <!-- common -->
 
-    <link rel="stylesheet" href="styles/console/main.css">
+    <link rel="stylesheet" href="styles/common/tools/select-window.css">
 </head>
 
 <body>
@@ -36,8 +36,10 @@
             </div>
         </div>
 
-        <textarea readonly class="console-textarea" id="console-textarea"></textarea>
-        <button class="button button--console-clear" id="console-clear-button">Clear</button>
+        <select class="select select--box" id="queue-select" multiple=""></select>
+
+        <button class="button custom-image-button button--load-selected" id="queue-load-selected-button"><img src="assets/images/saveload-left.png"></button>
+        <button class="button custom-image-button button--remove-selected" id="queue-remove-selected-button"><img src="assets/images/trash.png"></button>
     </div>
 </body>
 

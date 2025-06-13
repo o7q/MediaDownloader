@@ -7,7 +7,7 @@
 
     border-radius: 0vw;
 
-    border-left: 0.1vw solid rgb(85, 85, 85);
+    border-left: 0.1vw solid rgb(65, 65, 65);
 }
 
 .checkbox--settings-size-fps-resolution {
@@ -25,7 +25,7 @@
 }
 
 .textbox--settings-size-fps-width {
-    width: 7vw;
+    width: 8vw;
 
     font-size: 2vw;
 
@@ -37,7 +37,7 @@
 }
 
 .textbox--settings-size-fps-height {
-    width: 7vw;
+    width: 8vw;
 
     font-size: 2vw;
 

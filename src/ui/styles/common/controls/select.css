@@ -1,4 +1,4 @@
-.dropdown {
+.select {
     width: 20vw;
     height: 5vw;
 
@@ -14,4 +14,9 @@
     border-radius: 1vw;
 
     cursor: pointer;
+}
+
+.select:focus {
+    border-color: #797979;
+    outline: none;
 }

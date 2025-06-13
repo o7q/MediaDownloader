@@ -1,9 +1,12 @@
 .button--output-download {
-    width: 26vw;
-    height: 9vw;
+    width: 24vw;
+    height: 10vw;
 
     left: 1vw;
-    top: 20vw;
+    top: 21vw;
+
+    padding: 0;
+    margin: 0;
 
     color: rgb(50, 205, 50);
     background-color: rgb(16, 68, 16);

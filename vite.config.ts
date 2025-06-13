@@ -28,7 +28,8 @@ export default defineConfig(async () => ({
     rollupOptions: {
       input: {
         index: "src/ui/index.html",
-        console: "src/ui/console.html"
+        console: "src/ui/console.html",
+        queue: "src/ui/queue.html"
       },
     },
   },

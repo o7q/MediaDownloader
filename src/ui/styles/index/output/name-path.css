@@ -1,38 +1,56 @@
+.panel--output-name-path {
+    width: 98vw;
+    height: 10vw;
+
+    left: 0vw;
+    top: 0vw;
+
+    border-radius: 0vw;
+
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+
+    border: 0.1vw solid rgb(65, 65, 65);
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
 .text--output-name {
     left: 1vw;
-    top: 1vw;
+    top: 0vw;
 }
 
 .textbox--output-name {
     width: 25vw;
 
     left: 1vw;
-    top: 5vw;
+    top: 4vw;
 }
 
 .text--output-path {
-    left: 28vw;
-    top: 1vw;
+    left: 27vw;
+    top: 0vw;
 }
 
 .textbox--output-path {
-    width: 64vw;
+    width: 65vw;
 
-    left: 32.5vw;
-    top: 5vw;
+    left: 32vw;
+    top: 4vw;
+
+    box-sizing: border-box;
 
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-
-    border-left: none;
 }
 
 .button--output-path {
-    width: 4.5vw;
-    height: 4.5vw;
+    width: 5vw;
+    height: 5vw;
 
-    left: 28vw;
-    top: 5vw;
+    left: 27vw;
+    top: 4vw;
 
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

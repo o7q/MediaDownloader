@@ -1,16 +1,12 @@
-import { getCurrentWindow } from '@tauri-apps/api/window';
-
-import { initTitlebar } from '../common/titlebar';
-import { initButtons } from './ui/buttons';
-import { initTextboxes } from './ui/textboxes';
-import { initMiniConsole } from './mini-console';
-
+import { getCurrentWindow } from "@tauri-apps/api/window";
 export const appWindow = getCurrentWindow();
 
-document.addEventListener("DOMContentLoaded", () => {
-    initTitlebar();
-    initButtons();
-    initTextboxes();
+import { init } from "./init";
+import { IPCDownloadConfig } from "../common/download-config";
 
-    initMiniConsole();
+export let download_queue: IPCDownloadConfig[] = [];
+export let download_history: IPCDownloadConfig[] = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+    init();
 });
