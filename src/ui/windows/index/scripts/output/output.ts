@@ -1,12 +1,11 @@
 import { openDialogAsync } from "../utils";
 import { initMiniConsole, openConsoleWindow } from "./console-opener";
-import { initQueue } from "./queue-opener";
+import { initQueueOpener } from "./queue-opener";
 import { initDownloadButton } from "./download";
 
 export function initOutputUI() {
     const outputNameTextbox = document.getElementById("output-name-textbox") as HTMLInputElement | null;
     const outputNameText = document.getElementById("output-name-text") as HTMLInputElement | null;
-
     if (!outputNameTextbox || !outputNameText) return;
 
     outputNameTextbox?.addEventListener("input", () => {
@@ -22,7 +21,6 @@ export function initOutputUI() {
         let file = await openDialogAsync();
 
         const pathTextbox = document.getElementById("output-path-textbox") as HTMLInputElement | null;
-
         if (!pathTextbox) return;
 
         pathTextbox.value = file.toString();
@@ -32,7 +30,7 @@ export function initOutputUI() {
         openConsoleWindow();
     });
 
-    initQueue();
+    initQueueOpener();
     initDownloadButton();
     initMiniConsole();
 }

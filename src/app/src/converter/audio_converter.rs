@@ -44,9 +44,11 @@ impl Converter for AudioConverter {
                 args.push("-c:a".to_string());
                 args.push(audio_codec.to_string());
 
-                if !self.cfg.settings.abr_bitrate.is_empty() {
-                    args.push("-b:a".to_string());
-                    args.push(self.cfg.settings.abr_bitrate.clone());
+                if self.cfg.settings.abr_set_bitrate_enable
+                    && !self.cfg.settings.abr_set_bitrate.is_empty()
+                {
+                    args.push("-b:v".to_string());
+                    args.push(self.cfg.settings.abr_set_bitrate.clone());
                 }
 
                 if self.cfg.settings.trim_enable {

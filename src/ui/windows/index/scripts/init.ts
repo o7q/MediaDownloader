@@ -4,20 +4,30 @@ import { appWindow, downloadHistory, downloadQueue } from "./main";
 
 import { initTitlebar } from "../../../common/scripts/titlebar";
 import { initInputUI } from "./input/input";
+import { initSettingsUI } from "./settings/settings";
+import { updateSettingsUI } from "./settings/settings-ui-handler";
 import { initOutputUI } from "./output/output";
-import { initHistoryUI } from "./history-opener";
+import { initHistoryOpener } from "./history-opener";
 
-import { IPCDownloadConfig } from "../../../common/scripts/download-config";
+import { createIPCDownloadConfig, IPCDownloadConfig } from "../../../common/scripts/download-config";
 import { generateIPCDownloadConfig } from "./download-config/generate";
 import { loadIPCDownloadConfig } from "./download-config/load";
 
 export async function init() {
     initTitlebar();
+    initTitlebarButtons();
 
-    document.getElementById("titlebar-history-button")?.addEventListener("click", async () => {
-        appWindow.minimize();
-    });
+    initInputUI();
+    initSettingsUI();
+    initOutputUI();
+    initHistoryOpener();
 
+    initGlobals();
+
+    loadDefaultDownloadConfig();
+}
+
+async function initTitlebarButtons() {
     document.getElementById("titlebar-minimize-button")?.addEventListener("click", async () => {
         appWindow.minimize();
     });
@@ -28,11 +38,9 @@ export async function init() {
         await invoke("write_history", { history: downloadHistory });
         appWindow.close();
     });
+}
 
-    initInputUI();
-    initOutputUI();
-    initHistoryUI();
-
+async function initGlobals() {
     let tempDownloadQueue: IPCDownloadConfig[] = await invoke("load_queue");
     let tempDownloadHistory: IPCDownloadConfig[] = await invoke("load_history");
 
@@ -43,12 +51,16 @@ export async function init() {
     for (let i = 0; i < tempDownloadHistory.length; ++i) {
         downloadHistory[i] = tempDownloadHistory[i];
     }
+}
 
+async function loadDefaultDownloadConfig() {
     const downloadConfig: IPCDownloadConfig = await invoke("load_current_download_config");
 
     if (downloadConfig.valid) {
         loadIPCDownloadConfig(downloadConfig);
     } else {
-        loadIPCDownloadConfig(generateIPCDownloadConfig());
+        loadIPCDownloadConfig(createIPCDownloadConfig());
     }
+
+    updateSettingsUI();
 }

@@ -26,7 +26,7 @@ export default defineConfig(async () => ({
   },
   build: {
     cssCodeSplit: false, // fixes issues with css ordering
-    
+
     rollupOptions: {
       input: {
         index:   "src/ui/index.html",

@@ -3,7 +3,7 @@ import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { downloadHistory } from "./main";
 import { loadIPCDownloadConfig } from "./download-config/load";
 
-export function initHistoryUI() {
+export function initHistoryOpener() {
     document.getElementById("titlebar-history-edit-button")?.addEventListener("click", async () => {
         openHistoryWindow();
     });

@@ -70,7 +70,7 @@
                         <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
                         <option value="mp4-amd" type-value="video">mp4 (amd)</option>
                         <option value="webm" type-value="video">webm</option>
-                        <option value="avi" type-value="video">avi (uncompressed)</option>
+                        <option value="avi" type-value="video">avi (lossless)</option>
                     </optgroup>
 
                     <optgroup label="Audio">
@@ -82,13 +82,13 @@
 
                     <optgroup label="Image">
                         <option value="gif" type-value="gif">gif</option>
-                        <option value="png" type-value="sequence">png (sequence)</option>
-                        <option value="jpg" type-value="sequence">jpg (sequence)</option>
+                        <option value="png-sequence" type-value="sequence">png (sequence)</option>
+                        <option value="jpg-sequence" type-value="sequence">jpg (sequence)</option>
                     </optgroup>
 
                     <optgroup label="Thumbnail">
-                        <option value="png" type-value="image">png</option>
-                        <option value="jpg" type-value="image">jpg</option>
+                        <option value="png-thumbnail" type-value="image">png</option>
+                        <option value="jpg-thumbnail" type-value="image">jpg</option>
                     </optgroup>
                 </select>
             </div>
@@ -144,10 +144,21 @@
             </div>
 
             <div class="panel panel--settings-bitrate">
-                <p class="text text--settings-bitrate-video">Video Bitrate</p>
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-bitrate-video-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-bitrate-video">
+                        <p class="text text--settings-bitrate-video">Set VBR</p>
+                    </span>
+                </label>
+
                 <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox">
 
-                <p class="text text--settings-bitrate-audio">Audio Bitrate</p>
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-bitrate-audio-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-bitrate-audio">
+                        <p class="text text--settings-bitrate-audio">Set ABR</p>
+                    </span>
+                </label>
                 <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox">
             </div>
 

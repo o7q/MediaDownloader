@@ -49,8 +49,10 @@ export function generateIPCDownloadConfig(): IPCDownloadConfig {
             fps_change_enable:              ($("settings-size-fps-framerate-checkbox") as HTMLInputElement)   .checked,
             fps_change_framerate:           ($("settings-size-fps-framerate-textbox")  as HTMLInputElement)   .value,
 
-            vbr_bitrate:                    ($("settings-bitrate-video-textbox")       as HTMLInputElement)   .value,
-            abr_bitrate:                    ($("settings-bitrate-audio-textbox")       as HTMLInputElement)   .value,
+            vbr_set_bitrate_enable:         ($("settings-bitrate-video-checkbox")      as HTMLInputElement)   .checked,
+            vbr_set_bitrate:                ($("settings-bitrate-video-textbox")       as HTMLInputElement)   .value,
+            abr_set_bitrate_enable:         ($("settings-bitrate-audio-checkbox")      as HTMLInputElement)   .checked,
+            abr_set_bitrate:                ($("settings-bitrate-audio-textbox")       as HTMLInputElement)   .value,
 
             custom_ytdlp_arguments_enable:  ($("settings-arguments-ytdlp-checkbox")    as HTMLInputElement)   .checked,
             custom_ytdlp_arguments:         ($("settings-arguments-ytdlp-textarea")    as HTMLTextAreaElement).value.split('\n'),

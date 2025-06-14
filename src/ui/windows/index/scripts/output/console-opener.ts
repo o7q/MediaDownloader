@@ -5,7 +5,6 @@ import { IPCLoggerEvent } from "../../../../common/scripts/logger";
 
 export function initMiniConsole() {
     let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
-
     if (!consoleTextarea) return;
 
     listen<IPCLoggerEvent>("log", (event) => {

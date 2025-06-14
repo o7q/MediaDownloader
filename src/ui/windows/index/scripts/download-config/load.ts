@@ -20,8 +20,10 @@ export function loadIPCDownloadConfig(config: IPCDownloadConfig) {
     ($("settings-size-fps-framerate-checkbox") as HTMLInputElement).checked  = config.settings.fps_change_enable;
     ($("settings-size-fps-framerate-textbox")  as HTMLInputElement).value    = config.settings.fps_change_framerate;
 
-    ($("settings-bitrate-video-textbox")       as HTMLInputElement).value    = config.settings.vbr_bitrate;
-    ($("settings-bitrate-audio-textbox")       as HTMLInputElement).value    = config.settings.abr_bitrate;
+    ($("settings-bitrate-video-checkbox")      as HTMLInputElement).checked  = config.settings.vbr_set_bitrate_enable;
+    ($("settings-bitrate-video-textbox")       as HTMLInputElement).value    = config.settings.vbr_set_bitrate;
+    ($("settings-bitrate-audio-checkbox")      as HTMLInputElement).checked  = config.settings.abr_set_bitrate_enable;
+    ($("settings-bitrate-audio-textbox")       as HTMLInputElement).value    = config.settings.abr_set_bitrate;
 
     ($("settings-arguments-ytdlp-checkbox")    as HTMLInputElement).checked  = config.settings.custom_ytdlp_arguments_enable;
     ($("settings-arguments-ytdlp-textarea")    as HTMLTextAreaElement).value = config.settings.custom_ytdlp_arguments.join('\n');

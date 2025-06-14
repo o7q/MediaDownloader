@@ -12,7 +12,7 @@ pub fn write_current_download_config(config: IPCDownloadConfig) {
         let _ = create_directory("MediaDownloader/config");
     }
     serialize_file_write(
-        "MediaDownloader/config/current.json",
+        "MediaDownloader/config/download_config.json",
         &config,
         WriteType::Pretty,
     );
@@ -20,7 +20,7 @@ pub fn write_current_download_config(config: IPCDownloadConfig) {
 
 #[tauri::command]
 pub fn load_current_download_config() -> IPCDownloadConfig {
-    deserialize_file_read("MediaDownloader/config/current.json", false)
+    deserialize_file_read("MediaDownloader/config/download_config.json", false)
 }
 
 #[tauri::command]

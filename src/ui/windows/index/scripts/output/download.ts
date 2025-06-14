@@ -19,14 +19,15 @@ export async function startDownloadAsync() {
 
     if (shouldDownloadQueue) {
         for (const downloadConfig of downloadQueue) {
-            await invoke("download", { config: downloadConfig });
-            downloadHistory.push(downloadConfig);
+            downloadAsync(downloadConfig);
         };
     }
     else {
-        const downloadConfig: IPCDownloadConfig = generateIPCDownloadConfig();
-
-        await invoke("download", { config: downloadConfig });
-        downloadHistory.push(downloadConfig);
+        downloadAsync(generateIPCDownloadConfig());
     }
+}
+
+async function downloadAsync(downloadConfig: IPCDownloadConfig) {
+    let purifiedDownloadConfig: IPCDownloadConfig = await invoke("download", { config: downloadConfig });
+    downloadHistory.push(purifiedDownloadConfig);
 }

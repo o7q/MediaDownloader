@@ -23,3 +23,8 @@
     border-color: rgb(51, 97, 51);
     outline: none;
 }
+
+textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

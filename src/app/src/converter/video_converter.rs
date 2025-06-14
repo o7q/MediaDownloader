@@ -47,13 +47,17 @@ impl Converter for VideoConverter {
                 args.push("-c:a".to_string());
                 args.push(audio_codec.to_string());
 
-                if !self.cfg.settings.vbr_bitrate.is_empty() {
+                if self.cfg.settings.vbr_set_bitrate_enable
+                    && !self.cfg.settings.vbr_set_bitrate.is_empty()
+                {
                     args.push("-b:v".to_string());
-                    args.push(self.cfg.settings.vbr_bitrate.clone());
+                    args.push(self.cfg.settings.vbr_set_bitrate.clone());
                 }
-                if !self.cfg.settings.abr_bitrate.is_empty() {
-                    args.push("-b:a".to_string());
-                    args.push(self.cfg.settings.abr_bitrate.clone());
+                if self.cfg.settings.abr_set_bitrate_enable
+                    && !self.cfg.settings.abr_set_bitrate.is_empty()
+                {
+                    args.push("-b:v".to_string());
+                    args.push(self.cfg.settings.abr_set_bitrate.clone());
                 }
 
                 if self.cfg.settings.size_change_enable

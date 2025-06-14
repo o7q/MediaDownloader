@@ -27,8 +27,10 @@ pub struct IPCDownloadSettingsConfig {
     pub fps_change_enable: bool,
     pub fps_change_framerate: String,
 
-    pub vbr_bitrate: String,
-    pub abr_bitrate: String,
+    pub vbr_set_bitrate_enable: bool,
+    pub vbr_set_bitrate: String,
+    pub abr_set_bitrate_enable: bool,
+    pub abr_set_bitrate: String,
 
     pub custom_ytdlp_arguments_enable: bool,
     pub custom_ytdlp_arguments: Vec<String>,

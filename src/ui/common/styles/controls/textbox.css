@@ -20,6 +20,14 @@
 
 .textbox:focus {
     border-color: rgb(45, 119, 45);
-    /* background-color: ; */
     outline: none;
+}
+
+.textbox-error {
+    border-color: rgb(228, 72, 72);
+}
+
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

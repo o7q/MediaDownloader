@@ -4,9 +4,25 @@ import { downloadQueue } from "../main";
 import { generateIPCDownloadConfig } from "../download-config/generate";
 import { loadIPCDownloadConfig } from "../download-config/load";
 
-export function initQueue() {
+export function initQueueOpener() {
     document.getElementById("output-queue-add-button")?.addEventListener("click", async () => {
-        downloadQueue.push(generateIPCDownloadConfig());
+        const nameTextbox = document.getElementById("output-name-textbox") as HTMLButtonElement | null;
+
+        if (!nameTextbox) return;
+
+        if (nameTextbox.value === "") {
+            nameTextbox.classList.add("textbox-error");
+            nameTextbox.title = "Please provide a name for the queue entry.";
+
+            setTimeout(() => {
+                nameTextbox.classList.remove("textbox-error");
+                nameTextbox.title = "";
+            }, 2000);
+        } else {
+            nameTextbox.classList.remove("textbox-error");
+            nameTextbox.title = "";
+            downloadQueue.push(generateIPCDownloadConfig());
+        }
     });
 
     document.getElementById("output-queue-edit-button")?.addEventListener("click", async () => {

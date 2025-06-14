@@ -21,8 +21,10 @@ interface IPCDownloadSettingsConfig {
     fps_change_enable:              boolean;
     fps_change_framerate:           string;
 
-    vbr_bitrate:                    string;
-    abr_bitrate:                    string;
+    vbr_set_bitrate_enable:         boolean,
+    vbr_set_bitrate:                string,
+    abr_set_bitrate_enable:         boolean,
+    abr_set_bitrate:                string,
 
     custom_ffmpeg_arguments_enable: boolean;
     custom_ffmpeg_arguments:        string[];
@@ -71,8 +73,10 @@ export function createIPCDownloadConfig() {
             fps_change_enable:              false,
             fps_change_framerate:           "30",
 
-            vbr_bitrate:                    "10M",
-            abr_bitrate:                    "320K",
+            vbr_set_bitrate_enable:         true,
+            vbr_set_bitrate:                "10M",
+            abr_set_bitrate_enable:         true,
+            abr_set_bitrate:                "320K",
 
             custom_ytdlp_arguments_enable:  false,
             custom_ytdlp_arguments:         [],

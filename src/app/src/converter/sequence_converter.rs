@@ -48,9 +48,11 @@ impl Converter for SequenceConverter {
 
                 args.push("-an".to_string());
 
-                if !self.cfg.settings.vbr_bitrate.is_empty() {
+                if self.cfg.settings.vbr_set_bitrate_enable
+                    && !self.cfg.settings.vbr_set_bitrate.is_empty()
+                {
                     args.push("-b:v".to_string());
-                    args.push(self.cfg.settings.vbr_bitrate.clone());
+                    args.push(self.cfg.settings.vbr_set_bitrate.clone());
                 }
 
                 if self.cfg.settings.size_change_enable

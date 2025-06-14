@@ -24,7 +24,7 @@ use crate::utils::serial::{deserialize_file_read, serialize_file_write, WriteTyp
 use crate::logger::logger::IPCLogger;
 
 #[tauri::command(async)]
-pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
+pub fn download(app: AppHandle, mut config: IPCDownloadConfig) -> IPCDownloadConfig {
     config.purify();
 
     let logger: IPCLogger = IPCLogger::new(app);
@@ -76,6 +76,11 @@ pub fn download(app: AppHandle, mut config: IPCDownloadConfig) {
     };
 
     step_finalize(&config, &finalize_name);
+
+    // update config with new name, so it can be returned to the frontend
+    config.output.name = finalize_name;
+
+    config
 }
 
 fn step_download(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLogger) -> String {
