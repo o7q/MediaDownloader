@@ -7,7 +7,7 @@ import { loadIPCDownloadConfig } from "../download-config-gen/load";
 
 export function initQueue() {
     document.getElementById("output-queue-add-button")?.addEventListener("click", async () => {
-        addQueueItem(generateIPCDownloadConfig());
+        download_queue.push(generateIPCDownloadConfig());
     });
 
     document.getElementById("output-queue-edit-button")?.addEventListener("click", async () => {
@@ -30,18 +30,14 @@ export function initQueue() {
     });
 }
 
-export function addQueueItem(config: IPCDownloadConfig) {
-    download_queue.push(config);
-}
-
 export async function openQueueWindow() {
     const names = download_queue.map(item => item.output.name);
 
     const webview = new WebviewWindow("queueWindow", {
         url: "queue.html",
         title: "MediaDownloader Queue",
-        width: 750,
-        height: 500,
+        width: 450,
+        height: 300,
         minWidth: 450,
         minHeight: 300,
         decorations: false

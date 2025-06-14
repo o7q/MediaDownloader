@@ -2,7 +2,6 @@ use crate::{
     config::download_config::IPCDownloadConfig,
     utils::{
         directory::{create_directory, directory_exists},
-        file::file_exists,
         serial::{deserialize_file_read, serialize_file_write, WriteType},
     },
 };
@@ -22,11 +21,6 @@ pub fn write_current_download_config(config: IPCDownloadConfig) {
 #[tauri::command]
 pub fn load_current_download_config() -> IPCDownloadConfig {
     deserialize_file_read("MediaDownloader/config/current.json", false)
-}
-
-#[tauri::command]
-pub fn does_current_download_config_exist() -> bool {
-    file_exists("MediaDownloader/config/current.json")
 }
 
 #[tauri::command]

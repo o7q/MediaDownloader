@@ -23,7 +23,6 @@ pub fn run() {
             commands::download::download,
             commands::data::write_current_download_config,
             commands::data::load_current_download_config,
-            commands::data::does_current_download_config_exist,
             commands::data::write_queue,
             commands::data::load_queue,
             commands::data::write_history,

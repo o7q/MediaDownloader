@@ -1,6 +1,6 @@
 import { openDialogAsync } from "../utils";
-import { initMiniConsole, openConsoleWindow } from "./console";
-import { initQueue } from "./queue";
+import { initMiniConsole, openConsoleWindow } from "./console-opener";
+import { initQueue } from "./queue-opener";
 import { initDownloadButton } from "./download";
 
 export function initOutput() {

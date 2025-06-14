@@ -1,12 +1,20 @@
+.text--header {
+    font-size: 15px;
+    font-family: Roboto-Regular;
+
+    left: 5px;
+    top: 30px;
+}
+
 .select--box {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 10px);
     height: calc(100vh - 90px);
 
     font-size: 15px;
     font-family: Roboto-Regular;
 
-    top: 40px;
-    left: 10px;
+    top: 55px;
+    left: 5px;
 
     color: rgb(212, 212, 212);
     background-color: rgb(51, 51, 51);
@@ -23,8 +31,8 @@
     width: 30px;
     height: 30px;
 
-    bottom: 20px;
-    left: 10px;
+    bottom: 5px;
+    left: 5px;
 
     border-top: 1px solid rgb(67, 67, 67);
     border-right: none;
@@ -35,8 +43,8 @@
 }
 
 .button--remove-selected {
-    bottom: 20px;
-    left: 40px;
+    bottom: 5px;
+    left: 35px;
 
     width: 30px;
     height: 30px;
@@ -49,14 +57,14 @@
     border-bottom-left-radius: 0;
 }
 
-.custom-image-button {
+.image-button--custom {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.custom-image-button img {
-    max-width: 15px;
-    max-height: 15px;
+.image-button--custom img {
+    max-width: 16px;
+    max-height: 16px;
     object-fit: contain;
 }
