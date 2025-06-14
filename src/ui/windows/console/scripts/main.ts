@@ -1,7 +1,7 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
 export const appWindow = getCurrentWindow();
 
-import { initTitlebar } from "../common/titlebar";
+import { initTitlebar } from "../../../common/scripts/titlebar";
 import { initConsole } from "./listener";
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -5,27 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="scripts/queue/main.ts" defer></script>
+    <script type="module" src="windows/queue/scripts/main.ts" defer></script>
 
     <!-- common -->
-    <link rel="stylesheet" href="styles/common/body.css">
-    <link rel="stylesheet" href="styles/common/fonts.css">
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
 
-    <link rel="stylesheet" href="styles/common/containers/main.css">
-    <link rel="stylesheet" href="styles/common/containers/titlebar.css">
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
 
-    <link rel="stylesheet" href="styles/common/controls/button.css">
-    <link rel="stylesheet" href="styles/common/controls/select.css">
-    <link rel="stylesheet" href="styles/common/controls/text.css">
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
     <!-- common -->
 
-    <link rel="stylesheet" href="styles/common/tools/select-window.css">
+    <link rel="stylesheet" href="common/styles/tools/select-window.css">
 </head>
 
 <body>
     <div class="container-main">
         <div class="titlebar" id="titlebar">
-            <img class="titlebar__banner" src="assets/images/banner.png">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
             <div class="titlebar__buttons">
                 <button id="titlebar-minimize-button">_</button>
                 <button id="titlebar-close-button">x</button>
@@ -37,9 +37,9 @@
         <select class="select select--box" id="queue-select" multiple=""></select>
 
         <button class="button image-button--custom button--load-selected" id="queue-load-selected-button"><img
-                src="assets/images/saveload-left.png"></button>
+                src="common/assets/images/saveload-left.png"></button>
         <button class="button image-button--custom button--remove-selected" id="queue-remove-selected-button"><img
-                src="assets/images/trash.png"></button>
+                src="common/assets/images/trash.png"></button>
     </div>
 </body>
 

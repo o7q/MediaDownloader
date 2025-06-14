@@ -1,8 +1,8 @@
 import { invoke } from "@tauri-apps/api/core";
 
-import { IPCDownloadConfig } from "../../common/download-config";
-import { generateIPCDownloadConfig } from "../download-config-gen/generate";
-import { download_history, download_queue } from "../main";
+import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
+import { generateIPCDownloadConfig } from "../download-config/generate";
+import { downloadHistory, downloadQueue } from "../main";
 
 export function initDownloadButton() {
     document.getElementById("output-download-button")?.addEventListener("click", () => {
@@ -18,17 +18,15 @@ export async function startDownloadAsync() {
     if (consoleTextarea) consoleTextarea.value = "";
 
     if (shouldDownloadQueue) {
-        for (const downloadConfig of download_queue) {
+        for (const downloadConfig of downloadQueue) {
             await invoke("download", { config: downloadConfig });
-            download_history.push(downloadConfig);
+            downloadHistory.push(downloadConfig);
         };
     }
     else {
         const downloadConfig: IPCDownloadConfig = generateIPCDownloadConfig();
 
         await invoke("download", { config: downloadConfig });
-        download_history.push(downloadConfig);
+        downloadHistory.push(downloadConfig);
     }
-
-    for (const config of download_history) { console.log(config); }
 }

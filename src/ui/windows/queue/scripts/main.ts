@@ -2,23 +2,23 @@ import { emit, listen } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 export const appWindow = getCurrentWindow();
 
-import { initTitlebar } from "../common/titlebar";
+import { initTitlebar } from "../../../common/scripts/titlebar";
 
 document.addEventListener("DOMContentLoaded", async () => {
     initTitlebar();
 
-    document.getElementById("history-load-selected-button")?.addEventListener("click", () => {
-        const select = document.getElementById("history-select") as HTMLSelectElement;
+    document.getElementById("queue-load-selected-button")?.addEventListener("click", () => {
+        const select = document.getElementById("queue-select") as HTMLSelectElement;
 
         if (select.options.length < 1) {
             return;
         }
 
-        emit("history-load", select.selectedOptions[0].index);
+        emit("queue-load", select.selectedOptions[0].index);
     });
 
-    document.getElementById("history-remove-selected-button")?.addEventListener("click", () => {
-        const select = document.getElementById("history-select") as HTMLSelectElement;
+    document.getElementById("queue-remove-selected-button")?.addEventListener("click", () => {
+        const select = document.getElementById("queue-select") as HTMLSelectElement;
 
         const removedIndices: number[] = [];
 
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        emit("history-remove", removedIndices);
+        emit("queue-remove", removedIndices);
     });
 
-    const unlistenHistoryRequestReturn = await listen<string[]>("history-request-return", (event) => {
-        const select = document.getElementById("history-select");
+    const unlistenQueueRequestReturn = await listen<string[]>("queue-request-return", (event) => {
+        const select = document.getElementById("queue-select");
         for (let i = 0; i < event.payload.length; ++i) {
             const option = document.createElement("option");
             option.text = event.payload[i];
@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", () => {
-        unlistenHistoryRequestReturn();
+        unlistenQueueRequestReturn();
         appWindow.close();
     });
 
-    emit("history-request");
+    emit("queue-request");
 });

@@ -5,49 +5,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="scripts/index/main.ts" defer></script>
-
+    <script type="module" src="windows/index/scripts/main.ts" defer></script>
     <!-- common -->
-    <link rel="stylesheet" href="styles/common/body.css">
-    <link rel="stylesheet" href="styles/common/fonts.css">
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
 
-    <link rel="stylesheet" href="styles/common/containers/main.css">
-    <link rel="stylesheet" href="styles/common/containers/titlebar.css">
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
 
-    <link rel="stylesheet" href="styles/common/controls/button.css">
-    <link rel="stylesheet" href="styles/common/controls/checkbox.css">
-    <link rel="stylesheet" href="styles/common/controls/select.css">
-    <link rel="stylesheet" href="styles/common/controls/panel.css">
-    <link rel="stylesheet" href="styles/common/controls/text.css">
-    <link rel="stylesheet" href="styles/common/controls/textarea.css">
-    <link rel="stylesheet" href="styles/common/controls/textbox.css">
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/checkbox.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/panel.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <link rel="stylesheet" href="common/styles/controls/textarea.css">
+    <link rel="stylesheet" href="common/styles/controls/textbox.css">
     <!-- common -->
 
-    <link rel="stylesheet" href="styles/index/input/input.css">
-    <link rel="stylesheet" href="styles/index/input/url.css">
+    <link rel="stylesheet" href="windows/index/styles/input/input.css">
+    <link rel="stylesheet" href="windows/index/styles/input/url.css">
 
-    <link rel="stylesheet" href="styles/index/settings/settings.css">
-    <link rel="stylesheet" href="styles/index/settings/format.css">
-    <link rel="stylesheet" href="styles/index/settings/trim.css">
-    <link rel="stylesheet" href="styles/index/settings/size-fps.css">
-    <link rel="stylesheet" href="styles/index/settings/bitrate.css">
-    <link rel="stylesheet" href="styles/index/settings/arguments.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/settings.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/format.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/trim.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/size-fps.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/bitrate.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/arguments.css">
 
-    <link rel="stylesheet" href="styles/index/output/output.css">
-    <link rel="stylesheet" href="styles/index/output/name-path.css">
-    <link rel="stylesheet" href="styles/index/output/queue.css">
-    <link rel="stylesheet" href="styles/index/output/download.css">
-    <link rel="stylesheet" href="styles/index/output/mini-console.css">
+    <link rel="stylesheet" href="windows/index/styles/output/output.css">
+    <link rel="stylesheet" href="windows/index/styles/output/name-path.css">
+    <link rel="stylesheet" href="windows/index/styles/output/queue.css">
+    <link rel="stylesheet" href="windows/index/styles/output/download.css">
+    <link rel="stylesheet" href="windows/index/styles/output/mini-console.css">
 </head>
 
 <body>
     <div class="container-main">
         <div class="titlebar" id="titlebar">
-            <img class="titlebar__banner" src="assets/images/banner.png">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
             <p class="titlebar__version-text">v5.0.0</p>
             <div class="titlebar__buttons">
                 <button class="button__titlebar-mini-button" id="titlebar-history-edit-button"><img
-                        src="assets/images/history.png"></button>
+                        src="common/assets/images/history.png"></button>
                 <div style="width: 1px;"></div>
                 <button id="titlebar-minimize-button">_</button>
                 <button id="titlebar-close-button">x</button>
@@ -182,7 +181,7 @@
 
                 <p class="text text--output-path">Path</p>
                 <button class="button image-button button--output-path" id="output-path-button">
-                    <img src="assets/images/folder.png">
+                    <img src="common/assets/images/folder.png">
                 </button>
                 <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
             </div>
@@ -192,9 +191,9 @@
 
                 <div class="panel panel--output-queue-sub">
                     <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
-                            src="assets/images/saveload-right.png"></button>
+                            src="common/assets/images/saveload-right.png"></button>
                     <button class="button image-button button--output-queue-edit" id="output-queue-edit-button"><img
-                            src="assets/images/gear.png"></button>
+                            src="common/assets/images/gear.png"></button>
 
                     <label class="checkbox">
                         <input type="checkbox" id="output-queue-checkbox-enable" />
@@ -211,7 +210,7 @@
                 <p class="text text--output-console">Console</p>
                 <textarea readonly class="output-console-textarea" id="output-console-textarea"></textarea>
                 <button class="button button--output-console-open" id="output-console-open-button"> <img
-                        src="assets/images/console.png"></button>
+                        src="common/assets/images/console.png"></button>
             </div>
         </div>
     </div>

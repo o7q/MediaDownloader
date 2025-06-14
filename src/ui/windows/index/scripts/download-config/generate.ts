@@ -1,5 +1,5 @@
 
-import { IPCDownloadConfig } from "../../common/download-config";
+import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
 import { isUrlPlaylist } from "../utils";
 
 export function generateIPCDownloadConfig(): IPCDownloadConfig {

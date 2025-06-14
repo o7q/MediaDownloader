@@ -1,6 +1,6 @@
 import { isUrlPlaylist } from "../utils";
 
-export function initInput() { 
+export function initInputUI() { 
     const inputUrlTextbox = document.getElementById("input-url-textbox") as HTMLInputElement | null;
     const inputUrlText = document.getElementById("input-url-text") as HTMLInputElement | null;
 

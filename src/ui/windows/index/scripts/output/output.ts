@@ -3,7 +3,7 @@ import { initMiniConsole, openConsoleWindow } from "./console-opener";
 import { initQueue } from "./queue-opener";
 import { initDownloadButton } from "./download";
 
-export function initOutput() {
+export function initOutputUI() {
     const outputNameTextbox = document.getElementById("output-name-textbox") as HTMLInputElement | null;
     const outputNameText = document.getElementById("output-name-text") as HTMLInputElement | null;
 

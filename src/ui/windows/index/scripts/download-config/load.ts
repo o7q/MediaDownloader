@@ -1,4 +1,4 @@
-import { IPCDownloadConfig } from "../../common/download-config";
+import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
 
 export function loadIPCDownloadConfig(config: IPCDownloadConfig) {
     const $ = (id: string) => document.getElementById(id);

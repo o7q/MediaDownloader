@@ -1,7 +1,7 @@
 import { listen } from "@tauri-apps/api/event";
 import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 
-import { IPCLoggerEvent } from "../../common/logger";
+import { IPCLoggerEvent } from "../../../../common/scripts/logger";
 
 export function initMiniConsole() {
     let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
