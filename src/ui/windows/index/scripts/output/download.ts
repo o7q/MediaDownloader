@@ -11,20 +11,30 @@ export function initDownloadButton() {
 }
 
 export async function startDownloadAsync() {
-    let queueCheckbox = document.getElementById("output-queue-checkbox-enable") as HTMLInputElement | null;
-    const shouldDownloadQueue = queueCheckbox?.checked;
+    const downloadButton = document.getElementById("output-download-button") as HTMLButtonElement | null;
+    if (downloadButton) downloadButton.disabled = true;
 
-    let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
+    const progressBar = document.getElementById("progress-bar") as HTMLDivElement | null;
+    if (progressBar) progressBar.style.width = `0vw`;
+
+    const consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
     if (consoleTextarea) consoleTextarea.value = "";
 
-    if (shouldDownloadQueue) {
-        for (const downloadConfig of downloadQueue) {
-            downloadAsync(downloadConfig);
+    const queueCheckbox = document.getElementById("output-queue-checkbox-enable") as HTMLInputElement | null;
+    if (queueCheckbox?.checked) {
+        for (let i = 0; i < downloadQueue.length; ++i) {
+            await downloadAsync(downloadQueue[i]);
+
+            let percent = (i + 1) / downloadQueue.length * 100;
+            if (progressBar) progressBar.style.width = `${percent}vw`;
         };
     }
     else {
-        downloadAsync(generateIPCDownloadConfig());
+        await downloadAsync(generateIPCDownloadConfig());
+        if (progressBar) progressBar.style.width = `100vw`;
     }
+
+    if (downloadButton) downloadButton.disabled = false;
 }
 
 async function downloadAsync(downloadConfig: IPCDownloadConfig) {

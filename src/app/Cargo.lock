@@ -1146,7 +1146,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2dff15bf788c671c1934e366d07e30c1814a8ef514e1af724a602e8a2fbe1b10"
 dependencies = [
  "futures-core",
- "futures-sink",
 ]
 
 [[package]]
@@ -2218,6 +2217,7 @@ name = "media-downloader"
 version = "5.0.0"
 dependencies = [
  "flate2",
+ "futures-util",
  "reqwest",
  "serde",
  "serde_json",
@@ -2225,6 +2225,7 @@ dependencies = [
  "tauri-build",
  "tauri-plugin-dialog",
  "tauri-plugin-opener",
+ "tokio",
  "zip",
 ]
 
@@ -3275,7 +3276,6 @@ dependencies = [
  "base64 0.22.1",
  "bytes",
  "encoding_rs",
- "futures-channel",
  "futures-core",
  "futures-util",
  "h2",

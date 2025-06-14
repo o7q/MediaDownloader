@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="windows/index/styles/output/queue.css">
     <link rel="stylesheet" href="windows/index/styles/output/download.css">
     <link rel="stylesheet" href="windows/index/styles/output/mini-console.css">
+
+    <link rel="stylesheet" href="windows/index/styles/progress-bar.css">
 </head>
 
 <body>
@@ -45,6 +47,8 @@
             <img class="titlebar__banner" src="common/assets/images/banner.png">
             <p class="titlebar__version-text">v5.0.0</p>
             <div class="titlebar__buttons">
+                <button class="button__titlebar-mini-button" id="titlebar-reset-button"><img
+                        src="common/assets/images/trash.png"></button>
                 <button class="button__titlebar-mini-button" id="titlebar-history-edit-button"><img
                         src="common/assets/images/history.png"></button>
                 <div style="width: 1px;"></div>
@@ -224,6 +228,8 @@
                         src="common/assets/images/console.png"></button>
             </div>
         </div>
+
+        <div class="progress-bar" id="progress-bar"></div>
     </div>
 </body>
 

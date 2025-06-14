@@ -1,4 +1,5 @@
 import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
+import { isUrlPlaylist } from "../utils";
 
 export function loadIPCDownloadConfig(config: IPCDownloadConfig) {
     const $ = (id: string) => document.getElementById(id);
@@ -33,4 +34,7 @@ export function loadIPCDownloadConfig(config: IPCDownloadConfig) {
 
     ($("output-name-textbox")                  as HTMLInputElement).value    = config.output.name;
     ($("output-path-textbox")                  as HTMLInputElement).value    = config.output.path;
+
+    if (isUrlPlaylist(config.input.url)) ($("input-url-text")   as HTMLParagraphElement).textContent = "URL (Playlist Detected)";
+    if (config.output.name !== "")       ($("output-name-text") as HTMLParagraphElement).textContent = "Name";
 }

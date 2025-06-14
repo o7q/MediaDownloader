@@ -1,17 +1,20 @@
-use std::fs::File;
-use std::io::{copy, BufWriter};
+use futures_util::StreamExt;
+use tokio::fs::File;
+use tokio::io::AsyncWriteExt;
 
-pub fn download_file(url: &str, path: &str) -> Result<(), Box<dyn std::error::Error>> {
-    println!(
-        "Downloading file from address: \"{}\", to: \"{}\"",
-        url, path
-    );
+pub async fn download_file_async(url: &str, path: &str) -> Result<(), Box<dyn std::error::Error>> {
+    let mut file: File = File::create(path).await?;
+    println!("Downloading: \"{}\"", url);
 
-    let response: reqwest::blocking::Response = reqwest::blocking::get(url)?;
+    let response: reqwest::Response = reqwest::get(url).await?;
+    let mut stream = response.bytes_stream();
 
-    let mut dest: BufWriter<File> = BufWriter::new(File::create(path)?);
-    let mut content: reqwest::blocking::Response = response;
+    while let Some(chunk_result) = stream.next().await {
+        let chunk = chunk_result?;
+        file.write_all(&chunk).await?;
+    }
 
-    copy(&mut content, &mut dest)?;
+    file.flush().await?;
+
     Ok(())
 }

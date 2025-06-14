@@ -1,0 +1,15 @@
+.progress-bar {
+    width: 0vw;
+    height: 3px;
+
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: rgb(33, 136, 33);
+
+    transition: 0.75s width ease-in-out;
+}

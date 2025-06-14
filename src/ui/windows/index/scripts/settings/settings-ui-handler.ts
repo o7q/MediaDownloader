@@ -114,7 +114,7 @@ export function updateSettingsUI() {
                 sizeEnable: false,
                 framerateEnable: false,
                 vbrEnable: false,
-                abrEnable: true
+                abrEnable: false
             };
             break;
 
@@ -196,7 +196,7 @@ function handleTrim(uiEnableState: UIEnableState) {
 
     if (!trimCheckbox || !trimStartCheckbox || !trimStartTextbox || !trimEndCheckbox || !trimEndTextbox) return;
 
-    if (uiEnableState.trimEnable) {     
+    if (uiEnableState.trimEnable) {
         trimCheckbox.disabled = false;
         trimStartCheckbox.disabled = false;
         trimStartTextbox.disabled = false;
@@ -222,6 +222,7 @@ function handleSize(uiEnableState: UIEnableState) {
     if (!sizeCheckbox || !sizeWidthTextbox || !sizeHeightTextbox) return;
 
     if (uiEnableState.sizeEnable) {
+        sizeCheckbox.disabled = false;
         sizeWidthTextbox.disabled = false;
         sizeHeightTextbox.disabled = false;
     }
@@ -240,13 +241,13 @@ function handleFramerate(uiEnableState: UIEnableState) {
 
     if (!framerateCheckbox || !framerateTextbox) return;
 
-    if (uiEnableState.framerateEnable) {      
+    if (uiEnableState.framerateEnable) {
         framerateCheckbox.disabled = false;
         framerateTextbox.disabled = false;
     }
     else {
         framerateCheckbox.checked = false;
-    
+
         framerateCheckbox.disabled = true;
         framerateTextbox.disabled = true;
     }

@@ -7,7 +7,7 @@ use crate::{
 };
 
 #[tauri::command]
-pub fn write_current_download_config(config: IPCDownloadConfig) {
+pub fn data_write_download_config(config: IPCDownloadConfig) {
     if !directory_exists("MediaDownloader/config") {
         let _ = create_directory("MediaDownloader/config");
     }
@@ -19,12 +19,7 @@ pub fn write_current_download_config(config: IPCDownloadConfig) {
 }
 
 #[tauri::command]
-pub fn load_current_download_config() -> IPCDownloadConfig {
-    deserialize_file_read("MediaDownloader/config/download_config.json", false)
-}
-
-#[tauri::command]
-pub fn write_queue(queue: Vec<IPCDownloadConfig>) {
+pub fn data_write_queue(queue: Vec<IPCDownloadConfig>) {
     if !directory_exists("MediaDownloader/config") {
         let _ = create_directory("MediaDownloader/config");
     }
@@ -36,12 +31,7 @@ pub fn write_queue(queue: Vec<IPCDownloadConfig>) {
 }
 
 #[tauri::command]
-pub fn load_queue() -> Vec<IPCDownloadConfig> {
-    deserialize_file_read("MediaDownloader/config/queue.dat", true)
-}
-
-#[tauri::command]
-pub fn write_history(history: Vec<IPCDownloadConfig>) {
+pub fn data_write_history(history: Vec<IPCDownloadConfig>) {
     if !directory_exists("MediaDownloader/config") {
         let _ = create_directory("MediaDownloader/config");
     }
@@ -53,6 +43,16 @@ pub fn write_history(history: Vec<IPCDownloadConfig>) {
 }
 
 #[tauri::command]
-pub fn load_history() -> Vec<IPCDownloadConfig> {
+pub fn data_load_download_config() -> IPCDownloadConfig {
+    deserialize_file_read("MediaDownloader/config/download_config.json", false)
+}
+
+#[tauri::command]
+pub fn data_load_queue() -> Vec<IPCDownloadConfig> {
+    deserialize_file_read("MediaDownloader/config/queue.dat", true)
+}
+
+#[tauri::command]
+pub fn data_load_history() -> Vec<IPCDownloadConfig> {
     deserialize_file_read("MediaDownloader/config/history.dat", true)
 }

@@ -25,24 +25,37 @@ export async function init() {
     initGlobals();
 
     loadDefaultDownloadConfig();
+
+    const downloadButton = document.getElementById("output-download-button") as HTMLButtonElement | null;
+
+    if (!await invoke("bootstrap_check")) {
+        if (downloadButton) downloadButton.disabled = true;
+        await invoke("bootstrap_install")
+        if (downloadButton) downloadButton.disabled = false;
+    }
 }
 
 async function initTitlebarButtons() {
+    document.getElementById("titlebar-reset-button")?.addEventListener("click", async () => {
+        loadIPCDownloadConfig(createIPCDownloadConfig());
+        updateSettingsUI();
+    });
+
     document.getElementById("titlebar-minimize-button")?.addEventListener("click", async () => {
         appWindow.minimize();
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", async () => {
-        await invoke("write_current_download_config", { config: generateIPCDownloadConfig() });
-        await invoke("write_queue", { queue: downloadQueue });
-        await invoke("write_history", { history: downloadHistory });
+        await invoke("data_write_download_config", { config: generateIPCDownloadConfig() });
+        await invoke("data_write_queue", { queue: downloadQueue });
+        await invoke("data_write_history", { history: downloadHistory });
         appWindow.close();
     });
 }
 
 async function initGlobals() {
-    let tempDownloadQueue: IPCDownloadConfig[] = await invoke("load_queue");
-    let tempDownloadHistory: IPCDownloadConfig[] = await invoke("load_history");
+    let tempDownloadQueue: IPCDownloadConfig[] = await invoke("data_load_queue");
+    let tempDownloadHistory: IPCDownloadConfig[] = await invoke("data_load_history");
 
     for (let i = 0; i < tempDownloadQueue.length; ++i) {
         downloadQueue[i] = tempDownloadQueue[i];
@@ -54,7 +67,7 @@ async function initGlobals() {
 }
 
 async function loadDefaultDownloadConfig() {
-    const downloadConfig: IPCDownloadConfig = await invoke("load_current_download_config");
+    const downloadConfig: IPCDownloadConfig = await invoke("data_load_download_config");
 
     if (downloadConfig.valid) {
         loadIPCDownloadConfig(downloadConfig);

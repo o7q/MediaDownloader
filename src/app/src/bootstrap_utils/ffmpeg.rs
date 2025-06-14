@@ -1,24 +1,29 @@
-use crate::utils::{directory::create_directory, file::file_exists, net::download_file};
-
 use std::io::{copy, BufWriter};
 use std::{fs::File, io::BufReader};
 use zip::ZipArchive;
 
+use crate::logger::logger::IPCLogger;
+use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
+
 #[cfg(target_os = "windows")]
-pub fn bootstrap_ffmpeg() {
+pub async fn bootstrap_ffmpeg(logger: &IPCLogger) {
     if file_exists("MediaDownloader/bin/ffmpeg.exe") {
         return;
     }
 
     let _ = create_directory("MediaDownloader/bin");
-
     let _ = create_directory("MediaDownloader/_temp");
-    let _ = download_file(
+
+    logger.log("Downloading ffmpeg...");
+    let _ = download_file_async(
         "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
         "MediaDownloader/_temp/ffmpeg.zip",
-    );
+    ).await;
+    logger.log("Downloading ffmpeg to \"MediaDownloader/_temp/ffmpeg.zip\"");
 
+    logger.log("Extracting ffmpeg...");
     let _ = extract_ffmpeg();
+    logger.log("Extracted ffmpeg to \"MediaDownloader/bin/ffmpeg.exe\"");
 }
 
 #[cfg(target_os = "windows")]
@@ -45,4 +50,4 @@ fn extract_ffmpeg() -> zip::result::ZipResult<()> {
 }
 
 #[cfg(target_os = "linux")]
-pub fn bootstrap_ffmpeg() {}
+pub fn bootstrap_ffmpeg(logger: &IPCLogger) {}
