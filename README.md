@@ -37,7 +37,7 @@ By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/Media
 
 ## 🔨 How do I build it?
 
-You can follow these steps:
+By following these steps:
 - Follow the Tauri prerequisites tutorial:
   - https://tauri.app/start/prerequisites
 
@@ -100,7 +100,10 @@ The built binary can be found in `src/app/target/release`.
 ---
 
 ## ❗ Help me
-If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
+
+If you have an issue or question:
+- You can contact me on Discord (*my username is **o7q***)
+- You can create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
 
 ---
 
