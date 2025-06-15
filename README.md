@@ -19,6 +19,8 @@
     <img src="docs/images/interface.png" style="width: 400px;">
 </div>
 
+---
+
 ## What is it?
 
 A simple, modern, and extremely lightweight GUI wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [FFmpeg](https://ffmpeg.org). \
