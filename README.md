@@ -97,6 +97,8 @@ The built binary can be found in `src/app/target/release`.
 
 </details>
 
+---
+
 ## ❗ Help me
 If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
 
