@@ -45,7 +45,7 @@ You can follow these steps:
     npm run tauri-build
     ```
 
-The built binary can be found in `src/app/target/release`
+The built binary can be found in `src/app/target/release`.
 
 ---
 
