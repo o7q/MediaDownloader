@@ -44,7 +44,7 @@ You can follow these steps:
     ```
     npm run tauri-build
     ```
-    **OR** - *for development*:
+    **OR** *(for development)*:
     ```
     npm run tauri-dev
     ```
