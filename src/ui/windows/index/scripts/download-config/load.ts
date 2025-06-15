@@ -1,7 +1,7 @@
 import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
 import { isUrlPlaylist } from "../utils";
 
-export function loadIPCDownloadConfig(config: IPCDownloadConfig) {
+export function loadIPCDownloadConfigIntoUI(config: IPCDownloadConfig) {
     const $ = (id: string) => document.getElementById(id);
     
     ($("input-url-textbox")                    as HTMLInputElement).value    = config.input.url;

@@ -1,7 +1,7 @@
 import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 
-import { downloadHistory } from "./main";
-import { loadIPCDownloadConfig } from "./download-config/load";
+import { GLOBAL } from "./main";
+import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
 
 export function initHistoryOpener() {
     document.getElementById("titlebar-history-edit-button")?.addEventListener("click", async () => {
@@ -10,7 +10,7 @@ export function initHistoryOpener() {
 }
 
 export async function openHistoryWindow() {
-    const names = downloadHistory.map(item => item.output.name);
+    const names = GLOBAL.downloadHistory.map(item => item.output.name);
 
     const webview = new WebviewWindow("historyWindow", {
         url: "history.html",
@@ -27,15 +27,15 @@ export async function openHistoryWindow() {
     });
 
     const unlistenHistoryLoad = await webview.listen<number>("history-load", (event) => {
-        loadIPCDownloadConfig(downloadHistory[event.payload]);
+        loadIPCDownloadConfigIntoUI(GLOBAL.downloadHistory[event.payload]);
     });
 
     const unlistenHistoryRemove = await webview.listen<number[]>("history-remove", (event) => {
         const sortedIndices = [...event.payload].sort((a, b) => b - a);
 
         sortedIndices.forEach(index => {
-            if (index >= 0 && index < downloadHistory.length) {
-                downloadHistory.splice(index, 1);
+            if (index >= 0 && index < GLOBAL.downloadHistory.length) {
+                GLOBAL.downloadHistory.splice(index, 1);
             }
         });
     });

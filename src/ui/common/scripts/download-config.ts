@@ -46,8 +46,8 @@ export interface IPCDownloadConfig {
     output:   IPCDownloadOutputConfig;
 }
 
-export function createIPCDownloadConfig() {
-    const config: IPCDownloadConfig = {
+export function createIPCDownloadConfig(): IPCDownloadConfig {
+    return {
         valid: true,
 
         input: {
@@ -76,7 +76,7 @@ export function createIPCDownloadConfig() {
             vbr_set_bitrate_enable:         true,
             vbr_set_bitrate:                "10M",
             abr_set_bitrate_enable:         true,
-            abr_set_bitrate:                "320K",
+            abr_set_bitrate:                "320k",
 
             custom_ytdlp_arguments_enable:  false,
             custom_ytdlp_arguments:         [],
@@ -90,6 +90,4 @@ export function createIPCDownloadConfig() {
             path: ""
         }
     };
-
-    return config;
 }

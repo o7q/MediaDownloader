@@ -2,7 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 
 import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
 import { generateIPCDownloadConfig } from "../download-config/generate";
-import { downloadHistory, downloadQueue } from "../main";
+import { GLOBAL } from "../main";
 
 export function initDownloadButton() {
     document.getElementById("output-download-button")?.addEventListener("click", () => {
@@ -22,10 +22,10 @@ export async function startDownloadAsync() {
 
     const queueCheckbox = document.getElementById("output-queue-checkbox-enable") as HTMLInputElement | null;
     if (queueCheckbox?.checked) {
-        for (let i = 0; i < downloadQueue.length; ++i) {
-            await downloadAsync(downloadQueue[i]);
+        for (let i = 0; i < GLOBAL.downloadQueue.length; ++i) {
+            await downloadAsync(GLOBAL.downloadQueue[i]);
 
-            let percent = (i + 1) / downloadQueue.length * 100;
+            let percent = (i + 1) / GLOBAL.downloadQueue.length * 100;
             if (progressBar) progressBar.style.width = `${percent}vw`;
         };
     }
@@ -39,5 +39,5 @@ export async function startDownloadAsync() {
 
 async function downloadAsync(downloadConfig: IPCDownloadConfig) {
     let purifiedDownloadConfig: IPCDownloadConfig = await invoke("download", { config: downloadConfig });
-    downloadHistory.push(purifiedDownloadConfig);
+    GLOBAL.downloadHistory.push(purifiedDownloadConfig);
 }

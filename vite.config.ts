@@ -32,7 +32,8 @@ export default defineConfig(async () => ({
         index:   "src/ui/index.html",
         console: "src/ui/console.html",
         queue:   "src/ui/queue.html",
-        history: "src/ui/history.html"
+        history: "src/ui/history.html",
+        update:  "src/ui/update.html"
       },
     },
   },

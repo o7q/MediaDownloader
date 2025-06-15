@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/update/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/panel.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="windows/update/styles/main.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--header">MediaDownloader has an update!</p>
+
+        <div class="panel panel--background"></div>
+
+        <p class="text text--version" id="version-text">Version:</p>
+        <p class="text text--description" id="description-text">Changelog: </p>
+
+        <p class="text text--prompt">Do you want to open the releases page?</p>
+        <button class="button button--yes" id="yes-button">Yes</button>
+        <button class="button button--no" id="no-button">No</button>
+        <button class="button button--dontshow" id="dontshow-button">No, don't show again</button>
+    </div>
+</body>
+
+</html>

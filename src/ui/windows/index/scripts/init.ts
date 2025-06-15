@@ -1,6 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 
-import { appWindow, downloadHistory, downloadQueue } from "./main";
+import { GLOBAL, appWindow } from "./main";
 
 import { initTitlebar } from "../../../common/scripts/titlebar";
 import { initInputUI } from "./input/input";
@@ -9,9 +9,15 @@ import { updateSettingsUI } from "./settings/settings-ui-handler";
 import { initOutputUI } from "./output/output";
 import { initHistoryOpener } from "./history-opener";
 
-import { createIPCDownloadConfig, IPCDownloadConfig } from "../../../common/scripts/download-config";
+import { createIPCUserConfig, IPCUserConfig } from "../../../common/scripts/user-config";
+import { loadIPCUserConfigIntoUI } from "./user-config/load";
+import { updateIPCUserConfigFromUI } from "./user-config/update";
+
+import { IPCDownloadConfig, createIPCDownloadConfig } from "../../../common/scripts/download-config";
 import { generateIPCDownloadConfig } from "./download-config/generate";
-import { loadIPCDownloadConfig } from "./download-config/load";
+import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
+
+import { checkForUpdates } from "./update-opener";
 
 export async function init() {
     initTitlebar();
@@ -22,9 +28,10 @@ export async function init() {
     initOutputUI();
     initHistoryOpener();
 
-    initGlobals();
+    loadUserConfig();
+    loadDownloadConfig();
 
-    loadDefaultDownloadConfig();
+    loadBulkDownloadConfigs();
 
     const downloadButton = document.getElementById("output-download-button") as HTMLButtonElement | null;
 
@@ -33,11 +40,13 @@ export async function init() {
         await invoke("bootstrap_install")
         if (downloadButton) downloadButton.disabled = false;
     }
+
+    checkForUpdates();
 }
 
 async function initTitlebarButtons() {
     document.getElementById("titlebar-reset-button")?.addEventListener("click", async () => {
-        loadIPCDownloadConfig(createIPCDownloadConfig());
+        loadIPCDownloadConfigIntoUI(createIPCDownloadConfig());
         updateSettingsUI();
     });
 
@@ -46,34 +55,39 @@ async function initTitlebarButtons() {
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", async () => {
+        updateIPCUserConfigFromUI();
+        await invoke("data_write_user_config", { config: GLOBAL.userConfig });
         await invoke("data_write_download_config", { config: generateIPCDownloadConfig() });
-        await invoke("data_write_queue", { queue: downloadQueue });
-        await invoke("data_write_history", { history: downloadHistory });
+        await invoke("data_write_queue", { queue: GLOBAL.downloadQueue });
+        await invoke("data_write_history", { history: GLOBAL.downloadHistory });
         appWindow.close();
     });
 }
 
-async function initGlobals() {
-    let tempDownloadQueue: IPCDownloadConfig[] = await invoke("data_load_queue");
-    let tempDownloadHistory: IPCDownloadConfig[] = await invoke("data_load_history");
 
-    for (let i = 0; i < tempDownloadQueue.length; ++i) {
-        downloadQueue[i] = tempDownloadQueue[i];
+async function loadUserConfig() {
+    let userConfig: IPCUserConfig = await invoke("data_read_user_config");
+
+    if (!userConfig.valid) {
+        userConfig = createIPCUserConfig();
     }
 
-    for (let i = 0; i < tempDownloadHistory.length; ++i) {
-        downloadHistory[i] = tempDownloadHistory[i];
-    }
+    GLOBAL.userConfig = userConfig;
+    loadIPCUserConfigIntoUI(userConfig);
 }
 
-async function loadDefaultDownloadConfig() {
-    const downloadConfig: IPCDownloadConfig = await invoke("data_load_download_config");
+async function loadDownloadConfig() {
+    let downloadConfig: IPCDownloadConfig = await invoke("data_read_download_config");
 
-    if (downloadConfig.valid) {
-        loadIPCDownloadConfig(downloadConfig);
-    } else {
-        loadIPCDownloadConfig(createIPCDownloadConfig());
+    if (!downloadConfig.valid) {
+        downloadConfig = createIPCDownloadConfig();
     }
 
+    loadIPCDownloadConfigIntoUI(downloadConfig);
     updateSettingsUI();
+}
+
+async function loadBulkDownloadConfigs() {
+    GLOBAL.downloadQueue = await invoke("data_read_queue");
+    GLOBAL.downloadHistory = await invoke("data_read_history");
 }

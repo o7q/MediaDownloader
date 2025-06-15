@@ -1,0 +1,69 @@
+.text--header {
+    top: 40px;
+    left: 5px;
+
+    font-size: 15px;
+}
+
+.panel--background {
+    background-color: rgb(51, 51, 51);
+
+    top: 70px;
+    left: 5px;
+
+    width: calc(100vw - 10px);
+    height: calc(100vh - 135px);
+
+    border-radius: 5px;
+}
+
+.text--version {
+    top: 70px;
+    left: 27px;
+
+    font-size: 12px;
+}
+
+.text--description {
+    top: 85px;
+    left: 10px;
+
+    font-size: 12px;
+}
+
+.text--prompt {
+    left: 5px;
+    bottom: 40px;
+
+    font-size: 12px;
+}
+
+.button--yes {
+    width: 50px;
+    height: 25px;
+
+    font-size: 12px;
+
+    left: 5px;
+    bottom: 15px;
+}
+
+.button--no {
+    width: 50px;
+    height: 25px;
+
+    font-size: 12px;
+
+    left: 60px;
+    bottom: 15px;
+}
+
+.button--dontshow {
+    width: 130px;
+    height: 25px;
+
+    font-size: 12px;
+
+    left: 115px;
+    bottom: 15px;
+}

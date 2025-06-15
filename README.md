@@ -51,6 +51,41 @@ You can follow these steps:
 
 The built binary can be found in `src/app/target/release`.
 
+## FAQ
+### How do I use the custom arguments option?
+- Every argument should be separated by a newline (`\n`) \
+  *Examples:*
+    ```
+    -x
+    --audio-format
+    mp3
+    ```
+
+    ```
+    -b:v
+    10M
+    -b:a
+    320K
+    ```
+
+### How do I specify trim values?
+- Trim values should be in the format of a timestamp \
+  *Examples:*
+  - `0:00` and `0:10`
+  - `1:00` and `1:30`
+  - `10` and `15`
+  - `52:32` and `1:20:21`
+  
+### How do I specify bitrate values?
+- Bitrate values should be a number, followed by a byte abbreviation \
+  *Examples:*
+  - `1G` (for gigabits)
+  - `10M` (for megabits)
+  - `320k` (for kilobits)
+
+## Help me
+If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
+
 ---
 
 Built with [**Tauri**](https://tauri.app)

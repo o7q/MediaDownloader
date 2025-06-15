@@ -6,7 +6,8 @@
     "main",
     "consoleWindow",
     "queueWindow",
-    "historyWindow"
+    "historyWindow",
+    "updateWindow"
   ],
   "permissions": [
     "opener:default",

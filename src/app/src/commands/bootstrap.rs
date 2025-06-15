@@ -2,7 +2,7 @@ use futures_util::join;
 use tauri::AppHandle;
 
 use crate::{
-    bootstrap_utils::{ffmpeg::bootstrap_ffmpeg, ytdlp::bootstrap_ytdlp},
+    bootstrap::{ffmpeg::bootstrap_ffmpeg, ytdlp::bootstrap_ytdlp},
     logger::logger::IPCLogger,
     utils::file::file_exists,
 };

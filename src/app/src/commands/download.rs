@@ -1,17 +1,17 @@
 use tauri::AppHandle;
 
-use crate::downloader::default_downloader::DefaultDownloader;
-use crate::downloader::downloader::Downloader;
-use crate::downloader::thumbnail_downloader::ThumbnailDownloader;
+use crate::media::downloader::default_downloader::DefaultDownloader;
+use crate::media::downloader::downloader::Downloader;
+use crate::media::downloader::thumbnail_downloader::ThumbnailDownloader;
 
-use crate::converter::audio_converter::AudioConverter;
-use crate::converter::converter::Converter;
-use crate::converter::gif_converter::GifConverter;
-use crate::converter::image_converter::ImageConverter;
-use crate::converter::sequence_converter::SequenceConverter;
-use crate::converter::video_converter::VideoConverter;
+use crate::media::converter::audio_converter::AudioConverter;
+use crate::media::converter::converter::Converter;
+use crate::media::converter::gif_converter::GifConverter;
+use crate::media::converter::image_converter::ImageConverter;
+use crate::media::converter::sequence_converter::SequenceConverter;
+use crate::media::converter::video_converter::VideoConverter;
 
-use crate::finalizer::finalizer::Finalizer;
+use crate::media::finalizer::finalizer::Finalizer;
 
 use crate::processor::processor::ProcessPaths;
 

@@ -1,8 +1,8 @@
 import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 
-import { downloadQueue } from "../main";
+import { GLOBAL } from "../main";
 import { generateIPCDownloadConfig } from "../download-config/generate";
-import { loadIPCDownloadConfig } from "../download-config/load";
+import { loadIPCDownloadConfigIntoUI } from "../download-config/load";
 
 export function initQueueOpener() {
     document.getElementById("output-queue-add-button")?.addEventListener("click", async () => {
@@ -21,7 +21,7 @@ export function initQueueOpener() {
         } else {
             nameTextbox.classList.remove("textbox-error");
             nameTextbox.title = "";
-            downloadQueue.push(generateIPCDownloadConfig());
+            GLOBAL.downloadQueue.push(generateIPCDownloadConfig());
         }
     });
 
@@ -46,7 +46,7 @@ export function initQueueOpener() {
 }
 
 export async function openQueueWindow() {
-    const names = downloadQueue.map(item => item.output.name);
+    const names = GLOBAL.downloadQueue.map(item => item.output.name);
 
     const webview = new WebviewWindow("queueWindow", {
         url: "queue.html",
@@ -63,15 +63,15 @@ export async function openQueueWindow() {
     });
 
     const unlistenQueueLoad = await webview.listen<number>("queue-load", (event) => {
-        loadIPCDownloadConfig(downloadQueue[event.payload]);
+        loadIPCDownloadConfigIntoUI(GLOBAL.downloadQueue[event.payload]);
     });
 
     const unlistenQueueRemove = await webview.listen<number[]>("queue-remove", (event) => {
         const sortedIndices = [...event.payload].sort((a, b) => b - a);
 
         sortedIndices.forEach(index => {
-            if (index >= 0 && index < downloadQueue.length) {
-                downloadQueue.splice(index, 1);
+            if (index >= 0 && index < GLOBAL.downloadQueue.length) {
+                GLOBAL.downloadQueue.splice(index, 1);
             }
         });
     });
