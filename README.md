@@ -51,7 +51,7 @@ You can follow these steps:
 
 The built binary can be found in `src/app/target/release`.
 
-## FAQ
+## 📖 FAQ
 
 <details>
 <summary><strong>View</strong></summary>
@@ -87,10 +87,10 @@ The built binary can be found in `src/app/target/release`.
   - `10M` (for megabits)
   - `320k` (for kilobits)
 
-## Help me
-If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
-
 </details>
+
+## ❗ Help me
+If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
 
 ---
 
