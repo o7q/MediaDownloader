@@ -19,30 +19,34 @@
     <img src="docs/images/interface.png" style="width: 400px;">
 </div>
 
-## What is it?
+## ❔ What is it?
 
 A **simple** and **lightweight** GUI wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [FFmpeg](https://ffmpeg.org).
 
 It provides a simple abstraction for basic yt-dlp and FFmpeg features while giving full access to each API via custom argument injections, all nicely packaged in a self-contained, cross-platform binary.
 
-## How do I get it?
+## 💽 How do I get it?
 
-By grabbing a binary from the [downloads page](https://github.com/o7q/MediaDownloader/releases).
+By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
-## How do I build it?
+## 🔨 How do I build it?
 
 You can follow these steps:
-- Ensure you have **Node.js** and **Rust** installed:
-  - https://nodejs.org
-  - https://www.rust-lang.org
+- Follow the Tauri prerequisites tutorial:
+  - https://tauri.app/start/prerequisites
 
-- Download & extract the MediaDownloader [source code](https://github.com/o7q/MediaDownloader/archive/refs/heads/main.zip).
+- Download & extract the MediaDownloader [source code](https://github.com/o7q/MediaDownloader/archive/refs/heads/main.zip)
+
 - Navigate into the source code and run following commands:
     ```
     npm install
     ```
     ```
     npm run tauri-build
+    ```
+    **OR** - *for development*:
+    ```
+    npm run tauri-dev
     ```
 
 The built binary can be found in `src/app/target/release`.
