@@ -19,22 +19,20 @@
     <img src="docs/images/interface.png" style="width: 400px;">
 </div>
 
+# MediaDownloader
+
 ---
 
-# What is it?
+## What is it?
 
 A simple, modern, and extremely lightweight GUI wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [FFmpeg](https://ffmpeg.org). \
 It provides a simple abstraction for basic yt-dlp and FFmpeg features while giving full access to each API via custom argument injections.
 
----
-
-# How do I use it?
+## How do I use it?
 
 You can use MediaDownloader on any platform by simply grabbing a binary from the [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
----
-
-# How do I build it?
+## How do I build it?
 
 You can follow these steps:
 
@@ -43,7 +41,7 @@ You can follow these steps:
   - https://www.rust-lang.org
 
 - Download & extract the MediaDownloader [source code](https://github.com/o7q/MediaDownloader/archive/refs/heads/main.zip).
-- Navigate into the source code in your terminal and run the following commands:
+- Navigate into the source code and run following commands:
     ```
     npm install
     ```
