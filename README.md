@@ -1,4 +1,4 @@
-<center>
+<div align="center">
     <table>
         <tr>
             <td>
@@ -19,7 +19,7 @@
     <i>UI Screenshot</i>
     <br>
     <img src="docs/images/interface.png" style="width: 400px;">
-</center>
+</div>
 
 ---
 
