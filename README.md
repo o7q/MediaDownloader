@@ -52,6 +52,10 @@ You can follow these steps:
 The built binary can be found in `src/app/target/release`.
 
 ## FAQ
+
+<details>
+<summary><strong>View</strong></summary>
+
 ### How do I use the custom arguments option?
 - Every argument should be separated by a newline (`\n`) \
   *Examples:*
@@ -85,6 +89,8 @@ The built binary can be found in `src/app/target/release`.
 
 ## Help me
 If you have an issue or question: You can contact me on Discord (*my username is **o7q***) or create an issue on the [issues page](https://github.com/o7q/MediaDownloader/issues).
+
+</details>
 
 ---
 
