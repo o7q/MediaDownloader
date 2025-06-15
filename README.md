@@ -16,8 +16,6 @@
             </td>
         </tr>
     </table>
-    <i>UI Screenshot</i>
-    <br>
     <img src="docs/images/interface.png" style="width: 400px;">
 </div>
 
@@ -34,9 +32,11 @@ It provides a simple abstraction for basic yt-dlp and FFmpeg features while givi
 
 You can use MediaDownloader on any platform by simply grabbing a binary from the [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
-## How do I use it, but in a cooler fashion?
+---
 
-If you'd like to build MediaDownloader yourself, you can follow these steps:
+# How do I build it?
+
+You can follow these steps:
 
 - Ensure you have **Node.js** and **Rust** installed
   - https://nodejs.org
@@ -44,10 +44,10 @@ If you'd like to build MediaDownloader yourself, you can follow these steps:
 
 - Download & extract the MediaDownloader [source code](https://github.com/o7q/MediaDownloader/archive/refs/heads/main.zip).
 - Navigate into the source code in your terminal and run the following commands:
-    ```cmd
+    ```
     npm install
     ```
-    ```cmd
+    ```
     npm run tauri-build
     ```
 
