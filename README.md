@@ -19,17 +19,17 @@
     <img src="docs/images/interface.png" style="width: 400px;">
 </div>
 
-## What is It?
+## What is it?
 
 A **simple** and **lightweight** GUI wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [FFmpeg](https://ffmpeg.org).
 
 It provides a simple abstraction for basic yt-dlp and FFmpeg features while giving full access to each API via custom argument injections, all nicely packaged in a self-contained, cross-platform binary.
 
-## How do I use It?
+## How do I use it?
 
 By grabbing a binary from the [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
-## How do I build It?
+## How do I build it?
 
 You can follow these steps:
 
