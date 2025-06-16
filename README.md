@@ -35,6 +35,43 @@ By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/Media
 
 ---
 
+## 💽 How do I use it?
+
+<details>
+<summary><strong>Windows</strong></summary>
+
+Simply run `MediaDownloader.exe`. It will automatically install all depenencies into the `MediaDownloader/bin` directory.
+
+</details>
+
+<details>
+<summary><strong>Debian/Ubuntu</strong></summary>
+
+To use MediaDownloader on Debian/Ubuntu Linux. You need to install **yt-dlp** and **FFmpeg** manually.
+
+- Installing FFmpeg:
+  ```
+  sudo apt install ffmpeg
+  ```
+
+- Installing yt-dlp:
+  - Download yt-dlp from:
+    - https://github.com/yt-dlp/yt-dlp/releases
+  - Rename `yt-dlp_linux` to `yt-dlp`
+  - Place `yt-dlp` in your `/usr/local/bin` directory
+    ```
+    sudo cp /<YOUR PATH TO>/yt-dlp /usr/local/bin/yt-dlp
+    ```
+    ```
+    sudo chmod +x /usr/local/bin/yt-dlp
+    ```
+
+After you follow these steps, MediaDownloader should work as expected.
+
+</details>
+
+---
+
 ## 🔨 How do I build it?
 
 By following these steps:

@@ -3,7 +3,7 @@
 - It is now cross-platform (currently it has only been tested for Windows and Linux)
 - Greatly improved the UI (the UI has been redesigned from scratch with a HTML + CSS frontend, enabling a more cohesive experience)
     - The console window is now embedded
-    - The UI is now resizeable
+    - The window is now resizeable
     - Split common functions into separate windows
 - JSON is now used for storing configuration files
 - Fixed yt-dlp breaking every once in a while, yt-dlp will now be auto-updated
