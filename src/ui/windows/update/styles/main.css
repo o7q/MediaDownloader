@@ -14,21 +14,40 @@
     width: calc(100vw - 10px);
     height: calc(100vh - 135px);
 
+    overflow: hidden;
+
     border-radius: 5px;
 }
 
 .text--version {
-    top: 70px;
-    left: 27px;
+    top: 5px;
+    left: 18px;
 
     font-size: 12px;
+    font-family: monospace;
+}
+
+.text--changelog {
+    top: 15px;
+    left: 5px;
+
+    font-size: 12px;
+    font-family: monospace;
+
+    line-height: 12px;
 }
 
 .text--description {
-    top: 85px;
-    left: 10px;
+    top: 15px;
+    left: 75px;
 
     font-size: 12px;
+    font-family: monospace;
+
+    line-height: 12px;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .text--prompt {

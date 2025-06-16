@@ -1,1 +1,0 @@
-pub const VERSION_ID: i32 = 500;

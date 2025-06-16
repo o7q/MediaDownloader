@@ -1,10 +1,9 @@
-import { getCurrentWindow } from "@tauri-apps/api/window";
-export const appWindow = getCurrentWindow();
-
 import { invoke } from "@tauri-apps/api/core";
-import { IPCUpdateStatus } from "../../../common/scripts/update";
 import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+
 import { GLOBAL } from "./main";
+import { IPCUpdateStatus } from "../../../common/scripts/update";
+import { cleanupAndClose } from "./cleanup";
 
 export async function checkForUpdates() {
     const update_status: IPCUpdateStatus = await invoke<IPCUpdateStatus>("update_check");
@@ -26,6 +25,7 @@ export async function checkForUpdates() {
 
         const unlistenUpdateYes = await webview.listen("update-yes", () => {
             invoke("update_open_page");
+            cleanupAndClose();
         });
 
         const unlistenUpdateDontShow = await webview.listen("update-dontshow", () => {

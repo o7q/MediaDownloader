@@ -1,4 +1,3 @@
-
 import { IPCDownloadConfig } from "../../../../common/scripts/download-config";
 import { isUrlPlaylist } from "../utils";
 

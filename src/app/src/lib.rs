@@ -1,21 +1,26 @@
+#[allow(unused_imports)]
+use crate::meta::generate_metadata;
+
 mod commands;
 
 mod bootstrap;
 mod config;
-mod global;
 mod logger;
 mod media;
+mod meta;
 mod processor;
 mod utils;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // generate_metadata();
+
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             commands::download::download,
-            
+
             commands::data::data_write_user_config,
             commands::data::data_write_download_config,
             commands::data::data_write_queue,

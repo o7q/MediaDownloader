@@ -11,13 +11,12 @@ import { initHistoryOpener } from "./history-opener";
 
 import { createIPCUserConfig, IPCUserConfig } from "../../../common/scripts/user-config";
 import { loadIPCUserConfigIntoUI } from "./user-config/load";
-import { updateIPCUserConfigFromUI } from "./user-config/update";
 
 import { IPCDownloadConfig, createIPCDownloadConfig } from "../../../common/scripts/download-config";
-import { generateIPCDownloadConfig } from "./download-config/generate";
 import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
 
 import { checkForUpdates } from "./update-opener";
+import { cleanupAndClose } from "./cleanup";
 
 export async function init() {
     initTitlebar();
@@ -55,12 +54,7 @@ async function initTitlebarButtons() {
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", async () => {
-        updateIPCUserConfigFromUI();
-        await invoke("data_write_user_config", { config: GLOBAL.userConfig });
-        await invoke("data_write_download_config", { config: generateIPCDownloadConfig() });
-        await invoke("data_write_queue", { queue: GLOBAL.downloadQueue });
-        await invoke("data_write_history", { history: GLOBAL.downloadHistory });
-        appWindow.close();
+        cleanupAndClose();
     });
 }
 

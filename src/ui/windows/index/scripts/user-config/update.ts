@@ -1,4 +1,3 @@
-
 import { GLOBAL } from "../main";
 
 export function updateIPCUserConfigFromUI() {

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!versionText || !descriptionText) return;
 
         versionText.textContent = `Version: ${event.payload.version}`;
-        descriptionText.textContent = `Changelog: ${event.payload.description}`;
+        descriptionText.innerHTML = `${event.payload.description.replace(/\n/g, "<br>")}`;
     });
 
     document.getElementById("titlebar-minimize-button")?.addEventListener("click", () => {

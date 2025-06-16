@@ -1,3 +1,3 @@
 # TODO
 
-- Add settings window
+- Add a settings window
