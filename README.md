@@ -1,3 +1,4 @@
+<<<<<<< dev
 <div align="center">
     <table>
         <tr>
@@ -20,6 +21,17 @@
 </div>
 
 ---
+=======
+# Update
+MediaDownloader is currently being re-written in Rust using the [**Tauri**](https://tauri.app) framework, enabling cross-platform builds, better stability, and more features!
+
+If you are interested, you can track its progress [**here**](https://github.com/o7q/MediaDownloader/tree/dev)!
+
+<img src="assets/images/banner.png">
+
+![Total Downloads](https://img.shields.io/github/downloads/o7q/MediaDownloader/total?logo=github&label=Total%20Downloads&color=%232fd653)
+![Code Size](https://img.shields.io/github/languages/code-size/o7q/MediaDownloader?logo=github&label=Code%20Size&color=%23b65cff)
+>>>>>>> main
 
 ## ❔ What is it?
 
