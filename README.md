@@ -33,10 +33,6 @@ It provides a simple abstraction for basic yt-dlp and FFmpeg features while givi
 
 By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
----
-
-## 💽 How do I use it?
-
 <details>
 <summary><strong>Windows</strong></summary>
 
@@ -67,6 +63,8 @@ To use MediaDownloader on Debian/Ubuntu. You need to install **yt-dlp** and **FF
   ```
 
 You can verify you installed everything correctly by running `yt-dlp` and `ffmpeg` in the terminal.
+
+`MediaDownloader_linux` should now work!
 
 </details>
 
