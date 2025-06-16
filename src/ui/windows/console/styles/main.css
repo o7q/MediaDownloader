@@ -1,0 +1,45 @@
+.text--console {
+    font-size: 15px;
+    font-family: Roboto-Regular;
+
+    left: 5px;
+    top: 30px;
+}
+
+.console-textarea {
+    width: calc(100vw - 15px);
+    height: calc(100vh - 65px);
+
+    left: 5px;
+    top: 55px;
+    font-size: 15px;
+
+    position: absolute;
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+
+    resize: none;
+}
+
+.console-textarea:focus {
+    border-color: #797979;
+    outline: none;
+}
+
+.button--console-clear {
+    width: 50px;
+    height: 30px;
+
+    font-size: 15px;
+
+    color: rgb(255, 176, 176);
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+
+    right: 8px;
+    bottom: 10px;
+}

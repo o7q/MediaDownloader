@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/history/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="common/styles/tools/select-window.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--header">History</p>
+
+        <select class="select select--box" id="history-select" multiple=""></select>
+
+        <button class="button image-button--custom button--load-selected" id="history-load-selected-button"><img
+                src="common/assets/images/saveload-left.png"></button>
+        <button class="button image-button--custom button--remove-selected" id="history-remove-selected-button"><img
+                src="common/assets/images/trash.png"></button>
+    </div>
+</body>
+
+</html>

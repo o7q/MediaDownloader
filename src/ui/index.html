@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/index/scripts/main.ts" defer></script>
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/checkbox.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/panel.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <link rel="stylesheet" href="common/styles/controls/textarea.css">
+    <link rel="stylesheet" href="common/styles/controls/textbox.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="windows/index/styles/input/input.css">
+    <link rel="stylesheet" href="windows/index/styles/input/url.css">
+
+    <link rel="stylesheet" href="windows/index/styles/settings/settings.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/format.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/trim.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/size-fps.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/bitrate.css">
+    <link rel="stylesheet" href="windows/index/styles/settings/arguments.css">
+
+    <link rel="stylesheet" href="windows/index/styles/output/output.css">
+    <link rel="stylesheet" href="windows/index/styles/output/name-path.css">
+    <link rel="stylesheet" href="windows/index/styles/output/queue.css">
+    <link rel="stylesheet" href="windows/index/styles/output/download.css">
+    <link rel="stylesheet" href="windows/index/styles/output/mini-console.css">
+
+    <link rel="stylesheet" href="windows/index/styles/progress-bar.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <p class="titlebar__version-text">v5.0.0</p>
+            <div class="titlebar__buttons">
+                <button class="button__titlebar-mini-button" id="titlebar-reset-button"><img
+                        src="common/assets/images/trash.png"></button>
+                <button class="button__titlebar-mini-button" id="titlebar-history-edit-button"><img
+                        src="common/assets/images/history.png"></button>
+                <div style="width: 1px;"></div>
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--input">Input</p>
+        <div class="panel panel--input">
+            <p class="text text--input-url" id="input-url-text">URL</p>
+            <input type="text" class="textbox textbox--input-url" id="input-url-textbox">
+        </div>
+
+        <p class="text text--settings">Settings</p>
+        <div class="panel panel--settings">
+            <div class="panel panel--settings-format">
+                <p class="text text--settings-format">Format</p>
+                <select class="select select--settings-format" id="settings-format-select">
+                    <optgroup label="Video">
+                        <option value="mp4-fast" type-value="video" selected="true">mp4 (fast)</option>
+                        <option value="mp4" type-value="video">mp4</option>
+                        <option value="mp4-nvidia" type-value="video">mp4 (nvidia)</option>
+                        <option value="mp4-amd" type-value="video">mp4 (amd)</option>
+                        <option value="webm" type-value="video">webm</option>
+                        <option value="avi" type-value="video">avi (lossless)</option>
+                    </optgroup>
+
+                    <optgroup label="Audio">
+                        <option value="mp3" type-value="audio">mp3</option>
+                        <option value="wav" type-value="audio">wav (lossless)</option>
+                        <option value="flac" type-value="audio">flac (lossless)</option>
+                        <option value="ogg" type-value="audio">ogg</option>
+                    </optgroup>
+
+                    <optgroup label="Image">
+                        <option value="gif" type-value="gif">gif</option>
+                        <option value="png-sequence" type-value="sequence">png (sequence)</option>
+                        <option value="jpg-sequence" type-value="sequence">jpg (sequence)</option>
+                    </optgroup>
+
+                    <optgroup label="Thumbnail">
+                        <option value="png-thumbnail" type-value="image">png</option>
+                        <option value="jpg-thumbnail" type-value="image">jpg</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="panel panel--settings-trim">
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-trim-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-trim">
+                        <p class="text text--settings-trim">Trim Time Between</p>
+                    </span>
+                </label>
+
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-trim-start-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-trim-start">
+                        <p class="text text--settings-trim-start">&lt;&lt;</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-trim-start" id="settings-trim-start-textbox">
+
+                <p class="text text--settings-trim-and">and</p>
+
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-trim-end-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-trim-end">
+                        <p class="text text--settings-trim-end">&gt;&gt;</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-trim-end" id="settings-trim-end-textbox">
+            </div>
+
+            <div class="panel panel--settings-size-fps">
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-size-fps-size-checkbox" />
+                    <span class="text checkbox-checkmark checkbox--settings-size-fps-resolution">
+                        <p class="text text--settings-size-fps-resolution">Change Size</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-size-fps-width"
+                    id="settings-size-fps-width-textbox">
+
+                <input type="text" class="textbox textbox--settings-size-fps-height"
+                    id="settings-size-fps-height-textbox">
+
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-size-fps-framerate-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-size-fps-framerate">
+                        <p class="text text--settings-size-fps-framerate">Change FPS</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-size-fps-framerate"
+                    id="settings-size-fps-framerate-textbox">
+            </div>
+
+            <div class="panel panel--settings-bitrate">
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-bitrate-video-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-bitrate-video">
+                        <p class="text text--settings-bitrate-video">Set VBR</p>
+                    </span>
+                </label>
+
+                <input type="text" class="textbox textbox--settings-bitrate-video" id="settings-bitrate-video-textbox">
+
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-bitrate-audio-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-bitrate-audio">
+                        <p class="text text--settings-bitrate-audio">Set ABR</p>
+                    </span>
+                </label>
+                <input type="text" class="textbox textbox--settings-bitrate-audio" id="settings-bitrate-audio-textbox">
+            </div>
+
+            <div class="panel panel--settings-arguments">
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-arguments-ytdlp-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-arguments-ytdlp">
+                        <p class="text text--settings-arguments-ytdlp">Add yt-dlp Arguments</p>
+                    </span>
+                </label>
+                <textarea class="textarea textarea--settings-arguments-ytdlp"
+                    id="settings-arguments-ytdlp-textarea"></textarea>
+
+                <label class="checkbox">
+                    <input type="checkbox" id="settings-arguments-ffmpeg-checkbox" />
+                    <span class="checkbox-checkmark checkbox--settings-arguments-ffmpeg">
+                        <p class="text text--settings-arguments-ffmpeg">Add FFmpeg Arguments</p>
+                    </span>
+                </label>
+                <textarea class="textarea textarea--settings-arguments-ffmpeg"
+                    id="settings-arguments-ffmpeg-textarea"></textarea>
+
+            </div>
+        </div>
+
+        <p class="text text--output">Output</p>
+        <div class="panel panel--output">
+            <div class="panel panel--output-name-path">
+                <p class="text text--output-name" id="output-name-text">Name (Auto)</p>
+                <input type="text" class="textbox textbox--output-name" id="output-name-textbox">
+
+                <p class="text text--output-path">Path</p>
+                <button class="button image-button button--output-path" id="output-path-button">
+                    <img src="common/assets/images/folder.png">
+                </button>
+                <input type="text" class="textbox textbox--output-path" id="output-path-textbox">
+            </div>
+
+            <div class="panel panel--output-queue">
+                <p class="text text--output-queue">Queue</p>
+
+                <div class="panel panel--output-queue-sub">
+                    <button class="button image-button button--output-queue-add" id="output-queue-add-button"><img
+                            src="common/assets/images/saveload-right.png"></button>
+                    <button class="button image-button button--output-queue-edit" id="output-queue-edit-button"><img
+                            src="common/assets/images/gear.png"></button>
+
+                    <label class="checkbox">
+                        <input type="checkbox" id="output-queue-checkbox-enable" />
+                        <span class="checkbox-checkmark checkbox--output-queue-enable">
+                            <p class="text text--output-queue-enable">Enable</p>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="button button--output-download" id="output-download-button">Download</button>
+
+            <div class="panel panel--output-console">
+                <p class="text text--output-console">Console</p>
+                <textarea readonly class="output-console-textarea" id="output-console-textarea"></textarea>
+                <button class="button button--output-console-open" id="output-console-open-button"> <img
+                        src="common/assets/images/console.png"></button>
+            </div>
+        </div>
+
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+</body>
+
+</html>

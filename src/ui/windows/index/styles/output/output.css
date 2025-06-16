@@ -1,0 +1,20 @@
+.text--output {
+    font-size: 2.5vw;
+    font-family: Roboto-Regular;
+
+    left: 1.25vw;
+    top: 47vw;
+
+    color: rgb(88, 88, 88);
+}
+
+.panel--output {
+    width: 98vw;
+    height: 32vw;
+
+    left: 1vw;
+    top: 51vw;
+
+    border-radius: 1vw;
+    border: 0.1vw solid rgb(85, 85, 85);
+}

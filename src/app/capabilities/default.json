@@ -1,0 +1,23 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capabilities for the windows",
+  "windows": [
+    "main",
+    "consoleWindow",
+    "queueWindow",
+    "historyWindow",
+    "updateWindow"
+  ],
+  "permissions": [
+    "opener:default",
+    "core:default",
+    "core:window:default",
+    "core:window:allow-close",
+    "core:window:allow-destroy",
+    "core:window:allow-minimize",
+    "core:window:allow-start-dragging",
+    "core:webview:allow-create-webview-window",
+    "dialog:default"
+  ]
+}

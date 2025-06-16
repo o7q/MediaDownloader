@@ -1,0 +1,78 @@
+.panel--settings-trim {
+    width: 30vw;
+    height: calc(12vw - 1px);
+
+    top: 11vw;
+
+    border-radius: 0vw;
+    border-bottom-left-radius: 1vw;
+
+    border-top: 0.1vw solid rgb(65, 65, 65);
+}
+
+.text--settings-trim {
+    font-size: 2.25vw;
+
+    left: 4vw;
+    top: -0.5vw;
+
+    white-space: nowrap;
+}
+
+.checkbox--settings-trim {
+    left: 1vw;
+    top: 1vw;
+}
+
+.textbox--settings-trim-start {
+    width: 7vw;
+
+    font-size: 2vw;
+
+    left: 5vw;
+    top: 5vw;
+}
+
+.text--settings-trim-and {
+    font-size: 2.25vw;
+
+    left: 13.2vw;
+    top: 5vw;
+}
+
+.textbox--settings-trim-end {
+    width: 7vw;
+
+    font-size: 2vw;
+
+    left: 18vw;
+    top: 5vw;
+}
+
+.text--settings-trim-start {
+    font-size: 2.25vw;
+
+    left: 0.5vw;
+    top: 2vw;
+
+    white-space: nowrap;
+}
+
+.checkbox--settings-trim-start {
+    left: 1vw;
+    top: 5vw;
+}
+
+.text--settings-trim-end {
+    font-size: 2.25vw;
+
+    left: 0.5vw;
+    top: 2vw;
+
+    white-space: nowrap;
+}
+
+.checkbox--settings-trim-end {
+    left: 26vw;
+    top: 5vw;
+}

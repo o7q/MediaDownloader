@@ -1,0 +1,22 @@
+.panel--settings-format {
+    width: 30vw;
+    height: 11vw;
+
+    background-color: rgb(36, 36, 36);
+
+    border-radius: 0vw;
+    border-top-left-radius: 1vw;
+}
+
+.text--settings-format {
+    left: 1vw;
+    top: 0.5vw;
+}
+
+.select--settings-format {
+    width: 28vw;
+    height: 5vw;
+
+    left: 1vw;
+    top: 5vw;
+}

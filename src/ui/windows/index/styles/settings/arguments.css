@@ -1,0 +1,57 @@
+.panel--settings-arguments {
+    width: calc(31vw - 1px);
+    height: calc(23vw);
+
+    left: 67vw;
+    top: 0vw;
+
+    border-radius: 0vw;
+    border-bottom-right-radius: 1vw;
+    border-top-right-radius: 1vw;
+
+    border-left: 0.1vw solid rgb(65, 65, 65);
+}
+
+.checkbox--settings-arguments-ytdlp {
+    left: 1vw;
+    top: 1vw;
+}
+
+.text--settings-arguments-ytdlp {
+    font-size: 2.25vw;
+
+    left: 4vw;
+    top: -0.5vw;
+
+    white-space: nowrap;
+}
+
+.textarea--settings-arguments-ytdlp {
+    left: 1vw;
+    top: 5vw;
+
+    width: 29vw;
+    height: 6vw;
+}
+
+.checkbox--settings-arguments-ffmpeg {
+    left: 1vw;
+    top: 12vw;
+}
+
+.text--settings-arguments-ffmpeg {
+    font-size: 2.25vw;
+
+    left: 4vw;
+    top: -0.5vw;
+
+    white-space: nowrap;
+}
+
+.textarea--settings-arguments-ffmpeg {
+    left: 1vw;
+    top: 16vw;
+
+    width: 29vw;
+    height: 6vw;
+}

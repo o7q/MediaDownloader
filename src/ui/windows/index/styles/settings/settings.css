@@ -1,0 +1,28 @@
+.text--settings {
+    font-size: 2.5vw;
+    font-family: Roboto-Regular;
+
+    left: 1.25vw;
+    top: 20vw;
+
+    color: rgb(88, 88, 88);
+}
+
+.panel--settings {
+    width: 98vw;
+    height: 23vw ;
+
+    left: 1vw;
+    top: 24vw;
+
+    border-radius: 1vw;
+    border: 0.1vw solid rgb(85, 85, 85);
+}
+
+.button--settings-reset {
+    width: 4vw;
+    height: 3vw;
+
+    left: 11vw;
+    top: 21vw;
+}

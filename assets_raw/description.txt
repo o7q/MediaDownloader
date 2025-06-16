@@ -1,1 +1,0 @@
-A lightweight GUI wrapper for yt-dlp that allows you to quickly download videos, music, playlists, and more from a wide variety of websites.
