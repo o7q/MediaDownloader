@@ -47,7 +47,7 @@ Simply run `MediaDownloader.exe`. It will automatically install all depenencies 
 <details>
 <summary><strong>Debian/Ubuntu</strong></summary>
 
-To use MediaDownloader on Debian/Ubuntu Linux. You need to install **yt-dlp** and **FFmpeg** manually.
+To use MediaDownloader on Debian/Ubuntu. You need to install **yt-dlp** and **FFmpeg** manually.
 
 - Installing FFmpeg:
   ```
@@ -58,7 +58,7 @@ To use MediaDownloader on Debian/Ubuntu Linux. You need to install **yt-dlp** an
   - Download yt-dlp from:
     - https://github.com/yt-dlp/yt-dlp/releases
   - Rename `yt-dlp_linux` to `yt-dlp`
-  - Place `yt-dlp` in your `/usr/local/bin` directory
+  - Place `yt-dlp` in your `/usr/local/bin` directory:
     ```
     sudo cp /<YOUR PATH TO>/yt-dlp /usr/local/bin/yt-dlp
     ```
@@ -66,7 +66,7 @@ To use MediaDownloader on Debian/Ubuntu Linux. You need to install **yt-dlp** an
     sudo chmod +x /usr/local/bin/yt-dlp
     ```
 
-After you follow these steps, MediaDownloader should work as expected.
+You can verify you installed everything correctly by running `yt-dlp` and `ffmpeg` in the terminal.
 
 </details>
 
