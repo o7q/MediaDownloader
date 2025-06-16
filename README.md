@@ -48,7 +48,7 @@ To use MediaDownloader on Debian/Ubuntu. You need to install **yt-dlp** and **FF
 - Install yt-dlp:
   - Download yt-dlp from:
     - https://github.com/yt-dlp/yt-dlp/releases
-  - Rename `yt-dlp_linux` to `yt-dlp`
+  - Rename the downloaded binary to `yt-dlp`
   - Place `yt-dlp` in your `/usr/local/bin` directory:
     ```
     sudo cp /<YOUR PATH TO>/yt-dlp /usr/local/bin/yt-dlp
