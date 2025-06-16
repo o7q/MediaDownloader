@@ -24,7 +24,7 @@ pub struct IPCUpdateStatus {
 #[tauri::command(async)]
 pub async fn update_check() -> IPCUpdateStatus {
     let result: Result<String, reqwest::Error> = download_text_async(
-        "https://github.com/o7q/Testing/releases/latest/download/meta.json",
+        "https://github.com/o7q/MediaDownloader/releases/latest/download/meta.json",
     )
     .await;
 

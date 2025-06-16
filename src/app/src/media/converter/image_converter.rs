@@ -24,8 +24,8 @@ impl Converter for ImageConverter {
         self.init_dir(&self.path.work);
 
         let extension = match self.cfg.settings.format.as_str() {
-            "png" => "png",
-            "jpg" => "jpg",
+            "png-thumbnail" => "png",
+            "jpg-thumbnail" => "jpg",
             _ => "",
         };
 
