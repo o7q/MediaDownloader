@@ -2,6 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 
 import { GLOBAL, appWindow } from "./main";
 
+import { initUI } from "../../../common/scripts/ui";
 import { initTitlebar } from "../../../common/scripts/titlebar";
 import { initInputUI } from "./input/input";
 import { initSettingsUI } from "./settings/settings";
@@ -19,6 +20,8 @@ import { checkForUpdates } from "./update-opener";
 import { cleanupAndClose } from "./cleanup";
 
 export async function init() {
+    initUI();
+
     initTitlebar();
     initTitlebarButtons();
 

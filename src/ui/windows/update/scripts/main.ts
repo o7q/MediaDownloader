@@ -2,10 +2,12 @@ import { emit, listen } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 export const appWindow = getCurrentWindow();
 
+import { initUI } from "../../../common/scripts/ui";
 import { initTitlebar } from "../../../common/scripts/titlebar";
 import { IPCUpdateMetadata } from "../../../common/scripts/update";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    initUI();
     initTitlebar();
 
     const unlistenUpdateRequestReturn = await listen<IPCUpdateMetadata>("update-request-return", (event) => {
