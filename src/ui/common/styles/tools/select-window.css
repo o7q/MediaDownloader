@@ -3,7 +3,7 @@
     font-family: Roboto-Regular;
 
     left: 5px;
-    top: 30px;
+    top: 30px !important;
 }
 
 .select--box {

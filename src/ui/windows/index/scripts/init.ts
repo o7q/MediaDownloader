@@ -19,7 +19,12 @@ import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
 import { checkForUpdates } from "./update-opener";
 import { cleanupAndClose } from "./cleanup";
 
+let runOnce = true;
+
 export async function init() {
+    if (!runOnce) return;
+    runOnce = false;
+
     initUI();
 
     initTitlebar();

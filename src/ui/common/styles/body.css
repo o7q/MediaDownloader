@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
 
-    /* background-image: linear-gradient(rgb(20, 20, 20), rgb(30, 30, 30)); */
     background-color: rgb(20, 20, 20);
 
     overflow-x: hidden;
