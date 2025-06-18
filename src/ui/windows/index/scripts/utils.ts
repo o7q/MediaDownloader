@@ -10,7 +10,7 @@ export function isUrlPlaylist(url: String) {
     return false;
 }
 
-export async function openDialogAsync(): Promise<String> {
+export async function selectFolderDialogAsync(): Promise<String> {
     const file = await open({
         directory: true,
     });

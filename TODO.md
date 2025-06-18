@@ -1,6 +1,7 @@
 # TODO
 
-- Add the option to open the downloaded file location
+- Make the select window selections sort in descending order
+- Make the navigate path button cross-platform
 - Fix UI visuals for Linux
 - Implement auto-update
 - Implement automatic binary downloading for Linux

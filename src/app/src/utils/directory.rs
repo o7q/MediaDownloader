@@ -1,5 +1,6 @@
 use std::fs;
 use std::io;
+use std::path::Path;
 
 use crate::utils::file::normalize_path;
 
@@ -13,8 +14,9 @@ pub fn remove_directory(path: &str) -> io::Result<()> {
     fs::remove_dir_all(path)
 }
 
-pub fn directory_exists(path: &str) -> bool {
-    fs::metadata(path).is_ok()
+pub fn directory_exists(path_str: &str) -> bool {
+    let path = Path::new(path_str);
+    path.exists() && path.is_dir()
 }
 
 pub fn get_directories(path: &str) -> Vec<String> {
@@ -48,4 +50,14 @@ pub fn get_directory_name(path: &str) -> String {
     };
 
     directory_name.to_string()
+}
+
+pub fn get_parent_directory(path_str: &str) -> String {
+    let path: &Path = Path::new(path_str);
+
+    if let Some(directory) = path.parent() {
+        normalize_path(&directory.display().to_string())
+    } else {
+        "".to_string()
+    }
 }

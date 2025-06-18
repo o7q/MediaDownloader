@@ -39,10 +39,7 @@ impl Downloader for ThumbnailDownloader {
             }
 
             args.push("-o".to_string());
-            args.push(format!(
-                "{}/download/%(title)s",
-                &self.path.work
-            ));
+            args.push(format!("{}/download/%(title)s", &self.path.work));
             args.push(self.cfg.input.url.clone());
 
             args

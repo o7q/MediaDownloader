@@ -35,6 +35,7 @@ pub fn run() {
             commands::data::data_read_download_config,
             commands::data::data_read_queue,
             commands::data::data_read_history,
+            commands::utils::util_open_path_location,
             commands::bootstrap::bootstrap_check,
             commands::bootstrap::bootstrap_install,
             commands::update::update_check,

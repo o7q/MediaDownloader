@@ -33,18 +33,6 @@
     top: 0vw;
 }
 
-.textbox--output-path {
-    width: 65vw;
-
-    left: 32vw;
-    top: 4vw;
-
-    box-sizing: border-box;
-
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
 .button--output-path {
     width: 5vw;
     height: 5vw;
@@ -54,4 +42,29 @@
 
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.textbox--output-path {
+    width: 60vw;
+
+    left: 32vw;
+    top: 4vw;
+
+    box-sizing: border-box;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button--output-path-open {
+    width: 5vw;
+    height: 5vw;
+
+    left: 92vw;
+    top: 4vw;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }

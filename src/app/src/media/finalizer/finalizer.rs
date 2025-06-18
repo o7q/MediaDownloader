@@ -1,23 +1,25 @@
 use crate::{
     config::download_config::IPCDownloadConfig,
     utils::{
-        directory::{create_directory, get_directories, get_directory_name},
+        directory::{create_directory, directory_exists, get_directories, get_directory_name},
         file::{copy_file, file_exists, get_extension, get_filename, get_files},
     },
 };
 
 pub struct Finalizer {
     pub cfg: IPCDownloadConfig,
+    pub last_output_path: String,
 }
 
 impl Finalizer {
     pub fn new(config: &IPCDownloadConfig) -> Self {
         Self {
             cfg: config.clone(),
+            last_output_path: String::new(),
         }
     }
 
-    pub fn finalize(&self, finalize_name: &str) {
+    pub fn finalize(&mut self, finalize_name: &str) -> &Self {
         let mut output_path: String = self.cfg.output.path.to_string();
 
         if output_path.is_empty() {
@@ -30,35 +32,65 @@ impl Finalizer {
             let _ = create_directory(&output_path);
         }
 
+        let latest_file_copy: String = self.handle_root_files(&output_path, finalize_name);
+        let latest_folder_copy: String = self.handle_root_directories(&output_path);
+
+        self.last_output_path = if !latest_file_copy.is_empty() {
+            latest_file_copy.clone()
+        } else if !latest_folder_copy.is_empty() {
+            latest_folder_copy.clone()
+        } else {
+            output_path
+        };
+
+        self
+    }
+
+    fn handle_root_files(&self, output_path: &str, finalize_name: &str) -> String {
+        let mut latest_file_copy: String = String::new();
+
         for file in get_files("MediaDownloader/_temp/convert") {
-            let file_dest_path: String = if self.cfg.input.is_playlist {
-                format!("{}/{}", output_path, get_filename(&file, true))
+            let file_name: String = if self.cfg.input.is_playlist {
+                get_filename(&file, false)
             } else {
-                let extension: String = match get_extension(&file) {
-                    Some(extension) => extension,
-                    None => "".to_string(),
-                };
-
-                let mut file_dest_path_temp: String =
-                    format!("{}/{}.{}", output_path, finalize_name, extension);
-                let mut counter: i32 = 0;
-
-                while file_exists(&file_dest_path_temp) {
-                    counter += 1;
-                    file_dest_path_temp = format!(
-                        "{}/{}_{}.{}",
-                        output_path, finalize_name, counter, extension
-                    );
-                }
-
-                file_dest_path_temp
+                finalize_name.to_string()
             };
+
+            let extension: String = match get_extension(&file) {
+                Some(extension) => extension,
+                None => "".to_string(),
+            };
+
+            let mut file_dest_path: String = format!("{}/{}.{}", output_path, file_name, extension);
+
+            let mut counter: i32 = 0;
+            while file_exists(&file_dest_path) {
+                counter += 1;
+                file_dest_path = format!("{}/{}_{}.{}", output_path, file_name, counter, extension);
+            }
+
             let _ = copy_file(&file, &file_dest_path);
+            latest_file_copy = file_dest_path;
         }
 
+        latest_file_copy
+    }
+
+    fn handle_root_directories(&self, output_path: &str) -> String {
+        let mut latest_folder_copy: String = String::new();
+
         for folder in get_directories("MediaDownloader/_temp/convert") {
-            let folder_dest_path: String =
-                format!("{}/{}", output_path, get_directory_name(&folder));
+            let folder_name = get_directory_name(&folder);
+
+            let mut folder_dest_path: String = format!("{}/{}", output_path, folder_name);
+
+            let mut counter: i32 = 0;
+            while directory_exists(&folder_dest_path) {
+                counter += 1;
+                folder_dest_path = format!("{}/{}_{}", output_path, folder_name, counter);
+            }
+
+            latest_folder_copy = folder_dest_path.clone();
 
             let _ = create_directory(&folder_dest_path);
             for file in get_files(&folder) {
@@ -67,5 +99,11 @@ impl Finalizer {
                 let _ = copy_file(&file, &file_dest_path);
             }
         }
+
+        latest_folder_copy
+    }
+
+    pub fn get_last_output_path(&self) -> String {
+        self.last_output_path.clone()
     }
 }

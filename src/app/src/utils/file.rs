@@ -16,8 +16,9 @@ pub fn read_file(path: &str) -> io::Result<String> {
     fs::read_to_string(path)
 }
 
-pub fn file_exists(path: &str) -> bool {
-    Path::new(path).exists()
+pub fn file_exists(path_str: &str) -> bool {
+    let path = Path::new(path_str);
+    path.exists() && path.is_file()
 }
 
 pub fn get_files(path: &str) -> Vec<String> {
@@ -93,4 +94,8 @@ pub fn get_mediasafe_filename(path: &str, extension: bool) -> String {
 
 pub fn normalize_path(s: &str) -> String {
     s.replace("\\", "/")
+}
+
+pub fn normalize_path_windows(s: &str) -> String {
+    s.replace("/", "\\")
 }

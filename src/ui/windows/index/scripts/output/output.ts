@@ -1,7 +1,10 @@
-import { openDialogAsync } from "../utils";
+import { invoke } from "@tauri-apps/api/core";
+
+import { selectFolderDialogAsync } from "../utils";
 import { initMiniConsole, openConsoleWindow } from "./console-opener";
 import { initQueueOpener } from "./queue-opener";
 import { initDownloadButton } from "./download";
+import { generateIPCDownloadConfig } from "../download-config/generate";
 
 export function initOutputUI() {
     const outputNameTextbox = document.getElementById("output-name-textbox") as HTMLInputElement | null;
@@ -18,12 +21,16 @@ export function initOutputUI() {
     });
 
     document.getElementById("output-path-button")?.addEventListener("click", async () => {
-        let file = await openDialogAsync();
+        let file = await selectFolderDialogAsync();
 
         const pathTextbox = document.getElementById("output-path-textbox") as HTMLInputElement | null;
         if (!pathTextbox) return;
 
         pathTextbox.value = file.toString();
+    });
+
+    document.getElementById("output-path-open-button")?.addEventListener("click", async () => {
+        invoke("util_open_path_location", { path: generateIPCDownloadConfig().output.path });
     });
 
     document.getElementById("output-console-open-button")?.addEventListener("click", async () => {

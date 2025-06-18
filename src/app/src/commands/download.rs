@@ -18,7 +18,7 @@ use crate::processor::processor::ProcessPaths;
 use crate::config::download_config::IPCDownloadConfig;
 
 use crate::utils::directory::remove_directory;
-use crate::utils::file::{read_file, write_file};
+use crate::utils::file::{normalize_path, read_file, write_file};
 use crate::utils::serial::{deserialize_file_read, serialize_file_write, WriteType};
 
 use crate::logger::logger::IPCLogger;
@@ -75,7 +75,8 @@ pub fn download(app: AppHandle, mut config: IPCDownloadConfig) -> IPCDownloadCon
         config.output.name.clone()
     };
 
-    step_finalize(&config, &finalize_name);
+    let last_output_path: String = normalize_path(&step_finalize(&config, &finalize_name));
+    let _ = write_file("MediaDownloader/_temp/last_output_path.txt", &last_output_path);
 
     // update config with new name, so it can be returned to the frontend
     config.output.name = finalize_name;
@@ -106,6 +107,6 @@ fn step_convert(config: &IPCDownloadConfig, paths: &ProcessPaths, logger: &IPCLo
     }
 }
 
-fn step_finalize(config: &IPCDownloadConfig, finalize_name: &str) {
-    Finalizer::new(config).finalize(finalize_name);
+fn step_finalize(config: &IPCDownloadConfig, finalize_name: &str) -> String {
+    Finalizer::new(config).finalize(finalize_name).get_last_output_path()
 }
