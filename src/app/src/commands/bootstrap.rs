@@ -7,13 +7,6 @@ use crate::{
     utils::file::file_exists,
 };
 
-#[cfg(target_os = "windows")]
-#[tauri::command]
-pub fn bootstrap_check() -> bool {
-    file_exists("MediaDownloader/bin/yt-dlp.exe") && file_exists("MediaDownloader/bin/ffmpeg.exe")
-}
-
-#[cfg(target_os = "windows")]
 #[tauri::command(async)]
 pub async fn bootstrap_install(app: AppHandle) {
     let ytdlp_logger: IPCLogger = IPCLogger::new(app.clone());
@@ -25,12 +18,14 @@ pub async fn bootstrap_install(app: AppHandle) {
     );
 }
 
-#[cfg(not(target_os = "windows"))]
+#[cfg(target_os = "windows")]
 #[tauri::command]
 pub fn bootstrap_check() -> bool {
-    true
+    file_exists("MediaDownloader/bin/yt-dlp.exe") && file_exists("MediaDownloader/bin/ffmpeg.exe")
 }
 
-#[cfg(not(target_os = "windows"))]
-#[tauri::command(async)]
-pub async fn bootstrap_install() {}
+#[cfg(target_os = "linux")]
+#[tauri::command]
+pub fn bootstrap_check() -> bool {
+    file_exists("MediaDownloader/bin/yt-dlp_linux") && file_exists("MediaDownloader/bin/ffmpeg")
+}

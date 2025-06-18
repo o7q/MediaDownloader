@@ -62,3 +62,8 @@ fn navigate_to(navigate_options: &NavigateOptions) {
         Command::new("explorer").arg("/select,").arg(path).status()
     };
 }
+
+#[cfg(target_os = "linux")]
+fn navigate_to(navigate_options: &NavigateOptions) {
+
+}

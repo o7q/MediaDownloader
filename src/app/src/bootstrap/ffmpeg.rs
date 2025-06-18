@@ -50,4 +50,39 @@ fn extract_ffmpeg() -> zip::result::ZipResult<()> {
 }
 
 #[cfg(target_os = "linux")]
-pub fn bootstrap_ffmpeg(logger: &IPCLogger) {}
+pub async fn bootstrap_ffmpeg(logger: &IPCLogger) {
+    const PATH: &str = "MediaDownloader/bin/ffmpeg";
+    const ARCHIVE_PATH: &str = "MediaDownloader/_temp/ffmpeg.tar.xz";
+
+    if file_exists(PATH) {
+        return;
+    }
+
+    let _ = create_directory("MediaDownloader/bin");
+    let _ = create_directory("MediaDownloader/_temp");
+
+    logger.log("Downloading ffmpeg...");
+    let _ = download_file_async(
+        "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-lgpl.tar.xz",
+        ARCHIVE_PATH,
+    ).await;
+
+    logger.log("Extracting ffmpeg...");
+    let _ = extract_ffmpeg();
+    logger.log(&format!("Extracted ffmpeg to \"{}\"", PATH));
+}
+
+#[cfg(target_os = "linux")]
+fn extract_ffmpeg() -> std::io::Result<()> {
+    use tar::Archive;
+    use xz2::read::XzDecoder;
+
+    // const PATH: &str = "MediaDownloader/bin/ffmpeg";
+    const ARCHIVE_PATH: &str = "MediaDownloader/_temp/ffmpeg.tar.xz";
+
+    let file = File::open(ARCHIVE_PATH)?;
+    let decompressor = XzDecoder::new(BufReader::new(file));
+    let mut archive = Archive::new(decompressor);
+    archive.unpack("MediaDownloader/_temp/ffmpeg")?;
+    Ok(())
+}
