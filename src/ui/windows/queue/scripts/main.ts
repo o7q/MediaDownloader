@@ -19,26 +19,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         emit("queue-load", select.selectedOptions[0].index);
     });
 
+    const removedIndices: number[] = [];
     document.getElementById("queue-remove-selected-button")?.addEventListener("click", () => {
         const select = document.getElementById("queue-select") as HTMLSelectElement;
 
-        const removedIndices: number[] = [];
-
         for (let i = select.options.length - 1; i >= 0; i--) {
+            const option = select.options[i];
             if (select.options[i].selected) {
-                removedIndices.push(i);
+                const originalIndex = parseInt(option.getAttribute("data-index") || "-1", 10);
+                if (originalIndex !== -1) {
+                    removedIndices.push(originalIndex);
+                }
                 select.remove(i);
             }
         }
-
-        emit("queue-remove", removedIndices);
     });
 
     const unlistenQueueRequestReturn = await listen<string[]>("queue-request-return", (event) => {
         const select = document.getElementById("queue-select");
-        for (let i = 0; i < event.payload.length; ++i) {
+        
+        for (let i = event.payload.length - 1; i >= 0; --i) {
             const option = document.createElement("option");
             option.text = event.payload[i];
+            option.setAttribute("data-index", i.toString());
             select?.appendChild(option);
         }
     });
@@ -48,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", () => {
+        emit("queue-remove", removedIndices);
         unlistenQueueRequestReturn();
         appWindow.close();
     });

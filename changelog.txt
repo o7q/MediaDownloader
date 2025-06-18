@@ -1,6 +1,7 @@
 ~ v5.1.0
 - Added a navigate path button
-- Fixed an issue with the header texts being displayed incorrectly
+- Fixed an issue with list header texts being displayed incorrectly
+- Made lists sort in descending order
 
 ~ v5.0.0
 - MediaDownloader has been completely rewritten from scratch using the Tauri framework

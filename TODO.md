@@ -1,6 +1,5 @@
 # TODO
 
-- Make the select window selections sort in descending order
 - Make the navigate path button cross-platform
 - Fix UI visuals for Linux
 - Implement auto-update

@@ -19,26 +19,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         emit("history-load", select.selectedOptions[0].index);
     });
 
+    const removedIndices: number[] = [];
     document.getElementById("history-remove-selected-button")?.addEventListener("click", () => {
         const select = document.getElementById("history-select") as HTMLSelectElement;
 
-        const removedIndices: number[] = [];
-
         for (let i = select.options.length - 1; i >= 0; i--) {
+            const option = select.options[i];
             if (select.options[i].selected) {
-                removedIndices.push(i);
+                const originalIndex = parseInt(option.getAttribute("data-index") || "-1", 10);
+                if (originalIndex !== -1) {
+                    removedIndices.push(originalIndex);
+                }
                 select.remove(i);
             }
         }
-
-        emit("history-remove", removedIndices);
     });
 
     const unlistenHistoryRequestReturn = await listen<string[]>("history-request-return", (event) => {
         const select = document.getElementById("history-select");
-        for (let i = 0; i < event.payload.length; ++i) {
+        
+        for (let i = event.payload.length - 1; i >= 0; --i) {
             const option = document.createElement("option");
             option.text = event.payload[i];
+            option.setAttribute("data-index", i.toString());
             select?.appendChild(option);
         }
     });
@@ -48,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", () => {
+        emit("history-remove", removedIndices);
         unlistenHistoryRequestReturn();
         appWindow.close();
     });
