@@ -8,6 +8,7 @@ mod config;
 mod logger;
 mod media;
 mod meta;
+mod paths;
 mod processor;
 mod utils;
 

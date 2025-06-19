@@ -96,6 +96,7 @@ pub fn normalize_path(s: &str) -> String {
     s.replace("\\", "/")
 }
 
+#[cfg(target_os = "windows")]
 pub fn normalize_path_windows(s: &str) -> String {
     s.replace("/", "\\")
 }
