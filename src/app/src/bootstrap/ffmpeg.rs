@@ -1,7 +1,7 @@
 use std::{fs::File, io::BufReader};
 
 use crate::logger::logger::IPCLogger;
-use crate::paths::FFMPEG_PATH;
+use crate::global::FFMPEG_PATH;
 use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
 
 #[cfg(target_os = "windows")]
@@ -78,8 +78,8 @@ fn extract_ffmpeg() -> std::io::Result<()> {
     use crate::utils::{file::copy_file, linux::linux_permit_file};
 
     let file = File::open("MediaDownloader/_temp/ffmpeg.tar.xz")?;
-    let decompressor = XzDecoder::new(BufReader::new(file));
-    let mut archive = Archive::new(decompressor);
+    let decompressor: XzDecoder<BufReader<File>> = XzDecoder::new(BufReader::new(file));
+    let mut archive: Archive<XzDecoder<BufReader<File>>> = Archive::new(decompressor);
     archive.unpack("MediaDownloader/_temp/ffmpeg")?;
 
     let _ = copy_file(

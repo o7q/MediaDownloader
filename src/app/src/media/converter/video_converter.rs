@@ -1,7 +1,8 @@
 use crate::{
     config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
-    processor::processor::{ProcessPaths, Processor},
+    media::options::ProcessOptions,
+    processor::processor::Processor,
     utils::file::{get_files, get_mediasafe_filename},
 };
 
@@ -9,19 +10,19 @@ use super::converter::Converter;
 
 pub struct VideoConverter {
     cfg: IPCDownloadConfig,
-    path: ProcessPaths,
+    opts: ProcessOptions,
 }
 
 impl Converter for VideoConverter {
-    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, options: &ProcessOptions) -> Self {
         Self {
             cfg: config.clone(),
-            path: paths.clone(),
+            opts: options.clone(),
         }
     }
 
     fn convert(&self, logger: &IPCLogger) {
-        self.init_dir(&self.path.work);
+        self.init_dir(&self.opts.path_work);
 
         let (video_codec, audio_codec, extension) = match self.cfg.settings.format.as_str() {
             "mp4-fast" => ("copy", "copy", "mp4"),
@@ -33,8 +34,8 @@ impl Converter for VideoConverter {
             _ => ("", "", ""),
         };
 
-        for input_file in get_files(&format!("{}/download", &self.path.work)) {
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+        for input_file in get_files(&format!("{}/download", self.opts.path_work)) {
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
@@ -102,7 +103,7 @@ impl Converter for VideoConverter {
 
                 args.push(format!(
                     "{}/convert/{}.{}",
-                    &self.path.work,
+                    &self.opts.path_work,
                     get_mediasafe_filename(&input_file, false),
                     extension
                 ));

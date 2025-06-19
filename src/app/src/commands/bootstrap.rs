@@ -4,6 +4,7 @@ use tauri::AppHandle;
 use crate::{
     bootstrap::{ffmpeg::bootstrap_ffmpeg, ytdlp::bootstrap_ytdlp},
     logger::logger::IPCLogger,
+    global::{FFMPEG_PATH, YTDLP_PATH},
     utils::file::file_exists,
 };
 
@@ -18,14 +19,7 @@ pub async fn bootstrap_install(app: AppHandle) {
     );
 }
 
-#[cfg(target_os = "windows")]
 #[tauri::command]
 pub fn bootstrap_check() -> bool {
-    file_exists("MediaDownloader/bin/yt-dlp.exe") && file_exists("MediaDownloader/bin/ffmpeg.exe")
-}
-
-#[cfg(target_os = "linux")]
-#[tauri::command]
-pub fn bootstrap_check() -> bool {
-    file_exists("MediaDownloader/bin/yt-dlp_linux") && file_exists("MediaDownloader/bin/ffmpeg")
+    file_exists(YTDLP_PATH) && file_exists(FFMPEG_PATH)
 }

@@ -1,9 +1,27 @@
+use std::error::Error as StdError;
+use std::fs::File as StdFile;
+use std::io::{copy, BufWriter};
+
 use futures_util::StreamExt;
-use reqwest::Error;
+use reqwest::blocking::get;
+use reqwest::Error as ReqwestError;
 use tokio::fs::File;
 use tokio::io::AsyncWriteExt;
 
-pub async fn download_file_async(url: &str, path: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub fn download_file_sync(url: &str, path: &str) -> Result<(), Box<dyn StdError>> {
+    println!("Downloading: \"{}\"", url);
+
+    let mut response = get(url)?;
+
+    let file = StdFile::create(path)?;
+    let mut writer = BufWriter::new(file);
+
+    copy(&mut response, &mut writer)?;
+
+    Ok(())
+}
+
+pub async fn download_file_async(url: &str, path: &str) -> Result<(), Box<dyn StdError>> {
     let mut file: File = File::create(path).await?;
     println!("Downloading: \"{}\"", url);
 
@@ -20,7 +38,7 @@ pub async fn download_file_async(url: &str, path: &str) -> Result<(), Box<dyn st
     Ok(())
 }
 
-pub async fn download_text_async(url: &str) -> Result<String, Error> {
+pub async fn download_text_async(url: &str) -> Result<String, ReqwestError> {
     let response: reqwest::Response = reqwest::get(url).await?;
     let body: String = response.text().await?;
     Ok(body)

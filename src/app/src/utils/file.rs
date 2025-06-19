@@ -16,6 +16,10 @@ pub fn read_file(path: &str) -> io::Result<String> {
     fs::read_to_string(path)
 }
 
+pub fn delete_file(path: &str) -> io::Result<()> {
+    fs::remove_file(path)
+}
+
 pub fn file_exists(path_str: &str) -> bool {
     let path = Path::new(path_str);
     path.exists() && path.is_file()

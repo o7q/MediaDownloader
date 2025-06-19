@@ -1,6 +1,6 @@
 use std::env;
 
-use crate::meta::generate_metadata;
+use crate::{meta::generate_metadata, updater::updater::Updater};
 
 mod bootstrap;
 mod commands;
@@ -8,8 +8,9 @@ mod config;
 mod logger;
 mod media;
 mod meta;
-mod paths;
+mod global;
 mod processor;
+mod updater;
 mod utils;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -17,11 +18,19 @@ pub fn run() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() > 1 {
-        if args[1] == "generate-metadata" {
-            generate_metadata();
-            return;
+        match args[1].as_str() {
+            "generate-metadata" => generate_metadata(),
+
+            "updater-start" => Updater::new().start(),
+            "updater-update" => Updater::new().update(),
+            "updater-cleanup" => Updater::new().cleanup(),
+            _ => {}
         }
+
+        return;
     }
+
+    Updater::new().start();
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())

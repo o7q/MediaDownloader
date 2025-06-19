@@ -1,7 +1,8 @@
 use crate::{
     config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
-    processor::processor::{ProcessPaths, Processor},
+    media::options::ProcessOptions,
+    processor::processor::Processor,
     utils::{
         directory::{create_directory, remove_directory},
         file::{get_files, get_mediasafe_filename},
@@ -12,26 +13,27 @@ use super::converter::Converter;
 
 pub struct GifConverter {
     cfg: IPCDownloadConfig,
-    path: ProcessPaths,
+    opts: ProcessOptions,
 }
 
 impl Converter for GifConverter {
-    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, options: &ProcessOptions) -> Self {
         Self {
             cfg: config.clone(),
-            path: paths.clone(),
+            opts: options.clone(),
         }
     }
 
     fn convert(&self, logger: &IPCLogger) {
-        self.init_dir(&self.path.work);
+        self.init_dir(&self.opts.path_work);
 
-        for input_file in get_files(&format!("{}/download", &self.path.work)) {
-            let _ = remove_directory(&format!("{}/convert_temp", &self.path.work));
-            let _ = create_directory(&format!("{}/convert_temp", &self.path.work));
+        for input_file in get_files(&format!("{}/download", self.opts.path_work)) {
+            let _ = remove_directory(&format!("{}/convert_temp", self.opts.path_work));
+            let _ = create_directory(&format!("{}/convert_temp", self.opts.path_work));
 
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
+
                 args.push("-y".to_string());
 
                 args.push("-i".to_string());
@@ -83,44 +85,46 @@ impl Converter for GifConverter {
                     }
                 }
 
-                args.push(format!("{}/convert_temp/video.mp4", &self.path.work));
+                args.push(format!("{}/convert_temp/video.mp4", self.opts.path_work));
 
                 args
             })
             .start();
 
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
+
                 args.push("-y".to_string());
 
                 args.push("-i".to_string());
-                args.push(format!("{}/convert_temp/video.mp4", &self.path.work));
+                args.push(format!("{}/convert_temp/video.mp4", self.opts.path_work));
 
                 args.push("-vf".to_string());
                 args.push("palettegen".to_string());
 
-                args.push(format!("{}/convert_temp/palette.png", &self.path.work));
+                args.push(format!("{}/convert_temp/palette.png", self.opts.path_work));
 
                 args
             })
             .start();
 
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
+
                 args.push("-y".to_string());
 
                 args.push("-i".to_string());
-                args.push(format!("{}/convert_temp/video.mp4", &self.path.work));
+                args.push(format!("{}/convert_temp/video.mp4", self.opts.path_work));
 
                 args.push("-i".to_string());
-                args.push(format!("{}/convert_temp/palette.png", &self.path.work));
+                args.push(format!("{}/convert_temp/palette.png", self.opts.path_work));
 
                 args.push("-lavfi".to_string());
                 args.push("paletteuse".to_string());
 
                 args.push(format!(
                     "{}/convert/{}.gif",
-                    &self.path.work,
+                    &self.opts.path_work,
                     get_mediasafe_filename(&input_file, false)
                 ));
 

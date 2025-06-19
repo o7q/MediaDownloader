@@ -1,6 +1,3 @@
-#[cfg(target_os = "linux")]
-use std::io;
-
 use crate::logger::logger::IPCLogger;
 use crate::paths::YTDLP_PATH;
 use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
@@ -25,6 +22,8 @@ pub async fn bootstrap_ytdlp(logger: &IPCLogger) {
 
 #[cfg(target_os = "linux")]
 pub async fn bootstrap_ytdlp(logger: &IPCLogger) {
+    use std::io;
+
     use crate::utils::linux::linux_permit_file;
 
     if file_exists(YTDLP_PATH) {

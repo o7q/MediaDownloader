@@ -1,7 +1,8 @@
 use crate::{
     config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
-    processor::processor::{ProcessPaths, Processor},
+    media::options::ProcessOptions,
+    processor::processor::Processor,
     utils::{
         directory::{create_directory, remove_directory},
         file::{get_files, get_mediasafe_filename},
@@ -12,19 +13,19 @@ use super::converter::Converter;
 
 pub struct SequenceConverter {
     cfg: IPCDownloadConfig,
-    path: ProcessPaths,
+    opts: ProcessOptions,
 }
 
 impl Converter for SequenceConverter {
-    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, options: &ProcessOptions) -> Self {
         Self {
             cfg: config.clone(),
-            path: paths.clone(),
+            opts: options.clone(),
         }
     }
 
     fn convert(&self, logger: &IPCLogger) {
-        self.init_dir(&self.path.work);
+        self.init_dir(&self.opts.path_work);
 
         let extension = match self.cfg.settings.format.as_str() {
             "png-sequence" => "png",
@@ -32,11 +33,11 @@ impl Converter for SequenceConverter {
             _ => "",
         };
 
-        for input_file in get_files(&format!("{}/download", &self.path.work)) {
-            let _ = remove_directory(&format!("{}/convert_temp", &self.path.work));
-            let _ = create_directory(&format!("{}/convert_temp", &self.path.work));
+        for input_file in get_files(&format!("{}/download", self.opts.path_work)) {
+            let _ = remove_directory(&format!("{}/convert_temp", self.opts.path_work));
+            let _ = create_directory(&format!("{}/convert_temp", self.opts.path_work));
 
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
@@ -95,21 +96,21 @@ impl Converter for SequenceConverter {
                     }
                 }
 
-                args.push(format!("{}/convert_temp/video.mp4", &self.path.work));
+                args.push(format!("{}/convert_temp/video.mp4", self.opts.path_work));
 
                 args
             })
             .start();
 
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
                 args.push("-y".to_string());
 
                 args.push("-i".to_string());
-                args.push(format!("{}/convert_temp/video.mp4", &self.path.work));
+                args.push(format!("{}/convert_temp/video.mp4", self.opts.path_work));
 
                 let filename: String = get_mediasafe_filename(&input_file, false);
-                let path: String = format!("{}/convert/{}", &self.path.work, filename);
+                let path: String = format!("{}/convert/{}", self.opts.path_work, filename);
 
                 let _ = create_directory(&path);
 
