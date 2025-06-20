@@ -16,12 +16,12 @@ const MEDIADOWNLOADER_UPDATE_URL: &str =
     "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader.exe";
 
 #[cfg(target_os = "linux")]
-const MEDIADOWNLOADER_BINARY: &str = "MediaDownloader_linux";
+const MEDIADOWNLOADER_BINARY: &str = "./MediaDownloader_linux";
 #[cfg(target_os = "linux")]
-const MEDIADOWNLOADER_BINARY_TEMP: &str = "MediaDownloader_linux_temp";
+const MEDIADOWNLOADER_BINARY_TEMP: &str = "./MediaDownloader_linux_temp";
 #[cfg(target_os = "linux")]
 const MEDIADOWNLOADER_UPDATE_URL: &str =
-    "https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader_linux";
+    "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader_linux";
 
 pub struct Updater {}
 
@@ -54,15 +54,15 @@ impl Updater {
 
         let _ = download_file_sync(MEDIADOWNLOADER_UPDATE_URL, MEDIADOWNLOADER_BINARY);
 
-        let _ = Command::new(MEDIADOWNLOADER_BINARY)
-            .arg("updater-cleanup")
-            .spawn();
-
         #[cfg(target_os = "linux")]
         {
             use crate::utils::linux::linux_permit_file;
             linux_permit_file(MEDIADOWNLOADER_BINARY, 0o111);
         }
+
+        let _ = Command::new(MEDIADOWNLOADER_BINARY)
+            .arg("updater-cleanup")
+            .spawn();
 
         process::exit(0);
     }

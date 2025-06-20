@@ -60,7 +60,7 @@ pub async fn bootstrap_ffmpeg(logger: &IPCLogger) {
 
     logger.log("Downloading FFmpeg...");
     let _ = download_file_async(
-        "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-lgpl.tar.xz",
+        "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz",
         "MediaDownloader/_temp/ffmpeg.tar.xz",
     ).await;
     logger.log("Downloaded FFmpeg to: \"MediaDownloader/_temp/ffmpeg.tar.xz\"");
@@ -83,7 +83,7 @@ fn extract_ffmpeg() -> std::io::Result<()> {
     archive.unpack("MediaDownloader/_temp/ffmpeg")?;
 
     let _ = copy_file(
-        "MediaDownloader/_temp/ffmpeg/ffmpeg-master-latest-linux64-lgpl/bin/ffmpeg",
+        "MediaDownloader/_temp/ffmpeg/ffmpeg-master-latest-linux64-gpl/bin/ffmpeg",
         FFMPEG_PATH,
     );
 

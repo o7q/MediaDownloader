@@ -22,8 +22,6 @@ pub async fn bootstrap_ytdlp(logger: &IPCLogger) {
 
 #[cfg(target_os = "linux")]
 pub async fn bootstrap_ytdlp(logger: &IPCLogger) {
-    use std::io;
-
     use crate::utils::linux::linux_permit_file;
 
     if file_exists(YTDLP_PATH) {

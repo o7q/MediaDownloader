@@ -4,6 +4,6 @@ pub const YTDLP_PATH: &str = "MediaDownloader/bin/yt-dlp.exe";
 pub const FFMPEG_PATH: &str = "MediaDownloader/bin/ffmpeg.exe";
 
 #[cfg(target_os = "linux")]
-pub const YTDLP_PATH: &str = "MediaDownloader/bin/yt-dlp";
+pub const YTDLP_PATH: &str = "./MediaDownloader/bin/yt-dlp";
 #[cfg(target_os = "linux")]
-pub const FFMPEG_PATH: &str = "MediaDownloader/bin/ffmpeg";
+pub const FFMPEG_PATH: &str = "./MediaDownloader/bin/ffmpeg";

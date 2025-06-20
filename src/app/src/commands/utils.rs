@@ -1,5 +1,5 @@
 use crate::utils::{
-    directory::{directory_exists, get_parent_directory},
+    directory::{create_directory, directory_exists, get_parent_directory},
     file::{file_exists, normalize_path, read_file},
 };
 
@@ -18,8 +18,19 @@ pub fn util_open_path_location(mut path: &str) {
         Err(_) => "".to_string(),
     };
 
+    if !directory_exists("Downloads") {
+        let _ = create_directory("Downloads");
+    }
+
     if path.is_empty() {
-        path = "Downloads";
+        #[cfg(target_os = "windows")]
+        {
+            path = "Downloads";
+        }
+        #[cfg(target_os = "linux")]
+        {
+            path = "./Downloads";
+        }
     }
 
     let navigate_options: NavigateOptions =
@@ -65,5 +76,17 @@ fn navigate_to(navigate_options: &NavigateOptions) {
 
 #[cfg(target_os = "linux")]
 fn navigate_to(navigate_options: &NavigateOptions) {
+    use crate::utils::file::normalize_path;
 
+    let path: String = normalize_path(&navigate_options.path.clone());
+
+    let _ = if navigate_options.navigate_into {
+        Command::new("xdg-open").arg(path).spawn()
+    } else {
+        Command::new("xdg-open")
+            .arg(get_parent_directory(&path))
+            .spawn()
+    };
+
+    println!("{:?}", navigate_options)
 }
