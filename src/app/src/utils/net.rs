@@ -43,7 +43,3 @@ pub async fn download_text_async(url: &str) -> Result<String, ReqwestError> {
     let body: String = response.text().await?;
     Ok(body)
 }
-
-pub fn launch_url(url: &str) {
-    if webbrowser::open(url).is_ok() {}
-}

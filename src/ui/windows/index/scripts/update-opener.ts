@@ -24,7 +24,7 @@ export async function checkForUpdates() {
         });
 
         const unlistenUpdateYes = await webview.listen("update-yes", () => {
-            invoke("update_open_page");
+            invoke("update_start");
             cleanupAndClose();
         });
 

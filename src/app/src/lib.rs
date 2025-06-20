@@ -1,14 +1,13 @@
 use std::env;
 
-use crate::{meta::generate_metadata, updater::updater::Updater};
+use crate::updater::{meta::generate_update_metadata, updater::Updater};
 
 mod bootstrap;
 mod commands;
 mod config;
+mod global;
 mod logger;
 mod media;
-mod meta;
-mod global;
 mod processor;
 mod updater;
 mod utils;
@@ -19,18 +18,14 @@ pub fn run() {
 
     if args.len() > 1 {
         match args[1].as_str() {
-            "generate-metadata" => generate_metadata(),
+            "generate-update-metadata" => generate_update_metadata(),
 
             "updater-start" => Updater::new().start(),
             "updater-update" => Updater::new().update(),
             "updater-cleanup" => Updater::new().cleanup(),
             _ => {}
         }
-
-        return;
     }
-
-    Updater::new().start();
 
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
@@ -48,8 +43,8 @@ pub fn run() {
             commands::utils::util_open_path_location,
             commands::bootstrap::bootstrap_check,
             commands::bootstrap::bootstrap_install,
-            commands::update::update_check,
-            commands::update::update_open_page
+            commands::update::update_start,
+            commands::update::update_check
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
