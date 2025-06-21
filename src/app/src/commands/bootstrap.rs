@@ -4,7 +4,7 @@ use tauri::AppHandle;
 use crate::{
     bootstrap::{ffmpeg::bootstrap_ffmpeg, ytdlp::bootstrap_ytdlp},
     logger::logger::IPCLogger,
-    global::{FFMPEG_PATH, YTDLP_PATH},
+    bin::{FFMPEG_PATH, YTDLP_PATH},
     utils::file::file_exists,
 };
 

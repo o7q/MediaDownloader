@@ -25,12 +25,12 @@ impl Converter for VideoConverter {
         self.init_dir(&self.opts.path_work);
 
         let (video_codec, audio_codec, extension) = match self.cfg.settings.format.as_str() {
-            "mp4-fast" => ("copy", "copy", "mp4"),
-            "mp4" => ("libx264", "aac", "mp4"),
-            "mp4-nvidia" => ("h264_nvenc", "aac", "mp4"),
-            "mp4-amd" => ("h264_amf", "aac", "mp4"),
-            "webm" => ("libvpx-vp9", "libopus", "webm"),
-            "avi" => ("rawvideo", "pcm_s16le", "avi"),
+            "mp4-fast"   => ("copy"      , "copy"     , "mp4" ),
+            "mp4"        => ("libx264"   , "aac"      , "mp4" ),
+            "mp4-nvidia" => ("h264_nvenc", "aac"      , "mp4" ),
+            "mp4-amd"    => ("h264_amf"  , "aac"      , "mp4" ),
+            "webm"       => ("libvpx-vp9", "libopus"  , "webm"),
+            "avi"        => ("rawvideo"  , "pcm_s16le", "avi" ),
             _ => ("", "", ""),
         };
 

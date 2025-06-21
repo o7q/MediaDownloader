@@ -3,10 +3,10 @@ use std::env;
 use crate::arguments::handle_arguments;
 
 mod arguments;
+mod bin;
 mod bootstrap;
 mod commands;
 mod config;
-mod global;
 mod logger;
 mod media;
 mod processor;

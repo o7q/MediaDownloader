@@ -11,31 +11,23 @@ struct Argument {
 pub fn handle_arguments() {
     let is_key = |input: &str| input.chars().take(2).collect::<String>() == "--";
 
-    let input_args: Vec<String> = env::args().collect::<Vec<String>>();
+    let input_args_raw: Vec<String> = env::args().collect::<Vec<String>>();
+    let mut args: std::iter::Peekable<std::slice::Iter<'_, String>> =
+        input_args_raw.iter().peekable();
 
-    let mut i: usize = 0;
-    while i < input_args.len() {
-        let mut increment: usize = 1;
+    while let Some(arg) = args.next() {
+        if is_key(arg) {
+            let key: String = arg.chars().skip(2).collect::<String>();
 
-        if is_key(&input_args[i]) {
-            let argument_pair: Argument = Argument {
-                key: input_args[i].chars().skip(2).collect::<String>(),
-                data: if i + 1 < input_args.len() {
-                    if !is_key(&input_args[i + 1]) {
-                        increment = 2;
-                        input_args[i + 1].clone()
-                    } else {
-                        "".to_string()
-                    }
-                } else {
-                    "".to_string()
-                },
+            let data: String = match args.peek() {
+                Some(next_arg) if !is_key(next_arg) => args.next().unwrap().clone(),
+                _ => String::new(),
             };
+
+            let argument_pair: Argument = Argument { key, data };
 
             execute_argument(&argument_pair);
         }
-
-        i += increment;
     }
 }
 

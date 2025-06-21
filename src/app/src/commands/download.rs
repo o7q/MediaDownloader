@@ -23,7 +23,7 @@ use crate::utils::serial::{deserialize_file_read, serialize_file_write, WriteTyp
 
 use crate::logger::logger::IPCLogger;
 
-use crate::global::{FFMPEG_PATH, YTDLP_PATH};
+use crate::bin::{FFMPEG_PATH, YTDLP_PATH};
 
 #[tauri::command(async)]
 pub fn download(app: AppHandle, mut config: IPCDownloadConfig) -> IPCDownloadConfig {
@@ -101,11 +101,11 @@ fn step_download(
 
 fn step_convert(config: &IPCDownloadConfig, options: &ProcessOptions, logger: &IPCLogger) {
     match config.settings.format_type.as_str() {
-        "video" => VideoConverter::new(config, options).convert(logger),
-        "audio" => AudioConverter::new(config, options).convert(logger),
-        "gif" => GifConverter::new(config, options).convert(logger),
+        "video"    => VideoConverter::new(config, options).convert(logger),
+        "audio"    => AudioConverter::new(config, options).convert(logger),
+        "gif"      => GifConverter::new(config, options).convert(logger),
         "sequence" => SequenceConverter::new(config, options).convert(logger),
-        "image" => ImageConverter::new(config, options).convert(logger),
+        "image"    => ImageConverter::new(config, options).convert(logger),
         _ => {}
     }
 }

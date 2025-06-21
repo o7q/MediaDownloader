@@ -1,6 +1,6 @@
 use std::{fs::File, io::BufReader};
 
-use crate::global::FFMPEG_PATH;
+use crate::bin::FFMPEG_PATH;
 use crate::logger::logger::IPCLogger;
 use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
 

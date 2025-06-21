@@ -1,5 +1,5 @@
+use crate::bin::YTDLP_PATH;
 use crate::logger::logger::IPCLogger;
-use crate::global::YTDLP_PATH;
 use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
 
 #[cfg(target_os = "windows")]

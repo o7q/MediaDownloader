@@ -24,10 +24,10 @@ impl Converter for AudioConverter {
         self.init_dir(&self.opts.path_work);
 
         let (audio_codec, extension) = match self.cfg.settings.format.as_str() {
-            "mp3" => ("libmp3lame", "mp3"),
-            "wav" => ("pcm_s16le", "wav"),
-            "flac" => ("flac", "flac"),
-            "ogg" => ("libvorbis", "ogg"),
+            "mp3"  => ("libmp3lame", "mp3" ),
+            "wav"  => ("pcm_s16le" , "wav" ),
+            "flac" => ("flac"      , "flac"),
+            "ogg"  => ("libvorbis" , "ogg" ),
             _ => ("", ""),
         };
 
