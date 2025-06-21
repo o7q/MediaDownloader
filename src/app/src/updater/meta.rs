@@ -11,10 +11,11 @@ pub const RELEASE_NOTES: &str = r#"- Added an auto-updater
 - Added a navigate path button
 - Added automatic binary downloading for Linux
 - Added QOL link opener feature (upon double-clicking the url textbox)
+- Fixed selection windows incorrectly loading selected items
+- Fixed selection header texts being displayed incorrectly
+- Fixed lists sorting in the wrong order
 - Fixed FFmpeg libx264 issues for Linux (now using FFmpeg GPL instead of LPGL)
-- Fixed an issue where subwindows would softlock when the main window exits
-- Fixed an issue with list header texts being displayed incorrectly
-- Fixed lists sorting in the wrong order"#;
+- Fixed an issue where subwindows would softlock when the main window exits"#;
 
 #[allow(dead_code)]
 pub fn generate_update_metadata() {

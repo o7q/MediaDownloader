@@ -3,10 +3,11 @@
 - Added a navigate path button
 - Added automatic binary downloading for Linux
 - Added QOL link opener feature (upon double-clicking the url textbox)
+- Fixed selection windows incorrectly loading selected items
+- Fixed selection header texts being displayed incorrectly
+- Fixed lists sorting in the wrong order
 - Fixed FFmpeg libx264 issues for Linux (now using FFmpeg GPL instead of LPGL)
 - Fixed an issue where subwindows would softlock when the main window exits
-- Fixed an issue with list header texts being displayed incorrectly
-- Fixed lists sorting in the wrong order
 
 ~ v5.0.0
 - MediaDownloader has been completely rewritten from scratch using the Tauri framework

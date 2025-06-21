@@ -38,14 +38,14 @@ By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/Media
 <details>
 <summary><strong>Windows</strong></summary>
 
-Simply run `MediaDownloader.exe`. It will automatically install all depenencies into the `MediaDownloader/bin` directory.
+Simply run `MediaDownloader.exe`. It will automatically install all dependencies into the `MediaDownloader/bin` directory.
 
 </details>
 
 <details>
 <summary><strong>Debian/Ubuntu</strong></summary>
 
-Simply run `MediaDownloader_linux`. It will automatically install all depenencies into the `MediaDownloader/bin` directory.
+Simply run `MediaDownloader_linux`. It will automatically install all dependencies into the `MediaDownloader/bin` directory.
 
 You may need to run the following command:
 ```
