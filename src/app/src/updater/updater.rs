@@ -56,7 +56,7 @@ impl Updater {
         }
 
         let _ = download_file_sync(
-            "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader.exe",
+            "https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader.exe",
             "MediaDownloader.exe",
         );
         let _ = Command::new("MediaDownloader.exe")
@@ -77,7 +77,7 @@ impl Updater {
         }
 
         let _ = download_file_sync(
-            "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader_linux",
+            "https://github.com/o7q/MediaDownloader/releases/latest/download/MediaDownloader_linux",
             "MediaDownloader_linux",
         );
 

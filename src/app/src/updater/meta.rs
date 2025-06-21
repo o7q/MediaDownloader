@@ -7,7 +7,14 @@ use crate::{
 
 pub const VERSION_ID: i32 = 510;
 pub const VERSION: &str = "v5.1.0";
-pub const RELEASE_NOTES: &str = r#""#;
+pub const RELEASE_NOTES: &str = r#"- Added an auto-updater
+- Added a navigate path button
+- Added automatic binary downloading for Linux
+- Added QOL link opener feature (upon double-clicking the url textbox)
+- Fixed FFmpeg libx264 issues for Linux (now using FFmpeg GPL instead of LPGL)
+- Fixed an issue where subwindows would softlock when the main window exits
+- Fixed an issue with list header texts being displayed incorrectly
+- Fixed lists sorting in the wrong order"#;
 
 #[allow(dead_code)]
 pub fn generate_update_metadata() {
