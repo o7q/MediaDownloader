@@ -35,7 +35,10 @@ impl Updater {
             return;
         }
 
-        let _ = Command::new("MediaDownloader_linux_temp")
+        use crate::utils::linux::linux_permit_file;
+        linux_permit_file("MediaDownloader_linux_temp", 0o111);
+
+        let _ = Command::new("./MediaDownloader_linux_temp")
             .arg("--update-stage-download")
             .arg(&std::process::id().to_string())
             .spawn();
@@ -79,9 +82,9 @@ impl Updater {
         );
 
         use crate::utils::linux::linux_permit_file;
-        linux_permit_file(MEDIADOWNLOADER_BINARY, 0o111);
+        linux_permit_file("MediaDownloader_linux", 0o111);
 
-        let _ = Command::new("MediaDownloader_linux")
+        let _ = Command::new("./MediaDownloader_linux")
             .arg("--update-stage-finalize")
             .arg(&std::process::id().to_string())
             .spawn();
