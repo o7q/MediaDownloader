@@ -11,17 +11,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("queue-load-selected-button")?.addEventListener("click", () => {
         const select = document.getElementById("queue-select") as HTMLSelectElement;
+        const selectedOptions = select.selectedOptions;
+        if (selectedOptions.length < 1) return;
 
-        if (select.options.length < 1) {
-            return;
+        const originalIndex = parseInt(selectedOptions[0].getAttribute("data-index") || "-1", 10);
+
+        if (originalIndex > -1) {
+            emit("queue-load", originalIndex);
         }
-
-        emit("queue-load", select.selectedOptions[0].index);
     });
 
     const removedIndices: number[] = [];
     document.getElementById("queue-remove-selected-button")?.addEventListener("click", () => {
         const select = document.getElementById("queue-select") as HTMLSelectElement;
+
+        if (!select) return;
 
         for (let i = select.options.length - 1; i >= 0; i--) {
             const option = select.options[i];
@@ -46,12 +50,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    document.getElementById("queue-saveclose-button")?.addEventListener("click", () => {
+        emit("queue-remove", removedIndices);
+        unlistenQueueRequestReturn();
+        appWindow.close();
+    });
+
     document.getElementById("titlebar-minimize-button")?.addEventListener("click", () => {
         appWindow.minimize();
     });
 
     document.getElementById("titlebar-close-button")?.addEventListener("click", () => {
-        emit("queue-remove", removedIndices);
         unlistenQueueRequestReturn();
         appWindow.close();
     });

@@ -6,11 +6,11 @@
     top: 0vw;
 
     border-radius: 0vw;
+    border: 0.1vw solid rgb(65, 65, 65);
 
     border-top-left-radius: 1vw;
     border-top-right-radius: 1vw;
 
-    border: 0.1vw solid rgb(65, 65, 65);
     border-left: none;
     border-top: none;
     border-right: none;

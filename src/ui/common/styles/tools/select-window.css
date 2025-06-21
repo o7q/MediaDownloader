@@ -19,8 +19,8 @@
     color: rgb(212, 212, 212);
     background-color: rgb(51, 51, 51);
 
-    border: 1px solid rgb(85, 85, 85);
     border-radius: 5px;
+    border: 1px solid rgb(85, 85, 85);
 
     border-bottom-left-radius: 0;
 
@@ -34,6 +34,7 @@
     bottom: 5px;
     left: 5px;
 
+    border-radius: 5px;
     border-top: 1px solid rgb(67, 67, 67);
     border-right: none;
 
@@ -49,12 +50,28 @@
     width: 30px;
     height: 30px;
 
-    border-left: 1px solid rgb(67, 67, 67);
+    border-radius: 5px;
     border-top: 1px solid rgb(67, 67, 67);
 
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.button--saveclose {
+    width: 85px;
+    height: 30px;
+
+    font-size: 11px;
+
+    left: 70px;
+    bottom: 5px;
+
+    border-radius: 5px;
+    border-top: 1px solid rgb(67, 67, 67);
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .image-button--custom {
