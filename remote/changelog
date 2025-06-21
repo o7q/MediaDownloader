@@ -1,10 +1,8 @@
-- MediaDownloader has been completely rewritten from scratch using the Tauri framework
-- It is now cross-platform (currently it has only been tested for Windows and Linux)
-- Greatly improved the UI (the UI has been redesigned from scratch with a HTML + CSS frontend, enabling a more cohesive experience)
-    - The console window is now embedded
-    - The window is now resizeable
-    - Split common functions into separate windows
-- JSON is now used for storing configuration files
-- Fixed yt-dlp breaking every once in a while, yt-dlp will now be auto-updated
-- Fixed incorrect FFmpeg bitrate argument injections
-- Improved the auto-naming feature (it is less annoying now)
+- Added an auto-updater
+- Added a navigate path button
+- Added automatic binary downloading for Linux
+- Added QOL link opener feature (upon double-clicking the url textbox)
+- Fixed FFmpeg libx264 issues for Linux (now using FFmpeg GPL instead of LPGL)
+- Fixed an issue where subwindows would softlock when the main window exits
+- Fixed an issue with list header texts being displayed incorrectly
+- Fixed lists sorting in the wrong order
