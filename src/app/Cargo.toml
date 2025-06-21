@@ -1,11 +1,15 @@
 [package]
 name = "media-downloader"
-version = "5.0.0"
+version = "5.1.0"
 description = "A GUI wrapper for yt-dlp"
 authors = ["James"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "MediaDownloader"
+path = "src/main.rs"
 
 [lib]
 # The `_lib` suffix may seem redundant but it is necessary
@@ -23,9 +27,12 @@ tauri-plugin-opener = "2"
 tauri-plugin-dialog = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-reqwest = { version = "0.12.19", features = ["stream"] }
-zip = "4.0.0"
-flate2 = "1.1.2"
+reqwest = { version = "0.12.20", features = ["blocking", "stream"] }
 tokio = "1.45.1"
 futures-util = "0.3.31"
+flate2 = "1.1.2"
+zip = { version = "4.1.0", default-features = false, features = ["deflate"] }
+xz2 = "0.1.7"
+tar = "0.4.44"
+sysinfo = "0.35.2"
 webbrowser = "1.0.5"

@@ -1,7 +1,8 @@
 use crate::{
     config::download_config::IPCDownloadConfig,
     logger::logger::IPCLogger,
-    processor::processor::{ProcessPaths, Processor},
+    media::options::ProcessOptions,
+    processor::processor::Processor,
     utils::file::{get_files, get_mediasafe_filename},
 };
 
@@ -9,31 +10,31 @@ use super::converter::Converter;
 
 pub struct AudioConverter {
     cfg: IPCDownloadConfig,
-    path: ProcessPaths,
+    opts: ProcessOptions,
 }
 
 impl Converter for AudioConverter {
-    fn new(config: &IPCDownloadConfig, paths: &ProcessPaths) -> Self {
+    fn new(config: &IPCDownloadConfig, options: &ProcessOptions) -> Self {
         Self {
             cfg: config.clone(),
-            path: paths.clone(),
+            opts: options.clone(),
         }
     }
-
     fn convert(&self, logger: &IPCLogger) {
-        self.init_dir(&self.path.work);
+        self.init_dir(&self.opts.path_work);
 
         let (audio_codec, extension) = match self.cfg.settings.format.as_str() {
-            "mp3" => ("libmp3lame", "mp3"),
-            "wav" => ("pcm_s16le", "wav"),
-            "flac" => ("flac", "flac"),
-            "ogg" => ("libvorbis", "ogg"),
+            "mp3"  => ("libmp3lame", "mp3" ),
+            "wav"  => ("pcm_s16le" , "wav" ),
+            "flac" => ("flac"      , "flac"),
+            "ogg"  => ("libvorbis" , "ogg" ),
             _ => ("", ""),
         };
 
-        for input_file in get_files(&format!("{}/download", &self.path.work)) {
-            let _ = Processor::new(logger, &format!("{}ffmpeg", &self.path.bin), &{
+        for input_file in get_files(&format!("{}/download", self.opts.path_work)) {
+            let _ = Processor::new(logger, &self.opts.bin_ffmpeg, &{
                 let mut args: Vec<String> = Vec::new();
+
                 args.push("-y".to_string());
 
                 args.push("-i".to_string());
@@ -70,7 +71,7 @@ impl Converter for AudioConverter {
 
                 args.push(format!(
                     "{}/convert/{}.{}",
-                    &self.path.work,
+                    self.opts.path_work,
                     get_mediasafe_filename(&input_file, false),
                     extension
                 ));

@@ -33,42 +33,24 @@ It provides a simple abstraction for basic yt-dlp and FFmpeg features while givi
 
 By grabbing a binary from the 👉 [downloads page](https://github.com/o7q/MediaDownloader/releases).
 
+### 💿 How do I run it?
+
 <details>
 <summary><strong>Windows</strong></summary>
 
-Simply run `MediaDownloader.exe`. It will automatically install all depenencies into the `MediaDownloader/bin` directory.
+Simply run `MediaDownloader.exe`. It will automatically install all dependencies into the `MediaDownloader/bin` directory.
 
 </details>
 
 <details>
 <summary><strong>Debian/Ubuntu</strong></summary>
 
-To use MediaDownloader on Debian/Ubuntu. You need to install **yt-dlp** and **FFmpeg** manually.
+Simply run `MediaDownloader_linux`. It will automatically install all dependencies into the `MediaDownloader/bin` directory.
 
-- Install yt-dlp:
-  - I recommend uninstalling any other yt-dlp before continuing:
-    - ```
-      sudo apt remove yt-dlp
-      ```
-  - Download yt-dlp from:
-    - https://github.com/yt-dlp/yt-dlp/releases
-  - Rename the downloaded binary to `yt-dlp`
-  - Place `yt-dlp` in your `/usr/local/bin` directory:
-    ```
-    sudo cp /<YOUR PATH TO>/yt-dlp /usr/local/bin/yt-dlp
-    ```
-    ```
-    sudo chmod +x /usr/local/bin/yt-dlp
-    ```
-
-- Install FFmpeg:
-  ```
-  sudo apt install ffmpeg
-  ```
-
-You can verify you installed everything correctly by running `yt-dlp` and `ffmpeg` in the terminal.
-
-`MediaDownloader_linux` should now work!
+You may need to run the following command:
+```
+sudo chmod +x MediaDownloader_linux
+```
 
 </details>
 
@@ -101,9 +83,8 @@ The built binary can be found in `src/app/target/release`.
 ## 📖 FAQ
 
 <details>
-<summary><strong>View</strong></summary>
+<summary><strong>How do I use the custom arguments option?</strong></summary>
 
-### How do I use the custom arguments option?
 - Every argument should be separated by a newline (`\n`) \
   *Examples:*
     ```
@@ -119,15 +100,24 @@ The built binary can be found in `src/app/target/release`.
     320K
     ```
 
-### How do I specify trim values?
+</details>
+
+<details>
+<summary><strong>How do I specify trim values?</strong></summary>
+
 - Trim values should be in the format of a timestamp \
   *Examples:*
   - `0:00` and `0:10`
   - `1:00` and `1:30`
   - `10` and `15`
   - `52:32` and `1:20:21`
-  
-### How do I specify bitrate values?
+- You can use the `<<` and `>>` options to tell the trimmer to trim from the very start or end
+
+</details>
+
+<details>
+<summary><strong>How do I specify bitrate values?</strong></summary>
+
 - Bitrate values should be a number, followed by a byte abbreviation \
   *Examples:*
   - `1G` (for gigabits)
