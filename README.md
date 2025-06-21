@@ -83,9 +83,8 @@ The built binary can be found in `src/app/target/release`.
 ## 📖 FAQ
 
 <details>
-<summary><strong>View</strong></summary>
+<summary><strong>How do I use the custom arguments option?</strong></summary>
 
-### How do I use the custom arguments option?
 - Every argument should be separated by a newline (`\n`) \
   *Examples:*
     ```
@@ -101,15 +100,24 @@ The built binary can be found in `src/app/target/release`.
     320K
     ```
 
-### How do I specify trim values?
+</details>
+
+<details>
+<summary><strong>How do I specify trim values?</strong></summary>
+
 - Trim values should be in the format of a timestamp \
   *Examples:*
   - `0:00` and `0:10`
   - `1:00` and `1:30`
   - `10` and `15`
   - `52:32` and `1:20:21`
-  
-### How do I specify bitrate values?
+- You can use the `<<` and `>>` options to tell the trimmer to trim from the very start or end
+
+</details>
+
+<details>
+<summary><strong>How do I specify bitrate values?</strong></summary>
+
 - Bitrate values should be a number, followed by a byte abbreviation \
   *Examples:*
   - `1G` (for gigabits)
