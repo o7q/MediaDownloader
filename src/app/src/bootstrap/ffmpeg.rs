@@ -79,7 +79,7 @@ fn extract_ffmpeg() -> std::io::Result<()> {
 
     let file = File::open("MediaDownloader/_temp/ffmpeg.tar.xz")?;
     let decompressor: XzDecoder<BufReader<File>> = XzDecoder::new(BufReader::new(file));
-    let mut archive: Archive<XzDecoder<BufReader<File>>> = Archive::new(decompressor);
+    let archive: Archive<XzDecoder<BufReader<File>>> = Archive::new(decompressor);
     archive.unpack("MediaDownloader/_temp/ffmpeg")?;
 
     let _ = copy_file(

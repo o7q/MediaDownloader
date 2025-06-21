@@ -5,7 +5,7 @@ use crate::updater::{
 
 #[tauri::command(async)]
 pub fn update_start() {
-    Updater::new().start();
+    Updater::new().update();
 }
 
 #[tauri::command(async)]

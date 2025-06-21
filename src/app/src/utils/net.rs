@@ -11,10 +11,10 @@ use tokio::io::AsyncWriteExt;
 pub fn download_file_sync(url: &str, path: &str) -> Result<(), Box<dyn StdError>> {
     println!("Downloading: \"{}\"", url);
 
-    let mut response = get(url)?;
+    let mut response: reqwest::blocking::Response = get(url)?;
 
     let file = StdFile::create(path)?;
-    let mut writer = BufWriter::new(file);
+    let mut writer: BufWriter<StdFile> = BufWriter::new(file);
 
     copy(&mut response, &mut writer)?;
 

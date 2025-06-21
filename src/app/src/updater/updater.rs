@@ -1,27 +1,10 @@
 use std::process::{self, Command};
-use std::thread;
-use std::time::Duration;
 
+use crate::utils::process::wait_for_process;
 use crate::utils::{
     file::{copy_file, delete_file},
     net::download_file_sync,
 };
-
-#[cfg(target_os = "windows")]
-const MEDIADOWNLOADER_BINARY: &str = "MediaDownloader.exe";
-#[cfg(target_os = "windows")]
-const MEDIADOWNLOADER_BINARY_TEMP: &str = "MediaDownloader_temp.exe";
-#[cfg(target_os = "windows")]
-const MEDIADOWNLOADER_UPDATE_URL: &str =
-    "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader.exe";
-
-#[cfg(target_os = "linux")]
-const MEDIADOWNLOADER_BINARY: &str = "./MediaDownloader_linux";
-#[cfg(target_os = "linux")]
-const MEDIADOWNLOADER_BINARY_TEMP: &str = "./MediaDownloader_linux_temp";
-#[cfg(target_os = "linux")]
-const MEDIADOWNLOADER_UPDATE_URL: &str =
-    "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader_linux";
 
 pub struct Updater {}
 
@@ -30,45 +13,91 @@ impl Updater {
         Self {}
     }
 
-    pub fn start(&self) {
-        if !self.create_updater() {
+    #[cfg(target_os = "windows")]
+    pub fn update(&self) {
+        // create updater
+        if !copy_file("MediaDownloader.exe", "MediaDownloader_temp.exe").is_ok() {
             return;
         }
 
-        let _ = Command::new(MEDIADOWNLOADER_BINARY_TEMP)
-            .arg("updater-update")
+        let _ = Command::new("MediaDownloader_temp.exe")
+            .arg("--update-stage-download")
+            .arg(&std::process::id().to_string())
             .spawn();
+
         process::exit(0);
     }
 
-    fn create_updater(&self) -> bool {
-        copy_file(MEDIADOWNLOADER_BINARY, MEDIADOWNLOADER_BINARY_TEMP).is_ok()
+    #[cfg(target_os = "linux")]
+    pub fn update(&self) {
+        // create updater
+        if !copy_file("MediaDownloader_linux", "MediaDownloader_linux_temp").is_ok() {
+            return;
+        }
+
+        let _ = Command::new("MediaDownloader_linux_temp")
+            .arg("--update-stage-download")
+            .arg(&std::process::id().to_string())
+            .spawn();
+
+        process::exit(0);
     }
 
-    pub fn update(&self) {
-        thread::sleep(Duration::from_millis(1000));
-        match delete_file(MEDIADOWNLOADER_BINARY) {
+    #[cfg(target_os = "windows")]
+    pub fn stage_download(&self, process_pid: u32) {
+        wait_for_process(process_pid);
+
+        match delete_file("MediaDownloader.exe") {
             Err(_) => return,
             _ => {}
         }
 
-        let _ = download_file_sync(MEDIADOWNLOADER_UPDATE_URL, MEDIADOWNLOADER_BINARY);
-
-        #[cfg(target_os = "linux")]
-        {
-            use crate::utils::linux::linux_permit_file;
-            linux_permit_file(MEDIADOWNLOADER_BINARY, 0o111);
-        }
-
-        let _ = Command::new(MEDIADOWNLOADER_BINARY)
-            .arg("updater-cleanup")
+        let _ = download_file_sync(
+            "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader.exe",
+            "MediaDownloader.exe",
+        );
+        let _ = Command::new("MediaDownloader.exe")
+            .arg("--update-stage-finalize")
+            .arg(&std::process::id().to_string())
             .spawn();
 
         process::exit(0);
     }
 
-    pub fn cleanup(&self) {
-        thread::sleep(Duration::from_millis(1000));
-        let _ = delete_file(MEDIADOWNLOADER_BINARY_TEMP);
+    #[cfg(target_os = "linux")]
+    pub fn stage_download(&self, process_pid: u32) {
+        wait_for_process(process_pid);
+
+        match delete_file("MediaDownloader_linux") {
+            Err(_) => return,
+            _ => {}
+        }
+
+        let _ = download_file_sync(
+            "https://github.com/o7q/Testing/releases/latest/download/MediaDownloader_linux",
+            "MediaDownloader_linux",
+        );
+
+        use crate::utils::linux::linux_permit_file;
+        linux_permit_file(MEDIADOWNLOADER_BINARY, 0o111);
+
+        let _ = Command::new("MediaDownloader_linux")
+            .arg("--update-stage-finalize")
+            .arg(&std::process::id().to_string())
+            .spawn();
+
+        process::exit(0);
+    }
+
+    #[cfg(target_os = "windows")]
+    pub fn stage_finalize(&self, updater_pid: u32) {
+        wait_for_process(updater_pid);
+        let _ = delete_file("MediaDownloader_temp.exe");
+    }
+
+    #[cfg(target_os = "linux")]
+    pub fn stage_finalize(&self, updater_pid: u32) {
+        wait_for_process(updater_pid);
+        let _ = delete_file("MediaDownloader_linux_temp");
     }
 }

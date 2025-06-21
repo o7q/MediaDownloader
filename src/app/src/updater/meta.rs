@@ -5,8 +5,8 @@ use crate::{
     utils::serial::{serialize_file_write, WriteType},
 };
 
-pub const VERSION_ID: i32 = 500;
-pub const VERSION: &str = "v5.0.0";
+pub const VERSION_ID: i32 = 510;
+pub const VERSION: &str = "v5.1.0";
 pub const RELEASE_NOTES: &str = r#""#;
 
 #[allow(dead_code)]

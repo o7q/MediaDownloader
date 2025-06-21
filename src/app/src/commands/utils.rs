@@ -87,6 +87,13 @@ fn navigate_to(navigate_options: &NavigateOptions) {
             .arg(get_parent_directory(&path))
             .spawn()
     };
+}
 
-    println!("{:?}", navigate_options)
+#[tauri::command]
+pub fn util_launch_url(url: &str) {
+    if url.is_empty() {
+        return;
+    }
+
+    if webbrowser::open(url).is_ok() {}
 }
