@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const unlistenHistoryRequestReturn = await listen<string[]>("history-request-return", (event) => {
         const select = document.getElementById("history-select");
-        
+
         for (let i = event.payload.length - 1; i >= 0; --i) {
             const option = document.createElement("option");
             option.text = event.payload[i];
@@ -57,4 +57,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     emit("history-request");
+
+    listen("global-close", () => {
+        appWindow.close();
+    });
 });

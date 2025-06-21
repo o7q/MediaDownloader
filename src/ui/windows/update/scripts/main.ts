@@ -49,4 +49,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         unlistenUpdateRequestReturn();
         appWindow.close();
     });
+
+    listen("global-close", () => {
+        appWindow.close();
+    });
 });

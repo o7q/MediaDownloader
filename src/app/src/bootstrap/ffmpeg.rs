@@ -1,7 +1,7 @@
 use std::{fs::File, io::BufReader};
 
-use crate::logger::logger::IPCLogger;
 use crate::global::FFMPEG_PATH;
+use crate::logger::logger::IPCLogger;
 use crate::utils::{directory::create_directory, file::file_exists, net::download_file_async};
 
 #[cfg(target_os = "windows")]
@@ -13,11 +13,12 @@ pub async fn bootstrap_ffmpeg(logger: &IPCLogger) {
     let _ = create_directory("MediaDownloader/bin");
     let _ = create_directory("MediaDownloader/_temp");
 
-    logger.log("Downloading FFmpeg to: \"MediaDownloader/_temp/ffmpeg.zip\"");
+    logger.log("Downloading FFmpeg...");
     let _ = download_file_async(
         "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip",
         "MediaDownloader/_temp/ffmpeg.zip",
     ).await;
+    logger.log("Downloaded FFmpeg to: \"MediaDownloader/_temp/ffmpeg.zip\"");
 
     logger.log("Extracting FFmpeg...");
     let _ = extract_ffmpeg();
