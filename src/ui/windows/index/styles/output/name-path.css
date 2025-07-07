@@ -45,7 +45,7 @@
 }
 
 .textbox--output-path {
-    width: 60vw;
+    width: 55vw;
 
     left: 32vw;
     top: 4vw;
@@ -59,6 +59,19 @@
 }
 
 .button--output-path-open {
+    width: 5vw;
+    height: 5vw;
+
+    left: 87vw;
+    top: 4vw;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.button--output-path-clear {
     width: 5vw;
     height: 5vw;
 

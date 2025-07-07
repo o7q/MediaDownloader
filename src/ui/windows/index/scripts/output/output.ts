@@ -33,6 +33,13 @@ export function initOutputUI() {
         invoke("util_open_path_location", { path: generateIPCDownloadConfig().output.path });
     });
 
+    document.getElementById("output-path-clear-button")?.addEventListener("click", async () => {
+        const pathTextbox = document.getElementById("output-path-textbox") as HTMLInputElement | null;
+        if (!pathTextbox) return;
+
+        pathTextbox.value = "";
+    });
+
     document.getElementById("output-console-open-button")?.addEventListener("click", async () => {
         openConsoleWindow();
     });

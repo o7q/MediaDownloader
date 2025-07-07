@@ -1,6 +1,6 @@
 [package]
 name = "media-downloader"
-version = "5.1.0"
+version = "5.1.1"
 description = "A GUI wrapper for yt-dlp"
 authors = ["James"]
 edition = "2021"

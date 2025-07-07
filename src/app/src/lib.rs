@@ -13,8 +13,27 @@ mod processor;
 mod updater;
 mod utils;
 
+#[cfg(target_os = "linux")]
+fn is_wayland() -> bool {
+    match env::var("XDG_SESSION_TYPE") {
+        Ok(session) if session.to_lowercase() == "wayland" => true,
+        _ => env::var("WAYLAND_DISPLAY").is_ok(),
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // fixes for Wayland
+    #[cfg(target_os = "linux")]
+    {
+        if is_wayland() {
+            std::env::set_var("__GL_THREADED_OPTIMIZATIONS", "0");
+            std::env::set_var("__NV_DISABLE_EXPLICIT_SYNC", "1");
+
+            std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+        }
+    }
+
     handle_arguments();
 
     tauri::Builder::default()
